@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import TestComponent from "./components/TestComponent";
+import PickTeams from "./components/PickTeams";
+import { Provider } from 'react-redux';
+import newStore from './redux-setup/store/'
+import { AppBar } from "@material-ui/core";
+import {useEffect} from 'react'
 
 function App() {
+  useEffect(() => {
+   document.title='Cricket 2021';
+  }, [])
   return (
+    <Provider store={newStore}>  
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AppBar position="static">
+        <h2 style={{alignSelf:'center'}}>Cricket 2021</h2>
+      </AppBar>
+      <PickTeams/>
+      {/* <TestComponent/>       */}
+      
     </div>
+    </Provider>
   );
 }
 
