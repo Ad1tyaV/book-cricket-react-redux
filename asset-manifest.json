@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/basic-book-cricket-redux/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/basic-book-cricket-redux/static/js/main.6643ea56.chunk.js",
+    "main.js.map": "/basic-book-cricket-redux/static/js/main.6643ea56.chunk.js.map",
+    "runtime-main.js": "/basic-book-cricket-redux/static/js/runtime-main.71d72d4e.js",
+    "runtime-main.js.map": "/basic-book-cricket-redux/static/js/runtime-main.71d72d4e.js.map",
+    "static/js/2.60c1d98f.chunk.js": "/basic-book-cricket-redux/static/js/2.60c1d98f.chunk.js",
+    "static/js/2.60c1d98f.chunk.js.map": "/basic-book-cricket-redux/static/js/2.60c1d98f.chunk.js.map",
+    "static/js/3.a9d118ee.chunk.js": "/basic-book-cricket-redux/static/js/3.a9d118ee.chunk.js",
+    "static/js/3.a9d118ee.chunk.js.map": "/basic-book-cricket-redux/static/js/3.a9d118ee.chunk.js.map",
+    "index.html": "/basic-book-cricket-redux/index.html",
+    "static/css/main.6dea0f05.chunk.css.map": "/basic-book-cricket-redux/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.60c1d98f.chunk.js.LICENSE.txt": "/basic-book-cricket-redux/static/js/2.60c1d98f.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.71d72d4e.js",
+    "static/js/2.60c1d98f.chunk.js",
+    "static/css/main.6dea0f05.chunk.css",
+    "static/js/main.6643ea56.chunk.js"
+  ]
+}
