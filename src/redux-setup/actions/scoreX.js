@@ -1,7 +1,6 @@
-const scoreX=(player,X)=>{
+const scoreX=(team,X)=>{
     return (dispatch,getState)=>{
-        //console.log(getState());
-        
+        //console.log(getState());        
         dispatch({type:'SCORE',payload:{run:X===5?1:X}})
     }
 }

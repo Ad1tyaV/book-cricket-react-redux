@@ -1,3 +1,5 @@
+import RandomWithIndex from '../../helpers/randomNumber';
+
 const initialState={    
     team1:'',
     team2:'', 
@@ -11,49 +13,56 @@ const initialState={
     team2Total:0,
     team1Wickets:0,
     team2Wickets:0,
-    gameover:false
+    gameover:false,
+    team1BallsFaced:0,
+    team2BallsFaced:0,
 }
 
 const scoreRunsReducer=(state=initialState,action)=>{
-    console.log(action);
-    console.log(action.payload?.run);
+    //console.log(action);
+    //console.log(action.payload?.run);
     switch(action.type){
-        case 'SCORE':{
-            if(action.payload.run===0){
-                console.log(state)
-                if(state.currentTeamBatting===state.team1)
-                return {
-                    ...state,onStrike:{batterIndex:state.onStrike.batterIndex>state.offStrike.batterIndex?state.onStrike.batterIndex+1:state.offStrike.batterIndex+1},team1Wickets:state.onStrike.batterIndex>state.offStrike.batterIndex?state.onStrike.batterIndex+1:state.offStrike.batterIndex+1
+        case 'SCORE':{   
+            if(state.gameover) return state;
+            let updatedRun = RandomWithIndex(state.onStrike.batterIndex);
+            //console.log(updatedRun);
+            
+            if(updatedRun===-1){
+                //console.log(state)
+                if(state.currentTeamBatting===state.team1){                                   
+                    return {
+                        ...state,onStrike:{batterIndex:state.onStrike.batterIndex>state.offStrike.batterIndex?state.onStrike.batterIndex+1:state.offStrike.batterIndex+1},team1Wickets:state.onStrike.batterIndex>state.offStrike.batterIndex?state.onStrike.batterIndex+1:state.offStrike.batterIndex+1,team1BallsFaced:state.team1BallsFaced+1
+                    }
                 }
                 else{
                     return{
-                        ...state,onStrike:{batterIndex:state.onStrike.batterIndex>state.offStrike.batterIndex?state.onStrike.batterIndex+1:state.offStrike.batterIndex+1},team2Wickets:state.onStrike.batterIndex>state.offStrike.batterIndex?state.onStrike.batterIndex+1:state.offStrike.batterIndex+1
+                        ...state,onStrike:{batterIndex:state.onStrike.batterIndex>state.offStrike.batterIndex?state.onStrike.batterIndex+1:state.offStrike.batterIndex+1},team2Wickets:state.onStrike.batterIndex>state.offStrike.batterIndex?state.onStrike.batterIndex+1:state.offStrike.batterIndex+1,team2BallsFaced:state.team2BallsFaced+1
                     }
                 }
             }
             else{
 
-                if(action.payload.run%2){
+                if(updatedRun%2){
                     if(state.currentTeamBatting===state.team1){
                         return{
-                            ...state,onStrike:{batterIndex:state.offStrike.batterIndex},offStrike:{batterIndex:state.onStrike.batterIndex},team1Total:state.team1Total+action.payload.run,team1Stats:{...state.team1Stats,[state.onStrike.batterIndex]:(state.team1Stats[state.onStrike.batterIndex]??0)+action.payload.run}
+                            ...state,onStrike:{batterIndex:state.offStrike.batterIndex},offStrike:{batterIndex:state.onStrike.batterIndex},team1Total:state.team1Total+updatedRun,team1Stats:{...state.team1Stats,[state.onStrike.batterIndex]:(state.team1Stats[state.onStrike.batterIndex]??0)+updatedRun},team1BallsFaced:state.team1BallsFaced+1
                         }
                     }
                     else{
                         return{
-                            ...state,onStrike:{batterIndex:state.offStrike.batterIndex},offStrike:{batterIndex:state.onStrike.batterIndex},team2Total:state.team2Total+action.payload.run,team2Stats:{...state.team2Stats,[state.onStrike.batterIndex]:(state.team2Stats[state.onStrike.batterIndex]??0)+action.payload.run}
+                            ...state,onStrike:{batterIndex:state.offStrike.batterIndex},offStrike:{batterIndex:state.onStrike.batterIndex},team2Total:state.team2Total+updatedRun,team2Stats:{...state.team2Stats,[state.onStrike.batterIndex]:(state.team2Stats[state.onStrike.batterIndex]??0)+updatedRun},team2BallsFaced:state.team2BallsFaced+1
                         }
                     }
                 }
                 else{      
                     if(state.currentTeamBatting===state.team1){
                         return{
-                            ...state,team1Total:state.team1Total+action.payload.run,team1Stats:{...state.team1Stats,[state.onStrike.batterIndex]:(state.team1Stats[state.onStrike.batterIndex]??0)+action.payload.run}
+                            ...state,team1Total:state.team1Total+updatedRun,team1Stats:{...state.team1Stats,[state.onStrike.batterIndex]:(state.team1Stats[state.onStrike.batterIndex]??0)+updatedRun},team1BallsFaced:state.team1BallsFaced+1
                         }
                     }
                     else{
                         return {
-                        ...state,team2Total:state.team2Total+action.payload.run,team2Stats:{...state.team2Stats,[state.onStrike.batterIndex]:(state.team2Stats[state.onStrike.batterIndex]??0)+action.payload.run}
+                        ...state,team2Total:state.team2Total+updatedRun,team2Stats:{...state.team2Stats,[state.onStrike.batterIndex]:(state.team2Stats[state.onStrike.batterIndex]??0)+updatedRun},team2BallsFaced:state.team2BallsFaced+1
                        }
                     }
                     
@@ -68,7 +77,7 @@ const scoreRunsReducer=(state=initialState,action)=>{
                    ...state,currentTeamBatting:state.team2,onStrike:{batterIndex:-1},offStrike:{batterIndex:0}
                }
            }
-           else if(state.currentTeamBatting===state.team2 && state.team2Wickets===10){               
+           else if(state.currentTeamBatting===state.team2 && (state.team2Wickets===10 || state.team2BallsFaced===300)){               
                return{
                    ...state,gameover:true
                }
@@ -99,7 +108,7 @@ const scoreRunsReducer=(state=initialState,action)=>{
             }
         case 'PICK_TEAMS':
             return {
-                ...state,team1:action.payload.team1,team2:action.payload.team2,gameover:false,currentTeamBatting:action.payload.team1
+                ...state,team1:action.payload.team1,team2:action.payload.team2,gameover:false,currentTeamBatting:action.payload.team1,team1BallsFaced:0,team2BallsFaced:0
             }
         default:
             return state;

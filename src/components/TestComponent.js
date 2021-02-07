@@ -17,12 +17,12 @@ function TestComponent(props) {
      useEffect(()=>{         
          console.log('inside useEffect')
          if(!props.scoreData.gameover){
-            if(props.scoreData.team1Wickets===10){
+            if(props.scoreData.team1Wickets===10 || props.scoreData.team1BallsFaced===300){
                 props.completeInningsDispatch('team1');
             }
         }
 
-        if(props.scoreData.team1Wickets===10){
+        if(props.scoreData.team1Wickets===10 || props.scoreData.team1BallsFaced===300){
             if(props.scoreData.team2Total>props.scoreData.team1Total){                
                 setMessage(`${props.scoreData.team2} won by ${10-props.scoreData.team2Wickets} wickets`)
             }
@@ -42,12 +42,12 @@ function TestComponent(props) {
                 <>
                 <span className='score_data' style={{display:'flex',justifyContent:'center'}}>
                     <h3>{props.scoreData.team1}</h3>&nbsp;&nbsp;
-                    <h3>{props.scoreData.team1Total}/{props.scoreData.team1Wickets}</h3>
+                    <h3>{props.scoreData.team1Total}/{props.scoreData.team1Wickets} Overs:{props.scoreData.team1BallsFaced>=60?(props.scoreData.team1BallsFaced/6).toPrecision(2):(props.scoreData.team1BallsFaced/6).toPrecision(1)}.{props.scoreData.team1BallsFaced%6} RR:{(props.scoreData.team1Total/((props.scoreData.team1BallsFaced||1)/6)).toPrecision(3)??0}</h3>
                 </span>
                 
                 <span className='score_data' style={{display:'flex',justifyContent:'center'}}>
                     <h3>{props.scoreData.team2}</h3>&nbsp;&nbsp;
-                    <h3>{props.scoreData.team2Total}/{props.scoreData.team2Wickets}</h3>                
+                    <h3>{props.scoreData.team2Total}/{props.scoreData.team2Wickets} Overs:{props.scoreData.team2BallsFaced>=60?(props.scoreData.team2BallsFaced/6).toPrecision(2):(props.scoreData.team2BallsFaced/6).toPrecision(1)}.{props.scoreData.team2BallsFaced%6} RR:{(props.scoreData.team2Total/((props.scoreData.team2BallsFaced||1)/6)).toPrecision(3)??0}</h3>                
                 </span>
                 </>
             }
@@ -58,7 +58,7 @@ function TestComponent(props) {
             {<hr/>}
             {   
             
-                props.scoreData.gameover?<><span style={{display:'flex',justifyContent:'center',fontWeight:'600'}}>{message}</span><br/><span style={{display:'flex',justifyContent:'center'}}><Button variant="contained" color="primary" onClick={()=>{props.resetDispatch()}}>Play Again</Button></span></>:<span style={{display:'flex',justifyContent:'center'}}><Button color="primary" variant="contained" onClick={()=>{props.scoreDispatch((Math.floor(Math.random()*7)))}}>PLAY</Button></span>                
+                props.scoreData.gameover?<><span style={{display:'flex',justifyContent:'center',fontWeight:'600'}}>{message}</span><br/><span style={{display:'flex',justifyContent:'center'}}><Button variant="contained" color="primary" onClick={()=>{props.resetDispatch()}}>Play Again</Button></span></>:<span style={{display:'flex',justifyContent:'center'}}><Button color="primary" variant="contained" onClick={()=>{for(let i=0;i<6;i++)props.scoreDispatch((Math.floor(Math.random()*7)))}}>PLAY</Button></span>                
             }
 
             {props.scoreData.gameover?<ScoreCard team1={props.scoreData.team1} team2={props.scoreData.team2} teamData={props.teamData} team1Stats={props.scoreData.team1Stats} team2Stats={props.scoreData.team2Stats}/>:<></>}

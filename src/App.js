@@ -1,4 +1,3 @@
-import TestComponent from "./components/TestComponent";
 import PickTeams from "./components/PickTeams";
 import { Provider } from 'react-redux';
 import newStore from './redux-setup/store/'
@@ -15,9 +14,7 @@ function App() {
       <AppBar position="static">
         <h2 style={{alignSelf:'center'}}>Cricket 2021</h2>
       </AppBar>
-      <PickTeams/>
-      {/* <TestComponent/>       */}
-      
+      <PickTeams/>            
     </div>
     </Provider>
   );
