@@ -28,7 +28,7 @@ const scoreRunsReducer=(state=initialState,action)=>{
             //console.log(updatedRun);
             
             if(updatedRun===-1){
-                console.log(state.onStrike.batterIndex)
+                //console.log(state.onStrike.batterIndex)
                 if(state.currentTeamBatting===state.team1){                                   
                     return {
                         ...state,offStrike:{...state.offStrike,batterIndex:state.onStrike.batterIndex},onStrike:{...state.onStrike,batterIndex:state.onStrike.batterIndex>state.offStrike.batterIndex?state.onStrike.batterIndex+1:state.offStrike.batterIndex+1},team1Wickets:state.onStrike.batterIndex>state.offStrike.batterIndex?state.onStrike.batterIndex+1:state.offStrike.batterIndex+1,team1BallsFaced:state.team1BallsFaced+1
@@ -72,7 +72,7 @@ const scoreRunsReducer=(state=initialState,action)=>{
             }
         }
         case 'COMPLETE':{
-            console.log(state)
+            //console.log(state)
            if(state.currentTeamBatting===state.team1){
                return{
                    ...state,currentTeamBatting:state.team2,onStrike:{batterIndex:-1},offStrike:{batterIndex:0}
@@ -91,7 +91,7 @@ const scoreRunsReducer=(state=initialState,action)=>{
            else return state;
         }   
         case 'RESET_STATE':
-            console.log('here')
+            //console.log('here')
             return {    
                 team1:'',
                 team2:'', 
