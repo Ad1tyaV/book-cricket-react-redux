@@ -14,22 +14,22 @@ function TestComponent(props) {
     //     props.pickTeamDispatch();        
     // }, [])
    
-     useEffect(()=>{         
-         console.log('inside useEffect')
+     useEffect(()=>{  
+
+         //console.log('inside useEffect')
          if(!props.scoreData.gameover){
             if(props.scoreData.team1Wickets===10 || props.scoreData.team1BallsFaced===300){
                 props.completeInningsDispatch('team1');
             }
         }
-
         if(props.scoreData.team1Wickets===10 || props.scoreData.team1BallsFaced===300){
             if(props.scoreData.team2Total>props.scoreData.team1Total){                
                 setMessage(`${props.scoreData.team2} won by ${10-props.scoreData.team2Wickets} wickets`)
             }
-            else if(props.scoreData.team2Total===props.scoreData.team1Total && props.scoreData.team2Wickets===10){
+            else if(props.scoreData.team2Total===props.scoreData.team1Total && (props.scoreData.team2Wickets===10 || props.scoreData.team2BallsFaced===300)){
                 setMessage(`Match Tied`)
             }
-            else if(props.scoreData.team2Total<props.scoreData.team1Total &&props.scoreData.team2Wickets===10){
+            else if(props.scoreData.team2Total<props.scoreData.team1Total && (props.scoreData.team2Wickets===10 || props.scoreData.team2BallsFaced===300)){
                 setMessage(`${props.scoreData.team1} beat ${props.scoreData.team2} by ${props.scoreData.team1Total-props.scoreData.team2Total} runs`)
             }
         }

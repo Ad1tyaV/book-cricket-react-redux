@@ -22,8 +22,8 @@ const RandomWithIndex=(batterIndex)=>{
     var arr=[-1,0,1,2,3,4,6];
     var freq=[];
     var prefix=[];
-    console.log(batterIndex);
-    console.log(typeof(batterIndex));
+    //console.log(batterIndex);
+    //console.log(typeof(batterIndex));
     switch(batterIndex){
         
         case -1:{
@@ -50,7 +50,7 @@ const RandomWithIndex=(batterIndex)=>{
             prefix = freq.map(cumulativeSum)
             let random = Math.floor(Math.random()*prefix[prefix.length-1])
             let index_rc=getCeilValue(prefix,random)
-            console.log(arr[index_rc])
+            //console.log(arr[index_rc])
             return arr[index_rc];
         }
         case 3:{
@@ -58,7 +58,7 @@ const RandomWithIndex=(batterIndex)=>{
             prefix = freq.map(cumulativeSum)
             let random = Math.floor(Math.random()*prefix[prefix.length-1])
             let index_rc=getCeilValue(prefix,random)
-            console.log(arr[index_rc])
+            //console.log(arr[index_rc])
             return arr[index_rc];
         }
         case 4:{
@@ -66,7 +66,7 @@ const RandomWithIndex=(batterIndex)=>{
             prefix = freq.map(cumulativeSum)
             let random = Math.floor(Math.random()*prefix[prefix.length-1])
             let index_rc=getCeilValue(prefix,random)
-            console.log(arr[index_rc])
+            //console.log(arr[index_rc])
             return arr[index_rc];
         }
         case 5:{
@@ -74,7 +74,7 @@ const RandomWithIndex=(batterIndex)=>{
             prefix = freq.map(cumulativeSum)
             let random = Math.floor(Math.random()*prefix[prefix.length-1])
             let index_rc=getCeilValue(prefix,random)
-            console.log(arr[index_rc])
+            //console.log(arr[index_rc])
             return arr[index_rc];
         }
         case 6:{
@@ -82,7 +82,7 @@ const RandomWithIndex=(batterIndex)=>{
             prefix = freq.map(cumulativeSum)
             let random = Math.floor(Math.random()*prefix[prefix.length-1])
             let index_rc=getCeilValue(prefix,random)
-            console.log(arr[index_rc])
+            //console.log(arr[index_rc])
             return arr[index_rc];
         }
         case 7:{
@@ -90,7 +90,7 @@ const RandomWithIndex=(batterIndex)=>{
             prefix = freq.map(cumulativeSum)
             let random = Math.floor(Math.random()*prefix[prefix.length-1])
             let index_rc=getCeilValue(prefix,random)
-            console.log(arr[index_rc])
+            //console.log(arr[index_rc])
             return arr[index_rc];
         }
         case 8:{
@@ -98,7 +98,7 @@ const RandomWithIndex=(batterIndex)=>{
             prefix = freq.map(cumulativeSum)
             let random = Math.floor(Math.random()*prefix[prefix.length-1])
             let index_rc=getCeilValue(prefix,random)
-            console.log(arr[index_rc])
+            //console.log(arr[index_rc])
             return arr[index_rc];
         }
         case 9:{
@@ -106,11 +106,11 @@ const RandomWithIndex=(batterIndex)=>{
             prefix = freq.map(cumulativeSum)
             let random = Math.floor(Math.random()*prefix[prefix.length-1])
             let index_rc=getCeilValue(prefix,random)
-            console.log(arr[index_rc])
+            //console.log(arr[index_rc])
             return arr[index_rc];
         }
         default:{            
-            console.log('In default')
+            //console.log('In default')
             return 1;
         }
     }

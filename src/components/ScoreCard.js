@@ -10,7 +10,7 @@ function ScoreCard(props) {
     return (
         <div>
             
-            <Table style={{maxWidth: 500,maxHeight:100,float:'left'}} aria-label="customized table">
+            <Table style={{maxWidth: 500,maxHeight:100,float:'left'}} aria-label="customized table" key={Date.now()}>
                 <TableBody>
                     {/* <tr>{Object.keys(props.teamData["India"]).map((key)=>[props.teamData["India"][key],props.team1Stats[key]??0])}</tr> */}
                     {
@@ -19,7 +19,7 @@ function ScoreCard(props) {
                 </TableBody>
             </Table>             
             
-            <Table style={{maxWidth: 500,maxHeight:100,float:'right'}} aria-label="customized table">
+            <Table style={{maxWidth: 500,maxHeight:100,float:'right'}} aria-label="customized table" key={Date.now()}>
                 <TableBody>                    
                     {
                         ppl.map((index)=>{return <><TableRow><TableCell>{props.teamData[props.team2][index]}</TableCell><TableCell>{props.team2Stats[index]??0}</TableCell></TableRow></>})                          

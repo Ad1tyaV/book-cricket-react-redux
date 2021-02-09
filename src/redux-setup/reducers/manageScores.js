@@ -28,15 +28,15 @@ const scoreRunsReducer=(state=initialState,action)=>{
             //console.log(updatedRun);
             
             if(updatedRun===-1){
-                //console.log(state)
+                console.log(state.onStrike.batterIndex)
                 if(state.currentTeamBatting===state.team1){                                   
                     return {
-                        ...state,onStrike:{batterIndex:state.onStrike.batterIndex>state.offStrike.batterIndex?state.onStrike.batterIndex+1:state.offStrike.batterIndex+1},team1Wickets:state.onStrike.batterIndex>state.offStrike.batterIndex?state.onStrike.batterIndex+1:state.offStrike.batterIndex+1,team1BallsFaced:state.team1BallsFaced+1
+                        ...state,offStrike:{...state.offStrike,batterIndex:state.onStrike.batterIndex},onStrike:{...state.onStrike,batterIndex:state.onStrike.batterIndex>state.offStrike.batterIndex?state.onStrike.batterIndex+1:state.offStrike.batterIndex+1},team1Wickets:state.onStrike.batterIndex>state.offStrike.batterIndex?state.onStrike.batterIndex+1:state.offStrike.batterIndex+1,team1BallsFaced:state.team1BallsFaced+1
                     }
                 }
                 else{
                     return{
-                        ...state,onStrike:{batterIndex:state.onStrike.batterIndex>state.offStrike.batterIndex?state.onStrike.batterIndex+1:state.offStrike.batterIndex+1},team2Wickets:state.onStrike.batterIndex>state.offStrike.batterIndex?state.onStrike.batterIndex+1:state.offStrike.batterIndex+1,team2BallsFaced:state.team2BallsFaced+1
+                        ...state,offStrike:{...state.offStrike,batterIndex:state.onStrike.batterIndex},onStrike:{...state.onStrike,batterIndex:state.onStrike.batterIndex>state.offStrike.batterIndex?state.onStrike.batterIndex+1:state.offStrike.batterIndex+1},team2Wickets:state.onStrike.batterIndex>state.offStrike.batterIndex?state.onStrike.batterIndex+1:state.offStrike.batterIndex+1,team2BallsFaced:state.team2BallsFaced+1
                     }
                 }
             }
@@ -44,14 +44,15 @@ const scoreRunsReducer=(state=initialState,action)=>{
 
                 if(updatedRun%2){
                     if(state.currentTeamBatting===state.team1){
-                        return{
-                            ...state,onStrike:{batterIndex:state.offStrike.batterIndex},offStrike:{batterIndex:state.onStrike.batterIndex},team1Total:state.team1Total+updatedRun,team1Stats:{...state.team1Stats,[state.onStrike.batterIndex]:(state.team1Stats[state.onStrike.batterIndex]??0)+updatedRun},team1BallsFaced:state.team1BallsFaced+1
+                        return {
+                            ...state,team1Total:state.team1Total+updatedRun,team1Stats:{...state.team1Stats,[state.onStrike.batterIndex]:(state.team1Stats[state.onStrike.batterIndex]??0)+updatedRun},team1BallsFaced:state.team1BallsFaced+1,onStrike:{...state.onStrike,batterIndex:state.offStrike.batterIndex},offStrike:{...state.offStrike,batterIndex:state.onStrike.batterIndex}
                         }
+                        
                     }
                     else{
                         return{
-                            ...state,onStrike:{batterIndex:state.offStrike.batterIndex},offStrike:{batterIndex:state.onStrike.batterIndex},team2Total:state.team2Total+updatedRun,team2Stats:{...state.team2Stats,[state.onStrike.batterIndex]:(state.team2Stats[state.onStrike.batterIndex]??0)+updatedRun},team2BallsFaced:state.team2BallsFaced+1
-                        }
+                            ...state,team2Total:state.team2Total+updatedRun,team2Stats:{...state.team2Stats,[state.onStrike.batterIndex]:(state.team2Stats[state.onStrike.batterIndex]??0)+updatedRun},team2BallsFaced:state.team2BallsFaced+1,onStrike:{...state.onStrike,batterIndex:state.offStrike.batterIndex},offStrike:{...state.offStrike,batterIndex:state.onStrike.batterIndex}
+                        }                        
                     }
                 }
                 else{      
@@ -62,7 +63,7 @@ const scoreRunsReducer=(state=initialState,action)=>{
                     }
                     else{
                         return {
-                        ...state,team2Total:state.team2Total+updatedRun,team2Stats:{...state.team2Stats,[state.onStrike.batterIndex]:(state.team2Stats[state.onStrike.batterIndex]??0)+updatedRun},team2BallsFaced:state.team2BallsFaced+1
+                            ...state,team2Total:state.team2Total+updatedRun,team2Stats:{...state.team2Stats,[state.onStrike.batterIndex]:(state.team2Stats[state.onStrike.batterIndex]??0)+updatedRun},team2BallsFaced:state.team2BallsFaced+1
                        }
                     }
                     
