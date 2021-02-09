@@ -9,17 +9,17 @@ import { Button } from '@material-ui/core';
 function TestComponent(props) {
 
     const [message, setMessage] = useState("")
-    const track = useRef(null)
+    const track = useRef({})
     // useEffect(() => {
     //     props.pickTeamDispatch();        
     // }, [])
-   
+    
      useEffect(()=>{  
 
          //console.log('inside useEffect')
          if(!props.scoreData.gameover){
             if(props.scoreData.team1Wickets===10 || props.scoreData.team1BallsFaced===300){                        
-                if(!track.current) {
+                if(Object.keys(track.current).length===0) {
                     track.current={}
                     track.current = {...track.current,team1:{...track.current.team1,player_1:props.scoreData.onStrike.batterIndex,player_2:props.scoreData.offStrike.batterIndex}}                
                 }
@@ -65,7 +65,7 @@ function TestComponent(props) {
             {<hr/>}
             {   
             
-                props.scoreData.gameover?<><span style={{display:'flex',justifyContent:'center',fontWeight:'600'}}>{message}</span><br/><span style={{display:'flex',justifyContent:'center'}}><Button variant="contained" color="primary" onClick={()=>{props.resetDispatch()}}>Play Again</Button></span></>:<span style={{display:'flex',justifyContent:'center'}}><Button color="primary" variant="contained" onClick={()=>{for(let i=0;i<6;i++)props.scoreDispatch((Math.floor(Math.random()*7)))}}>PLAY</Button></span>                
+                props.scoreData.gameover?<><span style={{display:'flex',justifyContent:'center',fontWeight:'600'}}>{message}</span><br/><span style={{display:'flex',justifyContent:'center'}}><Button variant="contained" color="primary" onClick={()=>{track.current={};props.resetDispatch()}}>Play Again</Button></span></>:<span style={{display:'flex',justifyContent:'center'}}><Button color="primary" variant="contained" onClick={()=>{for(let i=0;i<6;i++)props.scoreDispatch((Math.floor(Math.random()*7)))}}>PLAY</Button></span>                
             }
 
             {props.scoreData.gameover?<ScoreCard track={track.current} team1={props.scoreData.team1} team2={props.scoreData.team2} teamData={props.teamData} team1Stats={props.scoreData.team1Stats} team2Stats={props.scoreData.team2Stats}/>:<></>}
