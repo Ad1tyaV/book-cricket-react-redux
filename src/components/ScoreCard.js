@@ -22,7 +22,7 @@ function ScoreCard(props) {
             <Table style={{maxWidth: 500,maxHeight:100,float:'right'}} aria-label="customized table" key={Date.now()}>
                 <TableBody>                    
                     {
-                        ppl.map((index)=>{return <><TableRow><TableCell style={{color:(props.track.team2.player_1===index || props.track.team2.player_2===index)?'green':(index>props.track.team2.player_1 || index>props.track.team2.player_2)?'gray':'red'}}>{props.teamData[props.team2][index]}</TableCell><TableCell>{props.team2Stats[index]??0}</TableCell></TableRow></>})                          
+                        ppl.map((index)=>{return <><TableRow><TableCell style={{color:(props.track.team2.player_1===index || props.track.team2.player_2===index)?'green':(index>Math.min(props.track.team2.player_1,props.track.team2.player_2) && index<Math.max(props.track.team2.player_1,props.track.team2.player_2)) || index<Math.min(props.track.team2.player_1,props.track.team2.player_2)?'red':'gray'}}>{props.teamData[props.team2][index]}</TableCell><TableCell>{props.team2Stats[index]??0}</TableCell></TableRow></>})                          
                     }                    
                 </TableBody>
             </Table>             
