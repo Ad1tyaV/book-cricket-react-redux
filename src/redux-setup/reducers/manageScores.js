@@ -30,14 +30,16 @@ const scoreRunsReducer=(state=initialState,action)=>{
             if(updatedRun===-1){
                 
                 if(state.currentTeamBatting===state.team1 && state.team1Wickets!==10){
-                    return {
+                    let newstate= {
                         ...state,offStrike:{...state.offStrike,batterIndex:state.onStrike.batterIndex},onStrike:{...state.onStrike,batterIndex:state.onStrike.batterIndex>state.offStrike.batterIndex?state.onStrike.batterIndex+1:state.offStrike.batterIndex+1},team1Wickets:state.onStrike.batterIndex>state.offStrike.batterIndex?state.onStrike.batterIndex+1:state.offStrike.batterIndex+1,team1BallsFaced:state.team1BallsFaced+1
                     }
+                    return newstate.team1BallsFaced%6===0?{...newstate,onStrike:{...newstate.onStrike,batterIndex:newstate.offStrike.batterIndex},offStrike:{...newstate.offStrike,batterIndex:newstate.onStrike.batterIndex}}:newstate
                 }
                 else if(state.currentTeamBatting===state.team2 && state.team2Wickets!==10){
-                    return{
+                    let newstate={
                         ...state,offStrike:{...state.offStrike,batterIndex:state.onStrike.batterIndex},onStrike:{...state.onStrike,batterIndex:state.onStrike.batterIndex>state.offStrike.batterIndex?state.onStrike.batterIndex+1:state.offStrike.batterIndex+1},team2Wickets:state.onStrike.batterIndex>state.offStrike.batterIndex?state.onStrike.batterIndex+1:state.offStrike.batterIndex+1,team2BallsFaced:state.team2BallsFaced+1
                     }
+                    return newstate.team2BallsFaced%6===0?{...newstate,onStrike:{...newstate.onStrike,batterIndex:newstate.offStrike.batterIndex},offStrike:{...newstate.offStrike,batterIndex:newstate.onStrike.batterIndex}}:newstate
                 }
                 else return state;
             }
@@ -45,28 +47,31 @@ const scoreRunsReducer=(state=initialState,action)=>{
 
                 if(updatedRun%2){
                     if(state.currentTeamBatting===state.team1 && state.team1Wickets!==10){
-                        return {
+                        let newstate= {
                             ...state,team1Total:state.team1Total+updatedRun,team1Stats:{...state.team1Stats,[state.onStrike.batterIndex]:(state.team1Stats[state.onStrike.batterIndex]??0)+updatedRun},team1BallsFaced:state.team1BallsFaced+1,onStrike:{...state.onStrike,batterIndex:state.offStrike.batterIndex},offStrike:{...state.offStrike,batterIndex:state.onStrike.batterIndex}
                         }
-                        
+                        return newstate.team1BallsFaced%6===0?{...newstate,onStrike:{...newstate.onStrike,batterIndex:newstate.offStrike.batterIndex},offStrike:{...newstate.offStrike,batterIndex:newstate.onStrike.batterIndex}}:newstate
                     }
                     else if(state.currentTeamBatting===state.team2 && state.team2Wickets!==10 && state.team2Total<=state.team1Total){
-                        return{
+                        let newstate={
                             ...state,team2Total:state.team2Total+updatedRun,team2Stats:{...state.team2Stats,[state.onStrike.batterIndex]:(state.team2Stats[state.onStrike.batterIndex]??0)+updatedRun},team2BallsFaced:state.team2BallsFaced+1,onStrike:{...state.onStrike,batterIndex:state.offStrike.batterIndex},offStrike:{...state.offStrike,batterIndex:state.onStrike.batterIndex}
-                        }                        
+                        }  
+                        return newstate.team2BallsFaced%6===0?{...newstate,onStrike:{...newstate.onStrike,batterIndex:newstate.offStrike.batterIndex},offStrike:{...newstate.offStrike,batterIndex:newstate.onStrike.batterIndex}}:newstate                      
                     }
                     else return state;
                 }
                 else{      
                     if(state.currentTeamBatting===state.team1 && state.team1Wickets!==10){
-                        return{
+                        let newstate={
                             ...state,team1Total:state.team1Total+updatedRun,team1Stats:{...state.team1Stats,[state.onStrike.batterIndex]:(state.team1Stats[state.onStrike.batterIndex]??0)+updatedRun},team1BallsFaced:state.team1BallsFaced+1
                         }
+                        return newstate.team1BallsFaced%6===0?{...newstate,onStrike:{...newstate.onStrike,batterIndex:newstate.offStrike.batterIndex},offStrike:{...newstate.offStrike,batterIndex:newstate.onStrike.batterIndex}}:newstate
                     }
                     else if(state.currentTeamBatting===state.team2 && state.team2Wickets!==10 && state.team2Total<=state.team1Total){
-                        return {
+                        let newstate= {
                             ...state,team2Total:state.team2Total+updatedRun,team2Stats:{...state.team2Stats,[state.onStrike.batterIndex]:(state.team2Stats[state.onStrike.batterIndex]??0)+updatedRun},team2BallsFaced:state.team2BallsFaced+1
                        }
+                       return newstate.team2BallsFaced%6===0?{...newstate,onStrike:{...newstate.onStrike,batterIndex:newstate.offStrike.batterIndex},offStrike:{...newstate.offStrike,batterIndex:newstate.onStrike.batterIndex}}:newstate
                     }
                     else return state;
                     
