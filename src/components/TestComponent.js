@@ -49,12 +49,12 @@ function TestComponent(props) {
                 <>
                 <span className='score_data' style={{display:'flex',justifyContent:'center'}}>
                     <h3>{props.scoreData.team1}</h3>&nbsp;&nbsp;
-                    <h3>{props.scoreData.team1Total}/{props.scoreData.team1Wickets} Overs:{props.scoreData.team1BallsFaced>=60?(props.scoreData.team1BallsFaced/6).toPrecision(2):(props.scoreData.team1BallsFaced/6).toPrecision(1)}.{props.scoreData.team1BallsFaced%6} RR:{(props.scoreData.team1Total/((props.scoreData.team1BallsFaced||1)/6)).toPrecision(3)??0}</h3>
+                    <h3>{props.scoreData.team1Total}/{props.scoreData.team1Wickets} Overs:{Math.floor(props.scoreData.team1BallsFaced/6)}.{props.scoreData.team1BallsFaced%6} RR:{(props.scoreData.team1Total/((props.scoreData.team1BallsFaced||1)/6)).toPrecision(3)??0}</h3>
                 </span>
                 
                 <span className='score_data' style={{display:'flex',justifyContent:'center'}}>
                     <h3>{props.scoreData.team2}</h3>&nbsp;&nbsp;
-                    <h3>{props.scoreData.team2Total}/{props.scoreData.team2Wickets} Overs:{props.scoreData.team2BallsFaced>=60?(props.scoreData.team2BallsFaced/6).toPrecision(2):(props.scoreData.team2BallsFaced/6).toPrecision(1)}.{props.scoreData.team2BallsFaced%6} RR:{(props.scoreData.team2Total/((props.scoreData.team2BallsFaced||1)/6)).toPrecision(3)??0}</h3>                
+                    <h3>{props.scoreData.team2Total}/{props.scoreData.team2Wickets} Overs:{Math.floor(props.scoreData.team2BallsFaced/6)}.{props.scoreData.team2BallsFaced%6} RR:{(props.scoreData.team2Total/((props.scoreData.team2BallsFaced||1)/6)).toPrecision(3)??0}</h3>                
                 </span>
                 </>
             }
