@@ -23,6 +23,6 @@ const newstate={
    }
 }
 
-const PlayerStats=()=>{
-    
+const PlayerStats=(state=newstate,action)=>{
+    return state;
 }
