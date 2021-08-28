@@ -44,11 +44,11 @@ function PickTeams(props) {
                 props.scoreData.team1===''?
                 <>
                     <div style={{marginLeft:'47.5%',marginTop:'1%'}}>
-                    <InputLabel shrink id="firstTeam">
+                    <InputLabel shrink id="firstTeam" style={{color:"whitesmoke"}}>
                     First Team
                     </InputLabel>    
                     <Select label="First Team"
-                    labelId="demo-controlled-open-select-label" id="firstTeam" open={openTeam1} onClose={handleClose} onOpen={handleOpen} value={firstTeam} onChange={handleChangeFirstTeam}>        
+                    labelId="demo-controlled-open-select-label" id="firstTeam" open={openTeam1} onClose={handleClose} onOpen={handleOpen} value={firstTeam} onChange={handleChangeFirstTeam} style={{color:"whitesmoke"}}>
                     {
                         teams.current.map((team)=>(
                             team!==secondTeam?<MenuItem value={team}>{team}</MenuItem>:[]
@@ -58,11 +58,11 @@ function PickTeams(props) {
                     <br/>
                     <br/>
                     <br/>
-                    <InputLabel shrink id="secondTeam">
+                    <InputLabel shrink id="secondTeam" style={{color:"whitesmoke"}}>
                     Second Team
                     </InputLabel>    
                     <Select
-                    labelId="demo-controlled-open-select-label" id="secondTeam" open={openTeam2} onClose={handleClose2} onOpen={handleOpen2} value={secondTeam} onChange={handleChangeSecondTeam}>        
+                    labelId="demo-controlled-open-select-label" id="secondTeam" open={openTeam2} onClose={handleClose2} onOpen={handleOpen2} value={secondTeam} onChange={handleChangeSecondTeam} style={{color:"whitesmoke"}}>
                     {
                         teams.current.map((team)=>(
                             team!==firstTeam?<MenuItem value={team}>{team}</MenuItem>:[]

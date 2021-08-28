@@ -44,7 +44,7 @@ function TestComponent(props) {
      },[props.scoreData])
 
     return (
-        <div>            
+        <div style={{color:"whitesmoke"}}>            
             {   
                 <>
                 <span className='score_data' style={{display:'flex',justifyContent:'center'}}>
