@@ -56,9 +56,9 @@ function PickTeams(props) {
                         ))
                     }
                     </Select>
-                    <br/>
-                    &nbsp;&nbsp;&nbsp;<SwapVert htmlColor="white" onClick={()=>{setFirstTeam(secondTeam); setSecondTeam(firstTeam)}}/>
-                    <br/>
+                    <br/><br/>
+                    <span style={{color:'white', fontSize:'0.70rem'}}>Switch</span><SwapVert htmlColor="white" onClick={()=>{setFirstTeam(secondTeam); setSecondTeam(firstTeam)}}/>
+                    <br/><br/>
                     <InputLabel shrink id="secondTeam" style={{color:"whitesmoke"}}>
                     Second Team
                     </InputLabel>    
