@@ -1,7 +1,7 @@
 const scoreX=(team,X)=>{
     return (dispatch,getState)=>{
         //console.log(getState());        
-        dispatch({type:'SCORE',payload:{run:X===5?1:X}})
+        dispatch({type:'SCORE',payload:{}})
     }
 }
 export default scoreX;

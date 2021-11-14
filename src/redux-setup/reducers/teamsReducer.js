@@ -8,13 +8,18 @@ const initialState={
     
 }
 
-const getTeams=(state=initialState,action)=>{
-    switch(action.type){
+const getTeams=(state=initialState,action)=>{        
 
+    switch(action.type){
+        
+        case 'SET_TEAM':{
+            state = action.payload;
+            return state;            
+        }
         case 'GET_TEAM':
             return state;
         default:
-            return state;
+            return state
     }
 }
 
