@@ -14,7 +14,7 @@ function App() {
       <AppBar position="static">
         <h2 style={{alignSelf:'center'}}>Cricket 2021</h2>
       </AppBar>
-      <PickTeams/>            
+      <PickTeams/>      
     </div>
     </Provider>
   );

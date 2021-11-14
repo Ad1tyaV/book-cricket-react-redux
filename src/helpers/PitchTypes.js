@@ -1,0 +1,1 @@
+export const PitchTypes = ["Random", "Bowling Pitch"]

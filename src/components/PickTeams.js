@@ -5,14 +5,15 @@ import InputLabel from '@material-ui/core/InputLabel';
 import { connect } from 'react-redux';
 import pickTeams from '../redux-setup/actions/pickTeams';
 import { Button } from '@material-ui/core';
-import TestComponent from './TestComponent'
 import {SwapVert} from '@material-ui/icons';
+import PitchType from './PitchType';
+import MatchComponent from './MatchComponent';
 
 function PickTeams(props) {
     const [openTeam1, setOpenTeam1] = useState(false);
     const [openTeam2, setOpenTeam2] = useState(false);
     const [firstTeam, setFirstTeam] = useState("India")
-    const [secondTeam,setSecondTeam] = useState("Pakistan")
+    const [secondTeam,setSecondTeam] = useState("NewZealand")
     const teams = useRef(["India","Pakistan","Australia","England","SouthAfrica","NewZealand"])
     const handleChangeFirstTeam=(event)=>{
         setFirstTeam(event.target.value)
@@ -49,10 +50,10 @@ function PickTeams(props) {
                     First Team
                     </InputLabel>    
                     <Select label="First Team"
-                    labelId="demo-controlled-open-select-label" id="firstTeam" open={openTeam1} onClose={handleClose} onOpen={handleOpen} value={firstTeam} onChange={handleChangeFirstTeam} style={{color:"whitesmoke"}}>
+                    labelId="demo-controlled-open-select-label" id="firstTeam" open={openTeam1} onClose={handleClose} onOpen={handleOpen} value={firstTeam} onChange={handleChangeFirstTeam} style={{color:"whitesmoke"}} key={firstTeam}>
                     {
                         teams.current.map((team)=>(
-                            team!==secondTeam?<MenuItem value={team}>{team}</MenuItem>:[]
+                            team!==secondTeam?<MenuItem value={team} key={team}>{team}</MenuItem>:[]
                         ))
                     }
                     </Select>
@@ -63,19 +64,19 @@ function PickTeams(props) {
                     Second Team
                     </InputLabel>    
                     <Select
-                    labelId="demo-controlled-open-select-label" id="secondTeam" open={openTeam2} onClose={handleClose2} onOpen={handleOpen2} value={secondTeam} onChange={handleChangeSecondTeam} style={{color:"whitesmoke"}}>
+                    labelId="demo-controlled-open-select-label" id="secondTeam" open={openTeam2} onClose={handleClose2} onOpen={handleOpen2} value={secondTeam} onChange={handleChangeSecondTeam} style={{color:"whitesmoke"}} key={secondTeam}>
                     {
                         teams.current.map((team)=>(
-                            team!==firstTeam?<MenuItem value={team}>{team}</MenuItem>:[]
+                            team!==firstTeam?<MenuItem value={team} key={team}>{team}</MenuItem>:[]
                         ))   
                     }
-                    </Select>
+                    </Select>       
                     <br/>
-                    <br/>
+                    <br/>                                                                         
                     <Button variant="contained" color="primary" onClick={()=>{props.pickTeamDispatch(firstTeam,secondTeam)}}>PLAY</Button>
                     </div>
                     </>
-                    :<TestComponent/>  
+                    :<MatchComponent/>  
                 }          
             
         </div>

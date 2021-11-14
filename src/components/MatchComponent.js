@@ -5,18 +5,37 @@ import completeInnings from '../redux-setup/actions/completeInnings'
 import resetState from '../redux-setup/actions/resetState'
 import ScoreCard from './ScoreCard';
 import { Button } from '@material-ui/core';
+import getTeamAction from '../redux-setup/actions/getTeamAction';
+import { asyncHelper } from '../helpers/asyncHelper';
 
-function TestComponent(props) {
+function MatchComponent(props) {
 
     const [message, setMessage] = useState("")
-    const track = useRef({})
-    // useEffect(() => {
-    //     props.pickTeamDispatch();        
-    // }, [])
+    const track = useRef({})        
+    
+
+    useEffect(() => {
+        
+        const url = "https://raw.githubusercontent.com/Ad1tyaV/pyTestFiles/master/cric-v1.json";
+        const data = asyncHelper(url);
+        
+        data
+        .then(response=>{
+            
+            if(response[0]!==200){
+                props.teamsDispatch('GET_TEAM', response[1]);                                
+            }
+            else{
+                props.teamsDispatch('SET_TEAM', response[1]);
+            }
+
+        });
+        
+
+      }, []);
     
      useEffect(()=>{  
-
-         //console.log('inside useEffect')
+         
          if(!props.scoreData.gameover){
             if(props.scoreData.team1Wickets===10 || props.scoreData.team1BallsFaced===300){                        
                 if(Object.keys(track.current).length===0) {
@@ -88,10 +107,10 @@ const mapDispatchToProps=(dispatch)=>{
     return{
         scoreDispatch:(X)=>dispatch(scoreX(null,X)),
         completeInningsDispatch:(team)=>dispatch(completeInnings(team)),
-        resetDispatch:()=>dispatch(resetState()),
-        //pickTeamDispatch:()=>dispatch(pickTeams("India","Pakistan")),        
+        resetDispatch:()=>dispatch(resetState()),    
+        teamsDispatch:(type, data)=>dispatch(getTeamAction(type, data))    
     }
 
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(TestComponent)
+export default connect(mapStateToProps,mapDispatchToProps)(MatchComponent)

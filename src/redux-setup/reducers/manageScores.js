@@ -27,7 +27,7 @@ const scoreRunsReducer=(state=initialState,action)=>{
             let updatedRun = RandomWithIndex(state.onStrike.batterIndex);
             //console.log(updatedRun);
             //console.log("Updated Run:"+updatedRun)
-            console.log(state.onStrike.batterIndex, state.offStrike.batterIndex, updatedRun)
+            // console.log(state.onStrike.batterIndex, state.offStrike.batterIndex, updatedRun)
             if(updatedRun===-1){
                 
                 if(state.currentTeamBatting===state.team1 && state.team1Wickets!==10){  
