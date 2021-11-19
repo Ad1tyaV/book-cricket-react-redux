@@ -7,29 +7,40 @@ import ScoreCard from './ScoreCard';
 import { Button } from '@material-ui/core';
 import getTeamAction from '../redux-setup/actions/getTeamAction';
 import { asyncHelper } from '../helpers/asyncHelper';
+import dynamicSquadAction from '../redux-setup/actions/dynamicSquadAction';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 function MatchComponent(props) {
 
     const [message, setMessage] = useState("")
     const track = useRef({})        
-    
+    const dynamicSquads = useSelector(state => state.dynamicSquads)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         
-        const url = "https://raw.githubusercontent.com/Ad1tyaV/pyTestFiles/master/cric-v1.json";
-        const data = asyncHelper(url);
         
-        data
-        .then(response=>{
-            
-            if(response[0]!==200){
-                props.teamsDispatch('GET_TEAM', response[1]);                                
-            }
-            else{
-                props.teamsDispatch('SET_TEAM', response[1]);
-            }
+        const url = "https://raw.githubusercontent.com/Ad1tyaV/pyTestFiles/master/cric-v1.json";
+        let data;
+        if(dynamicSquads){
+            data = asyncHelper(url);
+            data
+            .then(response=>{
+                
+                if(response[0]!==200){
+                    props.teamsDispatch('GET_TEAM', response[1]);                                
+                }
+                else{
+                    props.teamsDispatch('SET_TEAM', response[1]);
+                }
 
-        });
+            });
+
+            dispatch(dynamicSquadAction("DISABLE"));
+        }
+        
+        
         
 
       }, []);

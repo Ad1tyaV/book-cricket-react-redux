@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import pickTeams from '../redux-setup/actions/pickTeams';
 import { Button } from '@material-ui/core';
 import {SwapVert} from '@material-ui/icons';
-import PitchType from './PitchType';
 import MatchComponent from './MatchComponent';
 
 function PickTeams(props) {

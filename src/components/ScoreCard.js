@@ -10,7 +10,7 @@ function ScoreCard(props) {
     return (
         <div>
             {/* {console.log(props.track)} */}
-            <Table style={{maxWidth: 500,maxHeight:100,float:'left'}} aria-label="customized table" key={Date.now()}>
+            <Table style={{maxWidth: 500,maxHeight:100,float:'left'}} aria-label="customized table" key={Date.now()+1}>
                 <TableBody>
                     {/* <tr>{Object.keys(props.teamData["India"]).map((key)=>[props.teamData["India"][key],props.team1Stats[key]??0])}</tr> */}
                     {
