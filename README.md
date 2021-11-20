@@ -2,10 +2,11 @@
 
 ## Latest Update
 
-Now Squads are dynamic, Squads will be remotely updated.
+Performance ⬆️ Doesn't make API call everytime teams are picked.
 
 ### Update History
 
+* Now Squads are dynamic, Squads will be remotely updated.
 * Now you can switch by first and second team by an icon.
 * Default mode is dark mode now!
 
