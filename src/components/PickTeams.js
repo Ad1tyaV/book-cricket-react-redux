@@ -13,7 +13,7 @@ function PickTeams(props) {
     const [openTeam2, setOpenTeam2] = useState(false);
     const [firstTeam, setFirstTeam] = useState("India")
     const [secondTeam,setSecondTeam] = useState("NewZealand")
-    const teams = useRef(["India","Pakistan","Australia","England","SouthAfrica","NewZealand"])
+    const teams = useRef(["India","Pakistan","Australia","England","SouthAfrica","NewZealand","WestIndies"])
     const handleChangeFirstTeam=(event)=>{
         setFirstTeam(event.target.value)
     };
