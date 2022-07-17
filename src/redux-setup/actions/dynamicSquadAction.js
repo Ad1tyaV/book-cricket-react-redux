@@ -1,10 +1,7 @@
-
-const dynamicSquadAction=(TYPE)=>{
-
-    return (dispatch)=>{               
-        dispatch({type:TYPE})
-    }    
-
-}
+const dynamicSquadAction = (TYPE) => {
+  return (dispatch) => {
+    dispatch({ type: TYPE });
+  };
+};
 
 export default dynamicSquadAction;

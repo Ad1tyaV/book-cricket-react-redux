@@ -1,5 +1,5 @@
-export const swapCurrentPlayers=()=>{
-    return {
-        type:'SWAP_PLAYERS',        
-    }
-}
+export const swapCurrentPlayers = () => {
+  return {
+    type: "SWAP_PLAYERS",
+  };
+};

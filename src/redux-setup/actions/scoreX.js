@@ -1,7 +1,6 @@
-const scoreX=(team,X)=>{
-    return (dispatch,getState)=>{
-        //console.log(getState());        
-        dispatch({type:'SCORE',payload:{}})
-    }
-}
+const scoreX = (team, pitch) => {
+  return (dispatch, getState) => {
+    dispatch({ type: "SCORE", payload: { pitchType: pitch } });
+  };
+};
 export default scoreX;
