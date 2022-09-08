@@ -24,6 +24,7 @@ function PickTeams(props) {
     "SouthAfrica",
     "NewZealand",
     "WestIndies",
+    "SriLanka"
   ]);
   const handleChangeFirstTeam = (event) => {
     setFirstTeam(event.target.value);
