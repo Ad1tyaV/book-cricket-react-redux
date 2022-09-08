@@ -97,6 +97,8 @@ const initialState = {
     9: "Hayden Walsh Jr",
     10: "Akeal Hosein",
   },
+  "SriLanka": {
+    [-1]: "Pathum Nissanka", "0": "Kusal Mendis", 1:"Charith Asalanka", 2:"Danushka Gunathilaka", 3:"Bhanuka Rajapaksa", 4:"Dasun Shanaka", 5:"Wanindu Hasaranga", 6:"Chamika Karunaratne", 7:"Maheesh Theekshana", 8:"Asitha Fernando", 9:"Dilshan Madushanka", 10:"Matheesha Pathirana"}
 };
 
 const getTeams = (state = initialState, action) => {
