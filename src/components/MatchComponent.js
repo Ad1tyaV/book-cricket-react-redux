@@ -158,6 +158,7 @@ function MatchComponent(props) {
             👉🏾
             {props.scoreData.team1Stats[props.scoreData.onStrike.batterIndex] ??
               0}
+            ({props.scoreData.team1BallsFacedByPlayer?.[props.scoreData.onStrike.batterIndex] ?? 0})
           </span>
           <br />
           <span style={{ display: "flex", justifyContent: "center" }}>
@@ -170,6 +171,7 @@ function MatchComponent(props) {
             {props.scoreData.team1Stats[
               props.scoreData.offStrike.batterIndex
             ] ?? 0}
+            ({props.scoreData.team1BallsFacedByPlayer?.[props.scoreData.offStrike.batterIndex] ?? 0})
           </span>
         </div>
       ) : (
@@ -183,6 +185,7 @@ function MatchComponent(props) {
             👉🏾
             {props.scoreData.team2Stats[props.scoreData.onStrike.batterIndex] ??
               0}
+            ({props.scoreData.team2BallsFacedByPlayer?.[props.scoreData.onStrike.batterIndex] ?? 0})
           </span>
           <br />
           <span style={{ display: "flex", justifyContent: "center" }}>
@@ -195,6 +198,7 @@ function MatchComponent(props) {
             {props.scoreData.team2Stats[
               props.scoreData.offStrike.batterIndex
             ] ?? 0}
+            ({props.scoreData.team2BallsFacedByPlayer?.[props.scoreData.offStrike.batterIndex] ?? 0})
           </span>
         </div>
       )}
@@ -248,6 +252,8 @@ function MatchComponent(props) {
           teamData={props.teamData}
           team1Stats={props.scoreData.team1Stats}
           team2Stats={props.scoreData.team2Stats}
+          team1BallsFacedByPlayer={props.scoreData.team1BallsFacedByPlayer}
+          team2BallsFacedByPlayer={props.scoreData.team2BallsFacedByPlayer}
         />
       ) : (
         <></>

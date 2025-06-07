@@ -47,7 +47,7 @@ function ScoreCard(props) {
                     {props.teamData[props.team1][index]}
                   </TableCell>
                   <TableCell style={{ color: "whitesmoke" }}>
-                    {props.team1Stats[index] ?? 0}
+                    {props.team1Stats[index] ?? 0} ({props.team1BallsFacedByPlayer?.[index] ?? 0})
                   </TableCell>
                 </TableRow>
               </>
@@ -94,7 +94,7 @@ function ScoreCard(props) {
                     {props.teamData[props.team2][index]}
                   </TableCell>
                   <TableCell style={{ color: "whitesmoke" }}>
-                    {props.team2Stats[index] ?? 0}
+                    {props.team2Stats[index] ?? 0} ({props.team2BallsFacedByPlayer?.[index] ?? 0})
                   </TableCell>
                 </TableRow>
               </>

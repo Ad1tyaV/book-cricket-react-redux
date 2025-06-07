@@ -8,6 +8,8 @@ const initialState = {
   offStrike: { batterIndex: 0 },
   team1Stats: {},
   team2Stats: {},
+  team1BallsFacedByPlayer: {},
+  team2BallsFacedByPlayer: {},
   innings: 0,
   team1Total: 0,
   team2Total: 0,
@@ -52,6 +54,10 @@ const scoreRunsReducer = (state = initialState, action) => {
                 ? state.onStrike.batterIndex + 1
                 : state.offStrike.batterIndex + 1,
             team1BallsFaced: state.team1BallsFaced + 1,
+            team1BallsFacedByPlayer: {
+              ...state.team1BallsFacedByPlayer,
+              [state.onStrike.batterIndex]: (state.team1BallsFacedByPlayer[state.onStrike.batterIndex] || 0) + 1
+            }
           };
           return newstate.team1BallsFaced % 6 === 0
             ? {
@@ -88,6 +94,10 @@ const scoreRunsReducer = (state = initialState, action) => {
                 ? state.onStrike.batterIndex + 1
                 : state.offStrike.batterIndex + 1,
             team2BallsFaced: state.team2BallsFaced + 1,
+            team2BallsFacedByPlayer: {
+              ...state.team2BallsFacedByPlayer,
+              [state.onStrike.batterIndex]: (state.team2BallsFacedByPlayer[state.onStrike.batterIndex] || 0) + 1
+            }
           };
           return newstate.team2BallsFaced % 6 === 0
             ? {
@@ -109,6 +119,10 @@ const scoreRunsReducer = (state = initialState, action) => {
             let newstate = {
               ...state,
               team1BallsFaced: state.team1BallsFaced + 1,
+              team1BallsFacedByPlayer: {
+                ...state.team1BallsFacedByPlayer,
+                [state.onStrike.batterIndex]: (state.team1BallsFacedByPlayer[state.onStrike.batterIndex] || 0) + 1
+              }
             };
             return newstate.team1BallsFaced % 6 === 0
               ? {
@@ -127,6 +141,10 @@ const scoreRunsReducer = (state = initialState, action) => {
             let newstate = {
               ...state,
               team2BallsFaced: state.team2BallsFaced + 1,
+              team2BallsFacedByPlayer: {
+                ...state.team2BallsFacedByPlayer,
+                [state.onStrike.batterIndex]: (state.team2BallsFacedByPlayer[state.onStrike.batterIndex] || 0) + 1
+              }
             };
             return newstate.team1BallsFaced % 6 === 0
               ? {
@@ -157,6 +175,10 @@ const scoreRunsReducer = (state = initialState, action) => {
                   updatedRun,
               },
               team1BallsFaced: state.team1BallsFaced + 1,
+              team1BallsFacedByPlayer: {
+                ...state.team1BallsFacedByPlayer,
+                [state.onStrike.batterIndex]: (state.team1BallsFacedByPlayer[state.onStrike.batterIndex] || 0) + 1
+              },
               onStrike: {
                 ...state.onStrike,
                 batterIndex: state.offStrike.batterIndex,
@@ -194,6 +216,10 @@ const scoreRunsReducer = (state = initialState, action) => {
                   updatedRun,
               },
               team2BallsFaced: state.team2BallsFaced + 1,
+              team2BallsFacedByPlayer: {
+                ...state.team2BallsFacedByPlayer,
+                [state.onStrike.batterIndex]: (state.team2BallsFacedByPlayer[state.onStrike.batterIndex] || 0) + 1
+              },
               onStrike: {
                 ...state.onStrike,
                 batterIndex: state.offStrike.batterIndex,
@@ -232,6 +258,10 @@ const scoreRunsReducer = (state = initialState, action) => {
                   updatedRun,
               },
               team1BallsFaced: state.team1BallsFaced + 1,
+              team1BallsFacedByPlayer: {
+                ...state.team1BallsFacedByPlayer,
+                [state.onStrike.batterIndex]: (state.team1BallsFacedByPlayer[state.onStrike.batterIndex] || 0) + 1
+              },
             };
             return newstate.team1BallsFaced % 6 === 0
               ? {
@@ -261,6 +291,10 @@ const scoreRunsReducer = (state = initialState, action) => {
                   updatedRun,
               },
               team2BallsFaced: state.team2BallsFaced + 1,
+              team2BallsFacedByPlayer: {
+                ...state.team2BallsFacedByPlayer,
+                [state.onStrike.batterIndex]: (state.team2BallsFacedByPlayer[state.onStrike.batterIndex] || 0) + 1
+              },
             };
             return newstate.team2BallsFaced % 6 === 0
               ? {
