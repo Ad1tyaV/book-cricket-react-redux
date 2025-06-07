@@ -340,7 +340,6 @@ const scoreRunsReducer = (state = initialState, action) => {
       } else return state;
     }
     case "RESET_STATE":
-      //console.log('here')
       return {
         team1: "",
         team2: "",
@@ -349,12 +348,16 @@ const scoreRunsReducer = (state = initialState, action) => {
         offStrike: { batterIndex: 0 },
         team1Stats: {},
         team2Stats: {},
+        team1BallsFacedByPlayer: {},
+        team2BallsFacedByPlayer: {},
         innings: 0,
         team1Total: 0,
         team2Total: 0,
         team1Wickets: 0,
         team2Wickets: 0,
         gameover: false,
+        team1BallsFaced: 0,
+        team2BallsFaced: 0
       };
     case "PICK_TEAMS":
       return {
@@ -365,6 +368,17 @@ const scoreRunsReducer = (state = initialState, action) => {
         currentTeamBatting: action.payload.team1,
         team1BallsFaced: 0,
         team2BallsFaced: 0,
+        team1BallsFacedByPlayer: {},
+        team2BallsFacedByPlayer: {},
+        team1Stats: {},
+        team2Stats: {},
+        team1Total: 0,
+        team2Total: 0,
+        team1Wickets: 0,
+        team2Wickets: 0,
+        innings: 0,
+        onStrike: { batterIndex: -1 },
+        offStrike: { batterIndex: 0 }
       };
     default:
       return state;
