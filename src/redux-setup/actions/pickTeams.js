@@ -1,6 +1,6 @@
-const pickTeams = (team1, team2) => {
+const pickTeams = (team1, team2, overs = 50) => {
   return (dispatch) => {
-    dispatch({ type: "PICK_TEAMS", payload: { team1: team1, team2: team2 } });
+    dispatch({ type: "PICK_TEAMS", payload: { team1: team1, team2: team2, overs: overs } });
   };
 };
 

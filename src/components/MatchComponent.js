@@ -36,10 +36,12 @@ function MatchComponent(props) {
   }, []);
 
   useEffect(() => {
+    const maxBalls = props.scoreData.overs * 6;
+    
     if (!props.scoreData.gameover) {
       if (
         props.scoreData.team1Wickets === 10 ||
-        props.scoreData.team1BallsFaced === 300
+        props.scoreData.team1BallsFaced === maxBalls
       ) {
         if (Object.keys(track.current).length === 0) {
           track.current = {};
@@ -57,7 +59,7 @@ function MatchComponent(props) {
     }
     if (
       props.scoreData.team1Wickets === 10 ||
-      props.scoreData.team1BallsFaced === 300
+      props.scoreData.team1BallsFaced === maxBalls
     ) {
       if (props.scoreData.team2Total > props.scoreData.team1Total) {
         track.current = {
@@ -76,7 +78,7 @@ function MatchComponent(props) {
       } else if (
         props.scoreData.team2Total === props.scoreData.team1Total &&
         (props.scoreData.team2Wickets === 10 ||
-          props.scoreData.team2BallsFaced === 300)
+          props.scoreData.team2BallsFaced === maxBalls)
       ) {
         track.current = {
           ...track.current,
@@ -90,7 +92,7 @@ function MatchComponent(props) {
       } else if (
         props.scoreData.team2Total < props.scoreData.team1Total &&
         (props.scoreData.team2Wickets === 10 ||
-          props.scoreData.team2BallsFaced === 300)
+          props.scoreData.team2BallsFaced === maxBalls)
       ) {
         track.current = {
           ...track.current,

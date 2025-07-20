@@ -18,6 +18,7 @@ const initialState = {
   gameover: false,
   team1BallsFaced: 0,
   team2BallsFaced: 0,
+  overs: 50,
 };
 
 const scoreRunsReducer = (state = initialState, action) => {
@@ -323,7 +324,7 @@ const scoreRunsReducer = (state = initialState, action) => {
         };
       } else if (
         state.currentTeamBatting === state.team2 &&
-        (state.team2Wickets === 10 || state.team2BallsFaced === 300)
+        (state.team2Wickets === 10 || state.team2BallsFaced === state.overs * 6)
       ) {
         return {
           ...state,
@@ -357,13 +358,15 @@ const scoreRunsReducer = (state = initialState, action) => {
         team2Wickets: 0,
         gameover: false,
         team1BallsFaced: 0,
-        team2BallsFaced: 0
+        team2BallsFaced: 0,
+        overs: 50
       };
     case "PICK_TEAMS":
       return {
         ...state,
         team1: action.payload.team1,
         team2: action.payload.team2,
+        overs: action.payload.overs || 50,
         gameover: false,
         currentTeamBatting: action.payload.team1,
         team1BallsFaced: 0,

@@ -16,6 +16,9 @@ function PickTeams(props) {
   const [secondTeam, setSecondTeam] = useState("NewZealand");
   const pitchTypes = ["Normal", "Hard", "Wet", "Green"];
   const [selectedPitch, setSelectedPitch] = useState("Normal");
+  const [selectedOvers, setSelectedOvers] = useState(50);
+  const [oversToggle, setOversToggle] = useState(false);
+  const oversOptions = [40, 50];
   const teams = useRef([
     "India",
     "Pakistan",
@@ -147,11 +150,40 @@ function PickTeams(props) {
             </Select>
             <br />
             <br />
+            <InputLabel shrink id="oversType" style={{ color: "whitesmoke" }}>
+              Overs
+            </InputLabel>
+            <Select
+              label="Overs"
+              labelId="demo-controlled-open-select-label"
+              id="oversType"
+              open={oversToggle}
+              onClose={() => {
+                setOversToggle(false);
+              }}
+              onOpen={() => {
+                setOversToggle(true);
+              }}
+              value={selectedOvers}
+              onChange={(event) => {
+                setSelectedOvers(event.target.value);
+              }}
+              style={{ color: "whitesmoke" }}
+              key={selectedOvers}
+            >
+              {oversOptions.map((overs) => (
+                <MenuItem value={overs} key={overs}>
+                  {overs} Overs
+                </MenuItem>
+              ))}
+            </Select>
+            <br />
+            <br />
             <Button
               variant="contained"
               color="primary"
               onClick={() => {
-                props.pickTeamDispatch(firstTeam, secondTeam);
+                props.pickTeamDispatch(firstTeam, secondTeam, selectedOvers);
               }}
             >
               PLAY
@@ -172,7 +204,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    pickTeamDispatch: (team1, team2) => dispatch(pickTeams(team1, team2)),
+    pickTeamDispatch: (team1, team2, overs) => dispatch(pickTeams(team1, team2, overs)),
   };
 };
 
