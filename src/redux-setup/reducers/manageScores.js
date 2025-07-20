@@ -1,4 +1,4 @@
-import RandomWithIndex from "../../helpers/randomNumber";
+import RandomWithIndex from "../../helpers/improvedRandomNumber";
 
 const initialState = {
   team1: "",
@@ -19,6 +19,7 @@ const initialState = {
   team1BallsFaced: 0,
   team2BallsFaced: 0,
   overs: 50,
+  format: "ODI_50",
 };
 
 const scoreRunsReducer = (state = initialState, action) => {
@@ -26,7 +27,16 @@ const scoreRunsReducer = (state = initialState, action) => {
     case "SCORE": {
       let pitchType = action.payload.pitchType;
       if (state.gameover) return state;
-      let updatedRun = RandomWithIndex(state.onStrike.batterIndex, pitchType);
+      // Create game state for improved random number generation
+      const gameState = {
+        ballsFaced: state.currentTeamBatting === state.team1 ? state.team1BallsFaced : state.team2BallsFaced,
+        currentScore: state.currentTeamBatting === state.team1 ? state.team1Total : state.team2Total,
+        targetScore: state.currentTeamBatting === state.team2 ? state.team1Total + 1 : null,
+        wicketsLost: state.currentTeamBatting === state.team1 ? state.team1Wickets : state.team2Wickets,
+        batterIndex: state.onStrike.batterIndex
+      };
+      
+      let updatedRun = RandomWithIndex(state.onStrike.batterIndex, pitchType, state.format, gameState);
       //console.log(updatedRun);
       //console.log("Updated Run:"+updatedRun)
       // console.log(state.onStrike.batterIndex, state.offStrike.batterIndex, updatedRun)
@@ -359,7 +369,8 @@ const scoreRunsReducer = (state = initialState, action) => {
         gameover: false,
         team1BallsFaced: 0,
         team2BallsFaced: 0,
-        overs: 50
+        overs: 50,
+        format: "ODI_50"
       };
     case "PICK_TEAMS":
       return {
@@ -367,6 +378,7 @@ const scoreRunsReducer = (state = initialState, action) => {
         team1: action.payload.team1,
         team2: action.payload.team2,
         overs: action.payload.overs || 50,
+        format: action.payload.format || "ODI_50",
         gameover: false,
         currentTeamBatting: action.payload.team1,
         team1BallsFaced: 0,

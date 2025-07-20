@@ -18,7 +18,11 @@ function PickTeams(props) {
   const [selectedPitch, setSelectedPitch] = useState("Normal");
   const [selectedOvers, setSelectedOvers] = useState(50);
   const [oversToggle, setOversToggle] = useState(false);
-  const oversOptions = [40, 50];
+  const oversOptions = [
+    { value: 20, label: "T20 (20 Overs)", format: "T20" },
+    { value: 40, label: "ODI (40 Overs)", format: "ODI_40" },
+    { value: 50, label: "ODI (50 Overs)", format: "ODI_50" }
+  ];
   const teams = useRef([
     "India",
     "Pakistan",
@@ -171,9 +175,9 @@ function PickTeams(props) {
               style={{ color: "whitesmoke" }}
               key={selectedOvers}
             >
-              {oversOptions.map((overs) => (
-                <MenuItem value={overs} key={overs}>
-                  {overs} Overs
+              {oversOptions.map((option) => (
+                <MenuItem value={option.value} key={option.value}>
+                  {option.label}
                 </MenuItem>
               ))}
             </Select>
@@ -183,7 +187,8 @@ function PickTeams(props) {
               variant="contained"
               color="primary"
               onClick={() => {
-                props.pickTeamDispatch(firstTeam, secondTeam, selectedOvers);
+                const selectedFormat = oversOptions.find(opt => opt.value === selectedOvers)?.format || "ODI_50";
+                props.pickTeamDispatch(firstTeam, secondTeam, selectedOvers, selectedFormat);
               }}
             >
               PLAY
@@ -204,7 +209,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    pickTeamDispatch: (team1, team2, overs) => dispatch(pickTeams(team1, team2, overs)),
+    pickTeamDispatch: (team1, team2, overs, format) => dispatch(pickTeams(team1, team2, overs, format)),
   };
 };
 
