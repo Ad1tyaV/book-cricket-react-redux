@@ -21,7 +21,7 @@ function PickTeams(props) {
   const oversOptions = [
     { value: 20, label: "T20 (20 Overs)", format: "T20" },
     { value: 40, label: "ODI (40 Overs)", format: "ODI_40" },
-    { value: 50, label: "ODI (50 Overs)", format: "ODI_50" }
+    { value: 50, label: "ODI (50 Overs)", format: "ODI_50" },
   ];
   const teams = useRef([
     "India",
@@ -31,7 +31,8 @@ function PickTeams(props) {
     "SouthAfrica",
     "NewZealand",
     "WestIndies",
-    "SriLanka"
+    "SriLanka",
+    "Afghanistan",
   ]);
   const handleChangeFirstTeam = (event) => {
     setFirstTeam(event.target.value);
@@ -187,8 +188,15 @@ function PickTeams(props) {
               variant="contained"
               color="primary"
               onClick={() => {
-                const selectedFormat = oversOptions.find(opt => opt.value === selectedOvers)?.format || "ODI_50";
-                props.pickTeamDispatch(firstTeam, secondTeam, selectedOvers, selectedFormat);
+                const selectedFormat =
+                  oversOptions.find((opt) => opt.value === selectedOvers)
+                    ?.format || "ODI_50";
+                props.pickTeamDispatch(
+                  firstTeam,
+                  secondTeam,
+                  selectedOvers,
+                  selectedFormat
+                );
               }}
             >
               PLAY
@@ -209,7 +217,8 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    pickTeamDispatch: (team1, team2, overs, format) => dispatch(pickTeams(team1, team2, overs, format)),
+    pickTeamDispatch: (team1, team2, overs, format) =>
+      dispatch(pickTeams(team1, team2, overs, format)),
   };
 };
 

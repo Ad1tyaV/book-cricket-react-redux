@@ -19,7 +19,9 @@ function MatchComponent(props) {
 
   useEffect(() => {
     const url =
-      "https://raw.githubusercontent.com/Ad1tyaV/pyTestFiles/master/cric-v1.json";
+      props.scoreData.format === "T20"
+        ? "https://raw.githubusercontent.com/Ad1tyaV/pyTestFiles/master/cric-v2.json"
+        : "https://raw.githubusercontent.com/Ad1tyaV/pyTestFiles/master/cric-v1.json";
     let data;
     if (dynamicSquads) {
       data = asyncHelper(url);
@@ -37,7 +39,7 @@ function MatchComponent(props) {
 
   useEffect(() => {
     const maxBalls = props.scoreData.overs * 6;
-    
+
     if (!props.scoreData.gameover) {
       if (
         props.scoreData.team1Wickets === 10 ||
@@ -160,7 +162,11 @@ function MatchComponent(props) {
             👉🏾
             {props.scoreData.team1Stats[props.scoreData.onStrike.batterIndex] ??
               0}
-            ({props.scoreData.team1BallsFacedByPlayer?.[props.scoreData.onStrike.batterIndex] ?? 0})
+            (
+            {props.scoreData.team1BallsFacedByPlayer?.[
+              props.scoreData.onStrike.batterIndex
+            ] ?? 0}
+            )
           </span>
           <br />
           <span style={{ display: "flex", justifyContent: "center" }}>
@@ -173,7 +179,11 @@ function MatchComponent(props) {
             {props.scoreData.team1Stats[
               props.scoreData.offStrike.batterIndex
             ] ?? 0}
-            ({props.scoreData.team1BallsFacedByPlayer?.[props.scoreData.offStrike.batterIndex] ?? 0})
+            (
+            {props.scoreData.team1BallsFacedByPlayer?.[
+              props.scoreData.offStrike.batterIndex
+            ] ?? 0}
+            )
           </span>
         </div>
       ) : (
@@ -187,7 +197,11 @@ function MatchComponent(props) {
             👉🏾
             {props.scoreData.team2Stats[props.scoreData.onStrike.batterIndex] ??
               0}
-            ({props.scoreData.team2BallsFacedByPlayer?.[props.scoreData.onStrike.batterIndex] ?? 0})
+            (
+            {props.scoreData.team2BallsFacedByPlayer?.[
+              props.scoreData.onStrike.batterIndex
+            ] ?? 0}
+            )
           </span>
           <br />
           <span style={{ display: "flex", justifyContent: "center" }}>
@@ -200,7 +214,11 @@ function MatchComponent(props) {
             {props.scoreData.team2Stats[
               props.scoreData.offStrike.batterIndex
             ] ?? 0}
-            ({props.scoreData.team2BallsFacedByPlayer?.[props.scoreData.offStrike.batterIndex] ?? 0})
+            (
+            {props.scoreData.team2BallsFacedByPlayer?.[
+              props.scoreData.offStrike.batterIndex
+            ] ?? 0}
+            )
           </span>
         </div>
       )}
