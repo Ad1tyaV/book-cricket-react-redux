@@ -155,9 +155,9 @@ function MatchComponent(props) {
         <div>
           <span style={{ display: "flex", justifyContent: "center" }}>
             {
-              props.teamData[props.scoreData.team1][
+              props.teamData?.[props.scoreData.team1]?.[
                 props.scoreData.onStrike.batterIndex
-              ]
+              ] || "Player"
             }
             👉🏾
             {props.scoreData.team1Stats[props.scoreData.onStrike.batterIndex] ??
@@ -171,9 +171,9 @@ function MatchComponent(props) {
           <br />
           <span style={{ display: "flex", justifyContent: "center" }}>
             {
-              props.teamData[props.scoreData.team1][
+              props.teamData?.[props.scoreData.team1]?.[
                 props.scoreData.offStrike.batterIndex
-              ]
+              ] || "Player"
             }
             👉🏾
             {props.scoreData.team1Stats[
@@ -190,9 +190,9 @@ function MatchComponent(props) {
         <div>
           <span style={{ display: "flex", justifyContent: "center" }}>
             {
-              props.teamData[props.scoreData.team2][
+              props.teamData?.[props.scoreData.team2]?.[
                 props.scoreData.onStrike.batterIndex
-              ]
+              ] || "Player"
             }
             👉🏾
             {props.scoreData.team2Stats[props.scoreData.onStrike.batterIndex] ??
@@ -206,9 +206,9 @@ function MatchComponent(props) {
           <br />
           <span style={{ display: "flex", justifyContent: "center" }}>
             {
-              props.teamData[props.scoreData.team2][
+              props.teamData?.[props.scoreData.team2]?.[
                 props.scoreData.offStrike.batterIndex
-              ]
+              ] || "Player"
             }
             👉🏾
             {props.scoreData.team2Stats[

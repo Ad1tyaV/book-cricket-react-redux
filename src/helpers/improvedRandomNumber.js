@@ -69,13 +69,83 @@ const FORMAT_MODIFIERS = {
     }
 };
 
-// Pitch condition modifiers (same as before but more structured)
+// Pitch condition modifiers - adjusted difficulties
 const PITCH_MODIFIERS = {
     NORMAL: { wicket: 0, dot: 0, single: 0, two: 0, three: 0, four: 0, six: 0 },
-    GREEN: { wicket: 3, dot: 8, single: 5, two: 2, three: 0, four: -2, six: -3 },
-    HARD: { wicket: -2, dot: -6, single: -2, two: 1, three: 0, four: 4, six: 5 },
-    WET: { wicket: 2, dot: 10, single: 6, two: 3, three: 1, four: -3, six: -8 },
-    DUSTY: { wicket: 1, dot: 5, single: 3, two: 1, three: 0, four: -1, six: -2 }
+    GREEN: { wicket: 2, dot: 6, single: 4, two: 1, three: 0, four: -2, six: -3 }, // Difficulty 7
+    HARD: { wicket: -2, dot: -6, single: -2, two: 1, three: 0, four: 4, six: 5 }, // Difficulty 2
+    WET: { wicket: 1, dot: 6, single: 4, two: 2, three: 0, four: -2, six: -5 }, // Difficulty 6 (reduced from 8)
+    // Dusty stays distinct from Normal: more attritional, fewer boundaries.
+    DUSTY: { wicket: 2, dot: 8, single: -2, two: -1, three: 0, four: -2, six: -3 }
+};
+
+// Format+pitch tuning to avoid inflated totals in specific combinations.
+// ODI_40 + Normal was producing unusually high totals, so we soften boundary rate.
+const FORMAT_PITCH_TUNING = {
+    ODI_40: {
+        NORMAL: { wicket: 1, dot: 5, single: -1, two: -1, three: 0, four: -2, six: -3 }
+    }
+};
+
+const EXPECTED_RUN_RATE = {
+    T20: 8.6,
+    ODI_40: 6.2,
+    ODI_50: 5.7,
+    TEST: 3.4
+};
+
+const applyFrequencyDelta = (frequency, delta) => {
+    frequency[0] += delta.wicket || 0;
+    frequency[1] += delta.dot || 0;
+    frequency[2] += delta.single || 0;
+    frequency[3] += delta.two || 0;
+    frequency[4] += delta.three || 0;
+    frequency[5] += delta.four || 0;
+    frequency[6] += delta.six || 0;
+};
+
+const applyConsistencyAdjustments = (frequency, format, gameState = {}) => {
+    const ballsFaced = gameState.ballsFaced || 0;
+    const currentScore = gameState.currentScore || 0;
+    const wicketsLost = gameState.wicketsLost || 0;
+    const targetScore = gameState.targetScore || null;
+    const totalBalls = FORMAT_MODIFIERS[format]?.totalOvers * 6 || 300;
+
+    if (ballsFaced <= 0) return frequency;
+
+    const progress = ballsFaced / totalBalls;
+    const currentRunRate = currentScore / (ballsFaced / 6);
+    const expectedRate = EXPECTED_RUN_RATE[format] || EXPECTED_RUN_RATE.ODI_50;
+
+    // Prevent dramatic collapses too early/often.
+    if (wicketsLost >= 5 && progress < 0.8) {
+        applyFrequencyDelta(frequency, { wicket: -4, dot: -3, single: 4, two: 1, four: 1, six: 0 });
+    }
+
+    // Pull down unrealistic hitting streaks to avoid excessive totals.
+    if (currentRunRate > expectedRate + 1.8 && progress < 0.9) {
+        applyFrequencyDelta(frequency, { wicket: 1, dot: 4, single: 2, two: 0, four: -3, six: -4 });
+    }
+
+    // Lift unrealistically low-scoring phases if wickets are still in hand.
+    if (currentRunRate < expectedRate - 1.8 && wicketsLost <= 7 && progress > 0.2) {
+        applyFrequencyDelta(frequency, { wicket: -2, dot: -4, single: 4, two: 2, four: 1, six: 0 });
+    }
+
+    // Chasing logic: reduce boom-bust behavior when required rate is manageable.
+    if (targetScore) {
+        const runsNeeded = targetScore - currentScore;
+        const ballsRemaining = Math.max(1, totalBalls - ballsFaced);
+        const requiredRate = (runsNeeded * 6) / ballsRemaining;
+
+        if (requiredRate <= expectedRate + 1 && wicketsLost >= 4) {
+            applyFrequencyDelta(frequency, { wicket: -3, dot: -1, single: 3, two: 1, four: -1, six: -2 });
+        } else if (requiredRate > expectedRate + 2.5) {
+            applyFrequencyDelta(frequency, { wicket: 1, dot: -1, single: -1, two: 1, four: 2, six: 2 });
+        }
+    }
+
+    return frequency;
 };
 
 // Game situation modifiers
@@ -144,13 +214,16 @@ const getImprovedRandomOutcome = (
 
     // Apply only pitch modifiers (small adjustments)
     const pitchMod = PITCH_MODIFIERS[pitchType] || PITCH_MODIFIERS.NORMAL;
-    frequency[0] += pitchMod.wicket;
-    frequency[1] += pitchMod.dot;
-    frequency[2] += pitchMod.single;
-    frequency[3] += pitchMod.two;
-    frequency[4] += pitchMod.three;
-    frequency[5] += pitchMod.four;
-    frequency[6] += pitchMod.six;
+    applyFrequencyDelta(frequency, pitchMod);
+
+    // Apply targeted format+pitch calibration, if configured.
+    const formatPitchMod = FORMAT_PITCH_TUNING[format]?.[pitchType];
+    if (formatPitchMod) {
+        applyFrequencyDelta(frequency, formatPitchMod);
+    }
+
+    // Use current innings state to reduce extreme match-to-match volatility.
+    applyConsistencyAdjustments(frequency, format, gameState);
 
     // Ensure no negative frequencies
     frequency = frequency.map(f => Math.max(0, Math.round(f)));
@@ -178,11 +251,12 @@ const getImprovedRandomOutcome = (
 // Helper function to assign player archetypes based on batting position
 const getPlayerArchetypeByPosition = (batterIndex, format) => {
     // Different batting orders for different formats
+    // Position 6 (index 6) is now POWER_HITTER for faster scoring (Jadeja fix)
     const archetypesByPosition = {
-        T20: ['AGGRESSIVE', 'AGGRESSIVE', 'ANCHOR', 'POWER_HITTER', 'ALL_ROUNDER', 'POWER_HITTER', 'ALL_ROUNDER', 'TAIL_ENDER', 'TAIL_ENDER', 'TAIL_ENDER', 'TAIL_ENDER'],
-        ODI_50: ['ANCHOR', 'AGGRESSIVE', 'ANCHOR', 'ACCUMULATOR', 'ALL_ROUNDER', 'AGGRESSIVE', 'ALL_ROUNDER', 'TAIL_ENDER', 'TAIL_ENDER', 'TAIL_ENDER', 'TAIL_ENDER'],
-        ODI_40: ['AGGRESSIVE', 'ANCHOR', 'ANCHOR', 'ALL_ROUNDER', 'AGGRESSIVE', 'POWER_HITTER', 'ALL_ROUNDER', 'TAIL_ENDER', 'TAIL_ENDER', 'TAIL_ENDER', 'TAIL_ENDER'],
-        TEST: ['ANCHOR', 'ANCHOR', 'ACCUMULATOR', 'ANCHOR', 'ALL_ROUNDER', 'ALL_ROUNDER', 'ALL_ROUNDER', 'TAIL_ENDER', 'TAIL_ENDER', 'TAIL_ENDER', 'TAIL_ENDER']
+        T20: ['AGGRESSIVE', 'AGGRESSIVE', 'ANCHOR', 'POWER_HITTER', 'ALL_ROUNDER', 'POWER_HITTER', 'POWER_HITTER', 'TAIL_ENDER', 'TAIL_ENDER', 'TAIL_ENDER', 'TAIL_ENDER'],
+        ODI_50: ['ANCHOR', 'AGGRESSIVE', 'ANCHOR', 'ACCUMULATOR', 'ALL_ROUNDER', 'AGGRESSIVE', 'POWER_HITTER', 'TAIL_ENDER', 'TAIL_ENDER', 'TAIL_ENDER', 'TAIL_ENDER'],
+        ODI_40: ['AGGRESSIVE', 'ANCHOR', 'ANCHOR', 'ALL_ROUNDER', 'AGGRESSIVE', 'POWER_HITTER', 'POWER_HITTER', 'TAIL_ENDER', 'TAIL_ENDER', 'TAIL_ENDER', 'TAIL_ENDER'],
+        TEST: ['ANCHOR', 'ANCHOR', 'ACCUMULATOR', 'ANCHOR', 'ALL_ROUNDER', 'ALL_ROUNDER', 'POWER_HITTER', 'TAIL_ENDER', 'TAIL_ENDER', 'TAIL_ENDER', 'TAIL_ENDER']
     };
 
     const positions = archetypesByPosition[format] || archetypesByPosition.ODI_50;
@@ -198,7 +272,8 @@ const RandomWithIndex = (batterIndex, pitchType = 'Normal', format = 'ODI_50', g
         'Normal': 'NORMAL',
         'Green': 'GREEN',
         'Hard': 'HARD',
-        'Wet': 'WET'
+        'Wet': 'WET',
+        'Dusty': 'DUSTY'
     };
 
     const mappedPitchType = pitchTypeMap[pitchType] || 'NORMAL';

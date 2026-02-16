@@ -7,6 +7,11 @@ import pickTeams from "../redux-setup/actions/pickTeams";
 import { Button } from "@material-ui/core";
 import { SwapVert } from "@material-ui/icons";
 import MatchComponent from "./MatchComponent";
+import ModeSelection from "./ModeSelection";
+import TournamentSetup from "./TournamentSetup";
+import BilateralSetup from "./BilateralSetup";
+import TournamentManager from "./TournamentManager";
+import BilateralManager from "./BilateralManager";
 
 function PickTeams(props) {
   const [openTeam1, setOpenTeam1] = useState(false);
@@ -14,10 +19,13 @@ function PickTeams(props) {
   const [pitchToggle, setpitchToggle] = useState(false);
   const [firstTeam, setFirstTeam] = useState("India");
   const [secondTeam, setSecondTeam] = useState("NewZealand");
-  const pitchTypes = ["Normal", "Hard", "Wet", "Green"];
+  const pitchTypes = ["Normal", "Hard", "Wet", "Green", "Dusty"];
   const [selectedPitch, setSelectedPitch] = useState("Normal");
   const [selectedOvers, setSelectedOvers] = useState(50);
   const [oversToggle, setOversToggle] = useState(false);
+  const [gameMode, setGameMode] = useState(null); // null, 'quick', 'bilateral', 'tournament'
+  const [tournamentConfig, setTournamentConfig] = useState(null);
+  const [bilateralConfig, setBilateralConfig] = useState(null);
   const oversOptions = [
     { value: 20, label: "T20 (20 Overs)", format: "T20" },
     { value: 40, label: "ODI (40 Overs)", format: "ODI_40" },
@@ -57,6 +65,63 @@ function PickTeams(props) {
   const handleOpen2 = () => {
     setOpenTeam2(true);
   };
+
+  const handleModeSelect = (mode) => {
+    setGameMode(mode);
+  };
+
+  const handleStartTournament = (config) => {
+    setTournamentConfig(config);
+    setGameMode('tournamentActive');
+  };
+
+  const handleStartSeries = (config) => {
+    setBilateralConfig(config);
+    setGameMode('bilateralActive');
+  };
+
+  const handleExitMode = () => {
+    setGameMode(null);
+    setTournamentConfig(null);
+    setBilateralConfig(null);
+  };
+
+  // Tournament mode active
+  if (gameMode === 'tournamentActive' && tournamentConfig) {
+    return <TournamentManager config={tournamentConfig} onExit={handleExitMode} />;
+  }
+
+  // Bilateral mode active
+  if (gameMode === 'bilateralActive' && bilateralConfig) {
+    return <BilateralManager config={bilateralConfig} onExit={handleExitMode} />;
+  }
+
+  // Tournament setup
+  if (gameMode === 'tournament') {
+    return (
+      <TournamentSetup 
+        teams={teams.current} 
+        onStartTournament={handleStartTournament}
+        onBack={() => setGameMode(null)}
+      />
+    );
+  }
+
+  // Bilateral setup
+  if (gameMode === 'bilateral') {
+    return (
+      <BilateralSetup 
+        teams={teams.current} 
+        onStartSeries={handleStartSeries}
+        onBack={() => setGameMode(null)}
+      />
+    );
+  }
+
+  // Mode selection screen
+  if (!gameMode && props.scoreData.team1 === "") {
+    return <ModeSelection onSelectMode={handleModeSelect} />;
+  }
 
   return (
     <div>
@@ -200,6 +265,15 @@ function PickTeams(props) {
               }}
             >
               PLAY
+            </Button>
+            <br />
+            <br />
+            <Button
+              variant="outlined"
+              style={{ color: "whitesmoke" }}
+              onClick={() => setGameMode(null)}
+            >
+              Back to Mode Selection
             </Button>
           </div>
         </>
