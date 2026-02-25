@@ -17,7 +17,7 @@ const FORMAT_BASE_FREQUENCIES = {
         // ODI: Target ~5-6 runs per over (realistic ODI average)
         AGGRESSIVE: [4, 65, 40, 18, 3, 15, 8],     // ~6.2 RPO
         ANCHOR: [3, 75, 50, 20, 4, 12, 4],         // ~5.4 RPO
-        POWER_HITTER: [6, 60, 25, 12, 2, 18, 12], // ~7.8 RPO
+        POWER_HITTER: [8, 60, 25, 12, 2, 18, 12], // ~7.8 RPO
         ACCUMULATOR: [2, 70, 60, 25, 5, 10, 3],   // ~5.8 RPO
         ALL_ROUNDER: [4, 70, 45, 18, 3, 13, 6],   // ~6.0 RPO
         TAIL_ENDER: [12, 85, 30, 10, 2, 6, 2]     // ~3.8 RPO
@@ -26,7 +26,7 @@ const FORMAT_BASE_FREQUENCIES = {
         // 40-over: Target ~6-7 runs per over
         AGGRESSIVE: [4, 60, 38, 16, 3, 16, 9],     // ~6.8 RPO
         ANCHOR: [3, 70, 48, 19, 4, 13, 5],         // ~5.9 RPO
-        POWER_HITTER: [6, 55, 23, 11, 2, 19, 14], // ~8.5 RPO
+        POWER_HITTER: [7, 55, 23, 11, 2, 16, 11], // ~8.5 RPO
         ACCUMULATOR: [2, 65, 55, 23, 5, 11, 4],   // ~6.2 RPO
         ALL_ROUNDER: [4, 65, 42, 17, 3, 14, 7],   // ~6.5 RPO
         TAIL_ENDER: [12, 80, 28, 9, 2, 7, 3]      // ~4.2 RPO
