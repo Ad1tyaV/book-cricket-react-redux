@@ -175,14 +175,25 @@ function FixturesView({
                         </Button>
                       )}
                       {isUpcoming && !isSimulating && !hasMatchInProgress && (
-                        <Button 
-                          size="small"
-                          variant="outlined" 
-                          style={{ color: "whitesmoke" }}
-                          onClick={() => onSimulateMatch(index)}
-                        >
-                          Simulate
-                        </Button>
+                        <>
+                          <Button
+                            size="small"
+                            variant="contained"
+                            color="primary"
+                            style={{ marginRight: 8 }}
+                            onClick={() => onSelectMatch(index)}
+                          >
+                            Play
+                          </Button>
+                          <Button 
+                            size="small"
+                            variant="outlined" 
+                            style={{ color: "whitesmoke" }}
+                            onClick={() => onSimulateMatch(index)}
+                          >
+                            Simulate
+                          </Button>
+                        </>
                       )}
                       {isUpcoming && hasMatchInProgress && (
                         <span style={{ color: "#888", fontSize: "0.8em" }}>
@@ -354,6 +365,7 @@ function FixturesView({
                 <TableCell style={{ color: "whitesmoke", fontWeight: "bold" }}>Opponent</TableCell>
                 <TableCell style={{ color: "whitesmoke", fontWeight: "bold" }}>Status</TableCell>
                 <TableCell style={{ color: "whitesmoke", fontWeight: "bold" }}>Result</TableCell>
+                <TableCell style={{ color: "whitesmoke", fontWeight: "bold" }}>Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -362,10 +374,24 @@ function FixturesView({
                   <TableCell style={{ color: "whitesmoke" }}>{fixture.opponent}</TableCell>
                   <TableCell style={{ color: "whitesmoke" }}>{fixture.status}</TableCell>
                   <TableCell style={{ color: fixture.result === "-" ? "#aaa" : "#4CAF50" }}>{fixture.result}</TableCell>
+                  <TableCell>
+                    {fixture.result !== "-" ? (
+                      <Button
+                        size="small"
+                        variant="text"
+                        style={{ color: "#4CAF50" }}
+                        onClick={() => onSelectMatch(fixture.index)}
+                      >
+                        View Game
+                      </Button>
+                    ) : (
+                      <span style={{ color: "#888", fontSize: "0.8em" }}>-</span>
+                    )}
+                  </TableCell>
                 </TableRow>
               )) : (
                 <TableRow>
-                  <TableCell colSpan={3} style={{ color: "#888", textAlign: "center" }}>
+                  <TableCell colSpan={4} style={{ color: "#888", textAlign: "center" }}>
                     No fixtures for selected team in this stage
                   </TableCell>
                 </TableRow>
