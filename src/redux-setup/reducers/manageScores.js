@@ -18,6 +18,8 @@ const initialState = {
   gameover: false,
   team1BallsFaced: 0,
   team2BallsFaced: 0,
+  team1LastPair: { player_1: -1, player_2: 0 },
+  team2LastPair: { player_1: -1, player_2: 0 },
   overs: 50,
   format: "ODI_50",
 };
@@ -328,6 +330,10 @@ const scoreRunsReducer = (state = initialState, action) => {
       if (state.currentTeamBatting === state.team1) {
         return {
           ...state,
+          team1LastPair: {
+            player_1: state.onStrike.batterIndex,
+            player_2: state.offStrike.batterIndex,
+          },
           currentTeamBatting: state.team2,
           onStrike: { batterIndex: -1 },
           offStrike: { batterIndex: 0 },
@@ -338,6 +344,10 @@ const scoreRunsReducer = (state = initialState, action) => {
       ) {
         return {
           ...state,
+          team2LastPair: {
+            player_1: state.onStrike.batterIndex,
+            player_2: state.offStrike.batterIndex,
+          },
           gameover: true,
         };
       } else if (
@@ -346,6 +356,10 @@ const scoreRunsReducer = (state = initialState, action) => {
       ) {
         return {
           ...state,
+          team2LastPair: {
+            player_1: state.onStrike.batterIndex,
+            player_2: state.offStrike.batterIndex,
+          },
           gameover: true,
         };
       } else return state;
@@ -369,6 +383,8 @@ const scoreRunsReducer = (state = initialState, action) => {
         gameover: false,
         team1BallsFaced: 0,
         team2BallsFaced: 0,
+        team1LastPair: { player_1: -1, player_2: 0 },
+        team2LastPair: { player_1: -1, player_2: 0 },
         overs: 50,
         format: "ODI_50"
       };
@@ -393,7 +409,9 @@ const scoreRunsReducer = (state = initialState, action) => {
         team2Wickets: 0,
         innings: 0,
         onStrike: { batterIndex: -1 },
-        offStrike: { batterIndex: 0 }
+        offStrike: { batterIndex: 0 },
+        team1LastPair: { player_1: -1, player_2: 0 },
+        team2LastPair: { player_1: -1, player_2: 0 }
       };
     default:
       return state;

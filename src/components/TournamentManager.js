@@ -205,8 +205,11 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
         
         // Save track data
         const currentTrack = {
-          team1: { player_1: scoreData.onStrike.batterIndex, player_2: scoreData.offStrike.batterIndex },
-          team2: { player_1: scoreData.onStrike.batterIndex, player_2: scoreData.offStrike.batterIndex }
+          team1: scoreData.team1LastPair || { player_1: -1, player_2: 0 },
+          team2: scoreData.team2LastPair || {
+            player_1: scoreData.onStrike.batterIndex,
+            player_2: scoreData.offStrike.batterIndex
+          }
         };
         
         setTrack(currentTrack);
