@@ -14,6 +14,13 @@ function TournamentMatchView({
   isMatchOver
 }) {
   const [activeTab, setActiveTab] = useState(0);
+  const currentTeamBalls = scoreData.currentTeamBatting === scoreData.team1
+    ? scoreData.team1BallsFaced
+    : scoreData.team2BallsFaced;
+  const currentTeamScore = scoreData.currentTeamBatting === scoreData.team1
+    ? `${scoreData.team1Total}/${scoreData.team1Wickets}`
+    : `${scoreData.team2Total}/${scoreData.team2Wickets}`;
+  const currentTeamOvers = `${Math.floor(currentTeamBalls / 6)}.${currentTeamBalls % 6}`;
 
   return (
     <div>
@@ -39,6 +46,9 @@ function TournamentMatchView({
           <h3 style={{ textAlign: "center" }}>
             {scoreData.currentTeamBatting} - Current Innings
           </h3>
+          <p style={{ textAlign: "center", color: "#bbb" }}>
+            {currentTeamScore} in {currentTeamOvers} overs
+          </p>
           <div style={{ display: "flex", justifyContent: "center" }}>
             <Table
               style={{ maxWidth: 500, backgroundColor: "#1e1e1e" }}

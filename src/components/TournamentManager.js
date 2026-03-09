@@ -292,8 +292,14 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
     const team2 = scoreData.team2;  // Team that batted second
     const team1Score = scoreData.team1Total;
     const team2Score = scoreData.team2Total;
-    const team1Balls = scoreData.team1BallsFaced;
-    const team2Balls = scoreData.team2BallsFaced;
+    const fullInningsBalls = config.overs * 6;
+    // In limited-overs NRR, an all-out innings is treated as the full quota of overs faced.
+    const team1Balls = scoreData.team1Wickets === 10
+      ? fullInningsBalls
+      : scoreData.team1BallsFaced;
+    const team2Balls = scoreData.team2Wickets === 10
+      ? fullInningsBalls
+      : scoreData.team2BallsFaced;
 
     // Knockout matches should not affect league standings table.
     if (currentStage.includes("Group")) {
