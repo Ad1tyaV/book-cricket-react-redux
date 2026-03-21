@@ -7,10 +7,10 @@ import TableHead from "@material-ui/core/TableHead";
 
 function SingleTeamScoreCard({ team, teamData, stats, ballsFaced, track }) {
   const ppl = [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  
+
   // Safe access to track data with defaults
   const teamTrack = track || { player_1: -1, player_2: 0 };
-  
+
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <Table
@@ -19,27 +19,36 @@ function SingleTeamScoreCard({ team, teamData, stats, ballsFaced, track }) {
       >
         <TableHead>
           <TableRow>
-            <TableCell style={{ color: "whitesmoke", fontWeight: "bold" }}>Player</TableCell>
-            <TableCell style={{ color: "whitesmoke", fontWeight: "bold" }}>Runs (Balls)</TableCell>
-            <TableCell style={{ color: "whitesmoke", fontWeight: "bold" }}>SR</TableCell>
+            <TableCell style={{ color: "whitesmoke", fontWeight: "bold" }}>
+              Player
+            </TableCell>
+            <TableCell style={{ color: "whitesmoke", fontWeight: "bold" }}>
+              Runs (Balls)
+            </TableCell>
+            <TableCell style={{ color: "whitesmoke", fontWeight: "bold" }}>
+              SR
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {ppl.map((index) => {
             const runs = stats[index] ?? 0;
             const balls = ballsFaced?.[index] ?? 0;
-            const strikeRate = balls > 0 ? ((runs / balls) * 100).toFixed(2) : "0.00";
-            
-            const isNotOut = teamTrack.player_1 === index || teamTrack.player_2 === index;
-            const isOut = (index > Math.min(teamTrack.player_1, teamTrack.player_2) &&
-                          index < Math.max(teamTrack.player_1, teamTrack.player_2)) ||
-                          index < Math.min(teamTrack.player_1, teamTrack.player_2);
-            
+            const strikeRate =
+              balls > 0 ? ((runs / balls) * 100).toFixed(2) : "0.00";
+
+            const isNotOut =
+              teamTrack.player_1 === index || teamTrack.player_2 === index;
+            const isOut =
+              (index > Math.min(teamTrack.player_1, teamTrack.player_2) &&
+                index < Math.max(teamTrack.player_1, teamTrack.player_2)) ||
+              index < Math.min(teamTrack.player_1, teamTrack.player_2);
+
             return (
               <TableRow key={`player-${index}`}>
                 <TableCell
                   style={{
-                    color: isNotOut ? "#72ff72" : (isOut ? "red" : "gray"),
+                    color: isNotOut ? "#72ff72" : isOut ? "red" : "gray",
                   }}
                 >
                   {teamData?.[team]?.[index] || "Player"}

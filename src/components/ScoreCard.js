@@ -6,11 +6,11 @@ import TableBody from "@material-ui/core/TableBody";
 
 function ScoreCard(props) {
   const ppl = [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  
+
   // Safe access to track data with defaults
   const team1Track = props.track?.team1 || { player_1: -1, player_2: 0 };
   const team2Track = props.track?.team2 || { player_1: -1, player_2: 0 };
-  
+
   return (
     <div>
       <Table
@@ -39,10 +39,7 @@ function ScoreCard(props) {
                                 team1Track.player_2
                               )) ||
                           index <
-                            Math.min(
-                              team1Track.player_1,
-                              team1Track.player_2
-                            )
+                            Math.min(team1Track.player_1, team1Track.player_2)
                         ? "red"
                         : "gray",
                   }}
@@ -50,7 +47,8 @@ function ScoreCard(props) {
                   {props.teamData[props.team1][index]}
                 </TableCell>
                 <TableCell style={{ color: "whitesmoke" }}>
-                  {props.team1Stats[index] ?? 0} ({props.team1BallsFacedByPlayer?.[index] ?? 0})
+                  {props.team1Stats[index] ?? 0} (
+                  {props.team1BallsFacedByPlayer?.[index] ?? 0})
                 </TableCell>
               </TableRow>
             );
@@ -84,10 +82,7 @@ function ScoreCard(props) {
                                 team2Track.player_2
                               )) ||
                           index <
-                            Math.min(
-                              team2Track.player_1,
-                              team2Track.player_2
-                            )
+                            Math.min(team2Track.player_1, team2Track.player_2)
                         ? "red"
                         : "gray",
                   }}
@@ -95,7 +90,8 @@ function ScoreCard(props) {
                   {props.teamData[props.team2][index]}
                 </TableCell>
                 <TableCell style={{ color: "whitesmoke" }}>
-                  {props.team2Stats[index] ?? 0} ({props.team2BallsFacedByPlayer?.[index] ?? 0})
+                  {props.team2Stats[index] ?? 0} (
+                  {props.team2BallsFacedByPlayer?.[index] ?? 0})
                 </TableCell>
               </TableRow>
             );

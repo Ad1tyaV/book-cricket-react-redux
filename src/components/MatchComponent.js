@@ -154,11 +154,9 @@ function MatchComponent(props) {
       {props.scoreData.currentTeamBatting === props.scoreData.team1 ? (
         <div>
           <span style={{ display: "flex", justifyContent: "center" }}>
-            {
-              props.teamData?.[props.scoreData.team1]?.[
-                props.scoreData.onStrike.batterIndex
-              ] || "Player"
-            }
+            {props.teamData?.[props.scoreData.team1]?.[
+              props.scoreData.onStrike.batterIndex
+            ] || "Player"}
             👉🏾
             {props.scoreData.team1Stats[props.scoreData.onStrike.batterIndex] ??
               0}
@@ -170,11 +168,9 @@ function MatchComponent(props) {
           </span>
           <br />
           <span style={{ display: "flex", justifyContent: "center" }}>
-            {
-              props.teamData?.[props.scoreData.team1]?.[
-                props.scoreData.offStrike.batterIndex
-              ] || "Player"
-            }
+            {props.teamData?.[props.scoreData.team1]?.[
+              props.scoreData.offStrike.batterIndex
+            ] || "Player"}
             👉🏾
             {props.scoreData.team1Stats[
               props.scoreData.offStrike.batterIndex
@@ -189,11 +185,9 @@ function MatchComponent(props) {
       ) : (
         <div>
           <span style={{ display: "flex", justifyContent: "center" }}>
-            {
-              props.teamData?.[props.scoreData.team2]?.[
-                props.scoreData.onStrike.batterIndex
-              ] || "Player"
-            }
+            {props.teamData?.[props.scoreData.team2]?.[
+              props.scoreData.onStrike.batterIndex
+            ] || "Player"}
             👉🏾
             {props.scoreData.team2Stats[props.scoreData.onStrike.batterIndex] ??
               0}
@@ -205,11 +199,9 @@ function MatchComponent(props) {
           </span>
           <br />
           <span style={{ display: "flex", justifyContent: "center" }}>
-            {
-              props.teamData?.[props.scoreData.team2]?.[
-                props.scoreData.offStrike.batterIndex
-              ] || "Player"
-            }
+            {props.teamData?.[props.scoreData.team2]?.[
+              props.scoreData.offStrike.batterIndex
+            ] || "Player"}
             👉🏾
             {props.scoreData.team2Stats[
               props.scoreData.offStrike.batterIndex

@@ -72,12 +72,12 @@ function PickTeams(props) {
 
   const handleStartTournament = (config) => {
     setTournamentConfig(config);
-    setGameMode('tournamentActive');
+    setGameMode("tournamentActive");
   };
 
   const handleStartSeries = (config) => {
     setBilateralConfig(config);
-    setGameMode('bilateralActive');
+    setGameMode("bilateralActive");
   };
 
   const handleExitMode = () => {
@@ -87,20 +87,24 @@ function PickTeams(props) {
   };
 
   // Tournament mode active
-  if (gameMode === 'tournamentActive' && tournamentConfig) {
-    return <TournamentManager config={tournamentConfig} onExit={handleExitMode} />;
+  if (gameMode === "tournamentActive" && tournamentConfig) {
+    return (
+      <TournamentManager config={tournamentConfig} onExit={handleExitMode} />
+    );
   }
 
   // Bilateral mode active
-  if (gameMode === 'bilateralActive' && bilateralConfig) {
-    return <BilateralManager config={bilateralConfig} onExit={handleExitMode} />;
+  if (gameMode === "bilateralActive" && bilateralConfig) {
+    return (
+      <BilateralManager config={bilateralConfig} onExit={handleExitMode} />
+    );
   }
 
   // Tournament setup
-  if (gameMode === 'tournament') {
+  if (gameMode === "tournament") {
     return (
-      <TournamentSetup 
-        teams={teams.current} 
+      <TournamentSetup
+        teams={teams.current}
         onStartTournament={handleStartTournament}
         onBack={() => setGameMode(null)}
       />
@@ -108,10 +112,10 @@ function PickTeams(props) {
   }
 
   // Bilateral setup
-  if (gameMode === 'bilateral') {
+  if (gameMode === "bilateral") {
     return (
-      <BilateralSetup 
-        teams={teams.current} 
+      <BilateralSetup
+        teams={teams.current}
         onStartSeries={handleStartSeries}
         onBack={() => setGameMode(null)}
       />

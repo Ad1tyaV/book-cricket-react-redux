@@ -11,7 +11,15 @@ import TournamentStandings from "./TournamentStandings";
 import StatsTab from "./StatsTab";
 import { Button, Tabs, Tab } from "@material-ui/core";
 
-function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetDispatch, simulateMatchDispatch, teamData }) {
+function TournamentManager({
+  config,
+  onExit,
+  scoreData,
+  pickTeamDispatch,
+  resetDispatch,
+  simulateMatchDispatch,
+  teamData,
+}) {
   const [currentMatchIndex, setCurrentMatchIndex] = useState(0);
   const [matches, setMatches] = useState([]);
   const [standings, setStandings] = useState([]);
@@ -44,7 +52,8 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
     Boolean(completedMatches[getMatchKey("Final", 0)]);
 
   const getTournamentOutcome = (matchScore, stageName) => {
-    const { team1, team2, team1Total, team2Total, team1Wickets, team2Wickets } = matchScore;
+    const { team1, team2, team1Total, team2Total, team1Wickets, team2Wickets } =
+      matchScore;
     const isGroupStage = stageName.includes("Group");
     const isFinal = stageName === "Final";
     const isSemiFinal = stageName === "Semi-Final";
@@ -54,16 +63,18 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
       return {
         result: `${team1} won by ${runMargin} run${runMargin !== 1 ? "s" : ""}`,
         winner: team1,
-        noResult: false
+        noResult: false,
       };
     }
 
     if (team2Total > team1Total) {
       const wicketsRemaining = 10 - team2Wickets;
       return {
-        result: `${team2} won by ${wicketsRemaining} wicket${wicketsRemaining !== 1 ? "s" : ""}`,
+        result: `${team2} won by ${wicketsRemaining} wicket${
+          wicketsRemaining !== 1 ? "s" : ""
+        }`,
         winner: team2,
-        noResult: false
+        noResult: false,
       };
     }
 
@@ -71,7 +82,7 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
       return {
         result: "No Result (Scores Level)",
         winner: null,
-        noResult: true
+        noResult: true,
       };
     }
 
@@ -79,7 +90,7 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
       return {
         result: `${team1} won (scores level, fewer wickets lost: ${team1Wickets} vs ${team2Wickets})`,
         winner: team1,
-        noResult: false
+        noResult: false,
       };
     }
 
@@ -87,7 +98,7 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
       return {
         result: `${team2} won (scores level, fewer wickets lost: ${team2Wickets} vs ${team1Wickets})`,
         winner: team2,
-        noResult: false
+        noResult: false,
       };
     }
 
@@ -95,7 +106,7 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
       return {
         result: `Final tied: ${team1} and ${team2} are joint winners`,
         winner: null,
-        noResult: false
+        noResult: false,
       };
     }
 
@@ -104,7 +115,7 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
       return {
         result: `Semi-Final tied (same runs and wickets): ${randomWinner} advance by random draw`,
         winner: randomWinner,
-        noResult: false
+        noResult: false,
       };
     }
 
@@ -115,21 +126,21 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
     // Initialize tournament
     const teams = [...config.teams]; // Copy array
     const numTeams = teams.length;
-    
+
     // Randomize team order
     for (let i = teams.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [teams[i], teams[j]] = [teams[j], teams[i]];
     }
-    
+
     let groupMatches = [];
-    
+
     // Check if even number of teams for group stage split
     if (numTeams % 2 === 0 && numTeams >= 4) {
       // Split into two groups
       const groupA = teams.slice(0, numTeams / 2);
       const groupB = teams.slice(numTeams / 2);
-      
+
       // Generate matches within Group A
       for (let i = 0; i < groupA.length; i++) {
         for (let j = i + 1; j < groupA.length; j++) {
@@ -137,11 +148,11 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
             team1: groupA[i],
             team2: groupA[j],
             stage: "Group A",
-            group: "A"
+            group: "A",
           });
         }
       }
-      
+
       // Generate matches within Group B
       for (let i = 0; i < groupB.length; i++) {
         for (let j = i + 1; j < groupB.length; j++) {
@@ -149,7 +160,7 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
             team1: groupB[i],
             team2: groupB[j],
             stage: "Group B",
-            group: "B"
+            group: "B",
           });
         }
       }
@@ -161,16 +172,16 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
             team1: teams[i],
             team2: teams[j],
             stage: "Group Stage",
-            group: "ALL"
+            group: "ALL",
           });
         }
       }
     }
 
     setMatches(groupMatches);
-    
+
     // Initialize standings
-    const initialStandings = teams.map(team => ({
+    const initialStandings = teams.map((team) => ({
       name: team,
       played: 0,
       won: 0,
@@ -182,12 +193,15 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
       ballsFaced: 0,
       runsConceded: 0,
       ballsBowled: 0,
-      group: numTeams % 2 === 0 ? 
-        (teams.indexOf(team) < numTeams / 2 ? "A" : "B") : 
-        "ALL"
+      group:
+        numTeams % 2 === 0
+          ? teams.indexOf(team) < numTeams / 2
+            ? "A"
+            : "B"
+          : "ALL",
     }));
     setStandings(initialStandings);
-    
+
     // Set first match for setup
     if (groupMatches.length > 0) {
       setCurrentMatchConfig(groupMatches[0]);
@@ -202,18 +216,18 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
       if (!completedMatches[currentMatchKey]) {
         const outcome = getTournamentOutcome(scoreData, currentStage);
         updateStandingsAndStats(outcome);
-        
+
         // Save track data
         const currentTrack = {
           team1: scoreData.team1LastPair || { player_1: -1, player_2: 0 },
           team2: scoreData.team2LastPair || {
             player_1: scoreData.onStrike.batterIndex,
-            player_2: scoreData.offStrike.batterIndex
-          }
+            player_2: scoreData.offStrike.batterIndex,
+          },
         };
-        
+
         setTrack(currentTrack);
-        
+
         // Save completed match result with full scoreData
         const matchResult = {
           key: currentMatchKey,
@@ -238,22 +252,29 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
             team1Stats: { ...scoreData.team1Stats },
             team2Stats: { ...scoreData.team2Stats },
             team1BallsFacedByPlayer: { ...scoreData.team1BallsFacedByPlayer },
-            team2BallsFacedByPlayer: { ...scoreData.team2BallsFacedByPlayer }
+            team2BallsFacedByPlayer: { ...scoreData.team2BallsFacedByPlayer },
           },
-          track: currentTrack
+          track: currentTrack,
         };
-        
-        setCompletedMatches(prev => ({
+
+        setCompletedMatches((prev) => ({
           ...prev,
-          [currentMatchKey]: matchResult
+          [currentMatchKey]: matchResult,
         }));
       }
-      
+
       // Always reset simulation state when match is over
       setIsSimulating(false);
       setSimulatingMatchIndex(null);
     }
-  }, [scoreData.gameover, matchSetupPending, matches.length, currentMatchIndex, currentStage, completedMatches]);
+  }, [
+    scoreData.gameover,
+    matchSetupPending,
+    matches.length,
+    currentMatchIndex,
+    currentStage,
+    completedMatches,
+  ]);
 
   useEffect(() => {
     if (isSimulating || matches.length === 0) return;
@@ -270,7 +291,10 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
 
     if (currentStage === "Semi-Final") {
       const winners = matches
-        .map((_, index) => completedMatches[getMatchKey(currentStage, index)]?.winner)
+        .map(
+          (_, index) =>
+            completedMatches[getMatchKey(currentStage, index)]?.winner
+        )
         .filter(Boolean);
 
       if (winners.length === 2) {
@@ -288,22 +312,24 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
 
   const updateStandingsAndStats = (outcome) => {
     // Use actual teams from scoreData (which reflects the toss decision)
-    const team1 = scoreData.team1;  // Team that batted first
-    const team2 = scoreData.team2;  // Team that batted second
+    const team1 = scoreData.team1; // Team that batted first
+    const team2 = scoreData.team2; // Team that batted second
     const team1Score = scoreData.team1Total;
     const team2Score = scoreData.team2Total;
     const fullInningsBalls = config.overs * 6;
     // In limited-overs NRR, an all-out innings is treated as the full quota of overs faced.
-    const team1Balls = scoreData.team1Wickets === 10
-      ? fullInningsBalls
-      : scoreData.team1BallsFaced;
-    const team2Balls = scoreData.team2Wickets === 10
-      ? fullInningsBalls
-      : scoreData.team2BallsFaced;
+    const team1Balls =
+      scoreData.team1Wickets === 10
+        ? fullInningsBalls
+        : scoreData.team1BallsFaced;
+    const team2Balls =
+      scoreData.team2Wickets === 10
+        ? fullInningsBalls
+        : scoreData.team2BallsFaced;
 
     // Knockout matches should not affect league standings table.
     if (currentStage.includes("Group")) {
-      const newStandings = standings.map(team => {
+      const newStandings = standings.map((team) => {
         if (team.name === team1) {
           const won = outcome.winner === team1 ? 1 : 0;
           const lost = outcome.winner === team2 ? 1 : 0;
@@ -314,11 +340,11 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
             won: team.won + won,
             lost: team.lost + lost,
             noResult: team.noResult + noResult,
-            points: team.points + (won * 2) + (noResult * 1),
+            points: team.points + won * 2 + noResult * 1,
             runsScored: team.runsScored + team1Score,
             ballsFaced: team.ballsFaced + team1Balls,
             runsConceded: team.runsConceded + team2Score,
-            ballsBowled: team.ballsBowled + team2Balls
+            ballsBowled: team.ballsBowled + team2Balls,
           };
         } else if (team.name === team2) {
           const won = outcome.winner === team2 ? 1 : 0;
@@ -330,19 +356,21 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
             won: team.won + won,
             lost: team.lost + lost,
             noResult: team.noResult + noResult,
-            points: team.points + (won * 2) + (noResult * 1),
+            points: team.points + won * 2 + noResult * 1,
             runsScored: team.runsScored + team2Score,
             ballsFaced: team.ballsFaced + team2Balls,
             runsConceded: team.runsConceded + team1Score,
-            ballsBowled: team.ballsBowled + team1Balls
+            ballsBowled: team.ballsBowled + team1Balls,
           };
         }
         return team;
       });
 
-      newStandings.forEach(team => {
-        const runRate = team.ballsFaced > 0 ? (team.runsScored / team.ballsFaced) * 6 : 0;
-        const concededRate = team.ballsBowled > 0 ? (team.runsConceded / team.ballsBowled) * 6 : 0;
+      newStandings.forEach((team) => {
+        const runRate =
+          team.ballsFaced > 0 ? (team.runsScored / team.ballsFaced) * 6 : 0;
+        const concededRate =
+          team.ballsBowled > 0 ? (team.runsConceded / team.ballsBowled) * 6 : 0;
         team.nrr = runRate - concededRate;
       });
 
@@ -350,115 +378,140 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
     }
 
     // Update player stats for both teams at once
-    updatePlayerStatsForMatch(team1, team2, scoreData.team1Stats, scoreData.team2Stats, scoreData.team1BallsFacedByPlayer, scoreData.team2BallsFacedByPlayer);
+    updatePlayerStatsForMatch(
+      team1,
+      team2,
+      scoreData.team1Stats,
+      scoreData.team2Stats,
+      scoreData.team1BallsFacedByPlayer,
+      scoreData.team2BallsFacedByPlayer
+    );
   };
 
-  const updatePlayerStatsForMatch = (team1Name, team2Name, team1Stats, team2Stats, team1Balls, team2Balls) => {
+  const updatePlayerStatsForMatch = (
+    team1Name,
+    team2Name,
+    team1Stats,
+    team2Stats,
+    team1Balls,
+    team2Balls
+  ) => {
     const newPlayerStats = [...playerStats];
-    
+
     // Update team 1 players
-    Object.keys(team1Stats).forEach(playerIndex => {
+    Object.keys(team1Stats).forEach((playerIndex) => {
       const playerName = teamData[team1Name]?.[playerIndex];
       const runs = team1Stats[playerIndex] || 0;
       const balls = team1Balls[playerIndex] || 0;
-      
+
       if (playerName && runs > 0) {
-        const existingPlayer = newPlayerStats.find(p => p.name === playerName && p.team === team1Name);
+        const existingPlayer = newPlayerStats.find(
+          (p) => p.name === playerName && p.team === team1Name
+        );
         if (existingPlayer) {
           existingPlayer.runs += runs;
           existingPlayer.balls += balls;
-          existingPlayer.strikeRate = (existingPlayer.runs / existingPlayer.balls) * 100;
+          existingPlayer.strikeRate =
+            (existingPlayer.runs / existingPlayer.balls) * 100;
         } else {
           newPlayerStats.push({
             name: playerName,
             team: team1Name,
             runs: runs,
             balls: balls,
-            strikeRate: (runs / balls) * 100
+            strikeRate: (runs / balls) * 100,
           });
         }
       }
     });
-    
+
     // Update team 2 players
-    Object.keys(team2Stats).forEach(playerIndex => {
+    Object.keys(team2Stats).forEach((playerIndex) => {
       const playerName = teamData[team2Name]?.[playerIndex];
       const runs = team2Stats[playerIndex] || 0;
       const balls = team2Balls[playerIndex] || 0;
-      
+
       if (playerName && runs > 0) {
-        const existingPlayer = newPlayerStats.find(p => p.name === playerName && p.team === team2Name);
+        const existingPlayer = newPlayerStats.find(
+          (p) => p.name === playerName && p.team === team2Name
+        );
         if (existingPlayer) {
           existingPlayer.runs += runs;
           existingPlayer.balls += balls;
-          existingPlayer.strikeRate = (existingPlayer.runs / existingPlayer.balls) * 100;
+          existingPlayer.strikeRate =
+            (existingPlayer.runs / existingPlayer.balls) * 100;
         } else {
           newPlayerStats.push({
             name: playerName,
             team: team2Name,
             runs: runs,
             balls: balls,
-            strikeRate: (runs / balls) * 100
+            strikeRate: (runs / balls) * 100,
           });
         }
       }
     });
-    
+
     setPlayerStats(newPlayerStats);
   };
 
   const handleMatchStart = (matchConfig) => {
     const { pitchType, battingFirst } = matchConfig;
     const match = currentMatchConfig;
-    
+
     // Determine team order based on toss
     const team1 = battingFirst;
     const team2 = battingFirst === match.team1 ? match.team2 : match.team1;
-    
+
     pickTeamDispatch(team1, team2, config.overs, config.format);
     setMatchSetupPending(false);
     setShowFixtures(false);
     setSimulationQueue([]);
-    
+
     // Store pitch type AND the actual playing order for this match
-    setCurrentMatchConfig({ 
-      ...match, 
+    setCurrentMatchConfig({
+      ...match,
       pitchType,
-      actualTeam1: team1,  // Team batting first
-      actualTeam2: team2   // Team batting second
+      actualTeam1: team1, // Team batting first
+      actualTeam2: team2, // Team batting second
     });
   };
 
   const handleSimulateMatch = (matchIndex) => {
     // Auto-select random pitch and toss
     const pitchTypes = ["Normal", "Hard", "Wet", "Green", "Dusty"];
-    const randomPitch = pitchTypes[Math.floor(Math.random() * pitchTypes.length)];
+    const randomPitch =
+      pitchTypes[Math.floor(Math.random() * pitchTypes.length)];
     const match = matches[matchIndex];
     const tossWinner = Math.random() > 0.5 ? match.team1 : match.team2;
     const tossDecision = Math.random() > 0.5 ? "bat" : "bowl";
-    const battingFirst = tossDecision === "bat" ? tossWinner : 
-                         (tossWinner === match.team1 ? match.team2 : match.team1);
-    
+    const battingFirst =
+      tossDecision === "bat"
+        ? tossWinner
+        : tossWinner === match.team1
+        ? match.team2
+        : match.team1;
+
     const team1 = battingFirst;
     const team2 = battingFirst === match.team1 ? match.team2 : match.team1;
-    
+
     // Set current match index and show simulation in progress
     setCurrentMatchIndex(matchIndex);
     setSimulatingMatchIndex(matchIndex);
     setIsSimulating(true);
     setMatchSetupPending(false);
     // Keep fixtures view open to show progress
-    
+
     // Start the match
     pickTeamDispatch(team1, team2, config.overs, config.format);
-    
-    setCurrentMatchConfig({ 
-      ...match, 
+
+    setCurrentMatchConfig({
+      ...match,
       pitchType: randomPitch,
       actualTeam1: team1,
-      actualTeam2: team2
+      actualTeam2: team2,
     });
-    
+
     // Simulate full match after teams are picked and state is ready
     setTimeout(() => {
       simulateMatchDispatch(randomPitch);
@@ -472,7 +525,11 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
       // Show completed match details
       setViewingMatchKey(matchKey);
       setShowFixtures(false);
-    } else if (matchIndex === currentMatchIndex && scoreData.team1 && !scoreData.gameover) {
+    } else if (
+      matchIndex === currentMatchIndex &&
+      scoreData.team1 &&
+      !scoreData.gameover
+    ) {
       // Resume current match in progress
       setShowFixtures(false);
       setViewingMatchKey(null);
@@ -502,7 +559,10 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
       generateSemiFinals();
     } else if (currentStage === "Semi-Final") {
       const winners = matches
-        .map((_, index) => completedMatches[getMatchKey(currentStage, index)]?.winner)
+        .map(
+          (_, index) =>
+            completedMatches[getMatchKey(currentStage, index)]?.winner
+        )
         .filter(Boolean);
       if (winners.length === 2) {
         generateFinal(winners);
@@ -531,58 +591,74 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
       if (b.points !== a.points) return b.points - a.points;
       return b.nrr - a.nrr;
     });
-    
+
     let semiFinals = [];
-    
+
     if (standings[0].group === "ALL") {
       // Single group - top 4 teams
       if (sortedStandings.length >= 4) {
         semiFinals = [
-          { team1: sortedStandings[0].name, team2: sortedStandings[3].name, stage: "Semi-Final 1" },
-          { team1: sortedStandings[1].name, team2: sortedStandings[2].name, stage: "Semi-Final 2" }
+          {
+            team1: sortedStandings[0].name,
+            team2: sortedStandings[3].name,
+            stage: "Semi-Final 1",
+          },
+          {
+            team1: sortedStandings[1].name,
+            team2: sortedStandings[2].name,
+            stage: "Semi-Final 2",
+          },
         ];
       }
     } else {
       // Two groups - top team from each group (for 4-team tournament)
-      const groupAStandings = sortedStandings.filter(t => t.group === "A");
-      const groupBStandings = sortedStandings.filter(t => t.group === "B");
-      
+      const groupAStandings = sortedStandings.filter((t) => t.group === "A");
+      const groupBStandings = sortedStandings.filter((t) => t.group === "B");
+
       // For 4-team tournament (2 teams per group), top 1 from each group goes to final directly
       if (groupAStandings.length === 2 && groupBStandings.length === 2) {
         // This is a 4-team tournament - go straight to final
         const finalMatch = [
-          { 
-            team1: groupAStandings[0].name, 
-            team2: groupBStandings[0].name, 
-            stage: "Final" 
-          }
+          {
+            team1: groupAStandings[0].name,
+            team2: groupBStandings[0].name,
+            stage: "Final",
+          },
         ];
-        
+
         moveToStage(finalMatch, "Final");
         return; // Exit early
       } else {
         // More than 4 teams - top 2 from each group
         const groupA = groupAStandings.slice(0, 2);
         const groupB = groupBStandings.slice(0, 2);
-        
+
         semiFinals = [
-          { team1: groupA[0].name, team2: groupB[1].name, stage: "Semi-Final 1" },
-          { team1: groupB[0].name, team2: groupA[1].name, stage: "Semi-Final 2" }
+          {
+            team1: groupA[0].name,
+            team2: groupB[1].name,
+            stage: "Semi-Final 1",
+          },
+          {
+            team1: groupB[0].name,
+            team2: groupA[1].name,
+            stage: "Semi-Final 2",
+          },
         ];
       }
     }
-    
+
     moveToStage(semiFinals, "Semi-Final");
   };
 
   const generateFinal = (winners) => {
     if (winners.length === 2) {
       const finalMatch = [
-        { 
-          team1: winners[0], 
-          team2: winners[1], 
-          stage: "Final" 
-        }
+        {
+          team1: winners[0],
+          team2: winners[1],
+          stage: "Final",
+        },
       ];
 
       moveToStage(finalMatch, "Final");
@@ -609,13 +685,18 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
   };
 
   const handleSimulateTeamMatches = (teamName) => {
-    const hasMatchInProgress = scoreData.team1 && scoreData.team2 && !scoreData.gameover && !isSimulating;
+    const hasMatchInProgress =
+      scoreData.team1 &&
+      scoreData.team2 &&
+      !scoreData.gameover &&
+      !isSimulating;
     if (hasMatchInProgress || isSimulating) return;
 
     const remainingMatches = matches
       .map((match, index) => ({ match, index }))
       .filter(({ match, index }) => {
-        const isTeamMatch = match.team1 === teamName || match.team2 === teamName;
+        const isTeamMatch =
+          match.team1 === teamName || match.team2 === teamName;
         const isCompleted = Boolean(currentStageCompletedMatches[index]);
         return isTeamMatch && !isCompleted;
       })
@@ -631,14 +712,26 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
   if (showTournamentSummary) {
     return (
       <div>
-        <div style={{ textAlign: "center", padding: 10, color: "whitesmoke", backgroundColor: "#333" }}>
+        <div
+          style={{
+            textAlign: "center",
+            padding: 10,
+            color: "whitesmoke",
+            backgroundColor: "#333",
+          }}
+        >
           <Button
             variant="outlined"
-            style={{ color: "whitesmoke", position: "absolute", left: 20, top: 15 }}
-              onClick={() => setShowTournamentSummary(false)}
-            >
-              Back
-            </Button>
+            style={{
+              color: "whitesmoke",
+              position: "absolute",
+              left: 20,
+              top: 15,
+            }}
+            onClick={() => setShowTournamentSummary(false)}
+          >
+            Back
+          </Button>
           <h3>Tournament Summary</h3>
         </div>
         <Tabs
@@ -651,10 +744,16 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
           <Tab label="Standings" style={{ color: "whitesmoke" }} />
           <Tab label="Stats" style={{ color: "whitesmoke" }} />
         </Tabs>
-        {summaryTab === 0 && <TournamentStandings standings={standings} stage="Tournament" />}
+        {summaryTab === 0 && (
+          <TournamentStandings standings={standings} stage="Tournament" />
+        )}
         {summaryTab === 1 && <StatsTab playerStats={playerStats} />}
         <div style={{ textAlign: "center", marginTop: 20, paddingBottom: 20 }}>
-          <Button variant="outlined" style={{ color: "whitesmoke" }} onClick={onExit}>
+          <Button
+            variant="outlined"
+            style={{ color: "whitesmoke" }}
+            onClick={onExit}
+          >
             Exit Tournament
           </Button>
         </div>
@@ -664,14 +763,30 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
 
   // Show fixtures view
   if (showFixtures) {
-    const hasMatchInProgress = scoreData.team1 && scoreData.team2 && !scoreData.gameover && !isSimulating;
-    
+    const hasMatchInProgress =
+      scoreData.team1 &&
+      scoreData.team2 &&
+      !scoreData.gameover &&
+      !isSimulating;
+
     return (
       <div>
-        <div style={{ textAlign: "center", padding: 10, color: "whitesmoke", backgroundColor: "#333" }}>
-          <Button 
-            variant="outlined" 
-            style={{ color: "whitesmoke", position: "absolute", left: 20, top: 15 }}
+        <div
+          style={{
+            textAlign: "center",
+            padding: 10,
+            color: "whitesmoke",
+            backgroundColor: "#333",
+          }}
+        >
+          <Button
+            variant="outlined"
+            style={{
+              color: "whitesmoke",
+              position: "absolute",
+              left: 20,
+              top: 15,
+            }}
             onClick={() => setShowFixtures(false)}
           >
             Back
@@ -679,14 +794,24 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
           <h3>{currentStage}</h3>
           <Button
             variant="outlined"
-            style={{ color: "whitesmoke", position: "absolute", right: 170, top: 15 }}
+            style={{
+              color: "whitesmoke",
+              position: "absolute",
+              right: 170,
+              top: 15,
+            }}
             onClick={handleShowStandings}
           >
             Standings
           </Button>
           <Button
             variant="outlined"
-            style={{ color: "whitesmoke", position: "absolute", right: 20, top: 15 }}
+            style={{
+              color: "whitesmoke",
+              position: "absolute",
+              right: 20,
+              top: 15,
+            }}
             onClick={handleShowStats}
           >
             Stats
@@ -703,7 +828,8 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
           )}
           {hasMatchInProgress && (
             <p style={{ color: "#FFA726", fontSize: "0.9em" }}>
-              Match in progress - complete or view current match before simulating others
+              Match in progress - complete or view current match before
+              simulating others
             </p>
           )}
         </div>
@@ -731,10 +857,22 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
     const matchData = completedMatches[viewingMatchKey];
     return (
       <div>
-        <div style={{ textAlign: "center", padding: 10, color: "whitesmoke", backgroundColor: "#333" }}>
-          <Button 
-            variant="outlined" 
-            style={{ color: "whitesmoke", position: "absolute", left: 20, top: 15 }}
+        <div
+          style={{
+            textAlign: "center",
+            padding: 10,
+            color: "whitesmoke",
+            backgroundColor: "#333",
+          }}
+        >
+          <Button
+            variant="outlined"
+            style={{
+              color: "whitesmoke",
+              position: "absolute",
+              left: 20,
+              top: 15,
+            }}
             onClick={() => {
               setViewingMatchKey(null);
               setShowFixtures(true);
@@ -768,18 +906,32 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
   if (matchSetupPending && currentMatchConfig) {
     return (
       <div>
-        <div style={{ textAlign: "center", padding: 10, color: "whitesmoke", backgroundColor: "#333" }}>
-          <Button 
-            variant="outlined" 
-            style={{ color: "whitesmoke", position: "absolute", left: 20, top: 15 }}
+        <div
+          style={{
+            textAlign: "center",
+            padding: 10,
+            color: "whitesmoke",
+            backgroundColor: "#333",
+          }}
+        >
+          <Button
+            variant="outlined"
+            style={{
+              color: "whitesmoke",
+              position: "absolute",
+              left: 20,
+              top: 15,
+            }}
             onClick={() => setShowFixtures(true)}
           >
             View Fixtures
           </Button>
           <h3>{currentMatchConfig?.stage || currentStage}</h3>
-          <p>Match {currentMatchIndex + 1} of {matches.length}</p>
+          <p>
+            Match {currentMatchIndex + 1} of {matches.length}
+          </p>
         </div>
-        <MatchSetup 
+        <MatchSetup
           match={currentMatchConfig}
           onStartMatch={handleMatchStart}
         />
@@ -795,10 +947,22 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
       getTournamentOutcome(scoreData, currentStage).result;
     return (
       <div>
-        <div style={{ textAlign: "center", padding: 10, color: "whitesmoke", backgroundColor: "#333" }}>
-          <Button 
-            variant="outlined" 
-            style={{ color: "whitesmoke", position: "absolute", left: 20, top: 15 }}
+        <div
+          style={{
+            textAlign: "center",
+            padding: 10,
+            color: "whitesmoke",
+            backgroundColor: "#333",
+          }}
+        >
+          <Button
+            variant="outlined"
+            style={{
+              color: "whitesmoke",
+              position: "absolute",
+              left: 20,
+              top: 15,
+            }}
             onClick={() => setShowFixtures(true)}
           >
             View Fixtures
@@ -818,7 +982,9 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
           nextButtonText={
             currentStage === "Final"
               ? "View Tournament Stats"
-              : (currentMatchIndex < matches.length - 1 ? "Next Match" : "View Final Standings")
+              : currentMatchIndex < matches.length - 1
+              ? "Next Match"
+              : "View Final Standings"
           }
         />
       </div>
@@ -829,18 +995,32 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
   if (scoreData.team1 && scoreData.team2 && !isSimulating) {
     return (
       <div>
-        <div style={{ textAlign: "center", padding: 10, color: "whitesmoke", backgroundColor: "#333" }}>
-          <Button 
-            variant="outlined" 
-            style={{ color: "whitesmoke", position: "absolute", left: 20, top: 15 }}
+        <div
+          style={{
+            textAlign: "center",
+            padding: 10,
+            color: "whitesmoke",
+            backgroundColor: "#333",
+          }}
+        >
+          <Button
+            variant="outlined"
+            style={{
+              color: "whitesmoke",
+              position: "absolute",
+              left: 20,
+              top: 15,
+            }}
             onClick={() => setShowFixtures(true)}
           >
             View Fixtures
           </Button>
           <h3>{currentMatchConfig?.stage || currentStage}</h3>
-          <p>Match {currentMatchIndex + 1} of {matches.length}</p>
+          <p>
+            Match {currentMatchIndex + 1} of {matches.length}
+          </p>
         </div>
-        
+
         <TournamentMatchView
           pitchType={currentMatchConfig?.pitchType || "Normal"}
           standings={standings}
@@ -859,7 +1039,9 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
     return (
       <div style={{ textAlign: "center", padding: 50, color: "whitesmoke" }}>
         <h3>Simulating match...</h3>
-        <p>{scoreData.team1} vs {scoreData.team2}</p>
+        <p>
+          {scoreData.team1} vs {scoreData.team2}
+        </p>
       </div>
     );
   }
@@ -874,13 +1056,14 @@ function TournamentManager({ config, onExit, scoreData, pickTeamDispatch, resetD
 
 const mapStateToProps = (state) => ({
   scoreData: state.manageScores,
-  teamData: state.getTeams
+  teamData: state.getTeams,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  pickTeamDispatch: (team1, team2, overs, format) => dispatch(pickTeams(team1, team2, overs, format)),
+  pickTeamDispatch: (team1, team2, overs, format) =>
+    dispatch(pickTeams(team1, team2, overs, format)),
   resetDispatch: () => dispatch(resetState()),
-  simulateMatchDispatch: (pitchType) => dispatch(simulateMatch(pitchType))
+  simulateMatchDispatch: (pitchType) => dispatch(simulateMatch(pitchType)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TournamentManager);

@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Button, Select, MenuItem, InputLabel, Checkbox, FormControlLabel } from "@material-ui/core";
+import {
+  Button,
+  Select,
+  MenuItem,
+  InputLabel,
+  Checkbox,
+  FormControlLabel,
+} from "@material-ui/core";
 
 function TournamentSetup({ teams, onStartTournament, onBack }) {
   const [selectedTeams, setSelectedTeams] = useState([]);
@@ -14,7 +21,7 @@ function TournamentSetup({ teams, onStartTournament, onBack }) {
 
   const handleTeamToggle = (team) => {
     if (selectedTeams.includes(team)) {
-      setSelectedTeams(selectedTeams.filter(t => t !== team));
+      setSelectedTeams(selectedTeams.filter((t) => t !== team));
     } else {
       setSelectedTeams([...selectedTeams, team]);
     }
@@ -29,18 +36,20 @@ function TournamentSetup({ teams, onStartTournament, onBack }) {
       alert("Please select at least 4 teams for the tournament");
       return;
     }
-    const selectedFormat = oversOptions.find(opt => opt.value === selectedOvers)?.format || "ODI_50";
+    const selectedFormat =
+      oversOptions.find((opt) => opt.value === selectedOvers)?.format ||
+      "ODI_50";
     onStartTournament({
       teams: selectedTeams,
       overs: selectedOvers,
-      format: selectedFormat
+      format: selectedFormat,
     });
   };
 
   return (
     <div style={{ marginLeft: "35%", marginTop: "2%", maxWidth: "400px" }}>
       <h2 style={{ color: "whitesmoke" }}>Tournament Setup</h2>
-      
+
       <div style={{ marginBottom: 20 }}>
         <InputLabel style={{ color: "whitesmoke", marginBottom: 10 }}>
           Select Teams (min 4)
@@ -63,7 +72,7 @@ function TournamentSetup({ teams, onStartTournament, onBack }) {
           }
           style={{ display: "block", marginBottom: 8 }}
         />
-        {teams.map(team => (
+        {teams.map((team) => (
           <FormControlLabel
             key={team}
             control={
@@ -79,24 +88,36 @@ function TournamentSetup({ teams, onStartTournament, onBack }) {
         ))}
       </div>
 
-      <InputLabel shrink style={{ color: "whitesmoke" }}>Overs</InputLabel>
+      <InputLabel shrink style={{ color: "whitesmoke" }}>
+        Overs
+      </InputLabel>
       <Select
         value={selectedOvers}
         onChange={(e) => setSelectedOvers(e.target.value)}
         style={{ color: "whitesmoke", marginBottom: 20, width: "100%" }}
       >
-        {oversOptions.map(option => (
+        {oversOptions.map((option) => (
           <MenuItem value={option.value} key={option.value}>
             {option.label}
           </MenuItem>
         ))}
       </Select>
-      <br /><br />
+      <br />
+      <br />
 
-      <Button variant="contained" color="primary" onClick={handleStart} style={{ marginRight: 10 }}>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleStart}
+        style={{ marginRight: 10 }}
+      >
         Start Tournament
       </Button>
-      <Button variant="outlined" style={{ color: "whitesmoke" }} onClick={onBack}>
+      <Button
+        variant="outlined"
+        style={{ color: "whitesmoke" }}
+        onClick={onBack}
+      >
         Back
       </Button>
     </div>
