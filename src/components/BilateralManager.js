@@ -30,16 +30,19 @@ function BilateralManager({
       currentMatch <= config.numMatches &&
       !matchSetupPending
     ) {
-      // Update series score
+      // Determine who actually won the match, then map that back to series team labels.
       const team1Won = scoreData.team1Total > scoreData.team2Total;
       const team2Won = scoreData.team2Total > scoreData.team1Total;
+      const matchWinner = team1Won
+        ? scoreData.team1
+        : team2Won
+        ? scoreData.team2
+        : null;
 
-      const newSeriesScore = {
-        team1: seriesScore.team1 + (team1Won ? 1 : 0),
-        team2: seriesScore.team2 + (team2Won ? 1 : 0),
-      };
-
-      setSeriesScore(newSeriesScore);
+      setSeriesScore((prevScore) => ({
+        team1: prevScore.team1 + (matchWinner === config.team1 ? 1 : 0),
+        team2: prevScore.team2 + (matchWinner === config.team2 ? 1 : 0),
+      }));
 
       // Record match result
       const result = {
@@ -49,7 +52,7 @@ function BilateralManager({
         winner: team1Won ? scoreData.team1 : team2Won ? scoreData.team2 : "Tie",
         result: getMatchResult(scoreData),
       };
-      setMatchResults([...matchResults, result]);
+      setMatchResults((prevResults) => [...prevResults, result]);
     }
   }, [scoreData.gameover]);
 
