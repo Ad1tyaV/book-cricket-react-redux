@@ -7,7 +7,7 @@ const FORMAT_BASE_FREQUENCIES = {
   T20: {
     // T20: Target ~8-9 runs per over (realistic T20 average)
     AGGRESSIVE: [5, 45, 30, 15, 2, 18, 12], // ~9.2 RPO
-    ANCHOR: [4, 55, 40, 18, 3, 15, 8], // ~7.8 RPO
+    ANCHOR: [4, 50, 40, 18, 3, 14, 9],
     POWER_HITTER: [8, 40, 20, 10, 1, 20, 18], // ~10.5 RPO
     LOWER_ORDER_HITTER: [10, 42, 22, 10, 1, 20, 18],
     ACCUMULATOR: [3, 50, 50, 20, 4, 12, 6], // ~7.5 RPO
