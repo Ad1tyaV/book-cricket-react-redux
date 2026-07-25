@@ -10,6 +10,7 @@ import {
 import MatchComponent from "./MatchComponent";
 import TournamentStandings from "./TournamentStandings";
 import StatsTab from "./StatsTab";
+import { getPlayerName } from "../helpers/teamHelpers";
 
 function TournamentMatchView({
   pitchType,
@@ -64,25 +65,14 @@ function TournamentMatchView({
               aria-label="batting scorecard"
             >
               <TableBody>
-                {[-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((index) => {
+                {Array.from({ length: 11 }, (_, index) => index).map((index) => {
                   const isOnStrike = scoreData.onStrike.batterIndex === index;
                   const isOffStrike = scoreData.offStrike.batterIndex === index;
-                  const isOut =
-                    index <
-                      Math.min(
-                        scoreData.onStrike.batterIndex,
-                        scoreData.offStrike.batterIndex
-                      ) ||
-                    (index >
-                      Math.min(
-                        scoreData.onStrike.batterIndex,
-                        scoreData.offStrike.batterIndex
-                      ) &&
-                      index <
-                        Math.max(
-                          scoreData.onStrike.batterIndex,
-                          scoreData.offStrike.batterIndex
-                        ));
+                  const isOut = (
+                    scoreData.currentTeamBatting === scoreData.team1
+                      ? scoreData.team1Dismissed
+                      : scoreData.team2Dismissed
+                  )?.includes(index);
 
                   const currentTeamStats =
                     scoreData.currentTeamBatting === scoreData.team1
@@ -105,8 +95,11 @@ function TournamentMatchView({
                               : "gray",
                         }}
                       >
-                        {teamData?.[scoreData.currentTeamBatting]?.[index] ||
-                          "Player"}
+                        {getPlayerName(
+                          (scoreData.currentTeamBatting === scoreData.team1
+                            ? scoreData.team1PlayingXI
+                            : scoreData.team2PlayingXI)?.[index]
+                        )}
                         {isOnStrike && " *"}
                       </TableCell>
                       <TableCell style={{ color: "whitesmoke" }}>

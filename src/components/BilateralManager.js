@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import pickTeams from "../redux-setup/actions/pickTeams";
 import resetState from "../redux-setup/actions/resetState";
 import MatchComponent from "./MatchComponent";
 import MatchSetup from "./MatchSetup";
-import { Button } from "@material-ui/core";
+import { Button, Tabs, Tab } from "@material-ui/core";
 import { getMatchResult } from "../helpers/matchResultHelper";
+import StatsTab from "./StatsTab";
+import { mergeInningsBattingStats } from "../helpers/playerStatsHelper";
 
 function BilateralManager({
   config,
@@ -19,6 +21,9 @@ function BilateralManager({
   const [matchResults, setMatchResults] = useState([]);
   const [matchSetupPending, setMatchSetupPending] = useState(true);
   const [currentPitchType, setCurrentPitchType] = useState("Normal");
+  const [playerStats, setPlayerStats] = useState([]);
+  const [activeTab, setActiveTab] = useState(0);
+  const recordedMatch = useRef(null);
 
   useEffect(() => {
     // Don't auto-start, wait for match setup
@@ -28,40 +33,68 @@ function BilateralManager({
     if (
       scoreData.gameover &&
       currentMatch <= config.numMatches &&
-      !matchSetupPending
+      !matchSetupPending &&
+      recordedMatch.current !== currentMatch
     ) {
+      recordedMatch.current = currentMatch;
       // Update series score
-      const team1Won = scoreData.team1Total > scoreData.team2Total;
-      const team2Won = scoreData.team2Total > scoreData.team1Total;
+      const battingFirstWon = scoreData.team1Total > scoreData.team2Total;
+      const chasingTeamWon = scoreData.team2Total > scoreData.team1Total;
+      const winner = battingFirstWon
+        ? scoreData.team1
+        : chasingTeamWon
+        ? scoreData.team2
+        : null;
 
-      const newSeriesScore = {
-        team1: seriesScore.team1 + (team1Won ? 1 : 0),
-        team2: seriesScore.team2 + (team2Won ? 1 : 0),
-      };
-
-      setSeriesScore(newSeriesScore);
+      setSeriesScore((previous) => ({
+        team1: previous.team1 + (winner === config.team1 ? 1 : 0),
+        team2: previous.team2 + (winner === config.team2 ? 1 : 0),
+      }));
 
       // Record match result
       const result = {
         matchNum: currentMatch,
         team1Score: `${scoreData.team1Total}/${scoreData.team1Wickets}`,
         team2Score: `${scoreData.team2Total}/${scoreData.team2Wickets}`,
-        winner: team1Won ? scoreData.team1 : team2Won ? scoreData.team2 : "Tie",
+        winner: winner || "Tie",
         result: getMatchResult(scoreData),
       };
-      setMatchResults([...matchResults, result]);
+      setMatchResults((previous) => [...previous, result]);
+      setPlayerStats((previous) => {
+        const withFirstInnings = mergeInningsBattingStats(
+          previous,
+          scoreData.team1,
+          scoreData.team1PlayingXI,
+          scoreData.team1Stats,
+          scoreData.team1BallsFacedByPlayer
+        );
+        return mergeInningsBattingStats(
+          withFirstInnings,
+          scoreData.team2,
+          scoreData.team2PlayingXI,
+          scoreData.team2Stats,
+          scoreData.team2BallsFacedByPlayer
+        );
+      });
     }
-  }, [scoreData.gameover]);
+  }, [config, currentMatch, matchSetupPending, scoreData]);
 
   const handleMatchStart = (matchConfig) => {
-    const { pitchType, battingFirst } = matchConfig;
+    const { pitchType, battingFirst, playingXIs } = matchConfig;
 
     // Determine team order based on toss
     const team1 = battingFirst;
     const team2 = battingFirst === config.team1 ? config.team2 : config.team1;
 
     setCurrentPitchType(pitchType);
-    pickTeamDispatch(team1, team2, config.overs, config.format);
+    pickTeamDispatch(
+      team1,
+      team2,
+      config.overs,
+      config.format,
+      playingXIs?.[team1],
+      playingXIs?.[team2]
+    );
     setMatchSetupPending(false);
   };
 
@@ -69,6 +102,7 @@ function BilateralManager({
     if (currentMatch < config.numMatches) {
       setCurrentMatch(currentMatch + 1);
       setMatchSetupPending(true);
+      setActiveTab(0);
       resetDispatch();
     }
   };
@@ -107,6 +141,7 @@ function BilateralManager({
             team1: config.team1,
             team2: config.team2,
             stage: `Match ${currentMatch}`,
+            format: config.format,
           }}
           onStartMatch={handleMatchStart}
         />
@@ -133,7 +168,26 @@ function BilateralManager({
         </p>
       </div>
 
-      {scoreData.team1 && <MatchComponent pitchType={currentPitchType} />}
+      <Tabs
+        value={activeTab}
+        onChange={(event, value) => setActiveTab(value)}
+        centered
+        style={{ backgroundColor: "#17212b" }}
+      >
+        <Tab label="Live Match" style={{ color: "whitesmoke" }} />
+        <Tab label="Series Stats" style={{ color: "whitesmoke" }} />
+      </Tabs>
+
+      {activeTab === 0 && scoreData.team1 && (
+        <MatchComponent pitchType={currentPitchType} />
+      )}
+      {activeTab === 1 && (
+        <StatsTab
+          playerStats={playerStats}
+          title="Bilateral Series Statistics"
+          minimumRuns={1}
+        />
+      )}
 
       {scoreData.gameover && (
         <div
@@ -183,8 +237,17 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  pickTeamDispatch: (team1, team2, overs, format) =>
-    dispatch(pickTeams(team1, team2, overs, format)),
+  pickTeamDispatch: (
+    team1,
+    team2,
+    overs,
+    format,
+    team1PlayingXI,
+    team2PlayingXI
+  ) =>
+    dispatch(
+      pickTeams(team1, team2, overs, format, team1PlayingXI, team2PlayingXI)
+    ),
   resetDispatch: () => dispatch(resetState()),
 });
 

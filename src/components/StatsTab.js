@@ -7,9 +7,12 @@ import {
   TableRow,
 } from "@material-ui/core";
 
-function StatsTab({ playerStats }) {
-  // Filter players with at least 125 runs
-  const eligiblePlayers = playerStats.filter((p) => p.runs >= 125);
+function StatsTab({
+  playerStats,
+  title = "Tournament Statistics",
+  minimumRuns = 125,
+}) {
+  const eligiblePlayers = playerStats.filter((p) => p.runs >= minimumRuns);
 
   // Top 5 scorers
   const topScorers = [...eligiblePlayers]
@@ -23,7 +26,7 @@ function StatsTab({ playerStats }) {
 
   return (
     <div style={{ padding: 20, color: "whitesmoke" }}>
-      <h2 style={{ textAlign: "center" }}>Tournament Statistics</h2>
+      <h2 style={{ textAlign: "center" }}>{title}</h2>
 
       <div
         style={{
@@ -32,7 +35,7 @@ function StatsTab({ playerStats }) {
           flexWrap: "wrap",
         }}
       >
-        <div style={{ minWidth: 400, margin: 10 }}>
+        <div style={{ minWidth: 320, maxWidth: 720, flex: 1, margin: 10 }}>
           <h3 style={{ textAlign: "center" }}>Top 5 Run Scorers</h3>
           <Table style={{ backgroundColor: "#1e1e1e" }}>
             <TableHead>
@@ -81,7 +84,7 @@ function StatsTab({ playerStats }) {
                     colSpan={5}
                     style={{ color: "#aaa", textAlign: "center" }}
                   >
-                    No players with 75+ runs yet
+                    No qualifying performances yet
                   </TableCell>
                 </TableRow>
               )}
@@ -89,9 +92,10 @@ function StatsTab({ playerStats }) {
           </Table>
         </div>
 
-        <div style={{ minWidth: 400, margin: 10 }}>
+        <div style={{ minWidth: 320, maxWidth: 720, flex: 1, margin: 10 }}>
           <h3 style={{ textAlign: "center" }}>
-            Top 5 Strike Rates (min 125 runs)
+            Top 5 Strike Rates (min {minimumRuns} run
+            {minimumRuns === 1 ? "" : "s"})
           </h3>
           <Table style={{ backgroundColor: "#1e1e1e" }}>
             <TableHead>
@@ -140,7 +144,7 @@ function StatsTab({ playerStats }) {
                     colSpan={5}
                     style={{ color: "#aaa", textAlign: "center" }}
                   >
-                    No players with 125+ runs yet
+                    No qualifying performances yet
                   </TableCell>
                 </TableRow>
               )}

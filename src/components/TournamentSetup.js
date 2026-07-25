@@ -47,79 +47,81 @@ function TournamentSetup({ teams, onStartTournament, onBack }) {
   };
 
   return (
-    <div style={{ marginLeft: "35%", marginTop: "2%", maxWidth: "400px" }}>
-      <h2 style={{ color: "whitesmoke" }}>Tournament Setup</h2>
+    <div className="page-shell">
+      <div className="setup-card">
+        <h2 style={{ color: "whitesmoke" }}>Tournament Setup</h2>
 
-      <div style={{ marginBottom: 20 }}>
-        <InputLabel style={{ color: "whitesmoke", marginBottom: 10 }}>
-          Select Teams (min 4)
-        </InputLabel>
-        <p style={{ color: "#bbb", margin: "0 0 8px 0" }}>
-          Selected: {selectedTeams.length}/{teams.length}
-        </p>
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={allTeamsSelected}
-              onChange={handleSelectAllTeams}
-              style={{ color: "whitesmoke" }}
-            />
-          }
-          label={
-            <span style={{ color: "whitesmoke" }}>
-              {allTeamsSelected ? "Unselect All Teams" : "Select All Teams"}
-            </span>
-          }
-          style={{ display: "block", marginBottom: 8 }}
-        />
-        {teams.map((team) => (
+        <div style={{ marginBottom: 20 }}>
+          <InputLabel style={{ color: "whitesmoke", marginBottom: 10 }}>
+            Select Teams (min 4)
+          </InputLabel>
+          <p style={{ color: "#bbb", margin: "0 0 8px 0" }}>
+            Selected: {selectedTeams.length}/{teams.length}
+          </p>
           <FormControlLabel
-            key={team}
             control={
               <Checkbox
-                checked={selectedTeams.includes(team)}
-                onChange={() => handleTeamToggle(team)}
+                checked={allTeamsSelected}
+                onChange={handleSelectAllTeams}
                 style={{ color: "whitesmoke" }}
               />
             }
-            label={<span style={{ color: "whitesmoke" }}>{team}</span>}
-            style={{ display: "block" }}
+            label={
+              <span style={{ color: "whitesmoke" }}>
+                {allTeamsSelected ? "Unselect All Teams" : "Select All Teams"}
+              </span>
+            }
+            style={{ display: "block", marginBottom: 8 }}
           />
-        ))}
+          {teams.map((team) => (
+            <FormControlLabel
+              key={team}
+              control={
+                <Checkbox
+                  checked={selectedTeams.includes(team)}
+                  onChange={() => handleTeamToggle(team)}
+                  style={{ color: "whitesmoke" }}
+                />
+              }
+              label={<span style={{ color: "whitesmoke" }}>{team}</span>}
+              style={{ display: "block" }}
+            />
+          ))}
+        </div>
+
+        <InputLabel shrink style={{ color: "whitesmoke" }}>
+          Overs
+        </InputLabel>
+        <Select
+          value={selectedOvers}
+          onChange={(e) => setSelectedOvers(e.target.value)}
+          style={{ color: "whitesmoke", marginBottom: 20, width: "100%" }}
+        >
+          {oversOptions.map((option) => (
+            <MenuItem value={option.value} key={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </Select>
+        <br />
+        <br />
+
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleStart}
+          style={{ marginRight: 10 }}
+        >
+          Start Tournament
+        </Button>
+        <Button
+          variant="outlined"
+          style={{ color: "whitesmoke" }}
+          onClick={onBack}
+        >
+          Back
+        </Button>
       </div>
-
-      <InputLabel shrink style={{ color: "whitesmoke" }}>
-        Overs
-      </InputLabel>
-      <Select
-        value={selectedOvers}
-        onChange={(e) => setSelectedOvers(e.target.value)}
-        style={{ color: "whitesmoke", marginBottom: 20, width: "100%" }}
-      >
-        {oversOptions.map((option) => (
-          <MenuItem value={option.value} key={option.value}>
-            {option.label}
-          </MenuItem>
-        ))}
-      </Select>
-      <br />
-      <br />
-
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleStart}
-        style={{ marginRight: 10 }}
-      >
-        Start Tournament
-      </Button>
-      <Button
-        variant="outlined"
-        style={{ color: "whitesmoke" }}
-        onClick={onBack}
-      >
-        Back
-      </Button>
     </div>
   );
 }

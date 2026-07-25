@@ -1,109 +1,122 @@
 import React, { useEffect, useState, useRef } from "react";
 import { connect } from "react-redux";
-import scoreX from "../redux-setup/actions/scoreX";
-import completeInnings from "../redux-setup/actions/completeInnings";
+import { playOvers } from "../redux-setup/actions/scoreX";
 import resetState from "../redux-setup/actions/resetState";
+import setBatterMindset from "../redux-setup/actions/setBatterMindset";
 import ScoreCard from "./ScoreCard";
-import { Button } from "@material-ui/core";
-import getTeamAction from "../redux-setup/actions/getTeamAction";
-import { asyncHelper } from "../helpers/asyncHelper";
-import dynamicSquadAction from "../redux-setup/actions/dynamicSquadAction";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { Button, ButtonGroup } from "@material-ui/core";
+import { getPlayerName } from "../helpers/teamHelpers";
+
+const mindsetOptions = [
+  {
+    value: "defensive",
+    label: "Defensive",
+    color: "#74a9d8",
+    title: "Lower risk, more dots and strike rotation",
+  },
+  {
+    value: "default",
+    label: "Default",
+    color: "#8fded4",
+    title: "Play to the batter's natural attributes",
+  },
+  {
+    value: "aggressive",
+    label: "Aggressive",
+    color: "#e5a94d",
+    title: "More attacking shots with some extra risk",
+  },
+];
+
+function BatterAtCrease({
+  player,
+  index,
+  runs,
+  balls,
+  mindset,
+  onStrike,
+  disabled,
+  onMindsetChange,
+}) {
+  const playerName = getPlayerName(player);
+  return (
+    <div className={`batter-card ${onStrike ? "on-strike" : ""}`}>
+      <div className="batter-summary">
+        <div>
+          <strong>
+            {playerName} {onStrike ? "●" : ""}
+          </strong>
+          <small>{onStrike ? "On strike" : "Non-striker"}</small>
+        </div>
+        <span>
+          {runs} <small>({balls})</small>
+        </span>
+      </div>
+      <ButtonGroup
+        fullWidth
+        size="small"
+        aria-label={`${playerName} batting mindset`}
+      >
+        {mindsetOptions.map((option) => {
+          const selected = mindset === option.value;
+          return (
+            <Button
+              key={option.value}
+              variant={selected ? "contained" : "outlined"}
+              disabled={disabled}
+              title={option.title}
+              aria-label={`Set ${playerName} to ${option.value}`}
+              aria-pressed={selected}
+              onClick={() => onMindsetChange(index, option.value)}
+              style={{
+                color: selected ? "#071216" : option.color,
+                backgroundColor: selected ? option.color : "transparent",
+                borderColor: `${option.color}88`,
+                fontSize: 11,
+              }}
+            >
+              {option.label}
+            </Button>
+          );
+        })}
+      </ButtonGroup>
+    </div>
+  );
+}
 
 function MatchComponent(props) {
   const [message, setMessage] = useState("");
   const track = useRef({});
-  const dynamicSquads = useSelector((state) => state.dynamicSquads);
-  const dispatch = useDispatch();
+  const runRate = (runs, balls) =>
+    balls > 0 ? ((runs / balls) * 6).toFixed(2) : "0.00";
+  const team1Batting =
+    props.scoreData.currentTeamBatting === props.scoreData.team1;
+  const battingSide = team1Batting ? "team1" : "team2";
+  const battingTeam = props.scoreData[battingSide];
+  const playingXI = props.scoreData[`${battingSide}PlayingXI`];
+  const stats = props.scoreData[`${battingSide}Stats`];
+  const ballsByPlayer = props.scoreData[`${battingSide}BallsFacedByPlayer`];
+  const mindsets = props.scoreData[`${battingSide}Mindsets`];
+  const batterIndexes = [
+    props.scoreData.onStrike.batterIndex,
+    props.scoreData.offStrike.batterIndex,
+  ];
 
   useEffect(() => {
-    const url =
-      props.scoreData.format === "T20"
-        ? "https://raw.githubusercontent.com/Ad1tyaV/pyTestFiles/master/cric-v2.json"
-        : "https://raw.githubusercontent.com/Ad1tyaV/pyTestFiles/master/cric-v1.json";
-    let data;
-    if (dynamicSquads) {
-      data = asyncHelper(url);
-      data.then((response) => {
-        if (response[0] !== 200) {
-          props.teamsDispatch("GET_TEAM", response[1]);
-        } else {
-          props.teamsDispatch("SET_TEAM", response[1]);
-        }
-      });
-
-      dispatch(dynamicSquadAction("DISABLE"));
-    }
-  }, []);
-
-  useEffect(() => {
-    const maxBalls = props.scoreData.overs * 6;
-
-    if (!props.scoreData.gameover) {
-      if (
-        props.scoreData.team1Wickets === 10 ||
-        props.scoreData.team1BallsFaced === maxBalls
-      ) {
-        if (Object.keys(track.current).length === 0) {
-          track.current = {};
-          track.current = {
-            ...track.current,
-            team1: {
-              ...track.current.team1,
-              player_1: props.scoreData.onStrike.batterIndex,
-              player_2: props.scoreData.offStrike.batterIndex,
-            },
-          };
-        }
-        props.completeInningsDispatch("team1");
-      }
-    }
-    if (
-      props.scoreData.team1Wickets === 10 ||
-      props.scoreData.team1BallsFaced === maxBalls
-    ) {
+    if (props.scoreData.gameover) {
+      track.current = {
+        team1: props.scoreData.team1LastPair,
+        team2: props.scoreData.team2LastPair,
+      };
       if (props.scoreData.team2Total > props.scoreData.team1Total) {
-        track.current = {
-          ...track.current,
-          team2: {
-            ...track.current.team1,
-            player_1: props.scoreData.onStrike.batterIndex,
-            player_2: props.scoreData.offStrike.batterIndex,
-          },
-        };
         setMessage(
           `${props.scoreData.team2} won by ${
             10 - props.scoreData.team2Wickets
           } wickets`
         );
-      } else if (
-        props.scoreData.team2Total === props.scoreData.team1Total &&
-        (props.scoreData.team2Wickets === 10 ||
-          props.scoreData.team2BallsFaced === maxBalls)
-      ) {
-        track.current = {
-          ...track.current,
-          team2: {
-            ...track.current.team1,
-            player_1: props.scoreData.onStrike.batterIndex,
-            player_2: props.scoreData.offStrike.batterIndex,
-          },
-        };
+      } else if (props.scoreData.team2Total === props.scoreData.team1Total) {
         setMessage(`Match Tied`);
-      } else if (
-        props.scoreData.team2Total < props.scoreData.team1Total &&
-        (props.scoreData.team2Wickets === 10 ||
-          props.scoreData.team2BallsFaced === maxBalls)
-      ) {
-        track.current = {
-          ...track.current,
-          team2: {
-            ...track.current.team1,
-            player_1: props.scoreData.onStrike.batterIndex,
-            player_2: props.scoreData.offStrike.batterIndex,
-          },
-        };
+      } else {
         setMessage(
           `${props.scoreData.team1} beat ${props.scoreData.team2} by ${
             props.scoreData.team1Total - props.scoreData.team2Total
@@ -115,146 +128,119 @@ function MatchComponent(props) {
 
   return (
     <div style={{ color: "whitesmoke" }}>
-      {
-        <>
-          <span
-            className="score_data"
-            style={{ display: "flex", justifyContent: "center" }}
-          >
-            <h3>{props.scoreData.team1}</h3>&nbsp;&nbsp;
-            <h3>
-              {props.scoreData.team1Total}/{props.scoreData.team1Wickets} Overs:
-              {Math.floor(props.scoreData.team1BallsFaced / 6)}.
-              {props.scoreData.team1BallsFaced % 6} RR:
-              {(
-                props.scoreData.team1Total /
-                ((props.scoreData.team1BallsFaced || 1) / 6)
-              ).toPrecision(3) ?? 0}
-            </h3>
-          </span>
-
-          <span
-            className="score_data"
-            style={{ display: "flex", justifyContent: "center" }}
-          >
-            <h3>{props.scoreData.team2}</h3>&nbsp;&nbsp;
-            <h3>
-              {props.scoreData.team2Total}/{props.scoreData.team2Wickets} Overs:
-              {Math.floor(props.scoreData.team2BallsFaced / 6)}.
-              {props.scoreData.team2BallsFaced % 6} RR:
-              {(
-                props.scoreData.team2Total /
-                ((props.scoreData.team2BallsFaced || 1) / 6)
-              ).toPrecision(3) ?? 0}
-            </h3>
-          </span>
-        </>
-      }
-      {<br />}
-      {props.scoreData.currentTeamBatting === props.scoreData.team1 ? (
-        <div>
-          <span style={{ display: "flex", justifyContent: "center" }}>
-            {props.teamData?.[props.scoreData.team1]?.[
-              props.scoreData.onStrike.batterIndex
-            ] || "Player"}
-            👉🏾
-            {props.scoreData.team1Stats[props.scoreData.onStrike.batterIndex] ??
-              0}
-            (
-            {props.scoreData.team1BallsFacedByPlayer?.[
-              props.scoreData.onStrike.batterIndex
-            ] ?? 0}
-            )
-          </span>
-          <br />
-          <span style={{ display: "flex", justifyContent: "center" }}>
-            {props.teamData?.[props.scoreData.team1]?.[
-              props.scoreData.offStrike.batterIndex
-            ] || "Player"}
-            👉🏾
-            {props.scoreData.team1Stats[
-              props.scoreData.offStrike.batterIndex
-            ] ?? 0}
-            (
-            {props.scoreData.team1BallsFacedByPlayer?.[
-              props.scoreData.offStrike.batterIndex
-            ] ?? 0}
-            )
-          </span>
+      <div className="scoreboard-grid">
+        <div className="score-panel">
+          <div className="team-name">{props.scoreData.team1}</div>
+          <h3>
+            {props.scoreData.team1Total}/{props.scoreData.team1Wickets}
+          </h3>
+          <small>
+            {Math.floor(props.scoreData.team1BallsFaced / 6)}.
+            {props.scoreData.team1BallsFaced % 6} overs · RR{" "}
+            {runRate(
+              props.scoreData.team1Total,
+              props.scoreData.team1BallsFaced
+            )}
+          </small>
         </div>
-      ) : (
-        <div>
-          <span style={{ display: "flex", justifyContent: "center" }}>
-            {props.teamData?.[props.scoreData.team2]?.[
-              props.scoreData.onStrike.batterIndex
-            ] || "Player"}
-            👉🏾
-            {props.scoreData.team2Stats[props.scoreData.onStrike.batterIndex] ??
-              0}
-            (
-            {props.scoreData.team2BallsFacedByPlayer?.[
-              props.scoreData.onStrike.batterIndex
-            ] ?? 0}
-            )
-          </span>
-          <br />
-          <span style={{ display: "flex", justifyContent: "center" }}>
-            {props.teamData?.[props.scoreData.team2]?.[
-              props.scoreData.offStrike.batterIndex
-            ] || "Player"}
-            👉🏾
-            {props.scoreData.team2Stats[
-              props.scoreData.offStrike.batterIndex
-            ] ?? 0}
-            (
-            {props.scoreData.team2BallsFacedByPlayer?.[
-              props.scoreData.offStrike.batterIndex
-            ] ?? 0}
-            )
-          </span>
+        <div className="score-panel">
+          <div className="team-name">{props.scoreData.team2}</div>
+          <h3>
+            {props.scoreData.team2Total}/{props.scoreData.team2Wickets}
+          </h3>
+          <small>
+            {Math.floor(props.scoreData.team2BallsFaced / 6)}.
+            {props.scoreData.team2BallsFaced % 6} overs · RR{" "}
+            {runRate(
+              props.scoreData.team2Total,
+              props.scoreData.team2BallsFaced
+            )}
+          </small>
         </div>
-      )}
-      {<hr />}
-      {props.scoreData.gameover ? (
-        <>
+      </div>
+      <div className="action-bar">
+        <div className="crease-header">
+          <strong>{battingTeam} at the crease</strong>
+          <small>Batters gradually settle over their first 30 balls.</small>
+        </div>
+        <div className="crease-grid">
+          {batterIndexes.map((index, position) => (
+            <BatterAtCrease
+              key={`${battingSide}-${index}`}
+              player={playingXI[index]}
+              index={index}
+              runs={stats[index] || 0}
+              balls={ballsByPlayer[index] || 0}
+              mindset={mindsets[index] || "default"}
+              onStrike={position === 0}
+              disabled={props.scoreData.gameover}
+              onMindsetChange={(batterIndex, mindset) =>
+                props.setMindsetDispatch(battingTeam, batterIndex, mindset)
+              }
+            />
+          ))}
+        </div>
+        <hr style={{ borderColor: "rgba(151, 190, 199, 0.16)" }} />
+        {props.scoreData.gameover ? (
+          <>
+            <span
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                fontWeight: "600",
+              }}
+            >
+              {message}
+            </span>
+            <br />
+            <span style={{ display: "flex", justifyContent: "center" }}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => {
+                  track.current = {};
+                  props.resetDispatch();
+                }}
+              >
+                Play Again
+              </Button>
+            </span>
+          </>
+        ) : (
           <span
             style={{
               display: "flex",
               justifyContent: "center",
-              fontWeight: "600",
+              gap: 10,
+              flexWrap: "wrap",
             }}
           >
-            {message}
+            {[1, 5, 10].map((overs) => (
+              <Button
+                key={overs}
+                color="primary"
+                variant="contained"
+                onClick={() => props.playOversDispatch(overs, props.pitchType)}
+              >
+                Autoplay {overs} {overs === 1 ? "over" : "overs"}
+              </Button>
+            ))}
           </span>
-          <br />
-          <span style={{ display: "flex", justifyContent: "center" }}>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => {
-                track.current = {};
-                props.resetDispatch();
-              }}
-            >
-              Play Again
-            </Button>
-          </span>
-        </>
-      ) : (
-        <span style={{ display: "flex", justifyContent: "center" }}>
-          <Button
-            color="primary"
-            variant="contained"
-            onClick={() => {
-              for (let i = 0; i < 6; i++)
-                // props.scoreDispatch(Math.floor(Math.random() * 7));
-                props.scoreDispatch(props.pitchType);
+        )}
+        {!props.scoreData.gameover && (
+          <small
+            style={{
+              display: "block",
+              marginTop: 10,
+              color: "#91a5ad",
+              textAlign: "center",
             }}
           >
-            PLAY
-          </Button>
-        </span>
-      )}
+            Autoplay pauses when a wicket falls so you can set the new
+            batter&apos;s mindset.
+          </small>
+        )}
+      </div>
 
       {props.scoreData.gameover ? (
         <ScoreCard
@@ -266,6 +252,10 @@ function MatchComponent(props) {
           team2Stats={props.scoreData.team2Stats}
           team1BallsFacedByPlayer={props.scoreData.team1BallsFacedByPlayer}
           team2BallsFacedByPlayer={props.scoreData.team2BallsFacedByPlayer}
+          team1PlayingXI={props.scoreData.team1PlayingXI}
+          team2PlayingXI={props.scoreData.team2PlayingXI}
+          team1Dismissed={props.scoreData.team1Dismissed}
+          team2Dismissed={props.scoreData.team2Dismissed}
         />
       ) : (
         <></>
@@ -284,10 +274,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    scoreDispatch: (X) => dispatch(scoreX(null, X)),
-    completeInningsDispatch: (team) => dispatch(completeInnings(team)),
+    playOversDispatch: (overs, pitch) => dispatch(playOvers(overs, pitch)),
+    setMindsetDispatch: (team, batterIndex, mindset) =>
+      dispatch(setBatterMindset(team, batterIndex, mindset)),
     resetDispatch: () => dispatch(resetState()),
-    teamsDispatch: (type, data) => dispatch(getTeamAction(type, data)),
   };
 };
 
