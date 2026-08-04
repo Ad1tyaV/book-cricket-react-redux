@@ -4,12 +4,27 @@ import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import TableBody from "@material-ui/core/TableBody";
 import TableHead from "@material-ui/core/TableHead";
+import {
+  getDefaultXI,
+  getPlayerName,
+} from "../helpers/teamHelpers";
 
-function SingleTeamScoreCard({ team, teamData, stats, ballsFaced, track }) {
-  const ppl = [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+function SingleTeamScoreCard({
+  team,
+  teamData,
+  format = "ODI_50",
+  playingXI,
+  stats,
+  ballsFaced,
+  track,
+}) {
+  const ppl = Array.from({ length: 11 }, (_, index) => index);
+  const orderedXI = playingXI?.length
+    ? playingXI
+    : getDefaultXI(teamData, team, format);
 
   // Safe access to track data with defaults
-  const teamTrack = track || { player_1: -1, player_2: 0 };
+  const teamTrack = track || { player_1: 0, player_2: 1 };
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
@@ -51,7 +66,7 @@ function SingleTeamScoreCard({ team, teamData, stats, ballsFaced, track }) {
                     color: isNotOut ? "#72ff72" : isOut ? "red" : "gray",
                   }}
                 >
-                  {teamData?.[team]?.[index] || "Player"}
+                  {getPlayerName(orderedXI[index])}
                   {isNotOut && " *"}
                 </TableCell>
                 <TableCell style={{ color: "whitesmoke" }}>

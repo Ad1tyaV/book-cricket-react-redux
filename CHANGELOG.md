@@ -2,6 +2,34 @@
 
 All notable changes to Cricket 2021 will be documented in this file.
 
+## [Version 2.2.0] - 2026-08-03
+
+### Added
+
+- Skill-based scoring for T20, 40-over, and 50-over matches using each
+  batter's batting and attacking attributes against the opposition's five
+  strongest bowling ratings
+- Format-specific T20 and ODI playing XIs from the unified
+  `cric-vfinal.json` catalog
+- Live catalog loading with a bundled offline fallback
+- Balls-faced rhythm adjustments so batters settle gradually
+- Optional collapsed squad editors for both teams in quick, bilateral, and
+  manually played tournament matches
+- Explicit XI-to-reserve swapping plus batting-order move and shuffle controls
+
+### Changed
+
+- Recalibrated scoring distributions independently for T20, 40-over, and
+  50-over cricket
+- Full-match simulations now batch deliveries while retaining player-level
+  skill calculations
+
+### Fixed
+
+- Replaced the legacy twelve-slot `-1` through `10` batting order with an
+  explicit eleven-player lineup
+- Corrected batting-position archetype assignment
+
 ## [Version 2.1.0] - 2026-02-15
 
 ### Fixed

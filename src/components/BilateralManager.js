@@ -57,14 +57,21 @@ function BilateralManager({
   }, [scoreData.gameover]);
 
   const handleMatchStart = (matchConfig) => {
-    const { pitchType, battingFirst } = matchConfig;
+    const { pitchType, battingFirst, playingXIs } = matchConfig;
 
     // Determine team order based on toss
     const team1 = battingFirst;
     const team2 = battingFirst === config.team1 ? config.team2 : config.team1;
 
     setCurrentPitchType(pitchType);
-    pickTeamDispatch(team1, team2, config.overs, config.format);
+    pickTeamDispatch(
+      team1,
+      team2,
+      config.overs,
+      config.format,
+      playingXIs?.[team1],
+      playingXIs?.[team2]
+    );
     setMatchSetupPending(false);
   };
 
@@ -110,6 +117,7 @@ function BilateralManager({
             team1: config.team1,
             team2: config.team2,
             stage: `Match ${currentMatch}`,
+            format: config.format,
           }}
           onStartMatch={handleMatchStart}
         />
@@ -186,8 +194,17 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  pickTeamDispatch: (team1, team2, overs, format) =>
-    dispatch(pickTeams(team1, team2, overs, format)),
+  pickTeamDispatch: (
+    team1,
+    team2,
+    overs,
+    format,
+    team1PlayingXI,
+    team2PlayingXI
+  ) =>
+    dispatch(
+      pickTeams(team1, team2, overs, format, team1PlayingXI, team2PlayingXI)
+    ),
   resetDispatch: () => dispatch(resetState()),
 });
 

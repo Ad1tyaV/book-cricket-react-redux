@@ -5,37 +5,11 @@ import completeInnings from "../redux-setup/actions/completeInnings";
 import resetState from "../redux-setup/actions/resetState";
 import ScoreCard from "./ScoreCard";
 import { Button } from "@material-ui/core";
-import getTeamAction from "../redux-setup/actions/getTeamAction";
-import { asyncHelper } from "../helpers/asyncHelper";
-import dynamicSquadAction from "../redux-setup/actions/dynamicSquadAction";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { getPlayerName } from "../helpers/teamHelpers";
 
 function MatchComponent(props) {
   const [message, setMessage] = useState("");
   const track = useRef({});
-  const dynamicSquads = useSelector((state) => state.dynamicSquads);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const url =
-      props.scoreData.format === "T20"
-        ? "https://raw.githubusercontent.com/Ad1tyaV/pyTestFiles/master/cric-v2.json"
-        : "https://raw.githubusercontent.com/Ad1tyaV/pyTestFiles/master/cric-v1.json";
-    let data;
-    if (dynamicSquads) {
-      data = asyncHelper(url);
-      data.then((response) => {
-        if (response[0] !== 200) {
-          props.teamsDispatch("GET_TEAM", response[1]);
-        } else {
-          props.teamsDispatch("SET_TEAM", response[1]);
-        }
-      });
-
-      dispatch(dynamicSquadAction("DISABLE"));
-    }
-  }, []);
 
   useEffect(() => {
     const maxBalls = props.scoreData.overs * 6;
@@ -154,9 +128,11 @@ function MatchComponent(props) {
       {props.scoreData.currentTeamBatting === props.scoreData.team1 ? (
         <div>
           <span style={{ display: "flex", justifyContent: "center" }}>
-            {props.teamData?.[props.scoreData.team1]?.[
-              props.scoreData.onStrike.batterIndex
-            ] || "Player"}
+            {getPlayerName(
+              props.scoreData.team1PlayingXI[
+                props.scoreData.onStrike.batterIndex
+              ]
+            )}
             👉🏾
             {props.scoreData.team1Stats[props.scoreData.onStrike.batterIndex] ??
               0}
@@ -168,9 +144,11 @@ function MatchComponent(props) {
           </span>
           <br />
           <span style={{ display: "flex", justifyContent: "center" }}>
-            {props.teamData?.[props.scoreData.team1]?.[
-              props.scoreData.offStrike.batterIndex
-            ] || "Player"}
+            {getPlayerName(
+              props.scoreData.team1PlayingXI[
+                props.scoreData.offStrike.batterIndex
+              ]
+            )}
             👉🏾
             {props.scoreData.team1Stats[
               props.scoreData.offStrike.batterIndex
@@ -185,9 +163,11 @@ function MatchComponent(props) {
       ) : (
         <div>
           <span style={{ display: "flex", justifyContent: "center" }}>
-            {props.teamData?.[props.scoreData.team2]?.[
-              props.scoreData.onStrike.batterIndex
-            ] || "Player"}
+            {getPlayerName(
+              props.scoreData.team2PlayingXI[
+                props.scoreData.onStrike.batterIndex
+              ]
+            )}
             👉🏾
             {props.scoreData.team2Stats[props.scoreData.onStrike.batterIndex] ??
               0}
@@ -199,9 +179,11 @@ function MatchComponent(props) {
           </span>
           <br />
           <span style={{ display: "flex", justifyContent: "center" }}>
-            {props.teamData?.[props.scoreData.team2]?.[
-              props.scoreData.offStrike.batterIndex
-            ] || "Player"}
+            {getPlayerName(
+              props.scoreData.team2PlayingXI[
+                props.scoreData.offStrike.batterIndex
+              ]
+            )}
             👉🏾
             {props.scoreData.team2Stats[
               props.scoreData.offStrike.batterIndex
@@ -261,7 +243,8 @@ function MatchComponent(props) {
           track={track.current}
           team1={props.scoreData.team1}
           team2={props.scoreData.team2}
-          teamData={props.teamData}
+          team1PlayingXI={props.scoreData.team1PlayingXI}
+          team2PlayingXI={props.scoreData.team2PlayingXI}
           team1Stats={props.scoreData.team1Stats}
           team2Stats={props.scoreData.team2Stats}
           team1BallsFacedByPlayer={props.scoreData.team1BallsFacedByPlayer}
@@ -287,7 +270,6 @@ const mapDispatchToProps = (dispatch) => {
     scoreDispatch: (X) => dispatch(scoreX(null, X)),
     completeInningsDispatch: (team) => dispatch(completeInnings(team)),
     resetDispatch: () => dispatch(resetState()),
-    teamsDispatch: (type, data) => dispatch(getTeamAction(type, data)),
   };
 };
 

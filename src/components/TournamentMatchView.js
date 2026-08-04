@@ -10,6 +10,7 @@ import {
 import MatchComponent from "./MatchComponent";
 import TournamentStandings from "./TournamentStandings";
 import StatsTab from "./StatsTab";
+import { getPlayerName } from "../helpers/teamHelpers";
 
 function TournamentMatchView({
   pitchType,
@@ -17,7 +18,6 @@ function TournamentMatchView({
   playerStats,
   currentStage,
   scoreData,
-  teamData,
   isMatchOver,
 }) {
   const [activeTab, setActiveTab] = useState(0);
@@ -64,7 +64,7 @@ function TournamentMatchView({
               aria-label="batting scorecard"
             >
               <TableBody>
-                {[-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((index) => {
+                {Array.from({ length: 11 }, (_, index) => index).map((index) => {
                   const isOnStrike = scoreData.onStrike.batterIndex === index;
                   const isOffStrike = scoreData.offStrike.batterIndex === index;
                   const isOut =
@@ -92,6 +92,10 @@ function TournamentMatchView({
                     scoreData.currentTeamBatting === scoreData.team1
                       ? scoreData.team1BallsFacedByPlayer
                       : scoreData.team2BallsFacedByPlayer;
+                  const currentPlayingXI =
+                    scoreData.currentTeamBatting === scoreData.team1
+                      ? scoreData.team1PlayingXI
+                      : scoreData.team2PlayingXI;
 
                   return (
                     <TableRow key={`batting-${index}`}>
@@ -105,8 +109,7 @@ function TournamentMatchView({
                               : "gray",
                         }}
                       >
-                        {teamData?.[scoreData.currentTeamBatting]?.[index] ||
-                          "Player"}
+                        {getPlayerName(currentPlayingXI[index])}
                         {isOnStrike && " *"}
                       </TableCell>
                       <TableCell style={{ color: "whitesmoke" }}>

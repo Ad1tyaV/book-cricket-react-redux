@@ -9,11 +9,22 @@ import {
   FormControlLabel,
   FormControl,
 } from "@material-ui/core";
+import { useSelector } from "react-redux";
+import SquadSelector from "./SquadSelector";
+import { getDefaultXI } from "../helpers/teamHelpers";
 
 function MatchSetup({ match, onStartMatch }) {
+  const teamData = useSelector((state) => state.getTeams);
+  const format = match.format || "ODI_50";
   const [selectedPitch, setSelectedPitch] = useState("Normal");
   const [tossWinner, setTossWinner] = useState(match.team1);
   const [tossDecision, setTossDecision] = useState("bat");
+  const [team1PlayingXI, setTeam1PlayingXI] = useState(() =>
+    getDefaultXI(teamData, match.team1, format)
+  );
+  const [team2PlayingXI, setTeam2PlayingXI] = useState(() =>
+    getDefaultXI(teamData, match.team2, format)
+  );
 
   const pitchTypes = ["Normal", "Hard", "Wet", "Green", "Dusty"];
 
@@ -28,6 +39,10 @@ function MatchSetup({ match, onStartMatch }) {
     onStartMatch({
       pitchType: selectedPitch,
       battingFirst,
+      playingXIs: {
+        [match.team1]: team1PlayingXI,
+        [match.team2]: team2PlayingXI,
+      },
     });
   };
 
@@ -47,6 +62,35 @@ function MatchSetup({ match, onStartMatch }) {
       <h3>
         {match.team1} vs {match.team2}
       </h3>
+
+      <div
+        style={{
+          display: "flex",
+          gap: 20,
+          flexWrap: "wrap",
+          justifyContent: "center",
+          marginTop: 24,
+          width: "100%",
+          maxWidth: 900,
+        }}
+      >
+        <SquadSelector
+          team={match.team1}
+          teamData={teamData}
+          format={format}
+          value={team1PlayingXI}
+          onChange={setTeam1PlayingXI}
+          compact
+        />
+        <SquadSelector
+          team={match.team2}
+          teamData={teamData}
+          format={format}
+          value={team2PlayingXI}
+          onChange={setTeam2PlayingXI}
+          compact
+        />
+      </div>
 
       <div style={{ marginTop: 30, minWidth: 300 }}>
         <InputLabel shrink style={{ color: "whitesmoke", marginBottom: 10 }}>
@@ -110,6 +154,9 @@ function MatchSetup({ match, onStartMatch }) {
           variant="contained"
           color="primary"
           onClick={handleStart}
+          disabled={
+            team1PlayingXI.length !== 11 || team2PlayingXI.length !== 11
+          }
           fullWidth
         >
           Start Match

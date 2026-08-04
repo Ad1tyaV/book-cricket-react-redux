@@ -10,6 +10,7 @@ import FixturesView from "./FixturesView";
 import TournamentStandings from "./TournamentStandings";
 import StatsTab from "./StatsTab";
 import { Button, Tabs, Tab } from "@material-ui/core";
+import { getPlayerName } from "../helpers/teamHelpers";
 
 function TournamentManager({
   config,
@@ -253,6 +254,9 @@ function TournamentManager({
             team2Stats: { ...scoreData.team2Stats },
             team1BallsFacedByPlayer: { ...scoreData.team1BallsFacedByPlayer },
             team2BallsFacedByPlayer: { ...scoreData.team2BallsFacedByPlayer },
+            format: scoreData.format,
+            team1PlayingXI: [...scoreData.team1PlayingXI],
+            team2PlayingXI: [...scoreData.team2PlayingXI],
           },
           track: currentTrack,
         };
@@ -400,7 +404,9 @@ function TournamentManager({
 
     // Update team 1 players
     Object.keys(team1Stats).forEach((playerIndex) => {
-      const playerName = teamData[team1Name]?.[playerIndex];
+      const playerName = getPlayerName(
+        scoreData.team1PlayingXI?.[Number(playerIndex)]
+      );
       const runs = team1Stats[playerIndex] || 0;
       const balls = team1Balls[playerIndex] || 0;
 
@@ -427,7 +433,9 @@ function TournamentManager({
 
     // Update team 2 players
     Object.keys(team2Stats).forEach((playerIndex) => {
-      const playerName = teamData[team2Name]?.[playerIndex];
+      const playerName = getPlayerName(
+        scoreData.team2PlayingXI?.[Number(playerIndex)]
+      );
       const runs = team2Stats[playerIndex] || 0;
       const balls = team2Balls[playerIndex] || 0;
 
@@ -456,14 +464,21 @@ function TournamentManager({
   };
 
   const handleMatchStart = (matchConfig) => {
-    const { pitchType, battingFirst } = matchConfig;
+    const { pitchType, battingFirst, playingXIs } = matchConfig;
     const match = currentMatchConfig;
 
     // Determine team order based on toss
     const team1 = battingFirst;
     const team2 = battingFirst === match.team1 ? match.team2 : match.team1;
 
-    pickTeamDispatch(team1, team2, config.overs, config.format);
+    pickTeamDispatch(
+      team1,
+      team2,
+      config.overs,
+      config.format,
+      playingXIs?.[team1],
+      playingXIs?.[team2]
+    );
     setMatchSetupPending(false);
     setShowFixtures(false);
     setSimulationQueue([]);
@@ -932,7 +947,7 @@ function TournamentManager({
           </p>
         </div>
         <MatchSetup
-          match={currentMatchConfig}
+          match={{ ...currentMatchConfig, format: config.format }}
           onStartMatch={handleMatchStart}
         />
       </div>
@@ -1027,7 +1042,6 @@ function TournamentManager({
           playerStats={playerStats}
           currentStage={currentStage}
           scoreData={scoreData}
-          teamData={teamData}
           isMatchOver={scoreData.gameover}
         />
       </div>
@@ -1060,8 +1074,24 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  pickTeamDispatch: (team1, team2, overs, format) =>
-    dispatch(pickTeams(team1, team2, overs, format)),
+  pickTeamDispatch: (
+    team1,
+    team2,
+    overs,
+    format,
+    team1PlayingXI,
+    team2PlayingXI
+  ) =>
+    dispatch(
+      pickTeams(
+        team1,
+        team2,
+        overs,
+        format,
+        team1PlayingXI,
+        team2PlayingXI
+      )
+    ),
   resetDispatch: () => dispatch(resetState()),
   simulateMatchDispatch: (pitchType) => dispatch(simulateMatch(pitchType)),
 });

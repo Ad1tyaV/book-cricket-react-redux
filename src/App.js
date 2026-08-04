@@ -1,8 +1,19 @@
 import PickTeams from "./components/PickTeams";
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import newStore from "./redux-setup/store/";
 import { AppBar } from "@material-ui/core";
 import { useEffect } from "react";
+import loadSquadCatalog from "./redux-setup/actions/loadSquadCatalog";
+
+function SquadCatalogLoader() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadSquadCatalog());
+  }, [dispatch]);
+
+  return null;
+}
 
 function App() {
   const currentYear = new Date().getFullYear();
@@ -12,6 +23,7 @@ function App() {
   }, [currentYear]);
   return (
     <Provider store={newStore}>
+      <SquadCatalogLoader />
       <div className="App">
         <AppBar position="static">
           <h2 style={{ alignSelf: "center" }}>{`Cricket ${currentYear}`}</h2>

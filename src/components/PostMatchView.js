@@ -64,6 +64,8 @@ function PostMatchView({
           <SingleTeamScoreCard
             team={scoreData.team1}
             teamData={teamData}
+            format={scoreData.format}
+            playingXI={scoreData.team1PlayingXI}
             stats={scoreData.team1Stats}
             ballsFaced={scoreData.team1BallsFacedByPlayer}
             track={track?.team1}
@@ -77,6 +79,8 @@ function PostMatchView({
           <SingleTeamScoreCard
             team={scoreData.team2}
             teamData={teamData}
+            format={scoreData.format}
+            playingXI={scoreData.team2PlayingXI}
             stats={scoreData.team2Stats}
             ballsFaced={scoreData.team2BallsFacedByPlayer}
             track={track?.team2}

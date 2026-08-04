@@ -1,15 +1,24 @@
 import RandomWithIndex from "../../helpers/improvedRandomNumber";
+import { getBowlingStrength } from "../../helpers/teamHelpers";
 
-const initialState = {
+const createInitialState = () => ({
   team1: "",
   team2: "",
   currentTeamBatting: "",
-  onStrike: { batterIndex: -1 },
-  offStrike: { batterIndex: 0 },
+  onStrike: { batterIndex: 0 },
+  offStrike: { batterIndex: 1 },
+  team1PlayingXI: [],
+  team2PlayingXI: [],
+  team1BowlingStrength: 70,
+  team2BowlingStrength: 70,
   team1Stats: {},
   team2Stats: {},
   team1BallsFacedByPlayer: {},
   team2BallsFacedByPlayer: {},
+  team1Mindsets: {},
+  team2Mindsets: {},
+  team1Dismissed: [],
+  team2Dismissed: [],
   innings: 0,
   team1Total: 0,
   team2Total: 0,
@@ -18,315 +27,149 @@ const initialState = {
   gameover: false,
   team1BallsFaced: 0,
   team2BallsFaced: 0,
-  team1LastPair: { player_1: -1, player_2: 0 },
-  team2LastPair: { player_1: -1, player_2: 0 },
+  team1LastPair: { player_1: 0, player_2: 1 },
+  team2LastPair: { player_1: 0, player_2: 1 },
   overs: 50,
   format: "ODI_50",
-};
+});
+
+const initialState = createInitialState();
+
+const swapStrike = (state) => ({
+  ...state,
+  onStrike: { batterIndex: state.offStrike.batterIndex },
+  offStrike: { batterIndex: state.onStrike.batterIndex },
+});
+
+const activeInnings = (state) =>
+  state.currentTeamBatting === state.team1 ? "team1" : "team2";
+
+const inningsIsComplete = (state, side) =>
+  state[`${side}Wickets`] >= 10 ||
+  state[`${side}BallsFaced`] >= state.overs * 6 ||
+  (side === "team2" && state.team2Total > state.team1Total);
 
 const scoreRunsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "SCORE": {
-      let pitchType = action.payload.pitchType;
-      if (state.gameover) return state;
-      // Create game state for improved random number generation
-      const gameState = {
-        ballsFaced: state.currentTeamBatting === state.team1 ? state.team1BallsFaced : state.team2BallsFaced,
-        currentScore: state.currentTeamBatting === state.team1 ? state.team1Total : state.team2Total,
-        targetScore: state.currentTeamBatting === state.team2 ? state.team1Total + 1 : null,
-        wicketsLost: state.currentTeamBatting === state.team1 ? state.team1Wickets : state.team2Wickets,
-        batterIndex: state.onStrike.batterIndex
-      };
-      
-      let updatedRun = RandomWithIndex(state.onStrike.batterIndex, pitchType, state.format, gameState);
-      //console.log(updatedRun);
-      //console.log("Updated Run:"+updatedRun)
-      // console.log(state.onStrike.batterIndex, state.offStrike.batterIndex, updatedRun)
-      if (updatedRun === -1) {
+    case "SCORE_MANY": {
+      const deliveries = Math.max(0, Number(action.payload.deliveries) || 0);
+      const startingTeam = state.currentTeamBatting;
+      const startingSide = activeInnings(state);
+      const startingWickets = state[`${startingSide}Wickets`];
+      let nextState = state;
+
+      for (let delivery = 0; delivery < deliveries; delivery++) {
+        const side = activeInnings(nextState);
         if (
-          state.currentTeamBatting === state.team1 &&
-          state.team1Wickets !== 10
+          nextState.gameover ||
+          nextState.currentTeamBatting !== startingTeam ||
+          inningsIsComplete(nextState, side)
         ) {
-          //console.log(state.onStrike.batterIndex)
-          //console.log('wicket')
-          let newstate = {
-            ...state,
-            offStrike: {
-              ...state.offStrike,
-              batterIndex: state.offStrike.batterIndex,
-            },
-            onStrike: {
-              ...state.onStrike,
-              batterIndex:
-                state.onStrike.batterIndex > state.offStrike.batterIndex
-                  ? state.onStrike.batterIndex + 1
-                  : state.offStrike.batterIndex + 1,
-            },
-            team1Wickets:
-              state.onStrike.batterIndex > state.offStrike.batterIndex
-                ? state.onStrike.batterIndex + 1
-                : state.offStrike.batterIndex + 1,
-            team1BallsFaced: state.team1BallsFaced + 1,
-            team1BallsFacedByPlayer: {
-              ...state.team1BallsFacedByPlayer,
-              [state.onStrike.batterIndex]: (state.team1BallsFacedByPlayer[state.onStrike.batterIndex] || 0) + 1
-            }
-          };
-          return newstate.team1BallsFaced % 6 === 0
-            ? {
-                ...newstate,
-                onStrike: {
-                  ...newstate.onStrike,
-                  batterIndex: newstate.offStrike.batterIndex,
-                },
-                offStrike: {
-                  ...newstate.offStrike,
-                  batterIndex: newstate.onStrike.batterIndex,
-                },
-              }
-            : newstate;
-        } else if (
-          state.currentTeamBatting === state.team2 &&
-          state.team2Wickets !== 10
+          break;
+        }
+
+        const previousState = nextState;
+        nextState = scoreRunsReducer(nextState, {
+          type: "SCORE",
+          payload: { pitchType: action.payload.pitchType },
+        });
+        if (nextState === previousState) break;
+        if (
+          action.payload.stopOnWicket &&
+          nextState[`${startingSide}Wickets`] > startingWickets
         ) {
-          let newstate = {
-            ...state,
-            offStrike: {
-              ...state.offStrike,
-              batterIndex: state.offStrike.batterIndex,
-            },
-            onStrike: {
-              ...state.onStrike,
-              batterIndex:
-                state.onStrike.batterIndex > state.offStrike.batterIndex
-                  ? state.onStrike.batterIndex + 1
-                  : state.offStrike.batterIndex + 1,
-            },
-            team2Wickets:
-              state.onStrike.batterIndex > state.offStrike.batterIndex
-                ? state.onStrike.batterIndex + 1
-                : state.offStrike.batterIndex + 1,
-            team2BallsFaced: state.team2BallsFaced + 1,
-            team2BallsFacedByPlayer: {
-              ...state.team2BallsFacedByPlayer,
-              [state.onStrike.batterIndex]: (state.team2BallsFacedByPlayer[state.onStrike.batterIndex] || 0) + 1
-            }
-          };
-          return newstate.team2BallsFaced % 6 === 0
-            ? {
-                ...newstate,
-                onStrike: {
-                  ...newstate.onStrike,
-                  batterIndex: newstate.offStrike.batterIndex,
-                },
-                offStrike: {
-                  ...newstate.offStrike,
-                  batterIndex: newstate.onStrike.batterIndex,
-                },
-              }
-            : newstate;
-        } else return state;
-      } else {
-        if (updatedRun === 0) {
-          if (state.currentTeamBatting === state.team1) {
-            let newstate = {
-              ...state,
-              team1BallsFaced: state.team1BallsFaced + 1,
-              team1BallsFacedByPlayer: {
-                ...state.team1BallsFacedByPlayer,
-                [state.onStrike.batterIndex]: (state.team1BallsFacedByPlayer[state.onStrike.batterIndex] || 0) + 1
-              }
-            };
-            return newstate.team1BallsFaced % 6 === 0
-              ? {
-                  ...newstate,
-                  onStrike: {
-                    ...newstate.onStrike,
-                    batterIndex: newstate.offStrike.batterIndex,
-                  },
-                  offStrike: {
-                    ...newstate.offStrike,
-                    batterIndex: newstate.onStrike.batterIndex,
-                  },
-                }
-              : newstate;
-          } else {
-            let newstate = {
-              ...state,
-              team2BallsFaced: state.team2BallsFaced + 1,
-              team2BallsFacedByPlayer: {
-                ...state.team2BallsFacedByPlayer,
-                [state.onStrike.batterIndex]: (state.team2BallsFacedByPlayer[state.onStrike.batterIndex] || 0) + 1
-              }
-            };
-            return newstate.team1BallsFaced % 6 === 0
-              ? {
-                  ...newstate,
-                  onStrike: {
-                    ...newstate.onStrike,
-                    batterIndex: newstate.offStrike.batterIndex,
-                  },
-                  offStrike: {
-                    ...newstate.offStrike,
-                    batterIndex: newstate.onStrike.batterIndex,
-                  },
-                }
-              : newstate;
-          }
-        } else if (updatedRun % 2) {
-          if (
-            state.currentTeamBatting === state.team1 &&
-            state.team1Wickets !== 10
-          ) {
-            let newstate = {
-              ...state,
-              team1Total: state.team1Total + updatedRun,
-              team1Stats: {
-                ...state.team1Stats,
-                [state.onStrike.batterIndex]:
-                  (state.team1Stats[state.onStrike.batterIndex] ?? 0) +
-                  updatedRun,
-              },
-              team1BallsFaced: state.team1BallsFaced + 1,
-              team1BallsFacedByPlayer: {
-                ...state.team1BallsFacedByPlayer,
-                [state.onStrike.batterIndex]: (state.team1BallsFacedByPlayer[state.onStrike.batterIndex] || 0) + 1
-              },
-              onStrike: {
-                ...state.onStrike,
-                batterIndex: state.offStrike.batterIndex,
-              },
-              offStrike: {
-                ...state.offStrike,
-                batterIndex: state.onStrike.batterIndex,
-              },
-            };
-            return newstate.team1BallsFaced % 6 === 0
-              ? {
-                  ...newstate,
-                  onStrike: {
-                    ...newstate.onStrike,
-                    batterIndex: newstate.offStrike.batterIndex,
-                  },
-                  offStrike: {
-                    ...newstate.offStrike,
-                    batterIndex: newstate.onStrike.batterIndex,
-                  },
-                }
-              : newstate;
-          } else if (
-            state.currentTeamBatting === state.team2 &&
-            state.team2Wickets !== 10 &&
-            state.team2Total <= state.team1Total
-          ) {
-            let newstate = {
-              ...state,
-              team2Total: state.team2Total + updatedRun,
-              team2Stats: {
-                ...state.team2Stats,
-                [state.onStrike.batterIndex]:
-                  (state.team2Stats[state.onStrike.batterIndex] ?? 0) +
-                  updatedRun,
-              },
-              team2BallsFaced: state.team2BallsFaced + 1,
-              team2BallsFacedByPlayer: {
-                ...state.team2BallsFacedByPlayer,
-                [state.onStrike.batterIndex]: (state.team2BallsFacedByPlayer[state.onStrike.batterIndex] || 0) + 1
-              },
-              onStrike: {
-                ...state.onStrike,
-                batterIndex: state.offStrike.batterIndex,
-              },
-              offStrike: {
-                ...state.offStrike,
-                batterIndex: state.onStrike.batterIndex,
-              },
-            };
-            return newstate.team2BallsFaced % 6 === 0
-              ? {
-                  ...newstate,
-                  onStrike: {
-                    ...newstate.onStrike,
-                    batterIndex: newstate.offStrike.batterIndex,
-                  },
-                  offStrike: {
-                    ...newstate.offStrike,
-                    batterIndex: newstate.onStrike.batterIndex,
-                  },
-                }
-              : newstate;
-          } else return state;
-        } else {
-          if (
-            state.currentTeamBatting === state.team1 &&
-            state.team1Wickets !== 10
-          ) {
-            let newstate = {
-              ...state,
-              team1Total: state.team1Total + updatedRun,
-              team1Stats: {
-                ...state.team1Stats,
-                [state.onStrike.batterIndex]:
-                  (state.team1Stats[state.onStrike.batterIndex] ?? 0) +
-                  updatedRun,
-              },
-              team1BallsFaced: state.team1BallsFaced + 1,
-              team1BallsFacedByPlayer: {
-                ...state.team1BallsFacedByPlayer,
-                [state.onStrike.batterIndex]: (state.team1BallsFacedByPlayer[state.onStrike.batterIndex] || 0) + 1
-              },
-            };
-            return newstate.team1BallsFaced % 6 === 0
-              ? {
-                  ...newstate,
-                  onStrike: {
-                    ...newstate.onStrike,
-                    batterIndex: newstate.offStrike.batterIndex,
-                  },
-                  offStrike: {
-                    ...newstate.offStrike,
-                    batterIndex: newstate.onStrike.batterIndex,
-                  },
-                }
-              : newstate;
-          } else if (
-            state.currentTeamBatting === state.team2 &&
-            state.team2Wickets !== 10 &&
-            state.team2Total <= state.team1Total
-          ) {
-            let newstate = {
-              ...state,
-              team2Total: state.team2Total + updatedRun,
-              team2Stats: {
-                ...state.team2Stats,
-                [state.onStrike.batterIndex]:
-                  (state.team2Stats[state.onStrike.batterIndex] ?? 0) +
-                  updatedRun,
-              },
-              team2BallsFaced: state.team2BallsFaced + 1,
-              team2BallsFacedByPlayer: {
-                ...state.team2BallsFacedByPlayer,
-                [state.onStrike.batterIndex]: (state.team2BallsFacedByPlayer[state.onStrike.batterIndex] || 0) + 1
-              },
-            };
-            return newstate.team2BallsFaced % 6 === 0
-              ? {
-                  ...newstate,
-                  onStrike: {
-                    ...newstate.onStrike,
-                    batterIndex: newstate.offStrike.batterIndex,
-                  },
-                  offStrike: {
-                    ...newstate.offStrike,
-                    batterIndex: newstate.onStrike.batterIndex,
-                  },
-                }
-              : newstate;
-          } else return state;
+          break;
         }
       }
+
+      return nextState;
     }
+
+    case "SCORE": {
+      if (state.gameover || !state.currentTeamBatting) return state;
+
+      const side = activeInnings(state);
+      if (inningsIsComplete(state, side)) return state;
+
+      const opponent = side === "team1" ? "team2" : "team1";
+      const strikerIndex = state.onStrike.batterIndex;
+      const batter = state[`${side}PlayingXI`][strikerIndex];
+      const bowlingStrength = state[`${opponent}BowlingStrength`];
+      const ballsFaced = state[`${side}BallsFaced`];
+      const total = state[`${side}Total`];
+      const wickets = state[`${side}Wickets`];
+      const nextBall = ballsFaced + 1;
+      const batterBallsFaced =
+        state[`${side}BallsFacedByPlayer`][strikerIndex] || 0;
+
+      // A delivery can only be faced by one of the explicitly selected eleven.
+      if (!batter || strikerIndex < 0 || strikerIndex > 10) return state;
+
+      const gameState = {
+        ballsFaced,
+        currentScore: total,
+        targetScore: side === "team2" ? state.team1Total + 1 : null,
+        wicketsLost: wickets,
+        batterIndex: strikerIndex,
+        battingRating: batter.batting,
+        attackingRating: batter.attacking,
+        bowlingRating: bowlingStrength,
+        batterBallsFaced,
+        mindset: state[`${side}Mindsets`][strikerIndex] || "default",
+      };
+      const outcome = RandomWithIndex(
+        strikerIndex,
+        action.payload.pitchType,
+        state.format,
+        gameState
+      );
+
+      let nextState = {
+        ...state,
+        [`${side}BallsFaced`]: nextBall,
+        [`${side}BallsFacedByPlayer`]: {
+          ...state[`${side}BallsFacedByPlayer`],
+          [strikerIndex]:
+            (state[`${side}BallsFacedByPlayer`][strikerIndex] || 0) + 1,
+        },
+      };
+
+      if (outcome === -1) {
+        const nextWickets = wickets + 1;
+        nextState = {
+          ...nextState,
+          [`${side}Wickets`]: nextWickets,
+          [`${side}Dismissed`]: [...state[`${side}Dismissed`], strikerIndex],
+        };
+
+        if (nextWickets < 10) {
+          nextState.onStrike = { batterIndex: nextWickets + 1 };
+        }
+      } else {
+        nextState = {
+          ...nextState,
+          [`${side}Total`]: total + outcome,
+          [`${side}Stats`]: {
+            ...state[`${side}Stats`],
+            [strikerIndex]:
+              (state[`${side}Stats`][strikerIndex] || 0) + outcome,
+          },
+        };
+
+        if (outcome % 2 === 1) nextState = swapStrike(nextState);
+      }
+
+      // End-of-over strike rotation happens after any run/wicket rotation.
+      if (nextBall % 6 === 0 && nextWicketsArePlayable(nextState, side)) {
+        nextState = swapStrike(nextState);
+      }
+
+      return nextState;
+    }
+
     case "COMPLETE": {
+      if (state.gameover || !state.currentTeamBatting) return state;
+
       if (state.currentTeamBatting === state.team1) {
         return {
           ...state,
@@ -335,13 +178,13 @@ const scoreRunsReducer = (state = initialState, action) => {
             player_2: state.offStrike.batterIndex,
           },
           currentTeamBatting: state.team2,
-          onStrike: { batterIndex: -1 },
-          offStrike: { batterIndex: 0 },
+          innings: 2,
+          onStrike: { batterIndex: 0 },
+          offStrike: { batterIndex: 1 },
         };
-      } else if (
-        state.currentTeamBatting === state.team2 &&
-        (state.team2Wickets === 10 || state.team2BallsFaced === state.overs * 6)
-      ) {
+      }
+
+      if (inningsIsComplete(state, "team2")) {
         return {
           ...state,
           team2LastPair: {
@@ -350,72 +193,70 @@ const scoreRunsReducer = (state = initialState, action) => {
           },
           gameover: true,
         };
-      } else if (
-        state.currentTeamBatting === state.team2 &&
-        state.team2Total > state.team1Total
-      ) {
-        return {
-          ...state,
-          team2LastPair: {
-            player_1: state.onStrike.batterIndex,
-            player_2: state.offStrike.batterIndex,
-          },
-          gameover: true,
-        };
-      } else return state;
+      }
+      return state;
     }
+
     case "RESET_STATE":
-      return {
-        team1: "",
-        team2: "",
-        currentTeamBatting: "",
-        onStrike: { batterIndex: -1 },
-        offStrike: { batterIndex: 0 },
-        team1Stats: {},
-        team2Stats: {},
-        team1BallsFacedByPlayer: {},
-        team2BallsFacedByPlayer: {},
-        innings: 0,
-        team1Total: 0,
-        team2Total: 0,
-        team1Wickets: 0,
-        team2Wickets: 0,
-        gameover: false,
-        team1BallsFaced: 0,
-        team2BallsFaced: 0,
-        team1LastPair: { player_1: -1, player_2: 0 },
-        team2LastPair: { player_1: -1, player_2: 0 },
-        overs: 50,
-        format: "ODI_50"
-      };
-    case "PICK_TEAMS":
+      return createInitialState();
+
+    case "SET_BATTER_MINDSET": {
+      const side =
+        action.payload.team === state.team1
+          ? "team1"
+          : action.payload.team === state.team2
+          ? "team2"
+          : null;
+      const batterIndex = Number(action.payload.batterIndex);
+      const validMindsets = ["defensive", "default", "aggressive"];
+      const isAtCrease =
+        batterIndex === state.onStrike.batterIndex ||
+        batterIndex === state.offStrike.batterIndex;
+
+      if (
+        !side ||
+        action.payload.team !== state.currentTeamBatting ||
+        !isAtCrease ||
+        !validMindsets.includes(action.payload.mindset) ||
+        state[`${side}Dismissed`].includes(batterIndex)
+      ) {
+        return state;
+      }
+
       return {
         ...state,
+        [`${side}Mindsets`]: {
+          ...state[`${side}Mindsets`],
+          [batterIndex]: action.payload.mindset,
+        },
+      };
+    }
+
+    case "PICK_TEAMS": {
+      const next = createInitialState();
+      const team1PlayingXI = (action.payload.team1PlayingXI || []).slice(0, 11);
+      const team2PlayingXI = (action.payload.team2PlayingXI || []).slice(0, 11);
+      return {
+        ...next,
         team1: action.payload.team1,
         team2: action.payload.team2,
+        currentTeamBatting: action.payload.team1,
+        innings: 1,
         overs: action.payload.overs || 50,
         format: action.payload.format || "ODI_50",
-        gameover: false,
-        currentTeamBatting: action.payload.team1,
-        team1BallsFaced: 0,
-        team2BallsFaced: 0,
-        team1BallsFacedByPlayer: {},
-        team2BallsFacedByPlayer: {},
-        team1Stats: {},
-        team2Stats: {},
-        team1Total: 0,
-        team2Total: 0,
-        team1Wickets: 0,
-        team2Wickets: 0,
-        innings: 0,
-        onStrike: { batterIndex: -1 },
-        offStrike: { batterIndex: 0 },
-        team1LastPair: { player_1: -1, player_2: 0 },
-        team2LastPair: { player_1: -1, player_2: 0 }
+        team1PlayingXI,
+        team2PlayingXI,
+        team1BowlingStrength: getBowlingStrength(team1PlayingXI),
+        team2BowlingStrength: getBowlingStrength(team2PlayingXI),
       };
+    }
+
     default:
       return state;
   }
 };
 
+const nextWicketsArePlayable = (state, side) => state[`${side}Wickets`] < 10;
+
+export { createInitialState, inningsIsComplete };
 export default scoreRunsReducer;

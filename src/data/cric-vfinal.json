@@ -1,0 +1,1691 @@
+{
+  "schemaVersion": 1,
+  "squadSize": 15,
+  "defaultXISize": 11,
+  "remoteUrl": "https://raw.githubusercontent.com/Ad1tyaV/pyTestFiles/refs/heads/master/cric-vfinal.json",
+  "sources": {
+    "T20": "https://raw.githubusercontent.com/Ad1tyaV/pyTestFiles/refs/heads/master/cric-v2.json",
+    "ODI": "https://raw.githubusercontent.com/Ad1tyaV/pyTestFiles/refs/heads/master/cric-v1.json"
+  },
+  "players": {
+    "ind-abhishek-sharma": {
+      "name": "Abhishek Sharma",
+      "role": "Batter",
+      "batting": 84,
+      "attacking": 91,
+      "bowling": 8
+    },
+    "ind-ishan-kishan": {
+      "name": "Ishan Kishan",
+      "role": "Wicketkeeper",
+      "batting": 85,
+      "attacking": 92,
+      "bowling": 5
+    },
+    "ind-sanju-samson": {
+      "name": "Sanju Samson",
+      "role": "Wicketkeeper",
+      "batting": 84,
+      "attacking": 91,
+      "bowling": 5
+    },
+    "ind-iyer": {
+      "name": "Shreyas Iyer",
+      "role": "Batter",
+      "batting": 84,
+      "attacking": 85,
+      "bowling": 24
+    },
+    "ind-tilak-varma": {
+      "name": "Tilak Varma",
+      "role": "Batter",
+      "batting": 80,
+      "attacking": 87,
+      "bowling": 8
+    },
+    "ind-nitish-kumar-reddy": {
+      "name": "Nitish Kumar Reddy",
+      "role": "All-rounder",
+      "batting": 75,
+      "attacking": 84,
+      "bowling": 78
+    },
+    "ind-sundar": {
+      "name": "Washington Sundar",
+      "role": "All-rounder",
+      "batting": 73,
+      "attacking": 76,
+      "bowling": 80
+    },
+    "ind-axar": {
+      "name": "Axar Patel",
+      "role": "All-rounder",
+      "batting": 78,
+      "attacking": 81,
+      "bowling": 86
+    },
+    "ind-harshit-rana": {
+      "name": "Harshit Rana",
+      "role": "Bowler",
+      "batting": 30,
+      "attacking": 26,
+      "bowling": 85
+    },
+    "ind-ravi-bishnoi": {
+      "name": "Ravi Bishnoi",
+      "role": "Bowler",
+      "batting": 29,
+      "attacking": 25,
+      "bowling": 86
+    },
+    "ind-arshdeep": {
+      "name": "Arshdeep Singh",
+      "role": "Bowler",
+      "batting": 20,
+      "attacking": 20,
+      "bowling": 86
+    },
+    "ind-prasidh-krishna": {
+      "name": "Prasidh Krishna",
+      "role": "Bowler",
+      "batting": 27,
+      "attacking": 23,
+      "bowling": 88
+    },
+    "ind-hardik": {
+      "name": "Hardik Pandya",
+      "role": "All-rounder",
+      "batting": 83,
+      "attacking": 94,
+      "bowling": 82
+    },
+    "ind-rinku-singh": {
+      "name": "Rinku Singh",
+      "role": "Batter",
+      "batting": 80,
+      "attacking": 87,
+      "bowling": 8
+    },
+    "ind-bumrah": {
+      "name": "Jasprit Bumrah",
+      "role": "Bowler",
+      "batting": 24,
+      "attacking": 20,
+      "bowling": 97
+    },
+    "pak-saim": {
+      "name": "Saim Ayub",
+      "role": "All-rounder",
+      "batting": 83,
+      "attacking": 91,
+      "bowling": 45
+    },
+    "pak-babar": {
+      "name": "Babar Azam",
+      "role": "Batter",
+      "batting": 93,
+      "attacking": 82,
+      "bowling": 8
+    },
+    "pak-fakhar": {
+      "name": "Fakhar Zaman",
+      "role": "Batter",
+      "batting": 85,
+      "attacking": 95,
+      "bowling": 12
+    },
+    "pak-sahibzada-farhan": {
+      "name": "Sahibzada Farhan",
+      "role": "Batter",
+      "batting": 81,
+      "attacking": 88,
+      "bowling": 8
+    },
+    "pak-salman": {
+      "name": "Salman Ali Agha",
+      "role": "All-rounder",
+      "batting": 79,
+      "attacking": 82,
+      "bowling": 70
+    },
+    "pak-khawaja-nafay": {
+      "name": "Khawaja Nafay",
+      "role": "Batter",
+      "batting": 80,
+      "attacking": 87,
+      "bowling": 8
+    },
+    "pak-nawaz": {
+      "name": "Mohammad Nawaz",
+      "role": "All-rounder",
+      "batting": 69,
+      "attacking": 72,
+      "bowling": 82
+    },
+    "pak-faheem": {
+      "name": "Faheem Ashraf",
+      "role": "All-rounder",
+      "batting": 67,
+      "attacking": 70,
+      "bowling": 79
+    },
+    "pak-shaheen": {
+      "name": "Shaheen Shah Afridi",
+      "role": "Bowler",
+      "batting": 36,
+      "attacking": 30,
+      "bowling": 93
+    },
+    "pak-naseem": {
+      "name": "Naseem Shah",
+      "role": "Bowler",
+      "batting": 27,
+      "attacking": 21,
+      "bowling": 90
+    },
+    "pak-abrar": {
+      "name": "Abrar Ahmed",
+      "role": "Bowler",
+      "batting": 25,
+      "attacking": 20,
+      "bowling": 85
+    },
+    "pak-mohammad-salman-mirza": {
+      "name": "Mohammad Salman Mirza",
+      "role": "Bowler",
+      "batting": 27,
+      "attacking": 23,
+      "bowling": 88
+    },
+    "pak-rizwan": {
+      "name": "Mohammad Rizwan",
+      "role": "Wicketkeeper",
+      "batting": 88,
+      "attacking": 93,
+      "bowling": 5
+    },
+    "pak-iftikhar": {
+      "name": "Iftikhar Ahmed",
+      "role": "All-rounder",
+      "batting": 77,
+      "attacking": 80,
+      "bowling": 67
+    },
+    "pak-rauf": {
+      "name": "Haris Rauf",
+      "role": "Bowler",
+      "batting": 22,
+      "attacking": 20,
+      "bowling": 88
+    },
+    "aus-head": {
+      "name": "Travis Head",
+      "role": "Batter",
+      "batting": 91,
+      "attacking": 98,
+      "bowling": 45
+    },
+    "aus-inglis": {
+      "name": "Josh Inglis",
+      "role": "Wicketkeeper",
+      "batting": 82,
+      "attacking": 91,
+      "bowling": 5
+    },
+    "aus-marsh": {
+      "name": "Mitchell Marsh",
+      "role": "All-rounder",
+      "batting": 86,
+      "attacking": 93,
+      "bowling": 70
+    },
+    "aus-maxwell": {
+      "name": "Glenn Maxwell",
+      "role": "All-rounder",
+      "batting": 88,
+      "attacking": 99,
+      "bowling": 77
+    },
+    "aus-green": {
+      "name": "Cameron Green",
+      "role": "All-rounder",
+      "batting": 83,
+      "attacking": 86,
+      "bowling": 81
+    },
+    "aus-tim-david": {
+      "name": "Tim David",
+      "role": "Batter",
+      "batting": 80,
+      "attacking": 87,
+      "bowling": 8
+    },
+    "aus-connolly": {
+      "name": "Cooper Connolly",
+      "role": "All-rounder",
+      "batting": 72,
+      "attacking": 75,
+      "bowling": 68
+    },
+    "aus-pat-cummins": {
+      "name": "Pat Cummins",
+      "role": "Bowler",
+      "batting": 31,
+      "attacking": 27,
+      "bowling": 84
+    },
+    "aus-bartlett": {
+      "name": "Xavier Bartlett",
+      "role": "Bowler",
+      "batting": 39,
+      "attacking": 33,
+      "bowling": 84
+    },
+    "aus-ellis": {
+      "name": "Nathan Ellis",
+      "role": "Bowler",
+      "batting": 29,
+      "attacking": 23,
+      "bowling": 86
+    },
+    "aus-zampa": {
+      "name": "Adam Zampa",
+      "role": "Bowler",
+      "batting": 31,
+      "attacking": 25,
+      "bowling": 90
+    },
+    "aus-hazlewood": {
+      "name": "Josh Hazlewood",
+      "role": "Bowler",
+      "batting": 25,
+      "attacking": 20,
+      "bowling": 94
+    },
+    "aus-short": {
+      "name": "Matthew Short",
+      "role": "All-rounder",
+      "batting": 81,
+      "attacking": 84,
+      "bowling": 55
+    },
+    "aus-marcus-stoinis": {
+      "name": "Marcus Stoinis",
+      "role": "All-rounder",
+      "batting": 75,
+      "attacking": 84,
+      "bowling": 86
+    },
+    "aus-starc": {
+      "name": "Mitchell Starc",
+      "role": "Bowler",
+      "batting": 50,
+      "attacking": 44,
+      "bowling": 94
+    },
+    "eng-buttler": {
+      "name": "Jos Buttler",
+      "role": "Wicketkeeper",
+      "batting": 91,
+      "attacking": 99,
+      "bowling": 5
+    },
+    "eng-jacks": {
+      "name": "Will Jacks",
+      "role": "All-rounder",
+      "batting": 82,
+      "attacking": 95,
+      "bowling": 68
+    },
+    "eng-tom-banton": {
+      "name": "Tom Banton",
+      "role": "Batter",
+      "batting": 82,
+      "attacking": 89,
+      "bowling": 8
+    },
+    "eng-duckett": {
+      "name": "Ben Duckett",
+      "role": "Batter",
+      "batting": 86,
+      "attacking": 92,
+      "bowling": 8
+    },
+    "eng-brook": {
+      "name": "Harry Brook",
+      "role": "Batter",
+      "batting": 90,
+      "attacking": 96,
+      "bowling": 18
+    },
+    "eng-bethell": {
+      "name": "Jacob Bethell",
+      "role": "All-rounder",
+      "batting": 78,
+      "attacking": 81,
+      "bowling": 65
+    },
+    "eng-curran": {
+      "name": "Sam Curran",
+      "role": "All-rounder",
+      "batting": 76,
+      "attacking": 79,
+      "bowling": 84
+    },
+    "eng-overton": {
+      "name": "Jamie Overton",
+      "role": "All-rounder",
+      "batting": 66,
+      "attacking": 69,
+      "bowling": 80
+    },
+    "eng-liam-dawson": {
+      "name": "Liam Dawson",
+      "role": "All-rounder",
+      "batting": 75,
+      "attacking": 84,
+      "bowling": 84
+    },
+    "eng-rehan": {
+      "name": "Rehan Ahmed",
+      "role": "All-rounder",
+      "batting": 64,
+      "attacking": 67,
+      "bowling": 77
+    },
+    "eng-archer": {
+      "name": "Jofra Archer",
+      "role": "Bowler",
+      "batting": 45,
+      "attacking": 39,
+      "bowling": 94
+    },
+    "eng-rashid": {
+      "name": "Adil Rashid",
+      "role": "Bowler",
+      "batting": 42,
+      "attacking": 36,
+      "bowling": 91
+    },
+    "eng-phil-salt": {
+      "name": "Phil Salt",
+      "role": "Wicketkeeper",
+      "batting": 82,
+      "attacking": 89,
+      "bowling": 5
+    },
+    "eng-liam-livingstone": {
+      "name": "Liam Livingstone",
+      "role": "All-rounder",
+      "batting": 75,
+      "attacking": 84,
+      "bowling": 86
+    },
+    "eng-wood": {
+      "name": "Mark Wood",
+      "role": "Bowler",
+      "batting": 30,
+      "attacking": 24,
+      "bowling": 92
+    },
+    "sa-dekock": {
+      "name": "Quinton de Kock",
+      "role": "Wicketkeeper",
+      "batting": 90,
+      "attacking": 94,
+      "bowling": 5
+    },
+    "sa-dezorzi": {
+      "name": "Tony de Zorzi",
+      "role": "Batter",
+      "batting": 81,
+      "attacking": 82,
+      "bowling": 8
+    },
+    "sa-dewald-brevis": {
+      "name": "Dewald Brevis",
+      "role": "Batter",
+      "batting": 82,
+      "attacking": 89,
+      "bowling": 8
+    },
+    "sa-markram": {
+      "name": "Aiden Markram",
+      "role": "All-rounder",
+      "batting": 87,
+      "attacking": 90,
+      "bowling": 70
+    },
+    "sa-miller": {
+      "name": "David Miller",
+      "role": "Batter",
+      "batting": 88,
+      "attacking": 95,
+      "bowling": 5
+    },
+    "sa-donovan-ferreira": {
+      "name": "Donovan Ferreira",
+      "role": "All-rounder",
+      "batting": 75,
+      "attacking": 84,
+      "bowling": 78
+    },
+    "sa-jansen": {
+      "name": "Marco Jansen",
+      "role": "All-rounder",
+      "batting": 69,
+      "attacking": 72,
+      "bowling": 90
+    },
+    "sa-maharaj": {
+      "name": "Keshav Maharaj",
+      "role": "Bowler",
+      "batting": 47,
+      "attacking": 41,
+      "bowling": 91
+    },
+    "sa-rabada": {
+      "name": "Kagiso Rabada",
+      "role": "Bowler",
+      "batting": 42,
+      "attacking": 36,
+      "bowling": 95
+    },
+    "sa-kwena-maphaka": {
+      "name": "Kwena Maphaka",
+      "role": "Bowler",
+      "batting": 29,
+      "attacking": 25,
+      "bowling": 86
+    },
+    "sa-ngidi": {
+      "name": "Lungi Ngidi",
+      "role": "Bowler",
+      "batting": 25,
+      "attacking": 20,
+      "bowling": 87
+    },
+    "sa-anrich-nortje": {
+      "name": "Anrich Nortje",
+      "role": "Bowler",
+      "batting": 27,
+      "attacking": 23,
+      "bowling": 88
+    },
+    "sa-klaasen": {
+      "name": "Heinrich Klaasen",
+      "role": "Wicketkeeper",
+      "batting": 91,
+      "attacking": 99,
+      "bowling": 5
+    },
+    "sa-rickelton": {
+      "name": "Ryan Rickelton",
+      "role": "Wicketkeeper",
+      "batting": 84,
+      "attacking": 89,
+      "bowling": 5
+    },
+    "sa-tristan-stubbs": {
+      "name": "Tristan Stubbs",
+      "role": "Batter",
+      "batting": 80,
+      "attacking": 87,
+      "bowling": 8
+    },
+    "nz-finn-allen": {
+      "name": "Finn Allen",
+      "role": "Batter",
+      "batting": 84,
+      "attacking": 91,
+      "bowling": 8
+    },
+    "nz-conway": {
+      "name": "Devon Conway",
+      "role": "Wicketkeeper",
+      "batting": 88,
+      "attacking": 93,
+      "bowling": 5
+    },
+    "nz-mitchell": {
+      "name": "Daryl Mitchell",
+      "role": "All-rounder",
+      "batting": 87,
+      "attacking": 90,
+      "bowling": 60
+    },
+    "nz-phillips": {
+      "name": "Glenn Phillips",
+      "role": "All-rounder",
+      "batting": 86,
+      "attacking": 94,
+      "bowling": 72
+    },
+    "nz-mark-chapman": {
+      "name": "Mark Chapman",
+      "role": "Batter",
+      "batting": 80,
+      "attacking": 87,
+      "bowling": 8
+    },
+    "nz-bracewell": {
+      "name": "Michael Bracewell",
+      "role": "All-rounder",
+      "batting": 76,
+      "attacking": 79,
+      "bowling": 78
+    },
+    "nz-neesham": {
+      "name": "James Neesham",
+      "role": "All-rounder",
+      "batting": 80,
+      "attacking": 91,
+      "bowling": 73
+    },
+    "nz-santner": {
+      "name": "Mitchell Santner",
+      "role": "All-rounder",
+      "batting": 70,
+      "attacking": 73,
+      "bowling": 88
+    },
+    "nz-henry": {
+      "name": "Matt Henry",
+      "role": "Bowler",
+      "batting": 36,
+      "attacking": 30,
+      "bowling": 92
+    },
+    "nz-ferguson": {
+      "name": "Lockie Ferguson",
+      "role": "Bowler",
+      "batting": 28,
+      "attacking": 22,
+      "bowling": 89
+    },
+    "nz-adam-milne": {
+      "name": "Adam Milne",
+      "role": "Bowler",
+      "batting": 28,
+      "attacking": 24,
+      "bowling": 87
+    },
+    "nz-jacob-duffy": {
+      "name": "Jacob Duffy",
+      "role": "Bowler",
+      "batting": 27,
+      "attacking": 23,
+      "bowling": 88
+    },
+    "nz-williamson": {
+      "name": "Kane Williamson",
+      "role": "Batter",
+      "batting": 94,
+      "attacking": 78,
+      "bowling": 25
+    },
+    "nz-rachin-ravindra": {
+      "name": "Rachin Ravindra",
+      "role": "All-rounder",
+      "batting": 75,
+      "attacking": 84,
+      "bowling": 86
+    },
+    "nz-ish-sodhi": {
+      "name": "Ish Sodhi",
+      "role": "Bowler",
+      "batting": 24,
+      "attacking": 20,
+      "bowling": 91
+    },
+    "wi-brandon-king": {
+      "name": "Brandon King",
+      "role": "Batter",
+      "batting": 84,
+      "attacking": 91,
+      "bowling": 8
+    },
+    "wi-hope": {
+      "name": "Shai Hope",
+      "role": "Wicketkeeper",
+      "batting": 89,
+      "attacking": 79,
+      "bowling": 5
+    },
+    "wi-shimron-hetmyer": {
+      "name": "Shimron Hetmyer",
+      "role": "Batter",
+      "batting": 82,
+      "attacking": 89,
+      "bowling": 8
+    },
+    "wi-powell": {
+      "name": "Rovman Powell",
+      "role": "Batter",
+      "batting": 84,
+      "attacking": 96,
+      "bowling": 20
+    },
+    "wi-rutherford": {
+      "name": "Sherfane Rutherford",
+      "role": "Batter",
+      "batting": 84,
+      "attacking": 94,
+      "bowling": 35
+    },
+    "wi-chase": {
+      "name": "Roston Chase",
+      "role": "All-rounder",
+      "batting": 78,
+      "attacking": 81,
+      "bowling": 77
+    },
+    "wi-shepherd": {
+      "name": "Romario Shepherd",
+      "role": "All-rounder",
+      "batting": 74,
+      "attacking": 77,
+      "bowling": 82
+    },
+    "wi-springer": {
+      "name": "Shamar Springer",
+      "role": "All-rounder",
+      "batting": 59,
+      "attacking": 62,
+      "bowling": 75
+    },
+    "wi-forde": {
+      "name": "Matthew Forde",
+      "role": "All-rounder",
+      "batting": 58,
+      "attacking": 61,
+      "bowling": 82
+    },
+    "wi-hosein": {
+      "name": "Akeal Hosein",
+      "role": "Bowler",
+      "batting": 48,
+      "attacking": 42,
+      "bowling": 88
+    },
+    "wi-gudakesh-motie": {
+      "name": "Gudakesh Motie",
+      "role": "Bowler",
+      "batting": 28,
+      "attacking": 24,
+      "bowling": 87
+    },
+    "wi-shamar-joseph": {
+      "name": "Shamar Joseph",
+      "role": "Bowler",
+      "batting": 27,
+      "attacking": 23,
+      "bowling": 88
+    },
+    "wi-pooran": {
+      "name": "Nicholas Pooran",
+      "role": "Wicketkeeper",
+      "batting": 91,
+      "attacking": 99,
+      "bowling": 5
+    },
+    "wi-andre-russell": {
+      "name": "Andre Russell",
+      "role": "All-rounder",
+      "batting": 75,
+      "attacking": 84,
+      "bowling": 86
+    },
+    "wi-jason-holder": {
+      "name": "Jason Holder",
+      "role": "All-rounder",
+      "batting": 75,
+      "attacking": 84,
+      "bowling": 86
+    },
+    "sl-nissanka": {
+      "name": "Pathum Nissanka",
+      "role": "Batter",
+      "batting": 88,
+      "attacking": 89,
+      "bowling": 8
+    },
+    "sl-mendis": {
+      "name": "Kusal Mendis",
+      "role": "Wicketkeeper",
+      "batting": 86,
+      "attacking": 91,
+      "bowling": 5
+    },
+    "sl-lasith-croospulle": {
+      "name": "Lasith Croospulle",
+      "role": "Batter",
+      "batting": 82,
+      "attacking": 89,
+      "bowling": 8
+    },
+    "sl-kamil-mishara": {
+      "name": "Kamil Mishara",
+      "role": "Batter",
+      "batting": 81,
+      "attacking": 88,
+      "bowling": 8
+    },
+    "sl-kamindu": {
+      "name": "Kamindu Mendis",
+      "role": "All-rounder",
+      "batting": 85,
+      "attacking": 88,
+      "bowling": 68
+    },
+    "sl-pavan-rathnayake": {
+      "name": "Pavan Rathnayake",
+      "role": "Batter",
+      "batting": 80,
+      "attacking": 87,
+      "bowling": 8
+    },
+    "sl-dasun-shanaka": {
+      "name": "Dasun Shanaka",
+      "role": "All-rounder",
+      "batting": 75,
+      "attacking": 84,
+      "bowling": 80
+    },
+    "sl-hasaranga": {
+      "name": "Wanindu Hasaranga",
+      "role": "All-rounder",
+      "batting": 75,
+      "attacking": 88,
+      "bowling": 92
+    },
+    "sl-dunith-wellalage": {
+      "name": "Dunith Wellalage",
+      "role": "All-rounder",
+      "batting": 75,
+      "attacking": 84,
+      "bowling": 84
+    },
+    "sl-milan-rathnayake": {
+      "name": "Milan Rathnayake",
+      "role": "Bowler",
+      "batting": 29,
+      "attacking": 25,
+      "bowling": 86
+    },
+    "sl-theekshana": {
+      "name": "Maheesh Theekshana",
+      "role": "Bowler",
+      "batting": 40,
+      "attacking": 34,
+      "bowling": 89
+    },
+    "sl-chameera": {
+      "name": "Dushmantha Chameera",
+      "role": "Bowler",
+      "batting": 29,
+      "attacking": 23,
+      "bowling": 87
+    },
+    "sl-asalanka": {
+      "name": "Charith Asalanka",
+      "role": "All-rounder",
+      "batting": 87,
+      "attacking": 90,
+      "bowling": 62
+    },
+    "sl-pathirana": {
+      "name": "Matheesha Pathirana",
+      "role": "Bowler",
+      "batting": 20,
+      "attacking": 20,
+      "bowling": 90
+    },
+    "sl-angelo-mathews": {
+      "name": "Angelo Mathews",
+      "role": "All-rounder",
+      "batting": 75,
+      "attacking": 84,
+      "bowling": 86
+    },
+    "afg-gurbaz": {
+      "name": "Rahmanullah Gurbaz",
+      "role": "Wicketkeeper",
+      "batting": 87,
+      "attacking": 96,
+      "bowling": 5
+    },
+    "afg-sediqullah-atal": {
+      "name": "Sediqullah Atal",
+      "role": "Batter",
+      "batting": 83,
+      "attacking": 90,
+      "bowling": 8
+    },
+    "afg-mohammad-ishaq": {
+      "name": "Mohammad Ishaq",
+      "role": "Wicketkeeper",
+      "batting": 84,
+      "attacking": 91,
+      "bowling": 5
+    },
+    "afg-omarzai": {
+      "name": "Azmatullah Omarzai",
+      "role": "All-rounder",
+      "batting": 82,
+      "attacking": 85,
+      "bowling": 84
+    },
+    "afg-shahidullah-kamal": {
+      "name": "Shahidullah Kamal",
+      "role": "Batter",
+      "batting": 80,
+      "attacking": 87,
+      "bowling": 8
+    },
+    "afg-naib": {
+      "name": "Gulbadin Naib",
+      "role": "All-rounder",
+      "batting": 75,
+      "attacking": 78,
+      "bowling": 73
+    },
+    "afg-nabi": {
+      "name": "Mohammad Nabi",
+      "role": "All-rounder",
+      "batting": 80,
+      "attacking": 83,
+      "bowling": 83
+    },
+    "afg-abdullah-ahmadzai": {
+      "name": "Abdullah Ahmadzai",
+      "role": "Bowler",
+      "batting": 31,
+      "attacking": 27,
+      "bowling": 84
+    },
+    "afg-rashid": {
+      "name": "Rashid Khan",
+      "role": "All-rounder",
+      "batting": 70,
+      "attacking": 86,
+      "bowling": 96
+    },
+    "afg-noor": {
+      "name": "Noor Ahmad",
+      "role": "Bowler",
+      "batting": 34,
+      "attacking": 28,
+      "bowling": 89
+    },
+    "afg-naveen-ul-haq": {
+      "name": "Naveen Ul Haq",
+      "role": "Bowler",
+      "batting": 28,
+      "attacking": 24,
+      "bowling": 87
+    },
+    "afg-farooqi": {
+      "name": "Fazalhaq Farooqi",
+      "role": "Bowler",
+      "batting": 23,
+      "attacking": 20,
+      "bowling": 90
+    },
+    "afg-zadran": {
+      "name": "Ibrahim Zadran",
+      "role": "Batter",
+      "batting": 86,
+      "attacking": 87,
+      "bowling": 8
+    },
+    "afg-mujeeb": {
+      "name": "Mujeeb Ur Rahman",
+      "role": "Bowler",
+      "batting": 39,
+      "attacking": 33,
+      "bowling": 91
+    },
+    "afg-ghazanfar": {
+      "name": "Allah Ghazanfar",
+      "role": "Bowler",
+      "batting": 28,
+      "attacking": 22,
+      "bowling": 87
+    },
+    "ind-gill": {
+      "name": "Shubman Gill",
+      "role": "Batter",
+      "batting": 88,
+      "attacking": 84,
+      "bowling": 12
+    },
+    "ind-rohit": {
+      "name": "Rohit Sharma",
+      "role": "Batter",
+      "batting": 90,
+      "attacking": 94,
+      "bowling": 18
+    },
+    "ind-kohli": {
+      "name": "Virat Kohli",
+      "role": "Batter",
+      "batting": 94,
+      "attacking": 87,
+      "bowling": 20
+    },
+    "ind-rahul": {
+      "name": "KL Rahul",
+      "role": "Wicketkeeper",
+      "batting": 86,
+      "attacking": 80,
+      "bowling": 5
+    },
+    "ind-pant": {
+      "name": "Rishabh Pant",
+      "role": "Wicketkeeper",
+      "batting": 87,
+      "attacking": 97,
+      "bowling": 5
+    },
+    "ind-jadeja": {
+      "name": "Ravindra Jadeja",
+      "role": "All-rounder",
+      "batting": 80,
+      "attacking": 83,
+      "bowling": 89
+    },
+    "ind-siraj": {
+      "name": "Mohammed Siraj",
+      "role": "Bowler",
+      "batting": 25,
+      "attacking": 20,
+      "bowling": 87
+    },
+    "ind-kuldeep": {
+      "name": "Kuldeep Yadav",
+      "role": "Bowler",
+      "batting": 35,
+      "attacking": 29,
+      "bowling": 91
+    },
+    "ind-shami": {
+      "name": "Mohammed Shami",
+      "role": "Bowler",
+      "batting": 28,
+      "attacking": 22,
+      "bowling": 91
+    },
+    "pak-shafique": {
+      "name": "Abdullah Shafique",
+      "role": "Batter",
+      "batting": 80,
+      "attacking": 74,
+      "bowling": 8
+    },
+    "pak-imam": {
+      "name": "Imam-ul-Haq",
+      "role": "Batter",
+      "batting": 82,
+      "attacking": 83,
+      "bowling": 5
+    },
+    "pak-wasim": {
+      "name": "Mohammad Wasim Jr",
+      "role": "Bowler",
+      "batting": 42,
+      "attacking": 36,
+      "bowling": 84
+    },
+    "aus-carey": {
+      "name": "Alex Carey",
+      "role": "Wicketkeeper",
+      "batting": 79,
+      "attacking": 84,
+      "bowling": 5
+    },
+    "aus-smith": {
+      "name": "Steve Smith",
+      "role": "Batter",
+      "batting": 91,
+      "attacking": 76,
+      "bowling": 15
+    },
+    "aus-labuschagne": {
+      "name": "Marnus Labuschagne",
+      "role": "Batter",
+      "batting": 85,
+      "attacking": 86,
+      "bowling": 35
+    },
+    "eng-crawley": {
+      "name": "Zak Crawley",
+      "role": "Batter",
+      "batting": 81,
+      "attacking": 82,
+      "bowling": 8
+    },
+    "eng-root": {
+      "name": "Joe Root",
+      "role": "Batter",
+      "batting": 94,
+      "attacking": 80,
+      "bowling": 53
+    },
+    "eng-carse": {
+      "name": "Brydon Carse",
+      "role": "Bowler",
+      "batting": 56,
+      "attacking": 50,
+      "bowling": 86
+    },
+    "eng-atkinson": {
+      "name": "Gus Atkinson",
+      "role": "Bowler",
+      "batting": 49,
+      "attacking": 43,
+      "bowling": 88
+    },
+    "sa-bavuma": {
+      "name": "Temba Bavuma",
+      "role": "Batter",
+      "batting": 85,
+      "attacking": 76,
+      "bowling": 8
+    },
+    "sa-breetzke": {
+      "name": "Matthew Breetzke",
+      "role": "Batter",
+      "batting": 81,
+      "attacking": 82,
+      "bowling": 5
+    },
+    "sa-rubin-hermann": {
+      "name": "Rubin Hermann",
+      "role": "Batter",
+      "batting": 80,
+      "attacking": 79,
+      "bowling": 8
+    },
+    "sa-burger": {
+      "name": "Nandre Burger",
+      "role": "Bowler",
+      "batting": 22,
+      "attacking": 20,
+      "bowling": 85
+    },
+    "sa-baartman": {
+      "name": "Ottneil Baartman",
+      "role": "Bowler",
+      "batting": 23,
+      "attacking": 20,
+      "bowling": 83
+    },
+    "nz-young": {
+      "name": "Will Young",
+      "role": "Batter",
+      "batting": 82,
+      "attacking": 83,
+      "bowling": 8
+    },
+    "nz-nicholls": {
+      "name": "Henry Nicholls",
+      "role": "Batter",
+      "batting": 80,
+      "attacking": 81,
+      "bowling": 8
+    },
+    "nz-hay": {
+      "name": "Mitch Hay",
+      "role": "Wicketkeeper",
+      "batting": 72,
+      "attacking": 77,
+      "bowling": 5
+    },
+    "nz-josh-clarkson": {
+      "name": "Josh Clarkson",
+      "role": "All-rounder",
+      "batting": 75,
+      "attacking": 78,
+      "bowling": 82
+    },
+    "nz-jamieson": {
+      "name": "Kyle Jamieson",
+      "role": "Bowler",
+      "batting": 54,
+      "attacking": 48,
+      "bowling": 89
+    },
+    "nz-foulkes": {
+      "name": "Zak Foulkes",
+      "role": "Bowler",
+      "batting": 44,
+      "attacking": 38,
+      "bowling": 80
+    },
+    "nz-jayden-lennox": {
+      "name": "Jayden Lennox",
+      "role": "Bowler",
+      "batting": 28,
+      "attacking": 24,
+      "bowling": 87
+    },
+    "nz-ashok": {
+      "name": "Adi Ashok",
+      "role": "Bowler",
+      "batting": 25,
+      "attacking": 20,
+      "bowling": 79
+    },
+    "wi-athanaze": {
+      "name": "Alick Athanaze",
+      "role": "Batter",
+      "batting": 80,
+      "attacking": 81,
+      "bowling": 20
+    },
+    "wi-carty": {
+      "name": "Keacy Carty",
+      "role": "Batter",
+      "batting": 80,
+      "attacking": 81,
+      "bowling": 8
+    },
+    "wi-greaves": {
+      "name": "Justin Greaves",
+      "role": "All-rounder",
+      "batting": 73,
+      "attacking": 76,
+      "bowling": 66
+    },
+    "wi-pierre": {
+      "name": "Khary Pierre",
+      "role": "Bowler",
+      "batting": 43,
+      "attacking": 37,
+      "bowling": 82
+    },
+    "wi-seales": {
+      "name": "Jayden Seales",
+      "role": "Bowler",
+      "batting": 25,
+      "attacking": 20,
+      "bowling": 89
+    },
+    "wi-johann-layne": {
+      "name": "Johann Layne",
+      "role": "Bowler",
+      "batting": 27,
+      "attacking": 23,
+      "bowling": 88
+    },
+    "sl-sadeera": {
+      "name": "Sadeera Samarawickrama",
+      "role": "Wicketkeeper",
+      "batting": 82,
+      "attacking": 87,
+      "bowling": 5
+    },
+    "sl-liyanage": {
+      "name": "Janith Liyanage",
+      "role": "All-rounder",
+      "batting": 77,
+      "attacking": 80,
+      "bowling": 56
+    },
+    "sl-vandersay": {
+      "name": "Jeffrey Vandersay",
+      "role": "Bowler",
+      "batting": 31,
+      "attacking": 25,
+      "bowling": 83
+    },
+    "sl-fernando": {
+      "name": "Asitha Fernando",
+      "role": "Bowler",
+      "batting": 25,
+      "attacking": 20,
+      "bowling": 88
+    },
+    "sl-madushan": {
+      "name": "Pramod Madushan",
+      "role": "Bowler",
+      "batting": 23,
+      "attacking": 20,
+      "bowling": 80
+    },
+    "sl-de-silva": {
+      "name": "Dhananjaya de Silva",
+      "role": "All-rounder",
+      "batting": 83,
+      "attacking": 86,
+      "bowling": 73
+    },
+    "sl-avishka": {
+      "name": "Avishka Fernando",
+      "role": "Batter",
+      "batting": 82,
+      "attacking": 83,
+      "bowling": 5
+    },
+    "afg-rahmat": {
+      "name": "Rahmat Shah",
+      "role": "Batter",
+      "batting": 84,
+      "attacking": 75,
+      "bowling": 35
+    },
+    "afg-shahidi": {
+      "name": "Hashmatullah Shahidi",
+      "role": "Batter",
+      "batting": 82,
+      "attacking": 72,
+      "bowling": 8
+    },
+    "afg-kharoti": {
+      "name": "Nangyal Kharoti",
+      "role": "Bowler",
+      "batting": 35,
+      "attacking": 29,
+      "bowling": 82
+    },
+    "afg-naveed": {
+      "name": "Naveed Zadran",
+      "role": "Bowler",
+      "batting": 22,
+      "attacking": 20,
+      "bowling": 82
+    },
+    "afg-zazai": {
+      "name": "Hazratullah Zazai",
+      "role": "Batter",
+      "batting": 82,
+      "attacking": 97,
+      "bowling": 5
+    }
+  },
+  "formats": {
+    "T20": {
+      "India": {
+        "defaultXI": [
+          "ind-abhishek-sharma",
+          "ind-ishan-kishan",
+          "ind-sanju-samson",
+          "ind-iyer",
+          "ind-tilak-varma",
+          "ind-nitish-kumar-reddy",
+          "ind-sundar",
+          "ind-axar",
+          "ind-harshit-rana",
+          "ind-ravi-bishnoi",
+          "ind-arshdeep"
+        ],
+        "reserves": [
+          "ind-prasidh-krishna",
+          "ind-hardik",
+          "ind-rinku-singh",
+          "ind-bumrah"
+        ]
+      },
+      "Pakistan": {
+        "defaultXI": [
+          "pak-saim",
+          "pak-babar",
+          "pak-fakhar",
+          "pak-sahibzada-farhan",
+          "pak-salman",
+          "pak-khawaja-nafay",
+          "pak-nawaz",
+          "pak-faheem",
+          "pak-shaheen",
+          "pak-naseem",
+          "pak-abrar"
+        ],
+        "reserves": [
+          "pak-mohammad-salman-mirza",
+          "pak-rizwan",
+          "pak-iftikhar",
+          "pak-rauf"
+        ]
+      },
+      "Australia": {
+        "defaultXI": [
+          "aus-head",
+          "aus-inglis",
+          "aus-marsh",
+          "aus-maxwell",
+          "aus-green",
+          "aus-tim-david",
+          "aus-connolly",
+          "aus-pat-cummins",
+          "aus-bartlett",
+          "aus-ellis",
+          "aus-zampa"
+        ],
+        "reserves": [
+          "aus-hazlewood",
+          "aus-short",
+          "aus-marcus-stoinis",
+          "aus-starc"
+        ]
+      },
+      "England": {
+        "defaultXI": [
+          "eng-buttler",
+          "eng-jacks",
+          "eng-tom-banton",
+          "eng-duckett",
+          "eng-brook",
+          "eng-bethell",
+          "eng-curran",
+          "eng-overton",
+          "eng-liam-dawson",
+          "eng-rehan",
+          "eng-archer"
+        ],
+        "reserves": [
+          "eng-rashid",
+          "eng-phil-salt",
+          "eng-liam-livingstone",
+          "eng-wood"
+        ]
+      },
+      "SouthAfrica": {
+        "defaultXI": [
+          "sa-dekock",
+          "sa-dezorzi",
+          "sa-dewald-brevis",
+          "sa-markram",
+          "sa-miller",
+          "sa-donovan-ferreira",
+          "sa-jansen",
+          "sa-maharaj",
+          "sa-rabada",
+          "sa-kwena-maphaka",
+          "sa-ngidi"
+        ],
+        "reserves": [
+          "sa-anrich-nortje",
+          "sa-klaasen",
+          "sa-rickelton",
+          "sa-tristan-stubbs"
+        ]
+      },
+      "NewZealand": {
+        "defaultXI": [
+          "nz-finn-allen",
+          "nz-conway",
+          "nz-mitchell",
+          "nz-phillips",
+          "nz-mark-chapman",
+          "nz-bracewell",
+          "nz-neesham",
+          "nz-santner",
+          "nz-henry",
+          "nz-ferguson",
+          "nz-adam-milne"
+        ],
+        "reserves": [
+          "nz-jacob-duffy",
+          "nz-williamson",
+          "nz-rachin-ravindra",
+          "nz-ish-sodhi"
+        ]
+      },
+      "WestIndies": {
+        "defaultXI": [
+          "wi-brandon-king",
+          "wi-hope",
+          "wi-shimron-hetmyer",
+          "wi-powell",
+          "wi-rutherford",
+          "wi-chase",
+          "wi-shepherd",
+          "wi-springer",
+          "wi-forde",
+          "wi-hosein",
+          "wi-gudakesh-motie"
+        ],
+        "reserves": [
+          "wi-shamar-joseph",
+          "wi-pooran",
+          "wi-andre-russell",
+          "wi-jason-holder"
+        ]
+      },
+      "SriLanka": {
+        "defaultXI": [
+          "sl-nissanka",
+          "sl-mendis",
+          "sl-lasith-croospulle",
+          "sl-kamil-mishara",
+          "sl-kamindu",
+          "sl-pavan-rathnayake",
+          "sl-dasun-shanaka",
+          "sl-hasaranga",
+          "sl-dunith-wellalage",
+          "sl-milan-rathnayake",
+          "sl-theekshana"
+        ],
+        "reserves": [
+          "sl-chameera",
+          "sl-asalanka",
+          "sl-pathirana",
+          "sl-angelo-mathews"
+        ]
+      },
+      "Afghanistan": {
+        "defaultXI": [
+          "afg-gurbaz",
+          "afg-sediqullah-atal",
+          "afg-mohammad-ishaq",
+          "afg-omarzai",
+          "afg-shahidullah-kamal",
+          "afg-naib",
+          "afg-nabi",
+          "afg-abdullah-ahmadzai",
+          "afg-rashid",
+          "afg-noor",
+          "afg-naveen-ul-haq"
+        ],
+        "reserves": [
+          "afg-farooqi",
+          "afg-zadran",
+          "afg-mujeeb",
+          "afg-ghazanfar"
+        ]
+      }
+    },
+    "ODI": {
+      "India": {
+        "defaultXI": [
+          "ind-gill",
+          "ind-rohit",
+          "ind-kohli",
+          "ind-rahul",
+          "ind-iyer",
+          "ind-pant",
+          "ind-sundar",
+          "ind-jadeja",
+          "ind-siraj",
+          "ind-kuldeep",
+          "ind-arshdeep"
+        ],
+        "reserves": [
+          "ind-harshit-rana",
+          "ind-hardik",
+          "ind-bumrah",
+          "ind-shami"
+        ]
+      },
+      "Pakistan": {
+        "defaultXI": [
+          "pak-shafique",
+          "pak-saim",
+          "pak-babar",
+          "pak-rizwan",
+          "pak-salman",
+          "pak-fakhar",
+          "pak-nawaz",
+          "pak-faheem",
+          "pak-shaheen",
+          "pak-naseem",
+          "pak-rauf"
+        ],
+        "reserves": [
+          "pak-abrar",
+          "pak-imam",
+          "pak-iftikhar",
+          "pak-wasim"
+        ]
+      },
+      "Australia": {
+        "defaultXI": [
+          "aus-head",
+          "aus-short",
+          "aus-marsh",
+          "aus-green",
+          "aus-inglis",
+          "aus-carey",
+          "aus-connolly",
+          "aus-bartlett",
+          "aus-starc",
+          "aus-zampa",
+          "aus-hazlewood"
+        ],
+        "reserves": [
+          "aus-ellis",
+          "aus-smith",
+          "aus-labuschagne",
+          "aus-maxwell"
+        ]
+      },
+      "England": {
+        "defaultXI": [
+          "eng-duckett",
+          "eng-crawley",
+          "eng-root",
+          "eng-brook",
+          "eng-buttler",
+          "eng-jacks",
+          "eng-bethell",
+          "eng-curran",
+          "eng-carse",
+          "eng-rashid",
+          "eng-overton"
+        ],
+        "reserves": [
+          "eng-rehan",
+          "eng-archer",
+          "eng-atkinson",
+          "eng-wood"
+        ]
+      },
+      "SouthAfrica": {
+        "defaultXI": [
+          "sa-dezorzi",
+          "sa-rickelton",
+          "sa-bavuma",
+          "sa-markram",
+          "sa-breetzke",
+          "sa-rubin-hermann",
+          "sa-dekock",
+          "sa-jansen",
+          "sa-maharaj",
+          "sa-ngidi",
+          "sa-burger"
+        ],
+        "reserves": [
+          "sa-baartman",
+          "sa-rabada",
+          "sa-klaasen",
+          "sa-miller"
+        ]
+      },
+      "NewZealand": {
+        "defaultXI": [
+          "nz-conway",
+          "nz-young",
+          "nz-nicholls",
+          "nz-mitchell",
+          "nz-phillips",
+          "nz-bracewell",
+          "nz-hay",
+          "nz-josh-clarkson",
+          "nz-jamieson",
+          "nz-foulkes",
+          "nz-jayden-lennox"
+        ],
+        "reserves": [
+          "nz-ashok",
+          "nz-williamson",
+          "nz-santner",
+          "nz-henry"
+        ]
+      },
+      "WestIndies": {
+        "defaultXI": [
+          "wi-athanaze",
+          "wi-carty",
+          "wi-hope",
+          "wi-rutherford",
+          "wi-chase",
+          "wi-shepherd",
+          "wi-greaves",
+          "wi-forde",
+          "wi-pierre",
+          "wi-seales",
+          "wi-springer"
+        ],
+        "reserves": [
+          "wi-johann-layne",
+          "wi-pooran",
+          "wi-powell",
+          "wi-hosein"
+        ]
+      },
+      "SriLanka": {
+        "defaultXI": [
+          "sl-nissanka",
+          "sl-mendis",
+          "sl-sadeera",
+          "sl-asalanka",
+          "sl-kamindu",
+          "sl-liyanage",
+          "sl-hasaranga",
+          "sl-theekshana",
+          "sl-vandersay",
+          "sl-chameera",
+          "sl-fernando"
+        ],
+        "reserves": [
+          "sl-madushan",
+          "sl-de-silva",
+          "sl-avishka",
+          "sl-pathirana"
+        ]
+      },
+      "Afghanistan": {
+        "defaultXI": [
+          "afg-gurbaz",
+          "afg-zadran",
+          "afg-rahmat",
+          "afg-shahidi",
+          "afg-omarzai",
+          "afg-nabi",
+          "afg-naib",
+          "afg-rashid",
+          "afg-kharoti",
+          "afg-farooqi",
+          "afg-ghazanfar"
+        ],
+        "reserves": [
+          "afg-naveed",
+          "afg-zazai",
+          "afg-mujeeb",
+          "afg-noor"
+        ]
+      }
+    }
+  }
+}

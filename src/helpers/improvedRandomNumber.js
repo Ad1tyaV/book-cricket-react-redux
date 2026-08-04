@@ -7,7 +7,7 @@ const FORMAT_BASE_FREQUENCIES = {
   T20: {
     // T20: Target ~8-9 runs per over (realistic T20 average)
     AGGRESSIVE: [5, 45, 30, 15, 2, 18, 12], // ~9.2 RPO
-    ANCHOR: [4, 50, 40, 18, 3, 14, 9],
+    ANCHOR: [4, 55, 40, 18, 3, 15, 8], // ~7.8 RPO
     POWER_HITTER: [8, 40, 20, 10, 1, 20, 18], // ~10.5 RPO
     LOWER_ORDER_HITTER: [10, 42, 22, 10, 1, 20, 18],
     ACCUMULATOR: [3, 50, 50, 20, 4, 12, 6], // ~7.5 RPO
@@ -15,24 +15,24 @@ const FORMAT_BASE_FREQUENCIES = {
     TAIL_ENDER: [15, 70, 25, 8, 1, 8, 3], // ~5.2 RPO
   },
   ODI_50: {
-    // ODI: Target ~5-6 runs per over (realistic ODI average)
-    AGGRESSIVE: [4, 65, 40, 18, 3, 15, 8], // ~6.2 RPO
-    ANCHOR: [3, 75, 50, 20, 4, 12, 4], // ~5.4 RPO
-    POWER_HITTER: [8, 60, 25, 12, 2, 18, 12], // ~7.8 RPO
-    LOWER_ORDER_HITTER: [10, 62, 24, 11, 1, 16, 10],
-    ACCUMULATOR: [2, 70, 60, 25, 5, 10, 3], // ~5.8 RPO
-    ALL_ROUNDER: [4, 70, 45, 18, 3, 13, 6], // ~6.0 RPO
-    TAIL_ENDER: [12, 85, 30, 10, 2, 6, 2], // ~3.8 RPO
+    // Conservative base rates leave room for ability and late-innings intent.
+    AGGRESSIVE: [6, 92, 56, 13, 2, 11, 3],
+    ANCHOR: [5, 100, 66, 12, 2, 8, 1],
+    POWER_HITTER: [10, 80, 42, 11, 1, 15, 6],
+    LOWER_ORDER_HITTER: [12, 82, 44, 11, 1, 13, 4],
+    ACCUMULATOR: [4, 94, 70, 15, 3, 7, 1],
+    ALL_ROUNDER: [6, 94, 58, 14, 2, 9, 2],
+    TAIL_ENDER: [16, 106, 38, 8, 1, 5, 1],
   },
   ODI_40: {
-    // 40-over: Target ~6-7 runs per over
-    AGGRESSIVE: [4, 60, 38, 16, 3, 16, 9], // ~6.8 RPO
-    ANCHOR: [3, 70, 48, 19, 4, 13, 5], // ~5.9 RPO
-    POWER_HITTER: [7, 55, 23, 11, 2, 16, 11], // ~8.5 RPO
-    LOWER_ORDER_HITTER: [9, 56, 22, 10, 1, 17, 11],
-    ACCUMULATOR: [2, 65, 55, 23, 5, 11, 4], // ~6.2 RPO
-    ALL_ROUNDER: [4, 65, 42, 17, 3, 14, 7], // ~6.5 RPO
-    TAIL_ENDER: [12, 80, 28, 9, 2, 7, 3], // ~4.2 RPO
+    // Slightly quicker than a 50-over innings, without T20-level hitting.
+    AGGRESSIVE: [6, 84, 54, 13, 2, 13, 4],
+    ANCHOR: [5, 92, 64, 13, 2, 9, 2],
+    POWER_HITTER: [10, 75, 40, 11, 1, 16, 7],
+    LOWER_ORDER_HITTER: [12, 76, 42, 11, 1, 14, 5],
+    ACCUMULATOR: [4, 87, 66, 15, 3, 8, 2],
+    ALL_ROUNDER: [6, 86, 56, 14, 2, 10, 3],
+    TAIL_ENDER: [16, 100, 37, 8, 1, 6, 1],
   },
 };
 
@@ -75,9 +75,25 @@ const FORMAT_MODIFIERS = {
 // Pitch condition modifiers - adjusted difficulties
 const PITCH_MODIFIERS = {
   NORMAL: { wicket: 0, dot: 0, single: 0, two: 0, three: 0, four: 0, six: 0 },
-  GREEN: { wicket: 2, dot: 6, single: 4, two: 1, three: 0, four: -2, six: -3 }, // Difficulty 7
+  GREEN: {
+    wicket: 1,
+    dot: 2,
+    single: 2,
+    two: 1,
+    three: 0,
+    four: -1,
+    six: -1,
+  },
   HARD: { wicket: -2, dot: -6, single: -2, two: 1, three: 0, four: 4, six: 5 }, // Difficulty 2
-  WET: { wicket: 1, dot: 6, single: 4, two: 2, three: 0, four: -2, six: -5 }, // Difficulty 6 (reduced from 8)
+  WET: {
+    wicket: 0,
+    dot: 3,
+    single: 3,
+    two: 2,
+    three: 0,
+    four: -1,
+    six: -2,
+  },
   // Dusty stays distinct from Normal: more attritional, fewer boundaries.
   DUSTY: {
     wicket: 2,
@@ -90,26 +106,12 @@ const PITCH_MODIFIERS = {
   },
 };
 
-// Format+pitch tuning to avoid inflated totals in specific combinations.
-// ODI_40 + Normal was producing unusually high totals, so we soften boundary rate.
-const FORMAT_PITCH_TUNING = {
-  ODI_40: {
-    NORMAL: {
-      wicket: 1,
-      dot: 5,
-      single: -1,
-      two: -1,
-      three: 0,
-      four: -2,
-      six: -3,
-    },
-  },
-};
+const FORMAT_PITCH_TUNING = {};
 
 const EXPECTED_RUN_RATE = {
   T20: 8.6,
-  ODI_40: 6.2,
-  ODI_50: 5.7,
+  ODI_40: 5.8,
+  ODI_50: 5.4,
   TEST: 3.4,
 };
 
@@ -240,60 +242,123 @@ const applyConsistencyAdjustments = (frequency, format, gameState = {}) => {
   return frequency;
 };
 
-// Game situation modifiers
-const getSituationModifier = (
-  ballsFaced,
-  totalBalls,
-  currentScore,
-  targetScore = null,
-  wicketsLost
-) => {
-  const oversRemaining = (totalBalls - ballsFaced) / 6;
-  const wicketsInHand = 10 - wicketsLost;
+const applyAbilityAdjustments = (frequency, gameState = {}) => {
+  const battingRating = Number(gameState.battingRating) || 75;
+  const attackingRating = Number(gameState.attackingRating) || 72;
+  const bowlingRating = Number(gameState.bowlingRating) || 82;
+  const battingEdge = (battingRating - 75) / 5;
+  const bowlingEdge = (bowlingRating - 82) / 5;
+  const netEdge = Math.max(-5, Math.min(5, battingEdge - bowlingEdge));
+  const attackingEdge = Math.max(-5, Math.min(5, (attackingRating - 72) / 5));
 
-  let aggressionFactor = 1.0;
-  let riskFactor = 1.0;
+  applyFrequencyDelta(frequency, {
+    wicket: -netEdge * 0.75 + attackingEdge * 0.25,
+    dot: -netEdge * 1.2 - attackingEdge * 1.25,
+    single: netEdge * 0.8 - attackingEdge * 0.2,
+    two: netEdge * 0.3 + attackingEdge * 0.2,
+    four: netEdge * 0.65 + attackingEdge * 1.0,
+    six: netEdge * 0.35 + attackingEdge * 0.8,
+  });
 
-  // Death overs (last 10% of innings)
-  if (ballsFaced > totalBalls * 0.9) {
-    aggressionFactor = 1.8;
-    riskFactor = 1.4;
+  return frequency;
+};
+
+const applyInningsPhaseAdjustments = (frequency, format, gameState = {}) => {
+  if (format !== "ODI_40" && format !== "ODI_50") return frequency;
+
+  const ballsFaced = Math.max(0, Number(gameState.ballsFaced) || 0);
+  const totalBalls = FORMAT_MODIFIERS[format].totalOvers * 6;
+  const progress = ballsFaced / totalBalls;
+  const wicketsLost = Math.max(0, Number(gameState.wicketsLost) || 0);
+
+  // The first fifth of an ODI rewards building an innings.
+  if (progress < 0.2) {
+    applyFrequencyDelta(frequency, {
+      wicket: 0,
+      dot: format === "ODI_50" ? 8 : 6,
+      single: 2,
+      two: 0,
+      four: -1,
+      six: -1,
+    });
   }
-  // Middle overs (40-80% of innings)
-  else if (ballsFaced > totalBalls * 0.4 && ballsFaced < totalBalls * 0.8) {
-    aggressionFactor = 0.8;
-    riskFactor = 0.8;
-  }
-  // Powerplay (first 20% of innings)
-  else if (ballsFaced < totalBalls * 0.2) {
-    aggressionFactor = 1.3;
-    riskFactor = 1.1;
-  }
 
-  // Chasing scenario
-  if (targetScore) {
-    const requiredRate = (targetScore - currentScore) / oversRemaining;
-    const currentRate = currentScore / (ballsFaced / 6);
-
-    if (requiredRate > currentRate * 1.5) {
-      aggressionFactor *= 2.0; // Desperate situation
-      riskFactor *= 1.8;
-    } else if (requiredRate > currentRate * 1.2) {
-      aggressionFactor *= 1.4; // Need to accelerate
-      riskFactor *= 1.2;
+  // Teams with wickets in hand can accelerate near the end, but the change is
+  // deliberately smaller than switching every batter to an aggressive mindset.
+  if (progress >= 0.8) {
+    if (wicketsLost <= 6) {
+      applyFrequencyDelta(frequency, {
+        wicket: 1,
+        dot: -7,
+        single: -1,
+        two: 1,
+        four: 4,
+        six: 3,
+      });
+    } else {
+      applyFrequencyDelta(frequency, {
+        wicket: 1,
+        dot: -2,
+        single: 0,
+        two: 0,
+        four: 1,
+        six: 1,
+      });
     }
   }
 
-  // Wickets in hand factor
-  if (wicketsInHand <= 3) {
-    riskFactor *= 0.6; // Play safe with few wickets
-    aggressionFactor *= 0.7;
-  } else if (wicketsInHand >= 7) {
-    riskFactor *= 1.2; // Can afford risks
-    aggressionFactor *= 1.1;
+  return frequency;
+};
+
+const applyMindsetAdjustments = (frequency, gameState = {}) => {
+  if (gameState.mindset === "defensive") {
+    applyFrequencyDelta(frequency, {
+      wicket: -2,
+      dot: 4,
+      single: 4,
+      two: 2,
+      four: -3,
+      six: -3,
+    });
+  } else if (gameState.mindset === "aggressive") {
+    applyFrequencyDelta(frequency, {
+      wicket: 1.5,
+      dot: -3,
+      single: -1,
+      two: 0.5,
+      four: 3,
+      six: 2,
+    });
   }
 
-  return { aggressionFactor, riskFactor };
+  return frequency;
+};
+
+const applyBatterRhythmAdjustments = (frequency, gameState = {}) => {
+  const batterBallsFaced = Math.max(0, Number(gameState.batterBallsFaced) || 0);
+
+  if (batterBallsFaced < 6) {
+    const newBatterFactor = (6 - batterBallsFaced) / 6;
+    applyFrequencyDelta(frequency, {
+      wicket: 0.75 * newBatterFactor,
+      dot: 2.5 * newBatterFactor,
+      single: 1 * newBatterFactor,
+      four: -0.8 * newBatterFactor,
+      six: -0.5 * newBatterFactor,
+    });
+  } else {
+    const settledFactor = Math.min(1, (batterBallsFaced - 6) / 24);
+    applyFrequencyDelta(frequency, {
+      wicket: -0.8 * settledFactor,
+      dot: -1.5 * settledFactor,
+      single: 1.5 * settledFactor,
+      two: 0.5 * settledFactor,
+      four: 0.4 * settledFactor,
+      six: 0.2 * settledFactor,
+    });
+  }
+
+  return frequency;
 };
 
 // Simplified realistic function - no complex multipliers
@@ -323,6 +388,10 @@ const getImprovedRandomOutcome = (
 
   // Use current innings state to reduce extreme match-to-match volatility.
   applyConsistencyAdjustments(frequency, format, gameState);
+  applyAbilityAdjustments(frequency, gameState);
+  applyInningsPhaseAdjustments(frequency, format, gameState);
+  applyMindsetAdjustments(frequency, gameState);
+  applyBatterRhythmAdjustments(frequency, gameState);
 
   // Ensure no negative frequencies
   frequency = frequency.map((f) => Math.max(0, Math.round(f)));
@@ -411,7 +480,8 @@ const getPlayerArchetypeByPosition = (batterIndex, format) => {
 
   const positions = archetypesByPosition[format] || archetypesByPosition.ODI_50;
   return (
-    positions[Math.min(batterIndex + 1, positions.length - 1)] || "ALL_ROUNDER"
+    positions[Math.min(Math.max(0, batterIndex), positions.length - 1)] ||
+    "ALL_ROUNDER"
   );
 };
 

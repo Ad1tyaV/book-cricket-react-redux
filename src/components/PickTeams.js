@@ -12,6 +12,7 @@ import TournamentSetup from "./TournamentSetup";
 import BilateralSetup from "./BilateralSetup";
 import TournamentManager from "./TournamentManager";
 import BilateralManager from "./BilateralManager";
+import SquadSelector from "./SquadSelector";
 
 function PickTeams(props) {
   const [openTeam1, setOpenTeam1] = useState(false);
@@ -26,11 +27,16 @@ function PickTeams(props) {
   const [gameMode, setGameMode] = useState(null); // null, 'quick', 'bilateral', 'tournament'
   const [tournamentConfig, setTournamentConfig] = useState(null);
   const [bilateralConfig, setBilateralConfig] = useState(null);
+  const [firstTeamXI, setFirstTeamXI] = useState([]);
+  const [secondTeamXI, setSecondTeamXI] = useState([]);
   const oversOptions = [
     { value: 20, label: "T20 (20 Overs)", format: "T20" },
     { value: 40, label: "ODI (40 Overs)", format: "ODI_40" },
     { value: 50, label: "ODI (50 Overs)", format: "ODI_50" },
   ];
+  const selectedFormat =
+    oversOptions.find((option) => option.value === selectedOvers)?.format ||
+    "ODI_50";
   const teams = useRef([
     "India",
     "Pakistan",
@@ -131,7 +137,14 @@ function PickTeams(props) {
     <div>
       {props.scoreData.team1 === "" ? (
         <>
-          <div style={{ marginLeft: "47.5%", marginTop: "1%" }}>
+          <div
+            style={{
+              maxWidth: 900,
+              margin: "1% auto",
+              padding: 20,
+              textAlign: "center",
+            }}
+          >
             <InputLabel shrink id="firstTeam" style={{ color: "whitesmoke" }}>
               First Team
             </InputLabel>
@@ -253,18 +266,46 @@ function PickTeams(props) {
             </Select>
             <br />
             <br />
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "flex-start",
+                flexWrap: "wrap",
+                gap: 20,
+                textAlign: "left",
+                margin: "20px 0",
+              }}
+            >
+              <SquadSelector
+                team={firstTeam}
+                teamData={props.teamData}
+                format={selectedFormat}
+                value={firstTeamXI}
+                onChange={setFirstTeamXI}
+              />
+              <SquadSelector
+                team={secondTeam}
+                teamData={props.teamData}
+                format={selectedFormat}
+                value={secondTeamXI}
+                onChange={setSecondTeamXI}
+              />
+            </div>
             <Button
               variant="contained"
               color="primary"
+              disabled={
+                firstTeamXI.length !== 11 || secondTeamXI.length !== 11
+              }
               onClick={() => {
-                const selectedFormat =
-                  oversOptions.find((opt) => opt.value === selectedOvers)
-                    ?.format || "ODI_50";
                 props.pickTeamDispatch(
                   firstTeam,
                   secondTeam,
                   selectedOvers,
-                  selectedFormat
+                  selectedFormat,
+                  firstTeamXI,
+                  secondTeamXI
                 );
               }}
             >
@@ -291,12 +332,29 @@ function PickTeams(props) {
 const mapStateToProps = (state) => {
   return {
     scoreData: state.manageScores,
+    teamData: state.getTeams,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    pickTeamDispatch: (team1, team2, overs, format) =>
-      dispatch(pickTeams(team1, team2, overs, format)),
+    pickTeamDispatch: (
+      team1,
+      team2,
+      overs,
+      format,
+      team1PlayingXI,
+      team2PlayingXI
+    ) =>
+      dispatch(
+        pickTeams(
+          team1,
+          team2,
+          overs,
+          format,
+          team1PlayingXI,
+          team2PlayingXI
+        )
+      ),
   };
 };
 
