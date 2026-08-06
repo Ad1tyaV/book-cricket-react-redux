@@ -26,6 +26,10 @@ All notable changes to Cricket 2021 will be documented in this file.
 
 ### Fixed
 
+- Scorecards now use the recorded dismissed players and final batting pair, so
+  first-innings openers are no longer incorrectly shown as not out
+- Remaining deliveries from a partially completed over no longer spill into
+  the start of the second innings
 - Replaced the legacy twelve-slot `-1` through `10` batting order with an
   explicit eleven-player lineup
 - Corrected batting-position archetype assignment

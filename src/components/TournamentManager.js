@@ -257,6 +257,8 @@ function TournamentManager({
             format: scoreData.format,
             team1PlayingXI: [...scoreData.team1PlayingXI],
             team2PlayingXI: [...scoreData.team2PlayingXI],
+            team1Dismissed: [...scoreData.team1Dismissed],
+            team2Dismissed: [...scoreData.team2Dismissed],
           },
           track: currentTrack,
         };

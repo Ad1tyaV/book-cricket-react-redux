@@ -21,28 +21,16 @@ function ScoreCard(props) {
       >
         <TableBody>
           {ppl.map((index) => {
+            const isOut = props.team1Dismissed?.includes(index);
+            const isNotOut =
+              !isOut &&
+              (team1Track.player_1 === index ||
+                team1Track.player_2 === index);
             return (
               <TableRow key={`team1-${index}`}>
                 <TableCell
                   style={{
-                    color:
-                      team1Track.player_1 === index ||
-                      team1Track.player_2 === index
-                        ? "#72ff72"
-                        : (index >
-                            Math.min(
-                              team1Track.player_1,
-                              team1Track.player_2
-                            ) &&
-                            index <
-                              Math.max(
-                                team1Track.player_1,
-                                team1Track.player_2
-                              )) ||
-                          index <
-                            Math.min(team1Track.player_1, team1Track.player_2)
-                        ? "red"
-                        : "gray",
+                    color: isOut ? "red" : isNotOut ? "#72ff72" : "gray",
                   }}
                 >
                   {getPlayerName(props.team1PlayingXI[index])}
@@ -64,28 +52,16 @@ function ScoreCard(props) {
       >
         <TableBody>
           {ppl.map((index) => {
+            const isOut = props.team2Dismissed?.includes(index);
+            const isNotOut =
+              !isOut &&
+              (team2Track.player_1 === index ||
+                team2Track.player_2 === index);
             return (
               <TableRow key={`team2-${index}`}>
                 <TableCell
                   style={{
-                    color:
-                      team2Track.player_1 === index ||
-                      team2Track.player_2 === index
-                        ? "#72ff72"
-                        : (index >
-                            Math.min(
-                              team2Track.player_1,
-                              team2Track.player_2
-                            ) &&
-                            index <
-                              Math.max(
-                                team2Track.player_1,
-                                team2Track.player_2
-                              )) ||
-                          index <
-                            Math.min(team2Track.player_1, team2Track.player_2)
-                        ? "red"
-                        : "gray",
+                    color: isOut ? "red" : isNotOut ? "#72ff72" : "gray",
                   }}
                 >
                   {getPlayerName(props.team2PlayingXI[index])}

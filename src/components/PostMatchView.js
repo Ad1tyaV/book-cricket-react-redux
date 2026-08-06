@@ -69,6 +69,7 @@ function PostMatchView({
             stats={scoreData.team1Stats}
             ballsFaced={scoreData.team1BallsFacedByPlayer}
             track={track?.team1}
+            dismissed={scoreData.team1Dismissed}
           />
         </div>
       )}
@@ -84,6 +85,7 @@ function PostMatchView({
             stats={scoreData.team2Stats}
             ballsFaced={scoreData.team2BallsFacedByPlayer}
             track={track?.team2}
+            dismissed={scoreData.team2Dismissed}
           />
         </div>
       )}

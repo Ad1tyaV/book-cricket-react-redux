@@ -1,91 +1,24 @@
-import React, { useEffect, useState, useRef } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import scoreX from "../redux-setup/actions/scoreX";
-import completeInnings from "../redux-setup/actions/completeInnings";
+import { playOvers } from "../redux-setup/actions/scoreX";
 import resetState from "../redux-setup/actions/resetState";
 import ScoreCard from "./ScoreCard";
 import { Button } from "@material-ui/core";
 import { getPlayerName } from "../helpers/teamHelpers";
 
 function MatchComponent(props) {
-  const [message, setMessage] = useState("");
-  const track = useRef({});
-
-  useEffect(() => {
-    const maxBalls = props.scoreData.overs * 6;
-
-    if (!props.scoreData.gameover) {
-      if (
-        props.scoreData.team1Wickets === 10 ||
-        props.scoreData.team1BallsFaced === maxBalls
-      ) {
-        if (Object.keys(track.current).length === 0) {
-          track.current = {};
-          track.current = {
-            ...track.current,
-            team1: {
-              ...track.current.team1,
-              player_1: props.scoreData.onStrike.batterIndex,
-              player_2: props.scoreData.offStrike.batterIndex,
-            },
-          };
-        }
-        props.completeInningsDispatch("team1");
-      }
-    }
-    if (
-      props.scoreData.team1Wickets === 10 ||
-      props.scoreData.team1BallsFaced === maxBalls
-    ) {
-      if (props.scoreData.team2Total > props.scoreData.team1Total) {
-        track.current = {
-          ...track.current,
-          team2: {
-            ...track.current.team1,
-            player_1: props.scoreData.onStrike.batterIndex,
-            player_2: props.scoreData.offStrike.batterIndex,
-          },
-        };
-        setMessage(
-          `${props.scoreData.team2} won by ${
-            10 - props.scoreData.team2Wickets
-          } wickets`
-        );
-      } else if (
-        props.scoreData.team2Total === props.scoreData.team1Total &&
-        (props.scoreData.team2Wickets === 10 ||
-          props.scoreData.team2BallsFaced === maxBalls)
-      ) {
-        track.current = {
-          ...track.current,
-          team2: {
-            ...track.current.team1,
-            player_1: props.scoreData.onStrike.batterIndex,
-            player_2: props.scoreData.offStrike.batterIndex,
-          },
-        };
-        setMessage(`Match Tied`);
-      } else if (
-        props.scoreData.team2Total < props.scoreData.team1Total &&
-        (props.scoreData.team2Wickets === 10 ||
-          props.scoreData.team2BallsFaced === maxBalls)
-      ) {
-        track.current = {
-          ...track.current,
-          team2: {
-            ...track.current.team1,
-            player_1: props.scoreData.onStrike.batterIndex,
-            player_2: props.scoreData.offStrike.batterIndex,
-          },
-        };
-        setMessage(
-          `${props.scoreData.team1} beat ${props.scoreData.team2} by ${
-            props.scoreData.team1Total - props.scoreData.team2Total
-          } runs`
-        );
-      }
-    }
-  }, [props.scoreData]);
+  const message =
+    !props.scoreData.gameover
+      ? ""
+      : props.scoreData.team2Total > props.scoreData.team1Total
+      ? `${props.scoreData.team2} won by ${
+          10 - props.scoreData.team2Wickets
+        } wickets`
+      : props.scoreData.team2Total === props.scoreData.team1Total
+      ? "Match Tied"
+      : `${props.scoreData.team1} beat ${props.scoreData.team2} by ${
+          props.scoreData.team1Total - props.scoreData.team2Total
+        } runs`;
 
   return (
     <div style={{ color: "whitesmoke" }}>
@@ -214,7 +147,6 @@ function MatchComponent(props) {
               variant="contained"
               color="primary"
               onClick={() => {
-                track.current = {};
                 props.resetDispatch();
               }}
             >
@@ -227,11 +159,7 @@ function MatchComponent(props) {
           <Button
             color="primary"
             variant="contained"
-            onClick={() => {
-              for (let i = 0; i < 6; i++)
-                // props.scoreDispatch(Math.floor(Math.random() * 7));
-                props.scoreDispatch(props.pitchType);
-            }}
+            onClick={() => props.playOverDispatch(props.pitchType)}
           >
             PLAY
           </Button>
@@ -240,7 +168,10 @@ function MatchComponent(props) {
 
       {props.scoreData.gameover ? (
         <ScoreCard
-          track={track.current}
+          track={{
+            team1: props.scoreData.team1LastPair,
+            team2: props.scoreData.team2LastPair,
+          }}
           team1={props.scoreData.team1}
           team2={props.scoreData.team2}
           team1PlayingXI={props.scoreData.team1PlayingXI}
@@ -249,6 +180,8 @@ function MatchComponent(props) {
           team2Stats={props.scoreData.team2Stats}
           team1BallsFacedByPlayer={props.scoreData.team1BallsFacedByPlayer}
           team2BallsFacedByPlayer={props.scoreData.team2BallsFacedByPlayer}
+          team1Dismissed={props.scoreData.team1Dismissed}
+          team2Dismissed={props.scoreData.team2Dismissed}
         />
       ) : (
         <></>
@@ -267,8 +200,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    scoreDispatch: (X) => dispatch(scoreX(null, X)),
-    completeInningsDispatch: (team) => dispatch(completeInnings(team)),
+    playOverDispatch: (pitch) => dispatch(playOvers(1, pitch)),
     resetDispatch: () => dispatch(resetState()),
   };
 };

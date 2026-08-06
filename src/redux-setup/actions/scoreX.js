@@ -19,7 +19,7 @@ export const playOvers = (overs, pitch) => {
     const deliveries = Math.max(1, Number(overs) || 1) * 6;
     dispatch({
       type: "SCORE_MANY",
-      payload: { deliveries, pitchType: pitch, stopOnWicket: true },
+      payload: { deliveries, pitchType: pitch },
     });
 
     const state = getState().manageScores;

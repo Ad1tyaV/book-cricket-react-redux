@@ -17,6 +17,7 @@ function SingleTeamScoreCard({
   stats,
   ballsFaced,
   track,
+  dismissed = [],
 }) {
   const ppl = Array.from({ length: 11 }, (_, index) => index);
   const orderedXI = playingXI?.length
@@ -52,18 +53,16 @@ function SingleTeamScoreCard({
             const strikeRate =
               balls > 0 ? ((runs / balls) * 100).toFixed(2) : "0.00";
 
+            const isOut = dismissed.includes(index);
             const isNotOut =
-              teamTrack.player_1 === index || teamTrack.player_2 === index;
-            const isOut =
-              (index > Math.min(teamTrack.player_1, teamTrack.player_2) &&
-                index < Math.max(teamTrack.player_1, teamTrack.player_2)) ||
-              index < Math.min(teamTrack.player_1, teamTrack.player_2);
+              !isOut &&
+              (teamTrack.player_1 === index || teamTrack.player_2 === index);
 
             return (
               <TableRow key={`player-${index}`}>
                 <TableCell
                   style={{
-                    color: isNotOut ? "#72ff72" : isOut ? "red" : "gray",
+                    color: isOut ? "red" : isNotOut ? "#72ff72" : "gray",
                   }}
                 >
                   {getPlayerName(orderedXI[index])}
