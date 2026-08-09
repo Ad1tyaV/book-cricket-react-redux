@@ -3,7 +3,11 @@ import { Tabs, Tab, Button } from "@material-ui/core";
 import TournamentStandings from "./TournamentStandings";
 import StatsTab from "./StatsTab";
 import SingleTeamScoreCard from "./SingleTeamScoreCard";
-import { getMatchResult } from "../helpers/matchResultHelper";
+import {
+  formatOvers,
+  getInningsBallsFaced,
+  getMatchResult,
+} from "../helpers/matchResultHelper";
 
 function PostMatchView({
   standings,
@@ -20,6 +24,8 @@ function PostMatchView({
 }) {
   const [activeTab, setActiveTab] = useState(0);
   const matchResult = resultOverride || getMatchResult(scoreData);
+  const team1Overs = formatOvers(getInningsBallsFaced(scoreData, "team1"));
+  const team2Overs = formatOvers(getInningsBallsFaced(scoreData, "team2"));
 
   return (
     <div>
@@ -34,8 +40,9 @@ function PostMatchView({
       >
         <h2 style={{ color: "#4CAF50", margin: 0 }}>{matchResult}</h2>
         <p style={{ color: "#aaa", margin: "10px 0 0 0" }}>
-          {scoreData.team1}: {scoreData.team1Total}/{scoreData.team1Wickets} |{" "}
-          {scoreData.team2}: {scoreData.team2Total}/{scoreData.team2Wickets}
+          {scoreData.team1}: {scoreData.team1Total}/{scoreData.team1Wickets} (
+          {team1Overs} overs) | {scoreData.team2}: {scoreData.team2Total}/
+          {scoreData.team2Wickets} ({team2Overs} overs)
         </p>
       </div>
 

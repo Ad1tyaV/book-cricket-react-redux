@@ -19,6 +19,7 @@ All notable changes to Cricket 2021 will be documented in this file.
 
 ### Changed
 
+- Match-details summaries now show the overs faced by both teams
 - Recalibrated scoring distributions independently for T20, 40-over, and
   50-over cricket
 - Full-match simulations now batch deliveries while retaining player-level

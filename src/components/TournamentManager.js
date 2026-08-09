@@ -250,6 +250,8 @@ function TournamentManager({
             team2Total: scoreData.team2Total,
             team1Wickets: scoreData.team1Wickets,
             team2Wickets: scoreData.team2Wickets,
+            team1BallsFaced: scoreData.team1BallsFaced,
+            team2BallsFaced: scoreData.team2BallsFaced,
             team1Stats: { ...scoreData.team1Stats },
             team2Stats: { ...scoreData.team2Stats },
             team1BallsFacedByPlayer: { ...scoreData.team1BallsFacedByPlayer },

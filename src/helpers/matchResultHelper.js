@@ -1,3 +1,17 @@
+export const formatOvers = (ballsFaced = 0) => {
+  const balls = Math.max(0, Math.floor(Number(ballsFaced) || 0));
+  return `${Math.floor(balls / 6)}.${balls % 6}`;
+};
+
+export const getInningsBallsFaced = (scoreData, side) => {
+  const recordedBalls = scoreData?.[`${side}BallsFaced`];
+  if (Number.isFinite(recordedBalls)) return recordedBalls;
+
+  return Object.values(
+    scoreData?.[`${side}BallsFacedByPlayer`] || {}
+  ).reduce((total, balls) => total + (Number(balls) || 0), 0);
+};
+
 export const getMatchResult = (scoreData) => {
   const { team1, team2, team1Total, team2Total, team1Wickets, team2Wickets } =
     scoreData;
