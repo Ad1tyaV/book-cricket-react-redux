@@ -1,5 +1,6 @@
 import RandomWithIndex from "../../helpers/improvedRandomNumber";
 import { getBowlingStrength } from "../../helpers/teamHelpers";
+import { selectNextBowlerIndex } from "../../helpers/bowlingHelpers";
 
 const createInitialState = () => ({
   team1: "",
@@ -19,6 +20,11 @@ const createInitialState = () => ({
   team2Mindsets: {},
   team1Dismissed: [],
   team2Dismissed: [],
+  team1BowlingStats: {},
+  team2BowlingStats: {},
+  team1BowlingOrder: [],
+  team2BowlingOrder: [],
+  currentBowler: null,
   innings: 0,
   team1Total: 0,
   team2Total: 0,
@@ -43,6 +49,37 @@ const swapStrike = (state) => ({
 
 const activeInnings = (state) =>
   state.currentTeamBatting === state.team1 ? "team1" : "team2";
+
+const assignNextBowler = (state, battingSide) => {
+  const bowlingSide = battingSide === "team1" ? "team2" : "team1";
+  const previousBowlerIndex =
+    state.currentBowler?.side === bowlingSide
+      ? state.currentBowler.playerIndex
+      : null;
+  const playerIndex = selectNextBowlerIndex({
+    playingXI: state[`${bowlingSide}PlayingXI`],
+    bowlingStats: state[`${bowlingSide}BowlingStats`],
+    previousBowlerIndex,
+    inningsOvers: state.overs,
+  });
+
+  if (playerIndex === null) {
+    return { ...state, currentBowler: null };
+  }
+
+  return {
+    ...state,
+    currentBowler: {
+      side: bowlingSide,
+      team: state[bowlingSide],
+      playerIndex,
+    },
+    [`${bowlingSide}BowlingOrder`]: [
+      ...state[`${bowlingSide}BowlingOrder`],
+      playerIndex,
+    ],
+  };
+};
 
 const inningsIsComplete = (state, side) =>
   state[`${side}Wickets`] >= 10 ||
@@ -92,30 +129,43 @@ const scoreRunsReducer = (state = initialState, action) => {
       if (inningsIsComplete(state, side)) return state;
 
       const opponent = side === "team1" ? "team2" : "team1";
-      const strikerIndex = state.onStrike.batterIndex;
-      const batter = state[`${side}PlayingXI`][strikerIndex];
-      const bowlingStrength = state[`${opponent}BowlingStrength`];
-      const ballsFaced = state[`${side}BallsFaced`];
-      const total = state[`${side}Total`];
-      const wickets = state[`${side}Wickets`];
+      const deliveryState =
+        state.currentBowler?.side === opponent
+          ? state
+          : assignNextBowler(state, side);
+      const bowlerIndex = deliveryState.currentBowler?.playerIndex;
+      const strikerIndex = deliveryState.onStrike.batterIndex;
+      const batter = deliveryState[`${side}PlayingXI`][strikerIndex];
+      const bowlingStrength = deliveryState[`${opponent}BowlingStrength`];
+      const ballsFaced = deliveryState[`${side}BallsFaced`];
+      const total = deliveryState[`${side}Total`];
+      const wickets = deliveryState[`${side}Wickets`];
       const nextBall = ballsFaced + 1;
       const batterBallsFaced =
-        state[`${side}BallsFacedByPlayer`][strikerIndex] || 0;
+        deliveryState[`${side}BallsFacedByPlayer`][strikerIndex] || 0;
 
       // A delivery can only be faced by one of the explicitly selected eleven.
-      if (!batter || strikerIndex < 0 || strikerIndex > 10) return state;
+      if (
+        !batter ||
+        bowlerIndex === null ||
+        bowlerIndex === undefined ||
+        strikerIndex < 0 ||
+        strikerIndex > 10
+      ) {
+        return state;
+      }
 
       const gameState = {
         ballsFaced,
         currentScore: total,
-        targetScore: side === "team2" ? state.team1Total + 1 : null,
+        targetScore: side === "team2" ? deliveryState.team1Total + 1 : null,
         wicketsLost: wickets,
         batterIndex: strikerIndex,
         battingRating: batter.batting,
         attackingRating: batter.attacking,
         bowlingRating: bowlingStrength,
         batterBallsFaced,
-        mindset: state[`${side}Mindsets`][strikerIndex] || "default",
+        mindset: deliveryState[`${side}Mindsets`][strikerIndex] || "default",
       };
       const outcome = RandomWithIndex(
         strikerIndex,
@@ -124,13 +174,29 @@ const scoreRunsReducer = (state = initialState, action) => {
         gameState
       );
 
+      const currentBowlingFigures = deliveryState[`${opponent}BowlingStats`][
+        bowlerIndex
+      ] || {
+        balls: 0,
+        runs: 0,
+        wickets: 0,
+      };
+
       let nextState = {
-        ...state,
+        ...deliveryState,
         [`${side}BallsFaced`]: nextBall,
         [`${side}BallsFacedByPlayer`]: {
-          ...state[`${side}BallsFacedByPlayer`],
+          ...deliveryState[`${side}BallsFacedByPlayer`],
           [strikerIndex]:
-            (state[`${side}BallsFacedByPlayer`][strikerIndex] || 0) + 1,
+            (deliveryState[`${side}BallsFacedByPlayer`][strikerIndex] || 0) + 1,
+        },
+        [`${opponent}BowlingStats`]: {
+          ...deliveryState[`${opponent}BowlingStats`],
+          [bowlerIndex]: {
+            balls: currentBowlingFigures.balls + 1,
+            runs: currentBowlingFigures.runs + (outcome === -1 ? 0 : outcome),
+            wickets: currentBowlingFigures.wickets + (outcome === -1 ? 1 : 0),
+          },
         },
       };
 
@@ -139,7 +205,10 @@ const scoreRunsReducer = (state = initialState, action) => {
         nextState = {
           ...nextState,
           [`${side}Wickets`]: nextWickets,
-          [`${side}Dismissed`]: [...state[`${side}Dismissed`], strikerIndex],
+          [`${side}Dismissed`]: [
+            ...deliveryState[`${side}Dismissed`],
+            strikerIndex,
+          ],
         };
 
         if (nextWickets < 10) {
@@ -150,9 +219,9 @@ const scoreRunsReducer = (state = initialState, action) => {
           ...nextState,
           [`${side}Total`]: total + outcome,
           [`${side}Stats`]: {
-            ...state[`${side}Stats`],
+            ...deliveryState[`${side}Stats`],
             [strikerIndex]:
-              (state[`${side}Stats`][strikerIndex] || 0) + outcome,
+              (deliveryState[`${side}Stats`][strikerIndex] || 0) + outcome,
           },
         };
 
@@ -164,6 +233,10 @@ const scoreRunsReducer = (state = initialState, action) => {
         nextState = swapStrike(nextState);
       }
 
+      if (nextBall % 6 === 0 && !inningsIsComplete(nextState, side)) {
+        nextState = assignNextBowler(nextState, side);
+      }
+
       return nextState;
     }
 
@@ -171,7 +244,7 @@ const scoreRunsReducer = (state = initialState, action) => {
       if (state.gameover || !state.currentTeamBatting) return state;
 
       if (state.currentTeamBatting === state.team1) {
-        return {
+        const secondInningsState = {
           ...state,
           team1LastPair: {
             player_1: state.onStrike.batterIndex,
@@ -182,6 +255,7 @@ const scoreRunsReducer = (state = initialState, action) => {
           onStrike: { batterIndex: 0 },
           offStrike: { batterIndex: 1 },
         };
+        return assignNextBowler(secondInningsState, "team2");
       }
 
       if (inningsIsComplete(state, "team2")) {
@@ -236,7 +310,7 @@ const scoreRunsReducer = (state = initialState, action) => {
       const next = createInitialState();
       const team1PlayingXI = (action.payload.team1PlayingXI || []).slice(0, 11);
       const team2PlayingXI = (action.payload.team2PlayingXI || []).slice(0, 11);
-      return {
+      const pickedState = {
         ...next,
         team1: action.payload.team1,
         team2: action.payload.team2,
@@ -249,6 +323,7 @@ const scoreRunsReducer = (state = initialState, action) => {
         team1BowlingStrength: getBowlingStrength(team1PlayingXI),
         team2BowlingStrength: getBowlingStrength(team2PlayingXI),
       };
+      return assignNextBowler(pickedState, "team1");
     }
 
     default:

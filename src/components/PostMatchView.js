@@ -3,6 +3,7 @@ import { Tabs, Tab, Button } from "@material-ui/core";
 import TournamentStandings from "./TournamentStandings";
 import StatsTab from "./StatsTab";
 import SingleTeamScoreCard from "./SingleTeamScoreCard";
+import BowlingScoreCard from "./BowlingScoreCard";
 import {
   formatOvers,
   getInningsBallsFaced,
@@ -78,6 +79,14 @@ function PostMatchView({
             track={track?.team1}
             dismissed={scoreData.team1Dismissed}
           />
+          <h3 style={{ textAlign: "center", marginTop: 30 }}>
+            {scoreData.team2} Bowling
+          </h3>
+          <BowlingScoreCard
+            playingXI={scoreData.team2PlayingXI}
+            stats={scoreData.team2BowlingStats}
+            bowlingOrder={scoreData.team2BowlingOrder}
+          />
         </div>
       )}
 
@@ -93,6 +102,14 @@ function PostMatchView({
             ballsFaced={scoreData.team2BallsFacedByPlayer}
             track={track?.team2}
             dismissed={scoreData.team2Dismissed}
+          />
+          <h3 style={{ textAlign: "center", marginTop: 30 }}>
+            {scoreData.team1} Bowling
+          </h3>
+          <BowlingScoreCard
+            playingXI={scoreData.team1PlayingXI}
+            stats={scoreData.team1BowlingStats}
+            bowlingOrder={scoreData.team1BowlingOrder}
           />
         </div>
       )}

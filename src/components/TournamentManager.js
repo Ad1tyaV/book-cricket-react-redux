@@ -10,7 +10,7 @@ import FixturesView from "./FixturesView";
 import TournamentStandings from "./TournamentStandings";
 import StatsTab from "./StatsTab";
 import { Button, Tabs, Tab } from "@material-ui/core";
-import { getPlayerName } from "../helpers/teamHelpers";
+import { addMatchToPlayerStats } from "../helpers/tournamentStats";
 
 function TournamentManager({
   config,
@@ -261,6 +261,10 @@ function TournamentManager({
             team2PlayingXI: [...scoreData.team2PlayingXI],
             team1Dismissed: [...scoreData.team1Dismissed],
             team2Dismissed: [...scoreData.team2Dismissed],
+            team1BowlingStats: { ...scoreData.team1BowlingStats },
+            team2BowlingStats: { ...scoreData.team2BowlingStats },
+            team1BowlingOrder: [...scoreData.team1BowlingOrder],
+            team2BowlingOrder: [...scoreData.team2BowlingOrder],
           },
           track: currentTrack,
         };
@@ -385,86 +389,9 @@ function TournamentManager({
       setStandings(newStandings);
     }
 
-    // Update player stats for both teams at once
-    updatePlayerStatsForMatch(
-      team1,
-      team2,
-      scoreData.team1Stats,
-      scoreData.team2Stats,
-      scoreData.team1BallsFacedByPlayer,
-      scoreData.team2BallsFacedByPlayer
+    setPlayerStats((currentStats) =>
+      addMatchToPlayerStats(currentStats, scoreData)
     );
-  };
-
-  const updatePlayerStatsForMatch = (
-    team1Name,
-    team2Name,
-    team1Stats,
-    team2Stats,
-    team1Balls,
-    team2Balls
-  ) => {
-    const newPlayerStats = [...playerStats];
-
-    // Update team 1 players
-    Object.keys(team1Stats).forEach((playerIndex) => {
-      const playerName = getPlayerName(
-        scoreData.team1PlayingXI?.[Number(playerIndex)]
-      );
-      const runs = team1Stats[playerIndex] || 0;
-      const balls = team1Balls[playerIndex] || 0;
-
-      if (playerName && runs > 0) {
-        const existingPlayer = newPlayerStats.find(
-          (p) => p.name === playerName && p.team === team1Name
-        );
-        if (existingPlayer) {
-          existingPlayer.runs += runs;
-          existingPlayer.balls += balls;
-          existingPlayer.strikeRate =
-            (existingPlayer.runs / existingPlayer.balls) * 100;
-        } else {
-          newPlayerStats.push({
-            name: playerName,
-            team: team1Name,
-            runs: runs,
-            balls: balls,
-            strikeRate: (runs / balls) * 100,
-          });
-        }
-      }
-    });
-
-    // Update team 2 players
-    Object.keys(team2Stats).forEach((playerIndex) => {
-      const playerName = getPlayerName(
-        scoreData.team2PlayingXI?.[Number(playerIndex)]
-      );
-      const runs = team2Stats[playerIndex] || 0;
-      const balls = team2Balls[playerIndex] || 0;
-
-      if (playerName && runs > 0) {
-        const existingPlayer = newPlayerStats.find(
-          (p) => p.name === playerName && p.team === team2Name
-        );
-        if (existingPlayer) {
-          existingPlayer.runs += runs;
-          existingPlayer.balls += balls;
-          existingPlayer.strikeRate =
-            (existingPlayer.runs / existingPlayer.balls) * 100;
-        } else {
-          newPlayerStats.push({
-            name: playerName,
-            team: team2Name,
-            runs: runs,
-            balls: balls,
-            strikeRate: (runs / balls) * 100,
-          });
-        }
-      }
-    });
-
-    setPlayerStats(newPlayerStats);
   };
 
   const handleMatchStart = (matchConfig) => {
@@ -1087,14 +1014,7 @@ const mapDispatchToProps = (dispatch) => ({
     team2PlayingXI
   ) =>
     dispatch(
-      pickTeams(
-        team1,
-        team2,
-        overs,
-        format,
-        team1PlayingXI,
-        team2PlayingXI
-      )
+      pickTeams(team1, team2, overs, format, team1PlayingXI, team2PlayingXI)
     ),
   resetDispatch: () => dispatch(resetState()),
   simulateMatchDispatch: (pitchType) => dispatch(simulateMatch(pitchType)),

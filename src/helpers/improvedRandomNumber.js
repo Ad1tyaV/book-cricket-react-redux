@@ -5,14 +5,15 @@ const OUTCOMES = [-1, 0, 1, 2, 3, 4, 6]; // Possible cricket outcomes
 // These are calibrated to produce realistic run rates
 const FORMAT_BASE_FREQUENCIES = {
   T20: {
-    // T20: Target ~8-9 runs per over (realistic T20 average)
-    AGGRESSIVE: [5, 45, 30, 15, 2, 18, 12], // ~9.2 RPO
-    ANCHOR: [4, 55, 40, 18, 3, 15, 8], // ~7.8 RPO
-    POWER_HITTER: [8, 40, 20, 10, 1, 20, 18], // ~10.5 RPO
-    LOWER_ORDER_HITTER: [10, 42, 22, 10, 1, 20, 18],
-    ACCUMULATOR: [3, 50, 50, 20, 4, 12, 6], // ~7.5 RPO
-    ALL_ROUNDER: [5, 50, 35, 15, 2, 16, 10], // ~8.5 RPO
-    TAIL_ENDER: [15, 70, 25, 8, 1, 8, 3], // ~5.2 RPO
+    // Conservative bases leave room for batting skill, attacking intent and
+    // death-over acceleration without making 240+ a routine total.
+    AGGRESSIVE: [7, 60, 38, 12, 2, 15, 8],
+    ANCHOR: [5, 70, 48, 14, 2, 11, 5],
+    POWER_HITTER: [10, 55, 28, 9, 1, 18, 11],
+    LOWER_ORDER_HITTER: [12, 58, 30, 9, 1, 16, 9],
+    ACCUMULATOR: [4, 66, 55, 16, 3, 10, 4],
+    ALL_ROUNDER: [7, 64, 42, 13, 2, 13, 6],
+    TAIL_ENDER: [16, 80, 28, 7, 1, 7, 2],
   },
   ODI_50: {
     // Conservative base rates leave room for ability and late-innings intent.
@@ -264,12 +265,60 @@ const applyAbilityAdjustments = (frequency, gameState = {}) => {
 };
 
 const applyInningsPhaseAdjustments = (frequency, format, gameState = {}) => {
-  if (format !== "ODI_40" && format !== "ODI_50") return frequency;
+  if (format !== "T20" && format !== "ODI_40" && format !== "ODI_50") {
+    return frequency;
+  }
 
   const ballsFaced = Math.max(0, Number(gameState.ballsFaced) || 0);
   const totalBalls = FORMAT_MODIFIERS[format].totalOvers * 6;
   const progress = ballsFaced / totalBalls;
   const wicketsLost = Math.max(0, Number(gameState.wicketsLost) || 0);
+
+  if (format === "T20") {
+    // The powerplay offers boundary opportunities, but the new ball still
+    // produces enough dots to prevent every innings beginning at full pace.
+    if (progress < 0.3) {
+      applyFrequencyDelta(frequency, {
+        wicket: 0,
+        dot: 2,
+        single: 1,
+        two: 0,
+        four: 1,
+        six: 0,
+      });
+    } else if (progress < 0.75) {
+      // Middle overs reward rotation and make sustained boundary hitting less
+      // automatic before the final acceleration.
+      applyFrequencyDelta(frequency, {
+        wicket: 0,
+        dot: 6,
+        single: 2,
+        two: 0,
+        four: -1,
+        six: -1,
+      });
+    } else if (wicketsLost <= 6) {
+      applyFrequencyDelta(frequency, {
+        wicket: 2,
+        dot: -5,
+        single: -1,
+        two: 0,
+        four: 3,
+        six: 3,
+      });
+    } else {
+      applyFrequencyDelta(frequency, {
+        wicket: 1,
+        dot: -1,
+        single: 0,
+        two: 0,
+        four: 1,
+        six: 1,
+      });
+    }
+
+    return frequency;
+  }
 
   // The first fifth of an ODI rewards building an innings.
   if (progress < 0.2) {

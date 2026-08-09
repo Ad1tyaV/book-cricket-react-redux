@@ -7,18 +7,28 @@ import { Button } from "@material-ui/core";
 import { getPlayerName } from "../helpers/teamHelpers";
 
 function MatchComponent(props) {
-  const message =
-    !props.scoreData.gameover
-      ? ""
-      : props.scoreData.team2Total > props.scoreData.team1Total
-      ? `${props.scoreData.team2} won by ${
-          10 - props.scoreData.team2Wickets
-        } wickets`
-      : props.scoreData.team2Total === props.scoreData.team1Total
-      ? "Match Tied"
-      : `${props.scoreData.team1} beat ${props.scoreData.team2} by ${
-          props.scoreData.team1Total - props.scoreData.team2Total
-        } runs`;
+  const message = !props.scoreData.gameover
+    ? ""
+    : props.scoreData.team2Total > props.scoreData.team1Total
+    ? `${props.scoreData.team2} won by ${
+        10 - props.scoreData.team2Wickets
+      } wickets`
+    : props.scoreData.team2Total === props.scoreData.team1Total
+    ? "Match Tied"
+    : `${props.scoreData.team1} beat ${props.scoreData.team2} by ${
+        props.scoreData.team1Total - props.scoreData.team2Total
+      } runs`;
+  const bowlingSide =
+    props.scoreData.currentTeamBatting === props.scoreData.team1
+      ? "team2"
+      : "team1";
+  const currentBowlerIndex = props.scoreData.currentBowler?.playerIndex;
+  const currentBowler =
+    props.scoreData.currentBowler?.side === bowlingSide
+      ? props.scoreData[`${bowlingSide}PlayingXI`]?.[currentBowlerIndex]
+      : null;
+  const currentBowlingFigures =
+    props.scoreData[`${bowlingSide}BowlingStats`]?.[currentBowlerIndex];
 
   return (
     <div style={{ color: "whitesmoke" }}>
@@ -129,6 +139,15 @@ function MatchComponent(props) {
           </span>
         </div>
       )}
+      {!props.scoreData.gameover && currentBowler && (
+        <p style={{ textAlign: "center", color: "#bbb" }}>
+          Bowling: {getPlayerName(currentBowler)} ·{" "}
+          {Math.floor((currentBowlingFigures?.balls || 0) / 6)}.
+          {(currentBowlingFigures?.balls || 0) % 6}-
+          {currentBowlingFigures?.runs || 0}-
+          {currentBowlingFigures?.wickets || 0}
+        </p>
+      )}
       {<hr />}
       {props.scoreData.gameover ? (
         <>
@@ -182,6 +201,10 @@ function MatchComponent(props) {
           team2BallsFacedByPlayer={props.scoreData.team2BallsFacedByPlayer}
           team1Dismissed={props.scoreData.team1Dismissed}
           team2Dismissed={props.scoreData.team2Dismissed}
+          team1BowlingStats={props.scoreData.team1BowlingStats}
+          team2BowlingStats={props.scoreData.team2BowlingStats}
+          team1BowlingOrder={props.scoreData.team1BowlingOrder}
+          team2BowlingOrder={props.scoreData.team2BowlingOrder}
         />
       ) : (
         <></>

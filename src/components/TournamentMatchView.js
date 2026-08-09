@@ -1,16 +1,11 @@
-import React, { useState } from "react";
-import {
-  Tabs,
-  Tab,
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-} from "@material-ui/core";
+import React, { useEffect, useState } from "react";
+import { Tabs, Tab } from "@material-ui/core";
 import MatchComponent from "./MatchComponent";
 import TournamentStandings from "./TournamentStandings";
 import StatsTab from "./StatsTab";
-import { getPlayerName } from "../helpers/teamHelpers";
+import SingleTeamScoreCard from "./SingleTeamScoreCard";
+import BowlingScoreCard from "./BowlingScoreCard";
+import { formatOvers } from "../helpers/matchResultHelper";
 
 function TournamentMatchView({
   pitchType,
@@ -18,20 +13,27 @@ function TournamentMatchView({
   playerStats,
   currentStage,
   scoreData,
-  isMatchOver,
 }) {
   const [activeTab, setActiveTab] = useState(0);
-  const currentTeamBalls =
-    scoreData.currentTeamBatting === scoreData.team1
-      ? scoreData.team1BallsFaced
-      : scoreData.team2BallsFaced;
-  const currentTeamScore =
-    scoreData.currentTeamBatting === scoreData.team1
-      ? `${scoreData.team1Total}/${scoreData.team1Wickets}`
-      : `${scoreData.team2Total}/${scoreData.team2Wickets}`;
-  const currentTeamOvers = `${Math.floor(currentTeamBalls / 6)}.${
-    currentTeamBalls % 6
-  }`;
+  const [scorecardInnings, setScorecardInnings] = useState(
+    scoreData.innings === 2 ? 1 : 0
+  );
+
+  useEffect(() => {
+    if (scoreData.innings === 2) setScorecardInnings(1);
+  }, [scoreData.innings]);
+
+  const battingSide = scorecardInnings === 0 ? "team1" : "team2";
+  const bowlingSide = scorecardInnings === 0 ? "team2" : "team1";
+  const battingTeam = scoreData[battingSide];
+  const bowlingTeam = scoreData[bowlingSide];
+  const inningsIsActive = scoreData.currentTeamBatting === battingTeam;
+  const battingTrack = inningsIsActive
+    ? {
+        player_1: scoreData.onStrike.batterIndex,
+        player_2: scoreData.offStrike.batterIndex,
+      }
+    : scoreData[`${battingSide}LastPair`];
 
   return (
     <div>
@@ -43,7 +45,7 @@ function TournamentMatchView({
         scrollButtons="auto"
       >
         <Tab label="Live Match" style={{ color: "whitesmoke" }} />
-        <Tab label="Current Batting" style={{ color: "whitesmoke" }} />
+        <Tab label="Innings Scorecards" style={{ color: "whitesmoke" }} />
         <Tab label="Standings" style={{ color: "whitesmoke" }} />
         <Tab label="Stats" style={{ color: "whitesmoke" }} />
       </Tabs>
@@ -52,76 +54,46 @@ function TournamentMatchView({
 
       {activeTab === 1 && (
         <div style={{ padding: 20, color: "whitesmoke" }}>
-          <h3 style={{ textAlign: "center" }}>
-            {scoreData.currentTeamBatting} - Current Innings
-          </h3>
+          <Tabs
+            value={scorecardInnings}
+            onChange={(event, value) => setScorecardInnings(value)}
+            centered
+            style={{ backgroundColor: "#2a2a2a", marginBottom: 20 }}
+          >
+            <Tab
+              label={`First Innings · ${scoreData.team1}`}
+              style={{ color: "whitesmoke" }}
+            />
+            <Tab
+              label={`Second Innings · ${scoreData.team2}`}
+              style={{ color: "whitesmoke" }}
+              disabled={scoreData.innings < 2}
+            />
+          </Tabs>
+          <h3 style={{ textAlign: "center" }}>{battingTeam} Batting</h3>
           <p style={{ textAlign: "center", color: "#bbb" }}>
-            {currentTeamScore} in {currentTeamOvers} overs
+            {scoreData[`${battingSide}Total`]}/
+            {scoreData[`${battingSide}Wickets`]} in{" "}
+            {formatOvers(scoreData[`${battingSide}BallsFaced`])} overs
           </p>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <Table
-              style={{ maxWidth: 500, backgroundColor: "#1e1e1e" }}
-              aria-label="batting scorecard"
-            >
-              <TableBody>
-                {Array.from({ length: 11 }, (_, index) => index).map((index) => {
-                  const isOnStrike = scoreData.onStrike.batterIndex === index;
-                  const isOffStrike = scoreData.offStrike.batterIndex === index;
-                  const isOut =
-                    index <
-                      Math.min(
-                        scoreData.onStrike.batterIndex,
-                        scoreData.offStrike.batterIndex
-                      ) ||
-                    (index >
-                      Math.min(
-                        scoreData.onStrike.batterIndex,
-                        scoreData.offStrike.batterIndex
-                      ) &&
-                      index <
-                        Math.max(
-                          scoreData.onStrike.batterIndex,
-                          scoreData.offStrike.batterIndex
-                        ));
+          <SingleTeamScoreCard
+            team={battingTeam}
+            format={scoreData.format}
+            playingXI={scoreData[`${battingSide}PlayingXI`]}
+            stats={scoreData[`${battingSide}Stats`]}
+            ballsFaced={scoreData[`${battingSide}BallsFacedByPlayer`]}
+            track={battingTrack}
+            dismissed={scoreData[`${battingSide}Dismissed`]}
+          />
 
-                  const currentTeamStats =
-                    scoreData.currentTeamBatting === scoreData.team1
-                      ? scoreData.team1Stats
-                      : scoreData.team2Stats;
-                  const currentTeamBalls =
-                    scoreData.currentTeamBatting === scoreData.team1
-                      ? scoreData.team1BallsFacedByPlayer
-                      : scoreData.team2BallsFacedByPlayer;
-                  const currentPlayingXI =
-                    scoreData.currentTeamBatting === scoreData.team1
-                      ? scoreData.team1PlayingXI
-                      : scoreData.team2PlayingXI;
-
-                  return (
-                    <TableRow key={`batting-${index}`}>
-                      <TableCell
-                        style={{
-                          color:
-                            isOnStrike || isOffStrike
-                              ? "#72ff72"
-                              : isOut
-                              ? "red"
-                              : "gray",
-                        }}
-                      >
-                        {getPlayerName(currentPlayingXI[index])}
-                        {isOnStrike && " *"}
-                      </TableCell>
-                      <TableCell style={{ color: "whitesmoke" }}>
-                        {currentTeamStats[index] ?? 0} (
-                        {currentTeamBalls?.[index] ?? 0})
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
-              </TableBody>
-            </Table>
-          </div>
+          <h3 style={{ textAlign: "center", marginTop: 30 }}>
+            {bowlingTeam} Bowling
+          </h3>
+          <BowlingScoreCard
+            playingXI={scoreData[`${bowlingSide}PlayingXI`]}
+            stats={scoreData[`${bowlingSide}BowlingStats`]}
+            bowlingOrder={scoreData[`${bowlingSide}BowlingOrder`]}
+          />
         </div>
       )}
 

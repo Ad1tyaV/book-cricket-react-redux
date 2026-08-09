@@ -16,12 +16,21 @@ All notable changes to Cricket 2021 will be documented in this file.
 - Optional collapsed squad editors for both teams in quick, bilateral, and
   manually played tournament matches
 - Explicit XI-to-reserve swapping plus batting-order move and shuffle controls
+- Automatic five-bowler rotations that obey per-format over limits and prevent
+  consecutive overs by the same bowler
+- Per-bowler overs, runs, wickets, and economy figures in live and completed
+  match scorecards
+- Tournament top-five wicket and economy leaderboards with qualification
+  thresholds
 
 ### Changed
 
 - Match-details summaries now show the overs faced by both teams
+- The live tournament scorecard view now switches between first and second
+  innings and shows the corresponding bowling figures below each batting card
 - Recalibrated scoring distributions independently for T20, 40-over, and
-  50-over cricket
+  50-over cricket, including powerplay, middle-over, and death-over pacing so
+  240-plus T20 totals are exceptional rather than routine
 - Full-match simulations now batch deliveries while retaining player-level
   skill calculations
 

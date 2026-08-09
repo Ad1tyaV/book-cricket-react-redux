@@ -111,6 +111,37 @@ test("multiple overs can be scored in one reducer update", () => {
   random.mockRestore();
 });
 
+test("T20 bowling rotation respects workload limits and records figures", () => {
+  const random = jest.spyOn(Math, "random").mockReturnValue(0.5);
+  const state = manageScores(pickedMatch(), {
+    type: "SCORE_MANY",
+    payload: { deliveries: 120, pitchType: "Normal" },
+  });
+  const bowlingFigures = Object.values(state.team2BowlingStats);
+
+  expect(state.team1BallsFaced).toBe(120);
+  expect(bowlingFigures).toHaveLength(5);
+  expect(
+    bowlingFigures.reduce((total, figures) => total + figures.balls, 0)
+  ).toBe(120);
+  expect(
+    Math.max(...bowlingFigures.map(({ balls }) => balls))
+  ).toBeLessThanOrEqual(24);
+  expect(
+    bowlingFigures.reduce((total, figures) => total + figures.runs, 0)
+  ).toBe(state.team1Total);
+  expect(
+    bowlingFigures.reduce((total, figures) => total + figures.wickets, 0)
+  ).toBe(state.team1Wickets);
+  expect(state.team2BowlingOrder).toHaveLength(20);
+  state.team2BowlingOrder.forEach((bowlerIndex, overIndex) => {
+    if (overIndex === 0) return;
+    expect(bowlerIndex).not.toBe(state.team2BowlingOrder[overIndex - 1]);
+  });
+
+  random.mockRestore();
+});
+
 test("only batters currently at the crease can change mindset", () => {
   const initial = pickedMatch();
   const defensiveOpener = manageScores(initial, {
@@ -142,7 +173,7 @@ test("manual autoplay can pause as soon as a wicket falls", () => {
   random.mockRestore();
 });
 
-test("normal-pitch T20 innings preserve a high-risk, high-reward scoring range", () => {
+test("normal-pitch T20 innings keep 240-plus totals exceptional", () => {
   const samples = simulateNormalPitchInnings({
     format: "T20",
     overs: 20,
@@ -151,11 +182,17 @@ test("normal-pitch T20 innings preserve a high-risk, high-reward scoring range",
   const average =
     samples.reduce((sum, innings) => sum + innings.total, 0) / samples.length;
   const averageRunRate = average / 20;
+  const sortedTotals = samples.map(({ total }) => total).sort((a, b) => a - b);
+  const percentile90 = sortedTotals[Math.floor(sortedTotals.length * 0.9)];
 
-  expect(average).toBeGreaterThan(140);
-  expect(average).toBeLessThan(220);
-  expect(averageRunRate).toBeGreaterThan(7);
-  expect(averageRunRate).toBeLessThan(11);
+  expect(average).toBeGreaterThan(150);
+  expect(average).toBeLessThan(195);
+  expect(averageRunRate).toBeGreaterThan(7.5);
+  expect(averageRunRate).toBeLessThan(9.75);
+  expect(percentile90).toBeLessThan(220);
+  expect(
+    samples.filter(({ total }) => total >= 240).length
+  ).toBeLessThanOrEqual(1);
 });
 
 test("normal-pitch 50-over innings stay within a realistic scoring distribution", () => {
@@ -172,9 +209,9 @@ test("normal-pitch 50-over innings stay within a realistic scoring distribution"
   expect(average).toBeLessThan(310);
   expect(percentile90).toBeLessThan(360);
   expect(samples.filter(({ total }) => total >= 400)).toHaveLength(0);
-  expect(Math.max(...samples.map(({ highestScore }) => highestScore))).toBeLessThan(
-    200
-  );
+  expect(
+    Math.max(...samples.map(({ highestScore }) => highestScore))
+  ).toBeLessThan(200);
 });
 
 test("normal-pitch 40-over innings are quicker than ODIs without reaching T20 rates", () => {

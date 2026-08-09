@@ -32,5 +32,23 @@ test("full match simulation batches Redux updates", () => {
     "COMPLETE",
   ]);
   expect(state.gameover).toBe(true);
+  expect(
+    Object.values(state.team2BowlingStats).reduce(
+      (total, figures) => total + figures.balls,
+      0
+    )
+  ).toBe(state.team1BallsFaced);
+  expect(
+    Object.values(state.team1BowlingStats).reduce(
+      (total, figures) => total + figures.balls,
+      0
+    )
+  ).toBe(state.team2BallsFaced);
+  expect(
+    Object.values(state.team1BowlingStats).reduce(
+      (total, figures) => total + figures.runs,
+      0
+    )
+  ).toBe(state.team2Total);
   random.mockRestore();
 });
