@@ -144,7 +144,9 @@ function BilateralManager({
         </p>
       </div>
 
-      {scoreData.team1 && <MatchComponent pitchType={currentPitchType} />}
+      {scoreData.team1 && (
+        <MatchComponent pitchType={currentPitchType} hidePlayAgain />
+      )}
 
       {scoreData.gameover && (
         <div

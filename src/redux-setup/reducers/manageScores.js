@@ -20,6 +20,8 @@ const createInitialState = () => ({
   team2Mindsets: {},
   team1Dismissed: [],
   team2Dismissed: [],
+  team1DismissalDetails: [],
+  team2DismissalDetails: [],
   team1BowlingStats: {},
   team2BowlingStats: {},
   team1BowlingOrder: [],
@@ -136,7 +138,9 @@ const scoreRunsReducer = (state = initialState, action) => {
       const bowlerIndex = deliveryState.currentBowler?.playerIndex;
       const strikerIndex = deliveryState.onStrike.batterIndex;
       const batter = deliveryState[`${side}PlayingXI`][strikerIndex];
-      const bowlingStrength = deliveryState[`${opponent}BowlingStrength`];
+      const bowler = deliveryState[`${opponent}PlayingXI`][bowlerIndex];
+      const bowlingRating =
+        Number(bowler?.bowling) || deliveryState[`${opponent}BowlingStrength`];
       const ballsFaced = deliveryState[`${side}BallsFaced`];
       const total = deliveryState[`${side}Total`];
       const wickets = deliveryState[`${side}Wickets`];
@@ -163,7 +167,7 @@ const scoreRunsReducer = (state = initialState, action) => {
         batterIndex: strikerIndex,
         battingRating: batter.batting,
         attackingRating: batter.attacking,
-        bowlingRating: bowlingStrength,
+        bowlingRating,
         batterBallsFaced,
         mindset: deliveryState[`${side}Mindsets`][strikerIndex] || "default",
       };
@@ -208,6 +212,16 @@ const scoreRunsReducer = (state = initialState, action) => {
           [`${side}Dismissed`]: [
             ...deliveryState[`${side}Dismissed`],
             strikerIndex,
+          ],
+          [`${side}DismissalDetails`]: [
+            ...deliveryState[`${side}DismissalDetails`],
+            {
+              wicketNumber: nextWickets,
+              batterIndex: strikerIndex,
+              bowlerIndex,
+              score: total,
+              ball: nextBall,
+            },
           ],
         };
 

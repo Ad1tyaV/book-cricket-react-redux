@@ -4,6 +4,7 @@ import TournamentStandings from "./TournamentStandings";
 import StatsTab from "./StatsTab";
 import SingleTeamScoreCard from "./SingleTeamScoreCard";
 import BowlingScoreCard from "./BowlingScoreCard";
+import FallOfWickets from "./FallOfWickets";
 import {
   formatOvers,
   getInningsBallsFaced,
@@ -78,7 +79,18 @@ function PostMatchView({
             ballsFaced={scoreData.team1BallsFacedByPlayer}
             track={track?.team1}
             dismissed={scoreData.team1Dismissed}
+            dismissalDetails={scoreData.team1DismissalDetails}
+            bowlingXI={scoreData.team2PlayingXI}
           />
+          <h3 style={{ textAlign: "center", marginTop: 30 }}>
+            Fall of Wickets
+          </h3>
+          <div style={{ maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
+            <FallOfWickets
+              dismissals={scoreData.team1DismissalDetails}
+              battingXI={scoreData.team1PlayingXI}
+            />
+          </div>
           <h3 style={{ textAlign: "center", marginTop: 30 }}>
             {scoreData.team2} Bowling
           </h3>
@@ -102,7 +114,18 @@ function PostMatchView({
             ballsFaced={scoreData.team2BallsFacedByPlayer}
             track={track?.team2}
             dismissed={scoreData.team2Dismissed}
+            dismissalDetails={scoreData.team2DismissalDetails}
+            bowlingXI={scoreData.team1PlayingXI}
           />
+          <h3 style={{ textAlign: "center", marginTop: 30 }}>
+            Fall of Wickets
+          </h3>
+          <div style={{ maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
+            <FallOfWickets
+              dismissals={scoreData.team2DismissalDetails}
+              battingXI={scoreData.team2PlayingXI}
+            />
+          </div>
           <h3 style={{ textAlign: "center", marginTop: 30 }}>
             {scoreData.team1} Bowling
           </h3>

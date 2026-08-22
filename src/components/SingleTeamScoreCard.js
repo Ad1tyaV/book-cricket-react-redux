@@ -4,10 +4,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import TableBody from "@material-ui/core/TableBody";
 import TableHead from "@material-ui/core/TableHead";
-import {
-  getDefaultXI,
-  getPlayerName,
-} from "../helpers/teamHelpers";
+import { getDefaultXI, getPlayerName } from "../helpers/teamHelpers";
 
 function SingleTeamScoreCard({
   team,
@@ -18,6 +15,8 @@ function SingleTeamScoreCard({
   ballsFaced,
   track,
   dismissed = [],
+  dismissalDetails = [],
+  bowlingXI = [],
 }) {
   const ppl = Array.from({ length: 11 }, (_, index) => index);
   const orderedXI = playingXI?.length
@@ -39,6 +38,9 @@ function SingleTeamScoreCard({
               Player
             </TableCell>
             <TableCell style={{ color: "whitesmoke", fontWeight: "bold" }}>
+              Dismissal
+            </TableCell>
+            <TableCell style={{ color: "whitesmoke", fontWeight: "bold" }}>
               Runs (Balls)
             </TableCell>
             <TableCell style={{ color: "whitesmoke", fontWeight: "bold" }}>
@@ -54,6 +56,9 @@ function SingleTeamScoreCard({
               balls > 0 ? ((runs / balls) * 100).toFixed(2) : "0.00";
 
             const isOut = dismissed.includes(index);
+            const dismissal = dismissalDetails.find(
+              ({ batterIndex }) => batterIndex === index
+            );
             const isNotOut =
               !isOut &&
               (teamTrack.player_1 === index || teamTrack.player_2 === index);
@@ -67,6 +72,15 @@ function SingleTeamScoreCard({
                 >
                   {getPlayerName(orderedXI[index])}
                   {isNotOut && " *"}
+                </TableCell>
+                <TableCell style={{ color: "whitesmoke" }}>
+                  {dismissal
+                    ? `b ${getPlayerName(bowlingXI[dismissal.bowlerIndex])}`
+                    : isNotOut
+                    ? "not out"
+                    : balls > 0
+                    ? "not out"
+                    : "did not bat"}
                 </TableCell>
                 <TableCell style={{ color: "whitesmoke" }}>
                   {runs} ({balls})

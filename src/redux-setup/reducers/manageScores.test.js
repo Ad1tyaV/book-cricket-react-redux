@@ -10,6 +10,7 @@ const simulateNormalPitchInnings = ({
   overs,
   innings = 80,
   seed = 98765,
+  pitchType = "Normal",
 }) => {
   const englandXI = getDefaultXI(squadCatalog, "England", format);
   const indiaXI = getDefaultXI(squadCatalog, "India", format);
@@ -34,7 +35,7 @@ const simulateNormalPitchInnings = ({
     });
     state = manageScores(state, {
       type: "SCORE_MANY",
-      payload: { deliveries: overs * 6, pitchType: "Normal" },
+      payload: { deliveries: overs * 6, pitchType },
     });
     samples.push({
       total: state.team1Total,
@@ -170,6 +171,15 @@ test("manual autoplay can pause as soon as a wicket falls", () => {
 
   expect(state.team1Wickets).toBe(1);
   expect(state.team1BallsFaced).toBe(1);
+  expect(state.team1DismissalDetails).toEqual([
+    {
+      wicketNumber: 1,
+      batterIndex: 0,
+      bowlerIndex: state.team2BowlingOrder[0],
+      score: 0,
+      ball: 1,
+    },
+  ]);
   random.mockRestore();
 });
 
@@ -212,6 +222,35 @@ test("normal-pitch 50-over innings stay within a realistic scoring distribution"
   expect(
     Math.max(...samples.map(({ highestScore }) => highestScore))
   ).toBeLessThan(200);
+});
+
+test("50-over collapses remain exceptional across all pitch types", () => {
+  const pitchSamples = ["Normal", "Hard", "Wet", "Green", "Dusty"].map(
+    (pitchType, pitchIndex) =>
+      simulateNormalPitchInnings({
+        format: "ODI_50",
+        overs: 50,
+        innings: 250,
+        seed: 44000 + pitchIndex,
+        pitchType,
+      })
+  );
+  const allTotals = pitchSamples.flatMap((samples) =>
+    samples.map(({ total }) => total)
+  );
+  const under100Rate =
+    allTotals.filter((total) => total < 100).length / allTotals.length;
+  const under130Rate =
+    allTotals.filter((total) => total < 130).length / allTotals.length;
+
+  expect(under100Rate).toBeLessThan(0.01);
+  expect(under130Rate).toBeLessThan(0.04);
+  pitchSamples.forEach((samples) => {
+    const average =
+      samples.reduce((sum, innings) => sum + innings.total, 0) / samples.length;
+    expect(average).toBeGreaterThan(190);
+    expect(average).toBeLessThan(300);
+  });
 });
 
 test("normal-pitch 40-over innings are quicker than ODIs without reaching T20 rates", () => {

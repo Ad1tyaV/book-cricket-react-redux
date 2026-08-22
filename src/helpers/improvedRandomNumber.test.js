@@ -1,5 +1,6 @@
 import {
   getImprovedRandomOutcome,
+  getMatchupEdge,
   getPlayerArchetypeByPosition,
 } from "./improvedRandomNumber";
 
@@ -57,6 +58,23 @@ test("batting and bowling ratings materially change delivery outcomes", () => {
 
   expect(strongBatter.runs).toBeGreaterThan(weakBatter.runs);
   expect(strongBatter.wickets).toBeLessThan(weakBatter.wickets);
+});
+
+test("nearby bowling ratings remain distinct against an elite batter", () => {
+  expect(getMatchupEdge(99, 65)).toBeGreaterThan(getMatchupEdge(99, 70));
+  expect(getMatchupEdge(99, 70)).toBeGreaterThan(getMatchupEdge(99, 80));
+});
+
+test("even an elite defensive batter retains a dismissal risk", () => {
+  const eliteDefender = samplePlayer({
+    battingRating: 99,
+    attackingRating: 52,
+    bowlingRating: 65,
+    mindset: "defensive",
+    batterBallsFaced: 30,
+  });
+
+  expect(eliteDefender.wickets).toBeGreaterThan(0);
 });
 
 test("attacking rating produces a higher-risk, higher-boundary style", () => {

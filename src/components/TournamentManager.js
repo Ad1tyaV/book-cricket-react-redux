@@ -11,6 +11,11 @@ import TournamentStandings from "./TournamentStandings";
 import StatsTab from "./StatsTab";
 import { Button, Tabs, Tab } from "@material-ui/core";
 import { addMatchToPlayerStats } from "../helpers/tournamentStats";
+import {
+  generateTournamentFixtures,
+  generateSingleTableKnockouts,
+  getTournamentGroup,
+} from "../helpers/tournamentFixtures";
 
 function TournamentManager({
   config,
@@ -126,7 +131,6 @@ function TournamentManager({
   useEffect(() => {
     // Initialize tournament
     const teams = [...config.teams]; // Copy array
-    const numTeams = teams.length;
 
     // Randomize team order
     for (let i = teams.length - 1; i > 0; i--) {
@@ -134,50 +138,8 @@ function TournamentManager({
       [teams[i], teams[j]] = [teams[j], teams[i]];
     }
 
-    let groupMatches = [];
-
-    // Check if even number of teams for group stage split
-    if (numTeams % 2 === 0 && numTeams >= 4) {
-      // Split into two groups
-      const groupA = teams.slice(0, numTeams / 2);
-      const groupB = teams.slice(numTeams / 2);
-
-      // Generate matches within Group A
-      for (let i = 0; i < groupA.length; i++) {
-        for (let j = i + 1; j < groupA.length; j++) {
-          groupMatches.push({
-            team1: groupA[i],
-            team2: groupA[j],
-            stage: "Group A",
-            group: "A",
-          });
-        }
-      }
-
-      // Generate matches within Group B
-      for (let i = 0; i < groupB.length; i++) {
-        for (let j = i + 1; j < groupB.length; j++) {
-          groupMatches.push({
-            team1: groupB[i],
-            team2: groupB[j],
-            stage: "Group B",
-            group: "B",
-          });
-        }
-      }
-    } else {
-      // Round-robin for odd number of teams
-      for (let i = 0; i < teams.length; i++) {
-        for (let j = i + 1; j < teams.length; j++) {
-          groupMatches.push({
-            team1: teams[i],
-            team2: teams[j],
-            stage: "Group Stage",
-            group: "ALL",
-          });
-        }
-      }
-    }
+    const structure = config.structure || "round_robin";
+    const groupMatches = generateTournamentFixtures(teams, structure);
 
     setMatches(groupMatches);
 
@@ -194,12 +156,7 @@ function TournamentManager({
       ballsFaced: 0,
       runsConceded: 0,
       ballsBowled: 0,
-      group:
-        numTeams % 2 === 0
-          ? teams.indexOf(team) < numTeams / 2
-            ? "A"
-            : "B"
-          : "ALL",
+      group: getTournamentGroup(teams, team, structure),
     }));
     setStandings(initialStandings);
 
@@ -207,7 +164,7 @@ function TournamentManager({
     if (groupMatches.length > 0) {
       setCurrentMatchConfig(groupMatches[0]);
     }
-  }, [config.teams]);
+  }, [config.teams, config.structure]);
 
   useEffect(() => {
     // Check if current match is over
@@ -261,6 +218,8 @@ function TournamentManager({
             team2PlayingXI: [...scoreData.team2PlayingXI],
             team1Dismissed: [...scoreData.team1Dismissed],
             team2Dismissed: [...scoreData.team2Dismissed],
+            team1DismissalDetails: [...scoreData.team1DismissalDetails],
+            team2DismissalDetails: [...scoreData.team2DismissalDetails],
             team1BowlingStats: { ...scoreData.team1BowlingStats },
             team2BowlingStats: { ...scoreData.team2BowlingStats },
             team1BowlingOrder: [...scoreData.team1BowlingOrder],
@@ -541,21 +500,9 @@ function TournamentManager({
     let semiFinals = [];
 
     if (standings[0].group === "ALL") {
-      // Single group - top 4 teams
-      if (sortedStandings.length >= 4) {
-        semiFinals = [
-          {
-            team1: sortedStandings[0].name,
-            team2: sortedStandings[3].name,
-            stage: "Semi-Final 1",
-          },
-          {
-            team1: sortedStandings[1].name,
-            team2: sortedStandings[2].name,
-            stage: "Semi-Final 2",
-          },
-        ];
-      }
+      const knockout = generateSingleTableKnockouts(sortedStandings);
+      moveToStage(knockout.fixtures, knockout.stage);
+      return;
     } else {
       // Two groups - top team from each group (for 4-team tournament)
       const groupAStandings = sortedStandings.filter((t) => t.group === "A");

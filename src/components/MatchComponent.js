@@ -6,7 +6,7 @@ import ScoreCard from "./ScoreCard";
 import { Button } from "@material-ui/core";
 import { getPlayerName } from "../helpers/teamHelpers";
 
-function MatchComponent(props) {
+export function MatchComponent(props) {
   const message = !props.scoreData.gameover
     ? ""
     : props.scoreData.team2Total > props.scoreData.team1Total
@@ -161,17 +161,19 @@ function MatchComponent(props) {
             {message}
           </span>
           <br />
-          <span style={{ display: "flex", justifyContent: "center" }}>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => {
-                props.resetDispatch();
-              }}
-            >
-              Play Again
-            </Button>
-          </span>
+          {!props.hidePlayAgain && (
+            <span style={{ display: "flex", justifyContent: "center" }}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => {
+                  props.resetDispatch();
+                }}
+              >
+                Play Again
+              </Button>
+            </span>
+          )}
         </>
       ) : (
         <span style={{ display: "flex", justifyContent: "center" }}>
@@ -201,6 +203,8 @@ function MatchComponent(props) {
           team2BallsFacedByPlayer={props.scoreData.team2BallsFacedByPlayer}
           team1Dismissed={props.scoreData.team1Dismissed}
           team2Dismissed={props.scoreData.team2Dismissed}
+          team1DismissalDetails={props.scoreData.team1DismissalDetails}
+          team2DismissalDetails={props.scoreData.team2DismissalDetails}
           team1BowlingStats={props.scoreData.team1BowlingStats}
           team2BowlingStats={props.scoreData.team2BowlingStats}
           team1BowlingOrder={props.scoreData.team1BowlingOrder}

@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import ScoreCard from "./ScoreCard";
 import squadCatalog from "../data/cric-vfinal.json";
-import { getDefaultXI } from "../helpers/teamHelpers";
+import { getDefaultXI, getPlayerName } from "../helpers/teamHelpers";
 
 test("scorecard uses dismissed state before marking the final pair not out", () => {
   const indiaXI = getDefaultXI(squadCatalog, "India", "ODI_50");
@@ -21,9 +21,22 @@ test("scorecard uses dismissed state before marking the final pair not out", () 
       team2BallsFacedByPlayer={{}}
       team1Dismissed={[0]}
       team2Dismissed={[]}
+      team1DismissalDetails={[
+        {
+          wicketNumber: 1,
+          batterIndex: 0,
+          bowlerIndex: 10,
+          score: 5,
+          ball: 8,
+        },
+      ]}
+      team2DismissalDetails={[]}
     />
   );
 
   expect(screen.getByText("Shubman Gill")).toHaveStyle("color: red");
   expect(screen.getByText("Rohit Sharma")).toHaveStyle("color: #72ff72");
+  expect(
+    screen.getByText(`b ${getPlayerName(englandXI[10])}`)
+  ).toBeInTheDocument();
 });

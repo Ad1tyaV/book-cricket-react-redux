@@ -22,20 +22,30 @@ All notable changes to Cricket 2021 will be documented in this file.
   match scorecards
 - Tournament top-five wicket and economy leaderboards with qualification
   thresholds
+- Bowler-attributed dismissals and fall-of-wicket timelines on innings
+  scorecards
+- Explicit round-robin or two-group tournament structures
+- Three-team tri-series with two meetings per pairing and a top-two final
 
 ### Changed
 
+- Delivery outcomes now compare the striker's batting skill with the selected
+  bowler's individual bowling skill instead of the bowling unit's average
 - Match-details summaries now show the overs faced by both teams
 - The live tournament scorecard view now switches between first and second
   innings and shows the corresponding bowling figures below each batting card
 - Recalibrated scoring distributions independently for T20, 40-over, and
   50-over cricket, including powerplay, middle-over, and death-over pacing so
   240-plus T20 totals are exceptional rather than routine
+- Rebalanced 50-over pitch effects and collapse recovery so sub-130 innings
+  remain exceptional across normal, hard, wet, green, and dusty surfaces
 - Full-match simulations now batch deliveries while retaining player-level
   skill calculations
 
 ### Fixed
 
+- Removed the generic Play Again action from bilateral matches so series
+  progression can only use Next Match or Exit Series
 - Scorecards now use the recorded dismissed players and final batting pair, so
   first-innings openers are no longer incorrectly shown as not out
 - Remaining deliveries from a partially completed over no longer spill into
@@ -128,5 +138,5 @@ All notable changes to Cricket 2021 will be documented in this file.
 ### Notes
 - This version introduces major gameplay modes while maintaining backward compatibility with quick match mode
 - All existing features remain functional
-- Tournament mode requires minimum 4 teams to start
+- Tournament mode requires minimum 3 teams to start
 - Match-level configuration provides more control and realism

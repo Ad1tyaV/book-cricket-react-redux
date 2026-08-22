@@ -5,6 +5,7 @@ import TableRow from "@material-ui/core/TableRow";
 import TableBody from "@material-ui/core/TableBody";
 import { getPlayerName } from "../helpers/teamHelpers";
 import BowlingScoreCard from "./BowlingScoreCard";
+import FallOfWickets from "./FallOfWickets";
 
 function ScoreCard(props) {
   const ppl = Array.from({ length: 11 }, (_, index) => index);
@@ -21,11 +22,13 @@ function ScoreCard(props) {
       <Table
         style={{ maxWidth: 500, maxHeight: 100, float: "left" }}
         aria-label="customized table"
-        key={Date.now() + 1}
       >
         <TableBody>
           {ppl.map((index) => {
             const isOut = props.team1Dismissed?.includes(index);
+            const dismissal = props.team1DismissalDetails?.find(
+              ({ batterIndex }) => batterIndex === index
+            );
             const isNotOut =
               !isOut &&
               (team1Track.player_1 === index || team1Track.player_2 === index);
@@ -42,6 +45,13 @@ function ScoreCard(props) {
                   {props.team1Stats[index] ?? 0} (
                   {props.team1BallsFacedByPlayer?.[index] ?? 0})
                 </TableCell>
+                <TableCell style={{ color: "#aaa" }}>
+                  {dismissal
+                    ? `b ${getPlayerName(
+                        props.team2PlayingXI[dismissal.bowlerIndex]
+                      )}`
+                    : ""}
+                </TableCell>
               </TableRow>
             );
           })}
@@ -51,11 +61,13 @@ function ScoreCard(props) {
       <Table
         style={{ maxWidth: 500, maxHeight: 100, float: "right" }}
         aria-label="customized table"
-        key={Date.now()}
       >
         <TableBody>
           {ppl.map((index) => {
             const isOut = props.team2Dismissed?.includes(index);
+            const dismissal = props.team2DismissalDetails?.find(
+              ({ batterIndex }) => batterIndex === index
+            );
             const isNotOut =
               !isOut &&
               (team2Track.player_1 === index || team2Track.player_2 === index);
@@ -72,6 +84,13 @@ function ScoreCard(props) {
                   {props.team2Stats[index] ?? 0} (
                   {props.team2BallsFacedByPlayer?.[index] ?? 0})
                 </TableCell>
+                <TableCell style={{ color: "#aaa" }}>
+                  {dismissal
+                    ? `b ${getPlayerName(
+                        props.team1PlayingXI[dismissal.bowlerIndex]
+                      )}`
+                    : ""}
+                </TableCell>
               </TableRow>
             );
           })}
@@ -80,6 +99,24 @@ function ScoreCard(props) {
 
       {hasBowlingFigures && (
         <div style={{ clear: "both", paddingTop: 30 }}>
+          <h3 style={{ textAlign: "center", color: "whitesmoke" }}>
+            {props.team1} Fall of Wickets
+          </h3>
+          <div style={{ textAlign: "center" }}>
+            <FallOfWickets
+              dismissals={props.team1DismissalDetails}
+              battingXI={props.team1PlayingXI}
+            />
+          </div>
+          <h3 style={{ textAlign: "center", color: "whitesmoke" }}>
+            {props.team2} Fall of Wickets
+          </h3>
+          <div style={{ textAlign: "center" }}>
+            <FallOfWickets
+              dismissals={props.team2DismissalDetails}
+              battingXI={props.team2PlayingXI}
+            />
+          </div>
           <h3 style={{ textAlign: "center", color: "whitesmoke" }}>
             {props.team1} Bowling
           </h3>

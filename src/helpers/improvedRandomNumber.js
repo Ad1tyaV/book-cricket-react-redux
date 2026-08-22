@@ -77,15 +77,23 @@ const FORMAT_MODIFIERS = {
 const PITCH_MODIFIERS = {
   NORMAL: { wicket: 0, dot: 0, single: 0, two: 0, three: 0, four: 0, six: 0 },
   GREEN: {
-    wicket: 1,
-    dot: 2,
+    wicket: 0.5,
+    dot: 3,
     single: 2,
     two: 1,
     three: 0,
-    four: -1,
-    six: -1,
+    four: -0.5,
+    six: -0.5,
   },
-  HARD: { wicket: -2, dot: -6, single: -2, two: 1, three: 0, four: 4, six: 5 }, // Difficulty 2
+  HARD: {
+    wicket: -1,
+    dot: -3,
+    single: -1,
+    two: 1,
+    three: 0,
+    four: 2,
+    six: 2,
+  },
   WET: {
     wicket: 0,
     dot: 3,
@@ -97,13 +105,13 @@ const PITCH_MODIFIERS = {
   },
   // Dusty stays distinct from Normal: more attritional, fewer boundaries.
   DUSTY: {
-    wicket: 2,
-    dot: 8,
-    single: -2,
-    two: -1,
+    wicket: 0.75,
+    dot: 5,
+    single: 1,
+    two: 0,
     three: 0,
-    four: -2,
-    six: -3,
+    four: -1,
+    six: -1.5,
   },
 };
 
@@ -126,6 +134,14 @@ const applyFrequencyDelta = (frequency, delta) => {
   frequency[6] += delta.six || 0;
 };
 
+const getMatchupEdge = (battingRating, bowlingRating) => {
+  // The catalog's batting and bowling scales were calibrated with a small
+  // batting-condition offset. Tanh keeps extreme mismatches bounded while
+  // preserving a meaningful difference between every nearby rating.
+  const adjustedRatingGap = battingRating - bowlingRating + 8;
+  return Math.tanh(adjustedRatingGap / 25) * 4.5;
+};
+
 const applyConsistencyAdjustments = (frequency, format, gameState = {}) => {
   const ballsFaced = gameState.ballsFaced || 0;
   const currentScore = gameState.currentScore || 0;
@@ -134,7 +150,6 @@ const applyConsistencyAdjustments = (frequency, format, gameState = {}) => {
   const batterIndex = gameState.batterIndex ?? -1;
   const totalBalls = FORMAT_MODIFIERS[format]?.totalOvers * 6 || 300;
   const isLowerOrder = batterIndex >= 5;
-  const isTail = batterIndex >= 7;
 
   if (ballsFaced <= 0) return frequency;
 
@@ -142,34 +157,39 @@ const applyConsistencyAdjustments = (frequency, format, gameState = {}) => {
   const currentRunRate = currentScore / (ballsFaced / 6);
   const expectedRate = EXPECTED_RUN_RATE[format] || EXPECTED_RUN_RATE.ODI_50;
 
-  // Prevent dramatic collapses too early/often.
-  if (wicketsLost >= 5 && progress < 0.8) {
-    if (isTail) {
+  // ODI sides rebuild after losing clusters of wickets. This reduces repeated
+  // 60-120 collapses without guaranteeing a recovery: boundaries fall away,
+  // dots and rotation increase, and the dismissal floor still applies.
+  if (format === "ODI_40" || format === "ODI_50") {
+    const recoveryScore = format === "ODI_50" ? 145 : 120;
+
+    if (wicketsLost >= 6 && currentScore < recoveryScore && progress < 0.7) {
+      const deficit = (recoveryScore - currentScore) / recoveryScore;
       applyFrequencyDelta(frequency, {
-        wicket: 1,
-        dot: 1,
-        single: 1,
-        two: 0,
-        four: 0,
-        six: 0,
+        wicket: -(9 + deficit * 7),
+        dot: 6,
+        single: 8,
+        two: 2,
+        four: -2,
+        six: -3,
       });
-    } else if (isLowerOrder) {
+    } else if (wicketsLost >= 4 && progress < 0.4) {
       applyFrequencyDelta(frequency, {
-        wicket: -1,
-        dot: -1,
-        single: 2,
-        two: 1,
-        four: 1,
-        six: 0,
+        wicket: isLowerOrder ? -5 : -4,
+        dot: 5,
+        single: 6,
+        two: 2,
+        four: -2,
+        six: -2,
       });
-    } else {
+    } else if (wicketsLost >= 3 && progress < 0.22) {
       applyFrequencyDelta(frequency, {
-        wicket: -4,
-        dot: -3,
-        single: 4,
+        wicket: -3,
+        dot: 4,
+        single: 5,
         two: 1,
-        four: 1,
-        six: 0,
+        four: -1,
+        six: -2,
       });
     }
   }
@@ -247,9 +267,7 @@ const applyAbilityAdjustments = (frequency, gameState = {}) => {
   const battingRating = Number(gameState.battingRating) || 75;
   const attackingRating = Number(gameState.attackingRating) || 72;
   const bowlingRating = Number(gameState.bowlingRating) || 82;
-  const battingEdge = (battingRating - 75) / 5;
-  const bowlingEdge = (bowlingRating - 82) / 5;
-  const netEdge = Math.max(-5, Math.min(5, battingEdge - bowlingEdge));
+  const netEdge = getMatchupEdge(battingRating, bowlingRating);
   const attackingEdge = Math.max(-5, Math.min(5, (attackingRating - 72) / 5));
 
   applyFrequencyDelta(frequency, {
@@ -261,6 +279,24 @@ const applyAbilityAdjustments = (frequency, gameState = {}) => {
     six: netEdge * 0.35 + attackingEdge * 0.8,
   });
 
+  return frequency;
+};
+
+const applyDismissalFloor = (frequency, gameState = {}) => {
+  const minimumProbability =
+    gameState.mindset === "defensive"
+      ? 0.0125
+      : gameState.mindset === "aggressive"
+      ? 0.02
+      : 0.015;
+  const nonWicketWeight = frequency
+    .slice(1)
+    .reduce((total, weight) => total + weight, 0);
+  const minimumWicketWeight = Math.ceil(
+    (minimumProbability * nonWicketWeight) / (1 - minimumProbability)
+  );
+
+  frequency[0] = Math.max(frequency[0], minimumWicketWeight);
   return frequency;
 };
 
@@ -443,7 +479,8 @@ const getImprovedRandomOutcome = (
   applyBatterRhythmAdjustments(frequency, gameState);
 
   // Ensure no negative frequencies
-  frequency = frequency.map((f) => Math.max(0, Math.round(f)));
+  frequency = frequency.map((f) => Math.max(0, f));
+  applyDismissalFloor(frequency, gameState);
 
   // Create cumulative sum for weighted selection
   const cumulativeSum = (
@@ -456,7 +493,7 @@ const getImprovedRandomOutcome = (
   if (totalWeight === 0) return 1; // Fallback
 
   // Generate random outcome
-  const random = Math.floor(Math.random() * totalWeight);
+  const random = Math.random() * totalWeight;
 
   // Find which outcome was selected
   for (let i = 0; i < prefixSum.length; i++) {
@@ -586,4 +623,5 @@ export {
   PITCH_MODIFIERS,
   getPlayerArchetypeByPosition,
   FORMAT_BASE_FREQUENCIES,
+  getMatchupEdge,
 };

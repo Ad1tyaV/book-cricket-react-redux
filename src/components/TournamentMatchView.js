@@ -6,6 +6,7 @@ import StatsTab from "./StatsTab";
 import SingleTeamScoreCard from "./SingleTeamScoreCard";
 import BowlingScoreCard from "./BowlingScoreCard";
 import { formatOvers } from "../helpers/matchResultHelper";
+import FallOfWickets from "./FallOfWickets";
 
 function TournamentMatchView({
   pitchType,
@@ -84,7 +85,19 @@ function TournamentMatchView({
             ballsFaced={scoreData[`${battingSide}BallsFacedByPlayer`]}
             track={battingTrack}
             dismissed={scoreData[`${battingSide}Dismissed`]}
+            dismissalDetails={scoreData[`${battingSide}DismissalDetails`]}
+            bowlingXI={scoreData[`${bowlingSide}PlayingXI`]}
           />
+
+          <h3 style={{ textAlign: "center", marginTop: 30 }}>
+            Fall of Wickets
+          </h3>
+          <div style={{ maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
+            <FallOfWickets
+              dismissals={scoreData[`${battingSide}DismissalDetails`]}
+              battingXI={scoreData[`${battingSide}PlayingXI`]}
+            />
+          </div>
 
           <h3 style={{ textAlign: "center", marginTop: 30 }}>
             {bowlingTeam} Bowling

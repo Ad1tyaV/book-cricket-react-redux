@@ -11,6 +11,7 @@ import {
 function TournamentSetup({ teams, onStartTournament, onBack }) {
   const [selectedTeams, setSelectedTeams] = useState([]);
   const [selectedOvers, setSelectedOvers] = useState(50);
+  const [structure, setStructure] = useState("round_robin");
   const allTeamsSelected = selectedTeams.length === teams.length;
 
   const oversOptions = [
@@ -32,8 +33,8 @@ function TournamentSetup({ teams, onStartTournament, onBack }) {
   };
 
   const handleStart = () => {
-    if (selectedTeams.length < 4) {
-      alert("Please select at least 4 teams for the tournament");
+    if (selectedTeams.length < 3) {
+      alert("Please select at least 3 teams for the tournament");
       return;
     }
     const selectedFormat =
@@ -43,6 +44,10 @@ function TournamentSetup({ teams, onStartTournament, onBack }) {
       teams: selectedTeams,
       overs: selectedOvers,
       format: selectedFormat,
+      structure:
+        selectedTeams.length === 3 || structure !== "group_stage"
+          ? "round_robin"
+          : "group_stage",
     });
   };
 
@@ -52,7 +57,7 @@ function TournamentSetup({ teams, onStartTournament, onBack }) {
 
       <div style={{ marginBottom: 20 }}>
         <InputLabel style={{ color: "whitesmoke", marginBottom: 10 }}>
-          Select Teams (min 4)
+          Select Teams (min 3)
         </InputLabel>
         <p style={{ color: "#bbb", margin: "0 0 8px 0" }}>
           Selected: {selectedTeams.length}/{teams.length}
@@ -103,6 +108,29 @@ function TournamentSetup({ teams, onStartTournament, onBack }) {
         ))}
       </Select>
       <br />
+      <br />
+
+      <InputLabel shrink style={{ color: "whitesmoke" }}>
+        Tournament Structure
+      </InputLabel>
+      <Select
+        value={selectedTeams.length === 3 ? "round_robin" : structure}
+        onChange={(e) => setStructure(e.target.value)}
+        inputProps={{ "aria-label": "Tournament Structure" }}
+        style={{ color: "whitesmoke", marginBottom: 10, width: "100%" }}
+      >
+        <MenuItem value="round_robin">Round Robin</MenuItem>
+        <MenuItem value="group_stage" disabled={selectedTeams.length < 4}>
+          Two-Group Stage
+        </MenuItem>
+      </Select>
+      <p style={{ color: "#bbb", marginTop: 0 }}>
+        {selectedTeams.length === 3
+          ? "Tri-series: every team plays the other two teams twice, followed by a final between the top two."
+          : structure === "group_stage"
+          ? "Teams are split into two groups before the knockout stage."
+          : "Every team plays every other team once before the knockout stage."}
+      </p>
       <br />
 
       <Button
