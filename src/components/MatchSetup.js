@@ -11,19 +11,19 @@ import {
 } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import SquadSelector from "./SquadSelector";
-import { getDefaultXI } from "../helpers/teamHelpers";
+import { getInitialPlayingXI } from "../helpers/teamHelpers";
 
-function MatchSetup({ match, onStartMatch }) {
+function MatchSetup({ match, onStartMatch, initialPlayingXIs = {} }) {
   const teamData = useSelector((state) => state.getTeams);
   const format = match.format || "ODI_50";
   const [selectedPitch, setSelectedPitch] = useState("Normal");
   const [tossWinner, setTossWinner] = useState(match.team1);
   const [tossDecision, setTossDecision] = useState("bat");
   const [team1PlayingXI, setTeam1PlayingXI] = useState(() =>
-    getDefaultXI(teamData, match.team1, format)
+    getInitialPlayingXI(teamData, match.team1, format, initialPlayingXIs)
   );
   const [team2PlayingXI, setTeam2PlayingXI] = useState(() =>
-    getDefaultXI(teamData, match.team2, format)
+    getInitialPlayingXI(teamData, match.team2, format, initialPlayingXIs)
   );
 
   const pitchTypes = ["Normal", "Hard", "Wet", "Green", "Dusty"];

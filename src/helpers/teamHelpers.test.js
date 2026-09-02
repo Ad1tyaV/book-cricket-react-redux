@@ -1,8 +1,10 @@
 import squadCatalog from "../data/cric-vfinal.json";
 import {
   getDefaultXI,
+  getInitialPlayingXI,
   getSquad,
   getTeamStrengths,
+  rememberPlayingXIs,
 } from "./teamHelpers";
 
 test("team batting strength only averages batting-capable players", () => {
@@ -39,4 +41,35 @@ test("every catalog selection has eleven starters and four reserves", () => {
       expect(new Set([...defaultXI, ...reserves]).size).toBe(15);
     });
   });
+});
+
+test("a confirmed playing XI is remembered and reused for the team's next match", () => {
+  const defaultXI = getDefaultXI(squadCatalog, "India", "ODI_50");
+  const changedXI = [...defaultXI].reverse();
+  const rememberedPlayingXIs = rememberPlayingXIs({}, { India: changedXI });
+
+  expect(
+    getInitialPlayingXI(
+      squadCatalog,
+      "India",
+      "ODI_50",
+      rememberedPlayingXIs
+    )
+  ).toEqual(changedXI);
+  expect(rememberedPlayingXIs.India).not.toBe(changedXI);
+});
+
+test("an invalid saved selection does not replace the format's default XI", () => {
+  const rememberedPlayingXIs = rememberPlayingXIs({}, {
+    India: getDefaultXI(squadCatalog, "India", "ODI_50").slice(0, 10),
+  });
+
+  expect(
+    getInitialPlayingXI(
+      squadCatalog,
+      "India",
+      "ODI_50",
+      rememberedPlayingXIs
+    )
+  ).toEqual(getDefaultXI(squadCatalog, "India", "ODI_50"));
 });

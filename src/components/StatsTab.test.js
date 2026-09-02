@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import StatsTab from "./StatsTab";
 
 const bowlingPlayer = (name, wickets, ballsBowled, runsConceded) => ({
@@ -34,4 +34,10 @@ test("bowling leaderboards enforce wicket and overs qualification", () => {
   expect(screen.getByText("Bowler B")).toBeInTheDocument();
   expect(screen.getByText("Bowler C")).toBeInTheDocument();
   expect(screen.queryByText("Bowler D")).not.toBeInTheDocument();
+
+  const economyTable = screen.getByRole("table", {
+    name: "economy leaderboard",
+  });
+  expect(within(economyTable).getByText("Wkts")).toBeInTheDocument();
+  expect(within(economyTable).getByText("6")).toBeInTheDocument();
 });

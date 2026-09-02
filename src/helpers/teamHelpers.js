@@ -73,6 +73,29 @@ export const getSquad = (teamData, teamName, format = "ODI_50") => {
 export const getDefaultXI = (teamData, teamName, format = "ODI_50") =>
   getSquad(teamData, teamName, format).slice(0, 11);
 
+export const getInitialPlayingXI = (
+  teamData,
+  teamName,
+  format = "ODI_50",
+  rememberedPlayingXIs = {}
+) => {
+  const rememberedXI = rememberedPlayingXIs[teamName];
+  return Array.isArray(rememberedXI) && rememberedXI.length === 11
+    ? [...rememberedXI]
+    : getDefaultXI(teamData, teamName, format);
+};
+
+export const rememberPlayingXIs = (
+  rememberedPlayingXIs = {},
+  playingXIs = {}
+) =>
+  Object.entries(playingXIs).reduce((nextPlayingXIs, [team, playingXI]) => {
+    if (Array.isArray(playingXI) && playingXI.length === 11) {
+      nextPlayingXIs[team] = [...playingXI];
+    }
+    return nextPlayingXIs;
+  }, { ...rememberedPlayingXIs });
+
 export const getPlayerName = (player) =>
   typeof player === "string" ? player : player?.name || "Player";
 

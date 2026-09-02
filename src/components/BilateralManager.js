@@ -6,6 +6,7 @@ import MatchComponent from "./MatchComponent";
 import MatchSetup from "./MatchSetup";
 import { Button } from "@material-ui/core";
 import { getMatchResult } from "../helpers/matchResultHelper";
+import { rememberPlayingXIs } from "../helpers/teamHelpers";
 
 function BilateralManager({
   config,
@@ -19,6 +20,7 @@ function BilateralManager({
   const [matchResults, setMatchResults] = useState([]);
   const [matchSetupPending, setMatchSetupPending] = useState(true);
   const [currentPitchType, setCurrentPitchType] = useState("Normal");
+  const [savedPlayingXIs, setSavedPlayingXIs] = useState({});
 
   useEffect(() => {
     // Don't auto-start, wait for match setup
@@ -58,6 +60,9 @@ function BilateralManager({
 
   const handleMatchStart = (matchConfig) => {
     const { pitchType, battingFirst, playingXIs } = matchConfig;
+    setSavedPlayingXIs((currentPlayingXIs) =>
+      rememberPlayingXIs(currentPlayingXIs, playingXIs)
+    );
 
     // Determine team order based on toss
     const team1 = battingFirst;
@@ -120,6 +125,7 @@ function BilateralManager({
             format: config.format,
           }}
           onStartMatch={handleMatchStart}
+          initialPlayingXIs={savedPlayingXIs}
         />
       </div>
     );

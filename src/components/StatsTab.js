@@ -236,7 +236,10 @@ function StatsTab({ playerStats = [] }) {
           <h3 style={{ textAlign: "center" }}>
             Top 5 Economy Rates (min 5 overs)
           </h3>
-          <Table style={{ backgroundColor: "#1e1e1e" }}>
+          <Table
+            aria-label="economy leaderboard"
+            style={{ backgroundColor: "#1e1e1e" }}
+          >
             <TableHead>
               <TableRow>
                 <TableCell style={{ color: "whitesmoke", fontWeight: "bold" }}>
@@ -250,6 +253,9 @@ function StatsTab({ playerStats = [] }) {
                 </TableCell>
                 <TableCell style={{ color: "whitesmoke", fontWeight: "bold" }}>
                   Runs
+                </TableCell>
+                <TableCell style={{ color: "whitesmoke", fontWeight: "bold" }}>
+                  Wkts
                 </TableCell>
                 <TableCell style={{ color: "whitesmoke", fontWeight: "bold" }}>
                   Econ
@@ -273,6 +279,9 @@ function StatsTab({ playerStats = [] }) {
                       {player.runsConceded}
                     </TableCell>
                     <TableCell style={{ color: "whitesmoke" }}>
+                      {player.wickets || 0}
+                    </TableCell>
+                    <TableCell style={{ color: "whitesmoke" }}>
                       {getEconomy(player).toFixed(2)}
                     </TableCell>
                   </TableRow>
@@ -280,7 +289,7 @@ function StatsTab({ playerStats = [] }) {
               ) : (
                 <TableRow>
                   <TableCell
-                    colSpan={5}
+                    colSpan={6}
                     style={{ color: "#aaa", textAlign: "center" }}
                   >
                     No bowlers with 5+ overs yet

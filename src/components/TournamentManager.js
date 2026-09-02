@@ -16,6 +16,7 @@ import {
   generateSingleTableKnockouts,
   getTournamentGroup,
 } from "../helpers/tournamentFixtures";
+import { rememberPlayingXIs } from "../helpers/teamHelpers";
 
 function TournamentManager({
   config,
@@ -42,6 +43,7 @@ function TournamentManager({
   const [simulationQueue, setSimulationQueue] = useState([]);
   const [showTournamentSummary, setShowTournamentSummary] = useState(false);
   const [summaryTab, setSummaryTab] = useState(0);
+  const [savedPlayingXIs, setSavedPlayingXIs] = useState({});
 
   const getMatchKey = (stage, index) => `${stage}-${index}`;
   const currentStageCompletedMatches = matches.reduce((acc, match, index) => {
@@ -356,6 +358,9 @@ function TournamentManager({
   const handleMatchStart = (matchConfig) => {
     const { pitchType, battingFirst, playingXIs } = matchConfig;
     const match = currentMatchConfig;
+    setSavedPlayingXIs((currentPlayingXIs) =>
+      rememberPlayingXIs(currentPlayingXIs, playingXIs)
+    );
 
     // Determine team order based on toss
     const team1 = battingFirst;
@@ -408,7 +413,14 @@ function TournamentManager({
     // Keep fixtures view open to show progress
 
     // Start the match
-    pickTeamDispatch(team1, team2, config.overs, config.format);
+    pickTeamDispatch(
+      team1,
+      team2,
+      config.overs,
+      config.format,
+      savedPlayingXIs[team1],
+      savedPlayingXIs[team2]
+    );
 
     setCurrentMatchConfig({
       ...match,
@@ -827,6 +839,7 @@ function TournamentManager({
         <MatchSetup
           match={{ ...currentMatchConfig, format: config.format }}
           onStartMatch={handleMatchStart}
+          initialPlayingXIs={savedPlayingXIs}
         />
       </div>
     );
