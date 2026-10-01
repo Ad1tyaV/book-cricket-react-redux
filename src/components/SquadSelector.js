@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Button, IconButton, Paper, Radio, Tooltip } from "@material-ui/core";
 import {
   ArrowDownward,
@@ -40,15 +40,26 @@ function SquadSelector({
   const [expanded, setExpanded] = useState(false);
   const [selectedXIPlayerId, setSelectedXIPlayerId] = useState("");
   const [selectedReserveId, setSelectedReserveId] = useState("");
+  const selectionContext = useRef({ team, format });
 
   useEffect(() => {
-    const defaultXI = getDefaultXI(teamData, team, format);
-    setSelected(defaultXI);
+    const sameSelectionContext =
+      selectionContext.current.team === team &&
+      selectionContext.current.format === format;
+    const squadIds = new Set(squad.map((player) => player.id));
+    const nextXI =
+      sameSelectionContext &&
+      value?.length === 11 &&
+      value.every((player) => squadIds.has(player.id))
+        ? [...value]
+        : getDefaultXI(teamData, team, format);
+    selectionContext.current = { team, format };
+    setSelected(nextXI);
     setSelectedXIPlayerId("");
     setSelectedReserveId("");
     setExpanded(false);
-    onChange(defaultXI);
-    // onChange is intentionally omitted: parent render callbacks should not
+    onChange(nextXI);
+    // value and onChange are intentionally omitted: parent render callbacks should not
     // reset a carefully arranged batting order.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [team, teamData, format]);
@@ -111,7 +122,7 @@ function SquadSelector({
             textAlign: "center",
           }}
         >
-          Default XI · BAT {strengths.batting} · ATK {strengths.attacking} ·
+          Selected XI · BAT {strengths.batting} · ATK {strengths.attacking} ·
           BOWL {strengths.bowling}
         </div>
       )}

@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import SquadSelector from "./SquadSelector";
 import squadCatalog from "../data/cric-vfinal.json";
-import { getDefaultXI } from "../helpers/teamHelpers";
+import { getDefaultXI, getSquad } from "../helpers/teamHelpers";
 
 test("squad editor stays collapsed and swaps an XI player with a reserve", () => {
   const onChange = jest.fn();
@@ -31,4 +31,50 @@ test("squad editor stays collapsed and swaps an XI player with a reserve", () =>
   expect(screen.getByLabelText("Move Harshit Rana down")).toBeInTheDocument();
   expect(onChange.mock.calls.at(-1)[0]).toHaveLength(11);
   expect(onChange.mock.calls.at(-1)[0][0].name).toBe("Harshit Rana");
+});
+
+test("opening the editor preserves a saved reserve swap and batting order", () => {
+  const onChange = jest.fn();
+  const savedXI = getDefaultXI(squadCatalog, "India", "ODI_50").reverse();
+  savedXI[0] = getSquad(squadCatalog, "India", "ODI_50")[11];
+  render(
+    <SquadSelector
+      team="India"
+      teamData={squadCatalog}
+      format="ODI_50"
+      value={savedXI}
+      onChange={onChange}
+    />
+  );
+
+  expect(onChange).toHaveBeenLastCalledWith(savedXI);
+  fireEvent.click(screen.getByRole("button", { name: "Change India XI" }));
+  expect(
+    screen.getByRole("button", { name: `Move ${savedXI[0].name} up` })
+  ).toBeDisabled();
+  expect(
+    screen.getByLabelText(`Select ${savedXI[0].name} to swap out`)
+  ).toBeInTheDocument();
+});
+
+test("changing teams or formats resets the selection to the correct default XI", () => {
+  const onChange = jest.fn();
+  const props = {
+    team: "India",
+    teamData: squadCatalog,
+    format: "ODI_50",
+    value: getDefaultXI(squadCatalog, "India", "ODI_50").reverse(),
+    onChange,
+  };
+  const { rerender } = render(<SquadSelector {...props} />);
+
+  rerender(<SquadSelector {...props} team="Australia" />);
+  expect(onChange).toHaveBeenLastCalledWith(
+    getDefaultXI(squadCatalog, "Australia", "ODI_50")
+  );
+
+  rerender(<SquadSelector {...props} team="Australia" format="T20" />);
+  expect(onChange).toHaveBeenLastCalledWith(
+    getDefaultXI(squadCatalog, "Australia", "T20")
+  );
 });

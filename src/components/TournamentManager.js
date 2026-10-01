@@ -837,6 +837,7 @@ function TournamentManager({
           </p>
         </div>
         <MatchSetup
+          key={getMatchKey(currentStage, currentMatchIndex)}
           match={{ ...currentMatchConfig, format: config.format }}
           onStartMatch={handleMatchStart}
           initialPlayingXIs={savedPlayingXIs}
