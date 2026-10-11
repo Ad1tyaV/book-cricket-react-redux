@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/book-cricket-react-redux/static/css/main.2ae47eeb.chunk.css",
-    "main.js": "/book-cricket-react-redux/static/js/main.fea11624.chunk.js",
-    "main.js.map": "/book-cricket-react-redux/static/js/main.fea11624.chunk.js.map",
+    "main.js": "/book-cricket-react-redux/static/js/main.f6fc3c07.chunk.js",
+    "main.js.map": "/book-cricket-react-redux/static/js/main.f6fc3c07.chunk.js.map",
     "runtime-main.js": "/book-cricket-react-redux/static/js/runtime-main.33be0a44.js",
     "runtime-main.js.map": "/book-cricket-react-redux/static/js/runtime-main.33be0a44.js.map",
-    "static/js/2.9c6e0736.chunk.js": "/book-cricket-react-redux/static/js/2.9c6e0736.chunk.js",
-    "static/js/2.9c6e0736.chunk.js.map": "/book-cricket-react-redux/static/js/2.9c6e0736.chunk.js.map",
+    "static/js/2.28655537.chunk.js": "/book-cricket-react-redux/static/js/2.28655537.chunk.js",
+    "static/js/2.28655537.chunk.js.map": "/book-cricket-react-redux/static/js/2.28655537.chunk.js.map",
     "static/js/3.b932f20c.chunk.js": "/book-cricket-react-redux/static/js/3.b932f20c.chunk.js",
     "static/js/3.b932f20c.chunk.js.map": "/book-cricket-react-redux/static/js/3.b932f20c.chunk.js.map",
     "index.html": "/book-cricket-react-redux/index.html",
     "static/css/main.2ae47eeb.chunk.css.map": "/book-cricket-react-redux/static/css/main.2ae47eeb.chunk.css.map",
-    "static/js/2.9c6e0736.chunk.js.LICENSE.txt": "/book-cricket-react-redux/static/js/2.9c6e0736.chunk.js.LICENSE.txt"
+    "static/js/2.28655537.chunk.js.LICENSE.txt": "/book-cricket-react-redux/static/js/2.28655537.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.33be0a44.js",
-    "static/js/2.9c6e0736.chunk.js",
+    "static/js/2.28655537.chunk.js",
     "static/css/main.2ae47eeb.chunk.css",
-    "static/js/main.fea11624.chunk.js"
+    "static/js/main.f6fc3c07.chunk.js"
   ]
 }
