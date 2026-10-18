@@ -34,3 +34,28 @@ test("keeps the bundled fallback when the live catalog is unavailable", async ()
 
   expect(dispatch).not.toHaveBeenCalled();
 });
+
+test("an older live catalog retains the bundled 40-over pools and ratings", async () => {
+  const legacy = JSON.parse(JSON.stringify(squadCatalog));
+  delete legacy.formats.ODI_40;
+  Object.values(legacy.players).forEach(
+    (player) => delete player.ratingsByFormat
+  );
+  delete legacy.players["bd-litton-das"];
+  global.fetch = jest
+    .fn()
+    .mockResolvedValue({ ok: true, json: async () => legacy });
+  const dispatch = jest.fn();
+  await loadSquadCatalog()(dispatch);
+  const catalog = dispatch.mock.calls[0][0].payload;
+  expect(catalog.formats.ODI_40.Bangladesh).toEqual(
+    squadCatalog.formats.ODI_40.Bangladesh
+  );
+  expect(catalog.formats.ODI).toEqual(legacy.formats.ODI);
+  expect(catalog.players["bd-litton-das"]).toEqual(
+    squadCatalog.players["bd-litton-das"]
+  );
+  expect(
+    catalog.players["nz-rachin-ravindra"].ratingsByFormat.ODI_40.bowling
+  ).toBe(64);
+});

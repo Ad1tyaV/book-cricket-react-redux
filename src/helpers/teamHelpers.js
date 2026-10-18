@@ -29,7 +29,7 @@ export const normalizePlayer = (player, index = 0, teamName = "team") => {
 };
 
 export const getSquadFormat = (format = "ODI_50") =>
-  format === "T20" ? "T20" : "ODI";
+  format === "T20" ? "T20" : format === "ODI_40" ? "ODI_40" : "ODI";
 
 export const isSquadCatalog = (teamData) =>
   Boolean(
@@ -42,7 +42,8 @@ export const isSquadCatalog = (teamData) =>
 
 export const getSquad = (teamData, teamName, format = "ODI_50") => {
   if (isSquadCatalog(teamData)) {
-    const formatSquads = teamData.formats[getSquadFormat(format)];
+    const formatSquads =
+      teamData.formats[getSquadFormat(format)] || teamData.formats.ODI;
     const teamSelection = formatSquads?.[teamName];
     if (!teamSelection) return [];
 
@@ -50,7 +51,11 @@ export const getSquad = (teamData, teamName, format = "ODI_50") => {
       .map((playerId, index) => {
         const player = teamData.players[playerId];
         return player
-          ? normalizePlayer({ ...player, id: playerId }, index, teamName)
+          ? normalizePlayer(
+              { ...player, ...player.ratingsByFormat?.[format], id: playerId },
+              index,
+              teamName
+            )
           : null;
       })
       .filter(Boolean);
@@ -89,12 +94,15 @@ export const rememberPlayingXIs = (
   rememberedPlayingXIs = {},
   playingXIs = {}
 ) =>
-  Object.entries(playingXIs).reduce((nextPlayingXIs, [team, playingXI]) => {
-    if (Array.isArray(playingXI) && playingXI.length === 11) {
-      nextPlayingXIs[team] = [...playingXI];
-    }
-    return nextPlayingXIs;
-  }, { ...rememberedPlayingXIs });
+  Object.entries(playingXIs).reduce(
+    (nextPlayingXIs, [team, playingXI]) => {
+      if (Array.isArray(playingXI) && playingXI.length === 11) {
+        nextPlayingXIs[team] = [...playingXI];
+      }
+      return nextPlayingXIs;
+    },
+    { ...rememberedPlayingXIs }
+  );
 
 export const getPlayerName = (player) =>
   typeof player === "string" ? player : player?.name || "Player";
@@ -137,4 +145,13 @@ export const getTeamStrengths = (playingXI = []) => {
     attacking: Math.round(attacking),
     bowling: Math.round(getBowlingStrength(playingXI)),
   };
+};
+
+export const getAvailableTeams = (teamData, format = "ODI_50") => {
+  if (isSquadCatalog(teamData)) {
+    return Object.keys(
+      teamData.formats[getSquadFormat(format)] || teamData.formats.ODI
+    );
+  }
+  return Object.keys(teamData || {});
 };

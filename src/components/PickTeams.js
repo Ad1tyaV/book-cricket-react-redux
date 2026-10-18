@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react";
+import { getAvailableTeams } from "../helpers/teamHelpers";
+import React, { useState, useEffect } from "react";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -37,17 +38,17 @@ function PickTeams(props) {
   const selectedFormat =
     oversOptions.find((option) => option.value === selectedOvers)?.format ||
     "ODI_50";
-  const teams = useRef([
-    "India",
-    "Pakistan",
-    "Australia",
-    "England",
-    "SouthAfrica",
-    "NewZealand",
-    "WestIndies",
-    "SriLanka",
-    "Afghanistan",
-  ]);
+  const teams = getAvailableTeams(props.teamData, selectedFormat);
+  useEffect(() => {
+    const available = getAvailableTeams(props.teamData, selectedFormat);
+    if (!available.includes(firstTeam))
+      setFirstTeam(available.find((team) => team !== secondTeam) || "India");
+    if (!available.includes(secondTeam)) {
+      setSecondTeam(
+        available.find((team) => team !== firstTeam) || "NewZealand"
+      );
+    }
+  }, [props.teamData, selectedFormat, firstTeam, secondTeam]);
   const handleChangeFirstTeam = (event) => {
     setFirstTeam(event.target.value);
   };
@@ -110,7 +111,8 @@ function PickTeams(props) {
   if (gameMode === "tournament") {
     return (
       <TournamentSetup
-        teams={teams.current}
+        teams={teams}
+        teamData={props.teamData}
         onStartTournament={handleStartTournament}
         onBack={() => setGameMode(null)}
       />
@@ -121,7 +123,8 @@ function PickTeams(props) {
   if (gameMode === "bilateral") {
     return (
       <BilateralSetup
-        teams={teams.current}
+        teams={teams}
+        teamData={props.teamData}
         onStartSeries={handleStartSeries}
         onBack={() => setGameMode(null)}
       />
@@ -155,12 +158,12 @@ function PickTeams(props) {
               open={openTeam1}
               onClose={handleClose}
               onOpen={handleOpen}
-              value={firstTeam}
+              value={teams.includes(firstTeam) ? firstTeam : ""}
               onChange={handleChangeFirstTeam}
               style={{ color: "whitesmoke" }}
               key={firstTeam}
             >
-              {teams.current.map((team) =>
+              {teams.map((team) =>
                 team !== secondTeam ? (
                   <MenuItem value={team} key={team}>
                     {team}
@@ -191,12 +194,12 @@ function PickTeams(props) {
               open={openTeam2}
               onClose={handleClose2}
               onOpen={handleOpen2}
-              value={secondTeam}
+              value={teams.includes(secondTeam) ? secondTeam : ""}
               onChange={handleChangeSecondTeam}
               style={{ color: "whitesmoke" }}
               key={secondTeam}
             >
-              {teams.current.map((team) =>
+              {teams.map((team) =>
                 team !== firstTeam ? (
                   <MenuItem value={team} key={team}>
                     {team}
@@ -295,9 +298,7 @@ function PickTeams(props) {
             <Button
               variant="contained"
               color="primary"
-              disabled={
-                firstTeamXI.length !== 11 || secondTeamXI.length !== 11
-              }
+              disabled={firstTeamXI.length !== 11 || secondTeamXI.length !== 11}
               onClick={() => {
                 props.pickTeamDispatch(
                   firstTeam,
@@ -346,14 +347,7 @@ const mapDispatchToProps = (dispatch) => {
       team2PlayingXI
     ) =>
       dispatch(
-        pickTeams(
-          team1,
-          team2,
-          overs,
-          format,
-          team1PlayingXI,
-          team2PlayingXI
-        )
+        pickTeams(team1, team2, overs, format, team1PlayingXI, team2PlayingXI)
       ),
   };
 };

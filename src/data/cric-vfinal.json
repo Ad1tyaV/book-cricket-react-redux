@@ -13,231 +13,495 @@
       "role": "Batter",
       "batting": 84,
       "attacking": 91,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 80,
+          "attacking": 93,
+          "bowling": 45
+        }
+      }
     },
     "ind-ishan-kishan": {
       "name": "Ishan Kishan",
       "role": "Wicketkeeper",
       "batting": 85,
       "attacking": 92,
-      "bowling": 5
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 85,
+          "attacking": 92,
+          "bowling": 5
+        }
+      }
     },
     "ind-sanju-samson": {
       "name": "Sanju Samson",
       "role": "Wicketkeeper",
       "batting": 84,
       "attacking": 91,
-      "bowling": 5
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 84,
+          "attacking": 91,
+          "bowling": 5
+        }
+      }
     },
     "ind-iyer": {
       "name": "Shreyas Iyer",
       "role": "Batter",
       "batting": 84,
       "attacking": 85,
-      "bowling": 24
+      "bowling": 24,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 88,
+          "attacking": 86,
+          "bowling": 15
+        }
+      }
     },
     "ind-tilak-varma": {
       "name": "Tilak Varma",
       "role": "Batter",
       "batting": 80,
       "attacking": 87,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 81,
+          "attacking": 85,
+          "bowling": 35
+        }
+      }
     },
     "ind-nitish-kumar-reddy": {
       "name": "Nitish Kumar Reddy",
       "role": "All-rounder",
       "batting": 75,
       "attacking": 84,
-      "bowling": 78
+      "bowling": 78,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 75,
+          "attacking": 84,
+          "bowling": 70
+        }
+      }
     },
     "ind-sundar": {
       "name": "Washington Sundar",
       "role": "All-rounder",
       "batting": 73,
       "attacking": 76,
-      "bowling": 80
+      "bowling": 80,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 74,
+          "attacking": 88,
+          "bowling": 81
+        }
+      }
     },
     "ind-axar": {
       "name": "Axar Patel",
       "role": "All-rounder",
       "batting": 78,
       "attacking": 81,
-      "bowling": 86
+      "bowling": 86,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 77,
+          "attacking": 89,
+          "bowling": 85
+        }
+      }
     },
     "ind-harshit-rana": {
       "name": "Harshit Rana",
       "role": "Bowler",
       "batting": 30,
       "attacking": 26,
-      "bowling": 85
+      "bowling": 85,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 30,
+          "attacking": 32,
+          "bowling": 83
+        }
+      }
     },
     "ind-ravi-bishnoi": {
       "name": "Ravi Bishnoi",
       "role": "Bowler",
       "batting": 29,
       "attacking": 25,
-      "bowling": 86
+      "bowling": 86,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 24,
+          "attacking": 23,
+          "bowling": 82
+        }
+      }
     },
     "ind-arshdeep": {
       "name": "Arshdeep Singh",
       "role": "Bowler",
       "batting": 20,
       "attacking": 20,
-      "bowling": 86
+      "bowling": 86,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 20,
+          "attacking": 20,
+          "bowling": 86
+        }
+      }
     },
     "ind-prasidh-krishna": {
       "name": "Prasidh Krishna",
       "role": "Bowler",
       "batting": 27,
       "attacking": 23,
-      "bowling": 88
+      "bowling": 88,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 22,
+          "attacking": 20,
+          "bowling": 84
+        }
+      }
     },
     "ind-hardik": {
       "name": "Hardik Pandya",
       "role": "All-rounder",
       "batting": 83,
       "attacking": 94,
-      "bowling": 82
+      "bowling": 82,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 83,
+          "attacking": 94,
+          "bowling": 82
+        }
+      }
     },
     "ind-rinku-singh": {
       "name": "Rinku Singh",
       "role": "Batter",
       "batting": 80,
       "attacking": 87,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 77,
+          "attacking": 86,
+          "bowling": 12
+        }
+      }
     },
     "ind-bumrah": {
       "name": "Jasprit Bumrah",
       "role": "Bowler",
       "batting": 24,
       "attacking": 20,
-      "bowling": 97
+      "bowling": 97,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 24,
+          "attacking": 20,
+          "bowling": 97
+        }
+      }
     },
     "pak-saim": {
       "name": "Saim Ayub",
       "role": "All-rounder",
       "batting": 83,
       "attacking": 91,
-      "bowling": 45
+      "bowling": 45,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 85,
+          "attacking": 89,
+          "bowling": 48
+        }
+      }
     },
     "pak-babar": {
       "name": "Babar Azam",
       "role": "Batter",
       "batting": 93,
       "attacking": 82,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 90,
+          "attacking": 82,
+          "bowling": 8
+        }
+      }
     },
     "pak-fakhar": {
       "name": "Fakhar Zaman",
       "role": "Batter",
       "batting": 85,
       "attacking": 95,
-      "bowling": 12
+      "bowling": 12,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 85,
+          "attacking": 92,
+          "bowling": 12
+        }
+      }
     },
     "pak-sahibzada-farhan": {
       "name": "Sahibzada Farhan",
       "role": "Batter",
       "batting": 81,
       "attacking": 88,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 81,
+          "attacking": 88,
+          "bowling": 8
+        }
+      }
     },
     "pak-salman": {
       "name": "Salman Ali Agha",
       "role": "All-rounder",
       "batting": 79,
       "attacking": 82,
-      "bowling": 70
+      "bowling": 70,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 81,
+          "attacking": 83,
+          "bowling": 70
+        }
+      }
     },
     "pak-khawaja-nafay": {
       "name": "Khawaja Nafay",
       "role": "Batter",
       "batting": 80,
       "attacking": 87,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 73,
+          "attacking": 87,
+          "bowling": 5
+        }
+      }
     },
     "pak-nawaz": {
       "name": "Mohammad Nawaz",
       "role": "All-rounder",
       "batting": 69,
       "attacking": 72,
-      "bowling": 82
+      "bowling": 82,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 69,
+          "attacking": 72,
+          "bowling": 82
+        }
+      }
     },
     "pak-faheem": {
       "name": "Faheem Ashraf",
       "role": "All-rounder",
       "batting": 67,
       "attacking": 70,
-      "bowling": 79
+      "bowling": 79,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 67,
+          "attacking": 70,
+          "bowling": 79
+        }
+      }
     },
     "pak-shaheen": {
       "name": "Shaheen Shah Afridi",
       "role": "Bowler",
       "batting": 36,
       "attacking": 30,
-      "bowling": 93
+      "bowling": 93,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 36,
+          "attacking": 55,
+          "bowling": 92
+        }
+      }
     },
     "pak-naseem": {
       "name": "Naseem Shah",
       "role": "Bowler",
       "batting": 27,
       "attacking": 21,
-      "bowling": 90
+      "bowling": 90,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 25,
+          "attacking": 30,
+          "bowling": 89
+        }
+      }
     },
     "pak-abrar": {
       "name": "Abrar Ahmed",
       "role": "Bowler",
       "batting": 25,
       "attacking": 20,
-      "bowling": 85
+      "bowling": 85,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 25,
+          "attacking": 20,
+          "bowling": 85
+        }
+      }
     },
     "pak-mohammad-salman-mirza": {
       "name": "Mohammad Salman Mirza",
       "role": "Bowler",
       "batting": 27,
       "attacking": 23,
-      "bowling": 88
+      "bowling": 88,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 22,
+          "attacking": 20,
+          "bowling": 80
+        }
+      }
     },
     "pak-rizwan": {
       "name": "Mohammad Rizwan",
       "role": "Wicketkeeper",
       "batting": 88,
       "attacking": 93,
-      "bowling": 5
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 86,
+          "attacking": 82,
+          "bowling": 5
+        }
+      }
     },
     "pak-iftikhar": {
       "name": "Iftikhar Ahmed",
       "role": "All-rounder",
       "batting": 77,
       "attacking": 80,
-      "bowling": 67
+      "bowling": 67,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 77,
+          "attacking": 90,
+          "bowling": 67
+        }
+      }
     },
     "pak-rauf": {
       "name": "Haris Rauf",
       "role": "Bowler",
       "batting": 22,
       "attacking": 20,
-      "bowling": 88
+      "bowling": 88,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 22,
+          "attacking": 20,
+          "bowling": 88
+        }
+      }
     },
     "aus-head": {
       "name": "Travis Head",
       "role": "Batter",
       "batting": 91,
       "attacking": 98,
-      "bowling": 45
+      "bowling": 45,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 93,
+          "attacking": 96,
+          "bowling": 48
+        }
+      }
     },
     "aus-inglis": {
       "name": "Josh Inglis",
       "role": "Wicketkeeper",
       "batting": 82,
       "attacking": 91,
-      "bowling": 5
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 82,
+          "attacking": 91,
+          "bowling": 5
+        }
+      }
     },
     "aus-marsh": {
       "name": "Mitchell Marsh",
       "role": "All-rounder",
       "batting": 86,
       "attacking": 93,
-      "bowling": 70
+      "bowling": 70,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 86,
+          "attacking": 90,
+          "bowling": 58
+        }
+      }
     },
     "aus-maxwell": {
       "name": "Glenn Maxwell",
@@ -251,63 +515,135 @@
       "role": "All-rounder",
       "batting": 83,
       "attacking": 86,
-      "bowling": 81
+      "bowling": 81,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 83,
+          "attacking": 86,
+          "bowling": 81
+        }
+      }
     },
     "aus-tim-david": {
       "name": "Tim David",
       "role": "Batter",
       "batting": 80,
       "attacking": 87,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 78,
+          "attacking": 96,
+          "bowling": 8
+        }
+      }
     },
     "aus-connolly": {
       "name": "Cooper Connolly",
       "role": "All-rounder",
       "batting": 72,
       "attacking": 75,
-      "bowling": 68
+      "bowling": 68,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 72,
+          "attacking": 75,
+          "bowling": 68
+        }
+      }
     },
     "aus-pat-cummins": {
       "name": "Pat Cummins",
       "role": "Bowler",
       "batting": 31,
       "attacking": 27,
-      "bowling": 84
+      "bowling": 84,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 42,
+          "attacking": 52,
+          "bowling": 92
+        }
+      }
     },
     "aus-bartlett": {
       "name": "Xavier Bartlett",
       "role": "Bowler",
       "batting": 39,
       "attacking": 33,
-      "bowling": 84
+      "bowling": 84,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 35,
+          "attacking": 42,
+          "bowling": 85
+        }
+      }
     },
     "aus-ellis": {
       "name": "Nathan Ellis",
       "role": "Bowler",
       "batting": 29,
       "attacking": 23,
-      "bowling": 86
+      "bowling": 86,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 25,
+          "attacking": 25,
+          "bowling": 83
+        }
+      }
     },
     "aus-zampa": {
       "name": "Adam Zampa",
       "role": "Bowler",
       "batting": 31,
       "attacking": 25,
-      "bowling": 90
+      "bowling": 90,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 31,
+          "attacking": 25,
+          "bowling": 90
+        }
+      }
     },
     "aus-hazlewood": {
       "name": "Josh Hazlewood",
       "role": "Bowler",
       "batting": 25,
       "attacking": 20,
-      "bowling": 94
+      "bowling": 94,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 25,
+          "attacking": 20,
+          "bowling": 94
+        }
+      }
     },
     "aus-short": {
       "name": "Matthew Short",
       "role": "All-rounder",
       "batting": 81,
       "attacking": 84,
-      "bowling": 55
+      "bowling": 55,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 81,
+          "attacking": 85,
+          "bowling": 55
+        }
+      }
     },
     "aus-marcus-stoinis": {
       "name": "Marcus Stoinis",
@@ -321,105 +657,225 @@
       "role": "Bowler",
       "batting": 50,
       "attacking": 44,
-      "bowling": 94
+      "bowling": 94,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 42,
+          "attacking": 52,
+          "bowling": 95
+        }
+      }
     },
     "eng-buttler": {
       "name": "Jos Buttler",
       "role": "Wicketkeeper",
       "batting": 91,
       "attacking": 99,
-      "bowling": 5
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 86,
+          "attacking": 97,
+          "bowling": 5
+        }
+      }
     },
     "eng-jacks": {
       "name": "Will Jacks",
       "role": "All-rounder",
       "batting": 82,
       "attacking": 95,
-      "bowling": 68
+      "bowling": 68,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 79,
+          "attacking": 91,
+          "bowling": 62
+        }
+      }
     },
     "eng-tom-banton": {
       "name": "Tom Banton",
       "role": "Batter",
       "batting": 82,
       "attacking": 89,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 82,
+          "attacking": 89,
+          "bowling": 8
+        }
+      }
     },
     "eng-duckett": {
       "name": "Ben Duckett",
       "role": "Batter",
       "batting": 86,
       "attacking": 92,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 86,
+          "attacking": 92,
+          "bowling": 8
+        }
+      }
     },
     "eng-brook": {
       "name": "Harry Brook",
       "role": "Batter",
       "batting": 90,
       "attacking": 96,
-      "bowling": 18
+      "bowling": 18,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 90,
+          "attacking": 96,
+          "bowling": 18
+        }
+      }
     },
     "eng-bethell": {
       "name": "Jacob Bethell",
       "role": "All-rounder",
       "batting": 78,
       "attacking": 81,
-      "bowling": 65
+      "bowling": 65,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 78,
+          "attacking": 87,
+          "bowling": 61
+        }
+      }
     },
     "eng-curran": {
       "name": "Sam Curran",
       "role": "All-rounder",
       "batting": 76,
       "attacking": 79,
-      "bowling": 84
+      "bowling": 84,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 70,
+          "attacking": 82,
+          "bowling": 80
+        }
+      }
     },
     "eng-overton": {
       "name": "Jamie Overton",
       "role": "All-rounder",
       "batting": 66,
       "attacking": 69,
-      "bowling": 80
+      "bowling": 80,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 66,
+          "attacking": 85,
+          "bowling": 80
+        }
+      }
     },
     "eng-liam-dawson": {
       "name": "Liam Dawson",
       "role": "All-rounder",
       "batting": 75,
       "attacking": 84,
-      "bowling": 84
+      "bowling": 84,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 75,
+          "attacking": 84,
+          "bowling": 84
+        }
+      }
     },
     "eng-rehan": {
       "name": "Rehan Ahmed",
       "role": "All-rounder",
       "batting": 64,
       "attacking": 67,
-      "bowling": 77
+      "bowling": 77,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 64,
+          "attacking": 76,
+          "bowling": 77
+        }
+      }
     },
     "eng-archer": {
       "name": "Jofra Archer",
       "role": "Bowler",
       "batting": 45,
       "attacking": 39,
-      "bowling": 94
+      "bowling": 94,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 38,
+          "attacking": 58,
+          "bowling": 92
+        }
+      }
     },
     "eng-rashid": {
       "name": "Adil Rashid",
       "role": "Bowler",
       "batting": 42,
       "attacking": 36,
-      "bowling": 91
+      "bowling": 91,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 42,
+          "attacking": 36,
+          "bowling": 91
+        }
+      }
     },
     "eng-phil-salt": {
       "name": "Phil Salt",
       "role": "Wicketkeeper",
       "batting": 82,
       "attacking": 89,
-      "bowling": 5
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 82,
+          "attacking": 94,
+          "bowling": 5
+        }
+      }
     },
     "eng-liam-livingstone": {
       "name": "Liam Livingstone",
       "role": "All-rounder",
       "batting": 75,
       "attacking": 84,
-      "bowling": 86
+      "bowling": 86,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 76,
+          "attacking": 94,
+          "bowling": 65
+        }
+      }
     },
     "eng-wood": {
       "name": "Mark Wood",
@@ -433,84 +889,180 @@
       "role": "Wicketkeeper",
       "batting": 90,
       "attacking": 94,
-      "bowling": 5
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 90,
+          "attacking": 94,
+          "bowling": 5
+        }
+      }
     },
     "sa-dezorzi": {
       "name": "Tony de Zorzi",
       "role": "Batter",
       "batting": 81,
       "attacking": 82,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 81,
+          "attacking": 82,
+          "bowling": 8
+        }
+      }
     },
     "sa-dewald-brevis": {
       "name": "Dewald Brevis",
       "role": "Batter",
       "batting": 82,
       "attacking": 89,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 82,
+          "attacking": 89,
+          "bowling": 8
+        }
+      }
     },
     "sa-markram": {
       "name": "Aiden Markram",
       "role": "All-rounder",
       "batting": 87,
       "attacking": 90,
-      "bowling": 70
+      "bowling": 70,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 87,
+          "attacking": 90,
+          "bowling": 70
+        }
+      }
     },
     "sa-miller": {
       "name": "David Miller",
       "role": "Batter",
       "batting": 88,
       "attacking": 95,
-      "bowling": 5
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 88,
+          "attacking": 95,
+          "bowling": 5
+        }
+      }
     },
     "sa-donovan-ferreira": {
       "name": "Donovan Ferreira",
       "role": "All-rounder",
       "batting": 75,
       "attacking": 84,
-      "bowling": 78
+      "bowling": 78,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 72,
+          "attacking": 92,
+          "bowling": 52
+        }
+      }
     },
     "sa-jansen": {
       "name": "Marco Jansen",
       "role": "All-rounder",
       "batting": 69,
       "attacking": 72,
-      "bowling": 90
+      "bowling": 90,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 67,
+          "attacking": 80,
+          "bowling": 89
+        }
+      }
     },
     "sa-maharaj": {
       "name": "Keshav Maharaj",
       "role": "Bowler",
       "batting": 47,
       "attacking": 41,
-      "bowling": 91
+      "bowling": 91,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 37,
+          "attacking": 36,
+          "bowling": 91
+        }
+      }
     },
     "sa-rabada": {
       "name": "Kagiso Rabada",
       "role": "Bowler",
       "batting": 42,
       "attacking": 36,
-      "bowling": 95
+      "bowling": 95,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 32,
+          "attacking": 35,
+          "bowling": 93
+        }
+      }
     },
     "sa-kwena-maphaka": {
       "name": "Kwena Maphaka",
       "role": "Bowler",
       "batting": 29,
       "attacking": 25,
-      "bowling": 86
+      "bowling": 86,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 20,
+          "attacking": 20,
+          "bowling": 80
+        }
+      }
     },
     "sa-ngidi": {
       "name": "Lungi Ngidi",
       "role": "Bowler",
       "batting": 25,
       "attacking": 20,
-      "bowling": 87
+      "bowling": 87,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 25,
+          "attacking": 20,
+          "bowling": 87
+        }
+      }
     },
     "sa-anrich-nortje": {
       "name": "Anrich Nortje",
       "role": "Bowler",
       "batting": 27,
       "attacking": 23,
-      "bowling": 88
+      "bowling": 88,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 27,
+          "attacking": 23,
+          "bowling": 88
+        }
+      }
     },
     "sa-klaasen": {
       "name": "Heinrich Klaasen",
@@ -524,203 +1076,435 @@
       "role": "Wicketkeeper",
       "batting": 84,
       "attacking": 89,
-      "bowling": 5
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 84,
+          "attacking": 89,
+          "bowling": 5
+        }
+      }
     },
     "sa-tristan-stubbs": {
       "name": "Tristan Stubbs",
       "role": "Batter",
       "batting": 80,
       "attacking": 87,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 84,
+          "attacking": 90,
+          "bowling": 35
+        }
+      }
     },
     "nz-finn-allen": {
       "name": "Finn Allen",
       "role": "Batter",
       "batting": 84,
       "attacking": 91,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 84,
+          "attacking": 91,
+          "bowling": 8
+        }
+      }
     },
     "nz-conway": {
       "name": "Devon Conway",
       "role": "Wicketkeeper",
       "batting": 88,
       "attacking": 93,
-      "bowling": 5
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 86,
+          "attacking": 82,
+          "bowling": 5
+        }
+      }
     },
     "nz-mitchell": {
       "name": "Daryl Mitchell",
       "role": "All-rounder",
       "batting": 87,
       "attacking": 90,
-      "bowling": 60
+      "bowling": 60,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 93,
+          "attacking": 88,
+          "bowling": 42
+        }
+      }
     },
     "nz-phillips": {
       "name": "Glenn Phillips",
       "role": "All-rounder",
       "batting": 86,
       "attacking": 94,
-      "bowling": 72
+      "bowling": 72,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 86,
+          "attacking": 94,
+          "bowling": 72
+        }
+      }
     },
     "nz-mark-chapman": {
       "name": "Mark Chapman",
       "role": "Batter",
       "batting": 80,
       "attacking": 87,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 78,
+          "attacking": 85,
+          "bowling": 35
+        }
+      }
     },
     "nz-bracewell": {
       "name": "Michael Bracewell",
       "role": "All-rounder",
       "batting": 76,
       "attacking": 79,
-      "bowling": 78
+      "bowling": 78,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 75,
+          "attacking": 84,
+          "bowling": 81
+        }
+      }
     },
     "nz-neesham": {
       "name": "James Neesham",
       "role": "All-rounder",
       "batting": 80,
       "attacking": 91,
-      "bowling": 73
+      "bowling": 73,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 70,
+          "attacking": 88,
+          "bowling": 72
+        }
+      }
     },
     "nz-santner": {
       "name": "Mitchell Santner",
       "role": "All-rounder",
       "batting": 70,
       "attacking": 73,
-      "bowling": 88
+      "bowling": 88,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 70,
+          "attacking": 73,
+          "bowling": 88
+        }
+      }
     },
     "nz-henry": {
       "name": "Matt Henry",
       "role": "Bowler",
       "batting": 36,
       "attacking": 30,
-      "bowling": 92
+      "bowling": 92,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 36,
+          "attacking": 30,
+          "bowling": 92
+        }
+      }
     },
     "nz-ferguson": {
       "name": "Lockie Ferguson",
       "role": "Bowler",
       "batting": 28,
       "attacking": 22,
-      "bowling": 89
+      "bowling": 89,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 28,
+          "attacking": 22,
+          "bowling": 89
+        }
+      }
     },
     "nz-adam-milne": {
       "name": "Adam Milne",
       "role": "Bowler",
       "batting": 28,
       "attacking": 24,
-      "bowling": 87
+      "bowling": 87,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 28,
+          "attacking": 24,
+          "bowling": 87
+        }
+      }
     },
     "nz-jacob-duffy": {
       "name": "Jacob Duffy",
       "role": "Bowler",
       "batting": 27,
       "attacking": 23,
-      "bowling": 88
+      "bowling": 88,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 27,
+          "attacking": 23,
+          "bowling": 88
+        }
+      }
     },
     "nz-williamson": {
       "name": "Kane Williamson",
       "role": "Batter",
       "batting": 94,
       "attacking": 78,
-      "bowling": 25
+      "bowling": 25,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 94,
+          "attacking": 78,
+          "bowling": 25
+        }
+      }
     },
     "nz-rachin-ravindra": {
       "name": "Rachin Ravindra",
       "role": "All-rounder",
       "batting": 75,
       "attacking": 84,
-      "bowling": 86
+      "bowling": 86,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 87,
+          "attacking": 88,
+          "bowling": 64
+        }
+      }
     },
     "nz-ish-sodhi": {
       "name": "Ish Sodhi",
       "role": "Bowler",
       "batting": 24,
       "attacking": 20,
-      "bowling": 91
+      "bowling": 91,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 26,
+          "attacking": 26,
+          "bowling": 81
+        }
+      }
     },
     "wi-brandon-king": {
       "name": "Brandon King",
       "role": "Batter",
       "batting": 84,
       "attacking": 91,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 78,
+          "attacking": 84,
+          "bowling": 8
+        }
+      }
     },
     "wi-hope": {
       "name": "Shai Hope",
       "role": "Wicketkeeper",
       "batting": 89,
       "attacking": 79,
-      "bowling": 5
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 91,
+          "attacking": 83,
+          "bowling": 5
+        }
+      }
     },
     "wi-shimron-hetmyer": {
       "name": "Shimron Hetmyer",
       "role": "Batter",
       "batting": 82,
       "attacking": 89,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 82,
+          "attacking": 89,
+          "bowling": 8
+        }
+      }
     },
     "wi-powell": {
       "name": "Rovman Powell",
       "role": "Batter",
       "batting": 84,
       "attacking": 96,
-      "bowling": 20
+      "bowling": 20,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 75,
+          "attacking": 94,
+          "bowling": 20
+        }
+      }
     },
     "wi-rutherford": {
       "name": "Sherfane Rutherford",
       "role": "Batter",
       "batting": 84,
       "attacking": 94,
-      "bowling": 35
+      "bowling": 35,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 84,
+          "attacking": 94,
+          "bowling": 35
+        }
+      }
     },
     "wi-chase": {
       "name": "Roston Chase",
       "role": "All-rounder",
       "batting": 78,
       "attacking": 81,
-      "bowling": 77
+      "bowling": 77,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 78,
+          "attacking": 81,
+          "bowling": 77
+        }
+      }
     },
     "wi-shepherd": {
       "name": "Romario Shepherd",
       "role": "All-rounder",
       "batting": 74,
       "attacking": 77,
-      "bowling": 82
+      "bowling": 82,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 65,
+          "attacking": 90,
+          "bowling": 80
+        }
+      }
     },
     "wi-springer": {
       "name": "Shamar Springer",
       "role": "All-rounder",
       "batting": 59,
       "attacking": 62,
-      "bowling": 75
+      "bowling": 75,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 59,
+          "attacking": 62,
+          "bowling": 75
+        }
+      }
     },
     "wi-forde": {
       "name": "Matthew Forde",
       "role": "All-rounder",
       "batting": 58,
       "attacking": 61,
-      "bowling": 82
+      "bowling": 82,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 58,
+          "attacking": 61,
+          "bowling": 82
+        }
+      }
     },
     "wi-hosein": {
       "name": "Akeal Hosein",
       "role": "Bowler",
       "batting": 48,
       "attacking": 42,
-      "bowling": 88
+      "bowling": 88,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 48,
+          "attacking": 42,
+          "bowling": 88
+        }
+      }
     },
     "wi-gudakesh-motie": {
       "name": "Gudakesh Motie",
       "role": "Bowler",
       "batting": 28,
       "attacking": 24,
-      "bowling": 87
+      "bowling": 87,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 28,
+          "attacking": 24,
+          "bowling": 87
+        }
+      }
     },
     "wi-shamar-joseph": {
       "name": "Shamar Joseph",
       "role": "Bowler",
       "batting": 27,
       "attacking": 23,
-      "bowling": 88
+      "bowling": 88,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 24,
+          "attacking": 28,
+          "bowling": 82
+        }
+      }
     },
     "wi-pooran": {
       "name": "Nicholas Pooran",
@@ -741,105 +1525,225 @@
       "role": "All-rounder",
       "batting": 75,
       "attacking": 84,
-      "bowling": 86
+      "bowling": 86,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 68,
+          "attacking": 75,
+          "bowling": 82
+        }
+      }
     },
     "sl-nissanka": {
       "name": "Pathum Nissanka",
       "role": "Batter",
       "batting": 88,
       "attacking": 89,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 88,
+          "attacking": 89,
+          "bowling": 8
+        }
+      }
     },
     "sl-mendis": {
       "name": "Kusal Mendis",
       "role": "Wicketkeeper",
       "batting": 86,
       "attacking": 91,
-      "bowling": 5
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 86,
+          "attacking": 91,
+          "bowling": 5
+        }
+      }
     },
     "sl-lasith-croospulle": {
       "name": "Lasith Croospulle",
       "role": "Batter",
       "batting": 82,
       "attacking": 89,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 72,
+          "attacking": 84,
+          "bowling": 8
+        }
+      }
     },
     "sl-kamil-mishara": {
       "name": "Kamil Mishara",
       "role": "Batter",
       "batting": 81,
       "attacking": 88,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 76,
+          "attacking": 80,
+          "bowling": 8
+        }
+      }
     },
     "sl-kamindu": {
       "name": "Kamindu Mendis",
       "role": "All-rounder",
       "batting": 85,
       "attacking": 88,
-      "bowling": 68
+      "bowling": 68,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 81,
+          "attacking": 83,
+          "bowling": 55
+        }
+      }
     },
     "sl-pavan-rathnayake": {
       "name": "Pavan Rathnayake",
       "role": "Batter",
       "batting": 80,
       "attacking": 87,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 77,
+          "attacking": 82,
+          "bowling": 8
+        }
+      }
     },
     "sl-dasun-shanaka": {
       "name": "Dasun Shanaka",
       "role": "All-rounder",
       "batting": 75,
       "attacking": 84,
-      "bowling": 80
+      "bowling": 80,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 70,
+          "attacking": 87,
+          "bowling": 64
+        }
+      }
     },
     "sl-hasaranga": {
       "name": "Wanindu Hasaranga",
       "role": "All-rounder",
       "batting": 75,
       "attacking": 88,
-      "bowling": 92
+      "bowling": 92,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 75,
+          "attacking": 88,
+          "bowling": 92
+        }
+      }
     },
     "sl-dunith-wellalage": {
       "name": "Dunith Wellalage",
       "role": "All-rounder",
       "batting": 75,
       "attacking": 84,
-      "bowling": 84
+      "bowling": 84,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 75,
+          "attacking": 84,
+          "bowling": 84
+        }
+      }
     },
     "sl-milan-rathnayake": {
       "name": "Milan Rathnayake",
       "role": "Bowler",
       "batting": 29,
       "attacking": 25,
-      "bowling": 86
+      "bowling": 86,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 52,
+          "attacking": 60,
+          "bowling": 77
+        }
+      }
     },
     "sl-theekshana": {
       "name": "Maheesh Theekshana",
       "role": "Bowler",
       "batting": 40,
       "attacking": 34,
-      "bowling": 89
+      "bowling": 89,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 40,
+          "attacking": 34,
+          "bowling": 89
+        }
+      }
     },
     "sl-chameera": {
       "name": "Dushmantha Chameera",
       "role": "Bowler",
       "batting": 29,
       "attacking": 23,
-      "bowling": 87
+      "bowling": 87,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 29,
+          "attacking": 23,
+          "bowling": 87
+        }
+      }
     },
     "sl-asalanka": {
       "name": "Charith Asalanka",
       "role": "All-rounder",
       "batting": 87,
       "attacking": 90,
-      "bowling": 62
+      "bowling": 62,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 87,
+          "attacking": 88,
+          "bowling": 58
+        }
+      }
     },
     "sl-pathirana": {
       "name": "Matheesha Pathirana",
       "role": "Bowler",
       "batting": 20,
       "attacking": 20,
-      "bowling": 90
+      "bowling": 90,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 18,
+          "attacking": 18,
+          "bowling": 84
+        }
+      }
     },
     "sl-angelo-mathews": {
       "name": "Angelo Mathews",
@@ -853,196 +1757,420 @@
       "role": "Wicketkeeper",
       "batting": 87,
       "attacking": 96,
-      "bowling": 5
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 87,
+          "attacking": 96,
+          "bowling": 5
+        }
+      }
     },
     "afg-sediqullah-atal": {
       "name": "Sediqullah Atal",
       "role": "Batter",
       "batting": 83,
       "attacking": 90,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 78,
+          "attacking": 83,
+          "bowling": 8
+        }
+      }
     },
     "afg-mohammad-ishaq": {
       "name": "Mohammad Ishaq",
       "role": "Wicketkeeper",
       "batting": 84,
       "attacking": 91,
-      "bowling": 5
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 71,
+          "attacking": 81,
+          "bowling": 5
+        }
+      }
     },
     "afg-omarzai": {
       "name": "Azmatullah Omarzai",
       "role": "All-rounder",
       "batting": 82,
       "attacking": 85,
-      "bowling": 84
+      "bowling": 84,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 82,
+          "attacking": 85,
+          "bowling": 84
+        }
+      }
     },
     "afg-shahidullah-kamal": {
       "name": "Shahidullah Kamal",
       "role": "Batter",
       "batting": 80,
       "attacking": 87,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 72,
+          "attacking": 77,
+          "bowling": 55
+        }
+      }
     },
     "afg-naib": {
       "name": "Gulbadin Naib",
       "role": "All-rounder",
       "batting": 75,
       "attacking": 78,
-      "bowling": 73
+      "bowling": 73,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 69,
+          "attacking": 81,
+          "bowling": 70
+        }
+      }
     },
     "afg-nabi": {
       "name": "Mohammad Nabi",
       "role": "All-rounder",
       "batting": 80,
       "attacking": 83,
-      "bowling": 83
+      "bowling": 83,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 73,
+          "attacking": 82,
+          "bowling": 82
+        }
+      }
     },
     "afg-abdullah-ahmadzai": {
       "name": "Abdullah Ahmadzai",
       "role": "Bowler",
       "batting": 31,
       "attacking": 27,
-      "bowling": 84
+      "bowling": 84,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 25,
+          "attacking": 25,
+          "bowling": 77
+        }
+      }
     },
     "afg-rashid": {
       "name": "Rashid Khan",
       "role": "All-rounder",
       "batting": 70,
       "attacking": 86,
-      "bowling": 96
+      "bowling": 96,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 59,
+          "attacking": 85,
+          "bowling": 95
+        }
+      }
     },
     "afg-noor": {
       "name": "Noor Ahmad",
       "role": "Bowler",
       "batting": 34,
       "attacking": 28,
-      "bowling": 89
+      "bowling": 89,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 34,
+          "attacking": 28,
+          "bowling": 89
+        }
+      }
     },
     "afg-naveen-ul-haq": {
       "name": "Naveen Ul Haq",
       "role": "Bowler",
       "batting": 28,
       "attacking": 24,
-      "bowling": 87
+      "bowling": 87,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 28,
+          "attacking": 24,
+          "bowling": 87
+        }
+      }
     },
     "afg-farooqi": {
       "name": "Fazalhaq Farooqi",
       "role": "Bowler",
       "batting": 23,
       "attacking": 20,
-      "bowling": 90
+      "bowling": 90,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 23,
+          "attacking": 20,
+          "bowling": 90
+        }
+      }
     },
     "afg-zadran": {
       "name": "Ibrahim Zadran",
       "role": "Batter",
       "batting": 86,
       "attacking": 87,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 86,
+          "attacking": 87,
+          "bowling": 8
+        }
+      }
     },
     "afg-mujeeb": {
       "name": "Mujeeb Ur Rahman",
       "role": "Bowler",
       "batting": 39,
       "attacking": 33,
-      "bowling": 91
+      "bowling": 91,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 39,
+          "attacking": 33,
+          "bowling": 91
+        }
+      }
     },
     "afg-ghazanfar": {
       "name": "Allah Ghazanfar",
       "role": "Bowler",
       "batting": 28,
       "attacking": 22,
-      "bowling": 87
+      "bowling": 87,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 28,
+          "attacking": 22,
+          "bowling": 87
+        }
+      }
     },
     "ind-gill": {
       "name": "Shubman Gill",
       "role": "Batter",
       "batting": 88,
       "attacking": 84,
-      "bowling": 12
+      "bowling": 12,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 88,
+          "attacking": 84,
+          "bowling": 12
+        }
+      }
     },
     "ind-rohit": {
       "name": "Rohit Sharma",
       "role": "Batter",
       "batting": 90,
       "attacking": 94,
-      "bowling": 18
+      "bowling": 18,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 90,
+          "attacking": 94,
+          "bowling": 18
+        }
+      }
     },
     "ind-kohli": {
       "name": "Virat Kohli",
       "role": "Batter",
       "batting": 94,
       "attacking": 87,
-      "bowling": 20
+      "bowling": 20,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 94,
+          "attacking": 87,
+          "bowling": 20
+        }
+      }
     },
     "ind-rahul": {
       "name": "KL Rahul",
       "role": "Wicketkeeper",
       "batting": 86,
       "attacking": 80,
-      "bowling": 5
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 86,
+          "attacking": 80,
+          "bowling": 5
+        }
+      }
     },
     "ind-pant": {
       "name": "Rishabh Pant",
       "role": "Wicketkeeper",
       "batting": 87,
       "attacking": 97,
-      "bowling": 5
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 82,
+          "attacking": 91,
+          "bowling": 5
+        }
+      }
     },
     "ind-jadeja": {
       "name": "Ravindra Jadeja",
       "role": "All-rounder",
       "batting": 80,
       "attacking": 83,
-      "bowling": 89
+      "bowling": 89,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 77,
+          "attacking": 80,
+          "bowling": 88
+        }
+      }
     },
     "ind-siraj": {
       "name": "Mohammed Siraj",
       "role": "Bowler",
       "batting": 25,
       "attacking": 20,
-      "bowling": 87
+      "bowling": 87,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 25,
+          "attacking": 20,
+          "bowling": 87
+        }
+      }
     },
     "ind-kuldeep": {
       "name": "Kuldeep Yadav",
       "role": "Bowler",
       "batting": 35,
       "attacking": 29,
-      "bowling": 91
+      "bowling": 91,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 35,
+          "attacking": 29,
+          "bowling": 91
+        }
+      }
     },
     "ind-shami": {
       "name": "Mohammed Shami",
       "role": "Bowler",
       "batting": 28,
       "attacking": 22,
-      "bowling": 91
+      "bowling": 91,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 28,
+          "attacking": 22,
+          "bowling": 91
+        }
+      }
     },
     "pak-shafique": {
       "name": "Abdullah Shafique",
       "role": "Batter",
       "batting": 80,
       "attacking": 74,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 80,
+          "attacking": 74,
+          "bowling": 8
+        }
+      }
     },
     "pak-imam": {
       "name": "Imam-ul-Haq",
       "role": "Batter",
       "batting": 82,
       "attacking": 83,
-      "bowling": 5
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 82,
+          "attacking": 83,
+          "bowling": 5
+        }
+      }
     },
     "pak-wasim": {
       "name": "Mohammad Wasim Jr",
       "role": "Bowler",
       "batting": 42,
       "attacking": 36,
-      "bowling": 84
+      "bowling": 84,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 42,
+          "attacking": 36,
+          "bowling": 84
+        }
+      }
     },
     "aus-carey": {
       "name": "Alex Carey",
       "role": "Wicketkeeper",
       "batting": 79,
       "attacking": 84,
-      "bowling": 5
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 83,
+          "attacking": 82,
+          "bowling": 5
+        }
+      }
     },
     "aus-smith": {
       "name": "Steve Smith",
@@ -1056,252 +2184,2715 @@
       "role": "Batter",
       "batting": 85,
       "attacking": 86,
-      "bowling": 35
+      "bowling": 35,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 80,
+          "attacking": 77,
+          "bowling": 35
+        }
+      }
     },
     "eng-crawley": {
       "name": "Zak Crawley",
       "role": "Batter",
       "batting": 81,
       "attacking": 82,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 81,
+          "attacking": 82,
+          "bowling": 8
+        }
+      }
     },
     "eng-root": {
       "name": "Joe Root",
       "role": "Batter",
       "batting": 94,
       "attacking": 80,
-      "bowling": 53
+      "bowling": 53,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 93,
+          "attacking": 81,
+          "bowling": 40
+        }
+      }
     },
     "eng-carse": {
       "name": "Brydon Carse",
       "role": "Bowler",
       "batting": 56,
       "attacking": 50,
-      "bowling": 86
+      "bowling": 86,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 56,
+          "attacking": 50,
+          "bowling": 86
+        }
+      }
     },
     "eng-atkinson": {
       "name": "Gus Atkinson",
       "role": "Bowler",
       "batting": 49,
       "attacking": 43,
-      "bowling": 88
+      "bowling": 88,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 38,
+          "attacking": 40,
+          "bowling": 85
+        }
+      }
     },
     "sa-bavuma": {
       "name": "Temba Bavuma",
       "role": "Batter",
       "batting": 85,
       "attacking": 76,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 85,
+          "attacking": 81,
+          "bowling": 8
+        }
+      }
     },
     "sa-breetzke": {
       "name": "Matthew Breetzke",
       "role": "Batter",
       "batting": 81,
       "attacking": 82,
-      "bowling": 5
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 86,
+          "attacking": 86,
+          "bowling": 5
+        }
+      }
     },
     "sa-rubin-hermann": {
       "name": "Rubin Hermann",
       "role": "Batter",
       "batting": 80,
       "attacking": 79,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 80,
+          "attacking": 85,
+          "bowling": 8
+        }
+      }
     },
     "sa-burger": {
       "name": "Nandre Burger",
       "role": "Bowler",
       "batting": 22,
       "attacking": 20,
-      "bowling": 85
+      "bowling": 85,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 22,
+          "attacking": 20,
+          "bowling": 85
+        }
+      }
     },
     "sa-baartman": {
       "name": "Ottneil Baartman",
       "role": "Bowler",
       "batting": 23,
       "attacking": 20,
-      "bowling": 83
+      "bowling": 83,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 23,
+          "attacking": 20,
+          "bowling": 83
+        }
+      }
     },
     "nz-young": {
       "name": "Will Young",
       "role": "Batter",
       "batting": 82,
       "attacking": 83,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 82,
+          "attacking": 83,
+          "bowling": 8
+        }
+      }
     },
     "nz-nicholls": {
       "name": "Henry Nicholls",
       "role": "Batter",
       "batting": 80,
       "attacking": 81,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 80,
+          "attacking": 81,
+          "bowling": 8
+        }
+      }
     },
     "nz-hay": {
       "name": "Mitch Hay",
       "role": "Wicketkeeper",
       "batting": 72,
       "attacking": 77,
-      "bowling": 5
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 72,
+          "attacking": 77,
+          "bowling": 5
+        }
+      }
     },
     "nz-josh-clarkson": {
       "name": "Josh Clarkson",
       "role": "All-rounder",
       "batting": 75,
       "attacking": 78,
-      "bowling": 82
+      "bowling": 82,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 70,
+          "attacking": 83,
+          "bowling": 68
+        }
+      }
     },
     "nz-jamieson": {
       "name": "Kyle Jamieson",
       "role": "Bowler",
       "batting": 54,
       "attacking": 48,
-      "bowling": 89
+      "bowling": 89,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 40,
+          "attacking": 45,
+          "bowling": 87
+        }
+      }
     },
     "nz-foulkes": {
       "name": "Zak Foulkes",
       "role": "Bowler",
       "batting": 44,
       "attacking": 38,
-      "bowling": 80
+      "bowling": 80,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 44,
+          "attacking": 38,
+          "bowling": 80
+        }
+      }
     },
     "nz-jayden-lennox": {
       "name": "Jayden Lennox",
       "role": "Bowler",
       "batting": 28,
       "attacking": 24,
-      "bowling": 87
+      "bowling": 87,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 23,
+          "attacking": 20,
+          "bowling": 78
+        }
+      }
     },
     "nz-ashok": {
       "name": "Adi Ashok",
       "role": "Bowler",
       "batting": 25,
       "attacking": 20,
-      "bowling": 79
+      "bowling": 79,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 25,
+          "attacking": 20,
+          "bowling": 79
+        }
+      }
     },
     "wi-athanaze": {
       "name": "Alick Athanaze",
       "role": "Batter",
       "batting": 80,
       "attacking": 81,
-      "bowling": 20
+      "bowling": 20,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 80,
+          "attacking": 81,
+          "bowling": 20
+        }
+      }
     },
     "wi-carty": {
       "name": "Keacy Carty",
       "role": "Batter",
       "batting": 80,
       "attacking": 81,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 84,
+          "attacking": 81,
+          "bowling": 8
+        }
+      }
     },
     "wi-greaves": {
       "name": "Justin Greaves",
       "role": "All-rounder",
       "batting": 73,
       "attacking": 76,
-      "bowling": 66
+      "bowling": 66,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 73,
+          "attacking": 76,
+          "bowling": 71
+        }
+      }
     },
     "wi-pierre": {
       "name": "Khary Pierre",
       "role": "Bowler",
       "batting": 43,
       "attacking": 37,
-      "bowling": 82
+      "bowling": 82,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 43,
+          "attacking": 37,
+          "bowling": 82
+        }
+      }
     },
     "wi-seales": {
       "name": "Jayden Seales",
       "role": "Bowler",
       "batting": 25,
       "attacking": 20,
-      "bowling": 89
+      "bowling": 89,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 25,
+          "attacking": 20,
+          "bowling": 89
+        }
+      }
     },
     "wi-johann-layne": {
       "name": "Johann Layne",
       "role": "Bowler",
       "batting": 27,
       "attacking": 23,
-      "bowling": 88
+      "bowling": 88,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 25,
+          "attacking": 25,
+          "bowling": 76
+        }
+      }
     },
     "sl-sadeera": {
       "name": "Sadeera Samarawickrama",
       "role": "Wicketkeeper",
       "batting": 82,
       "attacking": 87,
-      "bowling": 5
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 82,
+          "attacking": 87,
+          "bowling": 5
+        }
+      }
     },
     "sl-liyanage": {
       "name": "Janith Liyanage",
       "role": "All-rounder",
       "batting": 77,
       "attacking": 80,
-      "bowling": 56
+      "bowling": 56,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 77,
+          "attacking": 80,
+          "bowling": 56
+        }
+      }
     },
     "sl-vandersay": {
       "name": "Jeffrey Vandersay",
       "role": "Bowler",
       "batting": 31,
       "attacking": 25,
-      "bowling": 83
+      "bowling": 83,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 31,
+          "attacking": 25,
+          "bowling": 83
+        }
+      }
     },
     "sl-fernando": {
       "name": "Asitha Fernando",
       "role": "Bowler",
       "batting": 25,
       "attacking": 20,
-      "bowling": 88
+      "bowling": 88,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 25,
+          "attacking": 20,
+          "bowling": 88
+        }
+      }
     },
     "sl-madushan": {
       "name": "Pramod Madushan",
       "role": "Bowler",
       "batting": 23,
       "attacking": 20,
-      "bowling": 80
+      "bowling": 80,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 23,
+          "attacking": 20,
+          "bowling": 80
+        }
+      }
     },
     "sl-de-silva": {
       "name": "Dhananjaya de Silva",
       "role": "All-rounder",
       "batting": 83,
       "attacking": 86,
-      "bowling": 73
+      "bowling": 73,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 83,
+          "attacking": 86,
+          "bowling": 73
+        }
+      }
     },
     "sl-avishka": {
       "name": "Avishka Fernando",
       "role": "Batter",
       "batting": 82,
       "attacking": 83,
-      "bowling": 5
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 82,
+          "attacking": 83,
+          "bowling": 5
+        }
+      }
     },
     "afg-rahmat": {
       "name": "Rahmat Shah",
       "role": "Batter",
       "batting": 84,
       "attacking": 75,
-      "bowling": 35
+      "bowling": 35,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 84,
+          "attacking": 73,
+          "bowling": 25
+        }
+      }
     },
     "afg-shahidi": {
       "name": "Hashmatullah Shahidi",
       "role": "Batter",
       "batting": 82,
       "attacking": 72,
-      "bowling": 8
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 82,
+          "attacking": 72,
+          "bowling": 8
+        }
+      }
     },
     "afg-kharoti": {
       "name": "Nangyal Kharoti",
       "role": "Bowler",
       "batting": 35,
       "attacking": 29,
-      "bowling": 82
+      "bowling": 82,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 35,
+          "attacking": 29,
+          "bowling": 82
+        }
+      }
     },
     "afg-naveed": {
       "name": "Naveed Zadran",
       "role": "Bowler",
       "batting": 22,
       "attacking": 20,
-      "bowling": 82
+      "bowling": 82,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 22,
+          "attacking": 20,
+          "bowling": 82
+        }
+      }
     },
     "afg-zazai": {
       "name": "Hazratullah Zazai",
       "role": "Batter",
       "batting": 82,
       "attacking": 97,
-      "bowling": 5
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 73,
+          "attacking": 95,
+          "bowling": 5
+        }
+      }
+    },
+    "ind-jaiswal": {
+      "name": "Yashasvi Jaiswal",
+      "role": "Batter",
+      "batting": 88,
+      "attacking": 91,
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 88,
+          "attacking": 91,
+          "bowling": 8
+        }
+      }
+    },
+    "ind-ruturaj-gaikwad": {
+      "name": "Ruturaj Gaikwad",
+      "role": "Batter",
+      "batting": 84,
+      "attacking": 82,
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 84,
+          "attacking": 82,
+          "bowling": 8
+        }
+      }
+    },
+    "ind-sai-sudharsan": {
+      "name": "Sai Sudharsan",
+      "role": "Batter",
+      "batting": 84,
+      "attacking": 79,
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 84,
+          "attacking": 79,
+          "bowling": 8
+        }
+      }
+    },
+    "ind-vaibhav-sooryavanshi": {
+      "name": "Vaibhav Sooryavanshi",
+      "role": "Batter",
+      "batting": 76,
+      "attacking": 96,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 76,
+          "attacking": 96,
+          "bowling": 5
+        }
+      }
+    },
+    "ind-dhruv-jurel": {
+      "name": "Dhruv Jurel",
+      "role": "Wicketkeeper",
+      "batting": 79,
+      "attacking": 83,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 79,
+          "attacking": 83,
+          "bowling": 5
+        }
+      }
+    },
+    "ind-naman-dhir": {
+      "name": "Naman Dhir",
+      "role": "All-rounder",
+      "batting": 75,
+      "attacking": 88,
+      "bowling": 52,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 75,
+          "attacking": 88,
+          "bowling": 52
+        }
+      }
+    },
+    "ind-gurnoor-brar": {
+      "name": "Gurnoor Brar",
+      "role": "Bowler",
+      "batting": 25,
+      "attacking": 25,
+      "bowling": 78,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 25,
+          "attacking": 25,
+          "bowling": 78
+        }
+      }
+    },
+    "ind-auqib-nabi": {
+      "name": "Auqib Nabi",
+      "role": "Bowler",
+      "batting": 36,
+      "attacking": 34,
+      "bowling": 80,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 36,
+          "attacking": 34,
+          "bowling": 80
+        }
+      }
+    },
+    "ind-anshul-kamboj": {
+      "name": "Anshul Kamboj",
+      "role": "Bowler",
+      "batting": 38,
+      "attacking": 34,
+      "bowling": 80,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 38,
+          "attacking": 34,
+          "bowling": 80
+        }
+      }
+    },
+    "ind-bhuvneshwar-kumar": {
+      "name": "Bhuvneshwar Kumar",
+      "role": "Bowler",
+      "batting": 38,
+      "attacking": 32,
+      "bowling": 86,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 38,
+          "attacking": 32,
+          "bowling": 86
+        }
+      }
+    },
+    "ind-shardul-thakur": {
+      "name": "Shardul Thakur",
+      "role": "All-rounder",
+      "batting": 58,
+      "attacking": 65,
+      "bowling": 80,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 58,
+          "attacking": 65,
+          "bowling": 80
+        }
+      }
+    },
+    "ind-yuzvendra-chahal": {
+      "name": "Yuzvendra Chahal",
+      "role": "Bowler",
+      "batting": 18,
+      "attacking": 15,
+      "bowling": 86,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 18,
+          "attacking": 15,
+          "bowling": 86
+        }
+      }
+    },
+    "ind-varun-chakaravarthy": {
+      "name": "Varun Chakaravarthy",
+      "role": "Bowler",
+      "batting": 18,
+      "attacking": 15,
+      "bowling": 88,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 18,
+          "attacking": 15,
+          "bowling": 88
+        }
+      }
+    },
+    "ind-mukesh-kumar": {
+      "name": "Mukesh Kumar",
+      "role": "Bowler",
+      "batting": 22,
+      "attacking": 20,
+      "bowling": 78,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 22,
+          "attacking": 20,
+          "bowling": 78
+        }
+      }
+    },
+    "ind-akash-deep": {
+      "name": "Akash Deep",
+      "role": "Bowler",
+      "batting": 28,
+      "attacking": 26,
+      "bowling": 80,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 28,
+          "attacking": 26,
+          "bowling": 80
+        }
+      }
+    },
+    "ind-mayank-yadav": {
+      "name": "Mayank Yadav",
+      "role": "Bowler",
+      "batting": 20,
+      "attacking": 20,
+      "bowling": 79,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 20,
+          "attacking": 20,
+          "bowling": 79
+        }
+      }
+    },
+    "ind-khaleel-ahmed": {
+      "name": "Khaleel Ahmed",
+      "role": "Bowler",
+      "batting": 20,
+      "attacking": 20,
+      "bowling": 78,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 20,
+          "attacking": 20,
+          "bowling": 78
+        }
+      }
+    },
+    "ind-devdutt-padikkal": {
+      "name": "Devdutt Padikkal",
+      "role": "Batter",
+      "batting": 79,
+      "attacking": 77,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 79,
+          "attacking": 77,
+          "bowling": 5
+        }
+      }
+    },
+    "ind-shivam-dube": {
+      "name": "Shivam Dube",
+      "role": "All-rounder",
+      "batting": 78,
+      "attacking": 90,
+      "bowling": 65,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 78,
+          "attacking": 90,
+          "bowling": 65
+        }
+      }
+    },
+    "ind-riyan-parag": {
+      "name": "Riyan Parag",
+      "role": "All-rounder",
+      "batting": 77,
+      "attacking": 86,
+      "bowling": 65,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 77,
+          "attacking": 86,
+          "bowling": 65
+        }
+      }
+    },
+    "ind-prince-yadav": {
+      "name": "Prince Yadav",
+      "role": "Bowler",
+      "batting": 22,
+      "attacking": 20,
+      "bowling": 76,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 22,
+          "attacking": 20,
+          "bowling": 76
+        }
+      }
+    },
+    "pak-ghazi-ghori": {
+      "name": "Muhammad Ghazi Ghori",
+      "role": "Wicketkeeper",
+      "batting": 73,
+      "attacking": 76,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 73,
+          "attacking": 76,
+          "bowling": 5
+        }
+      }
+    },
+    "pak-hasan-nawaz": {
+      "name": "Hasan Nawaz",
+      "role": "Batter",
+      "batting": 77,
+      "attacking": 89,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 77,
+          "attacking": 89,
+          "bowling": 5
+        }
+      }
+    },
+    "pak-arafat-minhas": {
+      "name": "Arafat Minhas",
+      "role": "All-rounder",
+      "batting": 70,
+      "attacking": 78,
+      "bowling": 74,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 70,
+          "attacking": 78,
+          "bowling": 74
+        }
+      }
+    },
+    "pak-razaullah": {
+      "name": "Razaullah",
+      "role": "Bowler",
+      "batting": 25,
+      "attacking": 25,
+      "bowling": 75,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 25,
+          "attacking": 25,
+          "bowling": 75
+        }
+      }
+    },
+    "pak-saad-baig": {
+      "name": "Saad Baig",
+      "role": "Wicketkeeper",
+      "batting": 71,
+      "attacking": 75,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 71,
+          "attacking": 75,
+          "bowling": 5
+        }
+      }
+    },
+    "pak-shadab-khan": {
+      "name": "Shadab Khan",
+      "role": "All-rounder",
+      "batting": 70,
+      "attacking": 82,
+      "bowling": 83,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 70,
+          "attacking": 82,
+          "bowling": 83
+        }
+      }
+    },
+    "pak-sufiyan-moqim": {
+      "name": "Sufiyan Moqim",
+      "role": "Bowler",
+      "batting": 24,
+      "attacking": 20,
+      "bowling": 80,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 24,
+          "attacking": 20,
+          "bowling": 80
+        }
+      }
+    },
+    "pak-hasan-ali": {
+      "name": "Hasan Ali",
+      "role": "Bowler",
+      "batting": 38,
+      "attacking": 46,
+      "bowling": 81,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 38,
+          "attacking": 46,
+          "bowling": 81
+        }
+      }
+    },
+    "pak-mohammad-haris": {
+      "name": "Mohammad Haris",
+      "role": "Wicketkeeper",
+      "batting": 76,
+      "attacking": 91,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 76,
+          "attacking": 91,
+          "bowling": 5
+        }
+      }
+    },
+    "pak-saud-shakeel": {
+      "name": "Saud Shakeel",
+      "role": "Batter",
+      "batting": 80,
+      "attacking": 74,
+      "bowling": 25,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 80,
+          "attacking": 74,
+          "bowling": 25
+        }
+      }
+    },
+    "pak-hussain-talat": {
+      "name": "Hussain Talat",
+      "role": "All-rounder",
+      "batting": 70,
+      "attacking": 76,
+      "bowling": 65,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 70,
+          "attacking": 76,
+          "bowling": 65
+        }
+      }
+    },
+    "pak-mohammad-hasnain": {
+      "name": "Mohammad Hasnain",
+      "role": "Bowler",
+      "batting": 22,
+      "attacking": 20,
+      "bowling": 78,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 22,
+          "attacking": 20,
+          "bowling": 78
+        }
+      }
+    },
+    "pak-khushdil-shah": {
+      "name": "Khushdil Shah",
+      "role": "All-rounder",
+      "batting": 72,
+      "attacking": 84,
+      "bowling": 65,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 72,
+          "attacking": 84,
+          "bowling": 65
+        }
+      }
+    },
+    "pak-tayyab-tahir": {
+      "name": "Tayyab Tahir",
+      "role": "Batter",
+      "batting": 73,
+      "attacking": 79,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 73,
+          "attacking": 79,
+          "bowling": 5
+        }
+      }
+    },
+    "pak-shamyl-hussain": {
+      "name": "Shamyl Hussain",
+      "role": "Batter",
+      "batting": 72,
+      "attacking": 76,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 72,
+          "attacking": 76,
+          "bowling": 5
+        }
+      }
+    },
+    "pak-haseebullah": {
+      "name": "Haseebullah Khan",
+      "role": "Wicketkeeper",
+      "batting": 73,
+      "attacking": 75,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 73,
+          "attacking": 75,
+          "bowling": 5
+        }
+      }
+    },
+    "pak-abbas-afridi": {
+      "name": "Abbas Afridi",
+      "role": "Bowler",
+      "batting": 32,
+      "attacking": 36,
+      "bowling": 77,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 32,
+          "attacking": 36,
+          "bowling": 77
+        }
+      }
+    },
+    "pak-akif-javed": {
+      "name": "Akif Javed",
+      "role": "Bowler",
+      "batting": 20,
+      "attacking": 20,
+      "bowling": 77,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 20,
+          "attacking": 20,
+          "bowling": 77
+        }
+      }
+    },
+    "pak-maaz-sadaqat": {
+      "name": "Maaz Sadaqat",
+      "role": "All-rounder",
+      "batting": 70,
+      "attacking": 78,
+      "bowling": 60,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 70,
+          "attacking": 78,
+          "bowling": 60
+        }
+      }
+    },
+    "aus-joel-davies": {
+      "name": "Joel Davies",
+      "role": "All-rounder",
+      "batting": 73,
+      "attacking": 78,
+      "bowling": 68,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 73,
+          "attacking": 78,
+          "bowling": 68
+        }
+      }
+    },
+    "aus-oliver-peake": {
+      "name": "Oliver Peake",
+      "role": "Batter",
+      "batting": 77,
+      "attacking": 80,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 77,
+          "attacking": 80,
+          "bowling": 5
+        }
+      }
+    },
+    "aus-matthew-renshaw": {
+      "name": "Matthew Renshaw",
+      "role": "Batter",
+      "batting": 80,
+      "attacking": 78,
+      "bowling": 24,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 80,
+          "attacking": 78,
+          "bowling": 24
+        }
+      }
+    },
+    "aus-spencer-johnson": {
+      "name": "Spencer Johnson",
+      "role": "Bowler",
+      "batting": 22,
+      "attacking": 20,
+      "bowling": 83,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 22,
+          "attacking": 20,
+          "bowling": 83
+        }
+      }
+    },
+    "aus-billy-stanlake": {
+      "name": "Billy Stanlake",
+      "role": "Bowler",
+      "batting": 18,
+      "attacking": 18,
+      "bowling": 79,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 18,
+          "attacking": 18,
+          "bowling": 79
+        }
+      }
+    },
+    "aus-aaron-hardie": {
+      "name": "Aaron Hardie",
+      "role": "All-rounder",
+      "batting": 75,
+      "attacking": 82,
+      "bowling": 75,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 75,
+          "attacking": 82,
+          "bowling": 75
+        }
+      }
+    },
+    "aus-sean-abbott": {
+      "name": "Sean Abbott",
+      "role": "Bowler",
+      "batting": 48,
+      "attacking": 55,
+      "bowling": 83,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 48,
+          "attacking": 55,
+          "bowling": 83
+        }
+      }
+    },
+    "aus-josh-philippe": {
+      "name": "Josh Philippe",
+      "role": "Wicketkeeper",
+      "batting": 76,
+      "attacking": 86,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 76,
+          "attacking": 86,
+          "bowling": 5
+        }
+      }
+    },
+    "aus-ben-dwarshuis": {
+      "name": "Ben Dwarshuis",
+      "role": "Bowler",
+      "batting": 35,
+      "attacking": 40,
+      "bowling": 78,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 35,
+          "attacking": 40,
+          "bowling": 78
+        }
+      }
+    },
+    "aus-tanveer-sangha": {
+      "name": "Tanveer Sangha",
+      "role": "Bowler",
+      "batting": 25,
+      "attacking": 22,
+      "bowling": 79,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 25,
+          "attacking": 22,
+          "bowling": 79
+        }
+      }
+    },
+    "aus-beau-webster": {
+      "name": "Beau Webster",
+      "role": "All-rounder",
+      "batting": 77,
+      "attacking": 78,
+      "bowling": 73,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 77,
+          "attacking": 78,
+          "bowling": 73
+        }
+      }
+    },
+    "aus-jake-fraser-mcgurk": {
+      "name": "Jake Fraser-McGurk",
+      "role": "Batter",
+      "batting": 73,
+      "attacking": 95,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 73,
+          "attacking": 95,
+          "bowling": 5
+        }
+      }
+    },
+    "aus-will-sutherland": {
+      "name": "Will Sutherland",
+      "role": "All-rounder",
+      "batting": 64,
+      "attacking": 71,
+      "bowling": 77,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 64,
+          "attacking": 71,
+          "bowling": 77
+        }
+      }
+    },
+    "aus-todd-murphy": {
+      "name": "Todd Murphy",
+      "role": "Bowler",
+      "batting": 30,
+      "attacking": 26,
+      "bowling": 78,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 30,
+          "attacking": 26,
+          "bowling": 78
+        }
+      }
+    },
+    "aus-matthew-kuhnemann": {
+      "name": "Matthew Kuhnemann",
+      "role": "Bowler",
+      "batting": 20,
+      "attacking": 18,
+      "bowling": 80,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 20,
+          "attacking": 18,
+          "bowling": 80
+        }
+      }
+    },
+    "eng-sonny-baker": {
+      "name": "Sonny Baker",
+      "role": "Bowler",
+      "batting": 20,
+      "attacking": 20,
+      "bowling": 76,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 20,
+          "attacking": 20,
+          "bowling": 76
+        }
+      }
+    },
+    "eng-james-coles": {
+      "name": "James Coles",
+      "role": "All-rounder",
+      "batting": 74,
+      "attacking": 79,
+      "bowling": 69,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 74,
+          "attacking": 79,
+          "bowling": 69
+        }
+      }
+    },
+    "eng-jordan-cox": {
+      "name": "Jordan Cox",
+      "role": "Wicketkeeper",
+      "batting": 78,
+      "attacking": 85,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 78,
+          "attacking": 85,
+          "bowling": 5
+        }
+      }
+    },
+    "eng-mason-crane": {
+      "name": "Mason Crane",
+      "role": "Bowler",
+      "batting": 25,
+      "attacking": 22,
+      "bowling": 76,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 25,
+          "attacking": 22,
+          "bowling": 76
+        }
+      }
+    },
+    "eng-henry-crocombe": {
+      "name": "Henry Crocombe",
+      "role": "Bowler",
+      "batting": 22,
+      "attacking": 22,
+      "bowling": 75,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 22,
+          "attacking": 22,
+          "bowling": 75
+        }
+      }
+    },
+    "eng-josh-tongue": {
+      "name": "Josh Tongue",
+      "role": "Bowler",
+      "batting": 23,
+      "attacking": 20,
+      "bowling": 80,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 23,
+          "attacking": 20,
+          "bowling": 80
+        }
+      }
+    },
+    "eng-jamie-smith": {
+      "name": "Jamie Smith",
+      "role": "Wicketkeeper",
+      "batting": 83,
+      "attacking": 90,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 83,
+          "attacking": 90,
+          "bowling": 5
+        }
+      }
+    },
+    "eng-saqib-mahmood": {
+      "name": "Saqib Mahmood",
+      "role": "Bowler",
+      "batting": 25,
+      "attacking": 20,
+      "bowling": 82,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 25,
+          "attacking": 20,
+          "bowling": 82
+        }
+      }
+    },
+    "eng-reece-topley": {
+      "name": "Reece Topley",
+      "role": "Bowler",
+      "batting": 18,
+      "attacking": 15,
+      "bowling": 83,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 18,
+          "attacking": 15,
+          "bowling": 83
+        }
+      }
+    },
+    "eng-matthew-potts": {
+      "name": "Matthew Potts",
+      "role": "Bowler",
+      "batting": 30,
+      "attacking": 26,
+      "bowling": 80,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 30,
+          "attacking": 26,
+          "bowling": 80
+        }
+      }
+    },
+    "eng-luke-wood": {
+      "name": "Luke Wood",
+      "role": "Bowler",
+      "batting": 32,
+      "attacking": 36,
+      "bowling": 77,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 32,
+          "attacking": 36,
+          "bowling": 77
+        }
+      }
+    },
+    "eng-dan-mousley": {
+      "name": "Dan Mousley",
+      "role": "All-rounder",
+      "batting": 72,
+      "attacking": 80,
+      "bowling": 66,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 72,
+          "attacking": 80,
+          "bowling": 66
+        }
+      }
+    },
+    "sa-corbin-bosch": {
+      "name": "Corbin Bosch",
+      "role": "All-rounder",
+      "batting": 64,
+      "attacking": 73,
+      "bowling": 81,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 64,
+          "attacking": 73,
+          "bowling": 81
+        }
+      }
+    },
+    "sa-gerald-coetzee": {
+      "name": "Gerald Coetzee",
+      "role": "Bowler",
+      "batting": 36,
+      "attacking": 42,
+      "bowling": 84,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 36,
+          "attacking": 42,
+          "bowling": 84
+        }
+      }
+    },
+    "sa-bjorn-fortuin": {
+      "name": "Bjorn Fortuin",
+      "role": "Bowler",
+      "batting": 39,
+      "attacking": 34,
+      "bowling": 79,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 39,
+          "attacking": 34,
+          "bowling": 79
+        }
+      }
+    },
+    "sa-wiaan-mulder": {
+      "name": "Wiaan Mulder",
+      "role": "All-rounder",
+      "batting": 72,
+      "attacking": 76,
+      "bowling": 77,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 72,
+          "attacking": 76,
+          "bowling": 77
+        }
+      }
+    },
+    "sa-senuran-muthusamy": {
+      "name": "Senuran Muthusamy",
+      "role": "All-rounder",
+      "batting": 63,
+      "attacking": 63,
+      "bowling": 77,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 63,
+          "attacking": 63,
+          "bowling": 77
+        }
+      }
+    },
+    "sa-lizaad-williams": {
+      "name": "Lizaad Williams",
+      "role": "Bowler",
+      "batting": 22,
+      "attacking": 20,
+      "bowling": 80,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 22,
+          "attacking": 20,
+          "bowling": 80
+        }
+      }
+    },
+    "sa-andile-phehlukwayo": {
+      "name": "Andile Phehlukwayo",
+      "role": "All-rounder",
+      "batting": 59,
+      "attacking": 69,
+      "bowling": 77,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 59,
+          "attacking": 69,
+          "bowling": 77
+        }
+      }
+    },
+    "sa-lutho-sipamla": {
+      "name": "Lutho Sipamla",
+      "role": "Bowler",
+      "batting": 24,
+      "attacking": 20,
+      "bowling": 78,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 24,
+          "attacking": 20,
+          "bowling": 78
+        }
+      }
+    },
+    "sa-jordan-hermann": {
+      "name": "Jordan Hermann",
+      "role": "Batter",
+      "batting": 75,
+      "attacking": 78,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 75,
+          "attacking": 78,
+          "bowling": 5
+        }
+      }
+    },
+    "nz-tom-latham": {
+      "name": "Tom Latham",
+      "role": "Wicketkeeper",
+      "batting": 83,
+      "attacking": 76,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 83,
+          "attacking": 76,
+          "bowling": 5
+        }
+      }
+    },
+    "nz-nathan-smith": {
+      "name": "Nathan Smith",
+      "role": "All-rounder",
+      "batting": 55,
+      "attacking": 63,
+      "bowling": 80,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 55,
+          "attacking": 63,
+          "bowling": 80
+        }
+      }
+    },
+    "nz-blair-tickner": {
+      "name": "Blair Tickner",
+      "role": "Bowler",
+      "batting": 22,
+      "attacking": 20,
+      "bowling": 79,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 22,
+          "attacking": 20,
+          "bowling": 79
+        }
+      }
+    },
+    "nz-kristian-clarke": {
+      "name": "Kristian Clarke",
+      "role": "Bowler",
+      "batting": 35,
+      "attacking": 38,
+      "bowling": 76,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 35,
+          "attacking": 38,
+          "bowling": 76
+        }
+      }
+    },
+    "nz-matt-fisher": {
+      "name": "Matt Fisher",
+      "role": "Bowler",
+      "batting": 22,
+      "attacking": 20,
+      "bowling": 77,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 22,
+          "attacking": 20,
+          "bowling": 77
+        }
+      }
+    },
+    "nz-nick-kelly": {
+      "name": "Nick Kelly",
+      "role": "Batter",
+      "batting": 75,
+      "attacking": 80,
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 75,
+          "attacking": 80,
+          "bowling": 8
+        }
+      }
+    },
+    "nz-tim-seifert": {
+      "name": "Tim Seifert",
+      "role": "Wicketkeeper",
+      "batting": 78,
+      "attacking": 91,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 78,
+          "attacking": 91,
+          "bowling": 5
+        }
+      }
+    },
+    "nz-will-orourke": {
+      "name": "Will O'Rourke",
+      "role": "Bowler",
+      "batting": 18,
+      "attacking": 15,
+      "bowling": 85,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 18,
+          "attacking": 15,
+          "bowling": 85
+        }
+      }
+    },
+    "nz-ben-sears": {
+      "name": "Ben Sears",
+      "role": "Bowler",
+      "batting": 20,
+      "attacking": 18,
+      "bowling": 79,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 20,
+          "attacking": 18,
+          "bowling": 79
+        }
+      }
+    },
+    "wi-jewel-andrew": {
+      "name": "Jewel Andrew",
+      "role": "Wicketkeeper",
+      "batting": 73,
+      "attacking": 82,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 73,
+          "attacking": 82,
+          "bowling": 5
+        }
+      }
+    },
+    "wi-john-campbell": {
+      "name": "John Campbell",
+      "role": "Batter",
+      "batting": 73,
+      "attacking": 76,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 73,
+          "attacking": 76,
+          "bowling": 5
+        }
+      }
+    },
+    "wi-amir-jangoo": {
+      "name": "Amir Jangoo",
+      "role": "Wicketkeeper",
+      "batting": 76,
+      "attacking": 80,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 76,
+          "attacking": 80,
+          "bowling": 5
+        }
+      }
+    },
+    "wi-alzarri-joseph": {
+      "name": "Alzarri Joseph",
+      "role": "Bowler",
+      "batting": 30,
+      "attacking": 35,
+      "bowling": 85,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 30,
+          "attacking": 35,
+          "bowling": 85
+        }
+      }
+    },
+    "wi-vitel-lawes": {
+      "name": "Vitel Lawes",
+      "role": "Bowler",
+      "batting": 28,
+      "attacking": 26,
+      "bowling": 73,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 28,
+          "attacking": 26,
+          "bowling": 73
+        }
+      }
+    },
+    "wi-keemo-paul": {
+      "name": "Keemo Paul",
+      "role": "All-rounder",
+      "batting": 60,
+      "attacking": 75,
+      "bowling": 77,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 60,
+          "attacking": 75,
+          "bowling": 77
+        }
+      }
+    },
+    "wi-kavem-hodge": {
+      "name": "Kavem Hodge",
+      "role": "All-rounder",
+      "batting": 73,
+      "attacking": 73,
+      "bowling": 58,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 73,
+          "attacking": 73,
+          "bowling": 58
+        }
+      }
+    },
+    "wi-jeremiah-louis": {
+      "name": "Jeremiah Louis",
+      "role": "Bowler",
+      "batting": 33,
+      "attacking": 35,
+      "bowling": 74,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 33,
+          "attacking": 35,
+          "bowling": 74
+        }
+      }
+    },
+    "wi-anderson-phillip": {
+      "name": "Anderson Phillip",
+      "role": "Bowler",
+      "batting": 23,
+      "attacking": 20,
+      "bowling": 76,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 23,
+          "attacking": 20,
+          "bowling": 76
+        }
+      }
+    },
+    "wi-joshua-da-silva": {
+      "name": "Joshua Da Silva",
+      "role": "Wicketkeeper",
+      "batting": 74,
+      "attacking": 69,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 74,
+          "attacking": 69,
+          "bowling": 5
+        }
+      }
+    },
+    "sl-sahan-arachchige": {
+      "name": "Sahan Arachchige",
+      "role": "All-rounder",
+      "batting": 72,
+      "attacking": 74,
+      "bowling": 61,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 72,
+          "attacking": 74,
+          "bowling": 61
+        }
+      }
+    },
+    "sl-sachindu-colombage": {
+      "name": "Sachindu Colombage",
+      "role": "Bowler",
+      "batting": 27,
+      "attacking": 25,
+      "bowling": 74,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 27,
+          "attacking": 25,
+          "bowling": 74
+        }
+      }
+    },
+    "sl-dilshan-madushanka": {
+      "name": "Dilshan Madushanka",
+      "role": "Bowler",
+      "batting": 20,
+      "attacking": 18,
+      "bowling": 83,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 20,
+          "attacking": 18,
+          "bowling": 83
+        }
+      }
+    },
+    "sl-eshan-malinga": {
+      "name": "Eshan Malinga",
+      "role": "Bowler",
+      "batting": 20,
+      "attacking": 20,
+      "bowling": 79,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 20,
+          "attacking": 20,
+          "bowling": 79
+        }
+      }
+    },
+    "sl-kusal-perera": {
+      "name": "Kusal Perera",
+      "role": "Wicketkeeper",
+      "batting": 78,
+      "attacking": 88,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 78,
+          "attacking": 88,
+          "bowling": 5
+        }
+      }
+    },
+    "sl-lahiru-kumara": {
+      "name": "Lahiru Kumara",
+      "role": "Bowler",
+      "batting": 18,
+      "attacking": 18,
+      "bowling": 80,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 18,
+          "attacking": 18,
+          "bowling": 80
+        }
+      }
+    },
+    "sl-binura-fernando": {
+      "name": "Binura Fernando",
+      "role": "Bowler",
+      "batting": 24,
+      "attacking": 20,
+      "bowling": 77,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 24,
+          "attacking": 20,
+          "bowling": 77
+        }
+      }
+    },
+    "sl-vijayakanth-viyaskanth": {
+      "name": "Vijayakanth Viyaskanth",
+      "role": "Bowler",
+      "batting": 25,
+      "attacking": 22,
+      "bowling": 76,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 25,
+          "attacking": 22,
+          "bowling": 76
+        }
+      }
+    },
+    "sl-nuwan-thushara": {
+      "name": "Nuwan Thushara",
+      "role": "Bowler",
+      "batting": 15,
+      "attacking": 15,
+      "bowling": 79,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 15,
+          "attacking": 15,
+          "bowling": 79
+        }
+      }
+    },
+    "sl-nishan-madushka": {
+      "name": "Nishan Madushka",
+      "role": "Wicketkeeper",
+      "batting": 76,
+      "attacking": 73,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 76,
+          "attacking": 73,
+          "bowling": 5
+        }
+      }
+    },
+    "afg-ikram-alikhil": {
+      "name": "Ikram Alikhil",
+      "role": "Wicketkeeper",
+      "batting": 73,
+      "attacking": 67,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 73,
+          "attacking": 67,
+          "bowling": 5
+        }
+      }
+    },
+    "afg-bilal-sami": {
+      "name": "Bilal Sami",
+      "role": "Bowler",
+      "batting": 20,
+      "attacking": 18,
+      "bowling": 76,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 20,
+          "attacking": 18,
+          "bowling": 76
+        }
+      }
+    },
+    "afg-zia-ur-rahman-sharifi": {
+      "name": "Zia Ur Rahman Sharifi",
+      "role": "Bowler",
+      "batting": 22,
+      "attacking": 20,
+      "bowling": 74,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 22,
+          "attacking": 20,
+          "bowling": 74
+        }
+      }
+    },
+    "afg-yamin-ahmadzai": {
+      "name": "Yamin Ahmadzai",
+      "role": "Bowler",
+      "batting": 25,
+      "attacking": 22,
+      "bowling": 77,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 25,
+          "attacking": 22,
+          "bowling": 77
+        }
+      }
+    },
+    "afg-qais-ahmad": {
+      "name": "Qais Ahmad",
+      "role": "Bowler",
+      "batting": 33,
+      "attacking": 35,
+      "bowling": 79,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 33,
+          "attacking": 35,
+          "bowling": 79
+        }
+      }
+    },
+    "afg-abdul-malik": {
+      "name": "Abdul Malik",
+      "role": "Batter",
+      "batting": 72,
+      "attacking": 68,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 72,
+          "attacking": 68,
+          "bowling": 5
+        }
+      }
+    },
+    "afg-riaz-hassan": {
+      "name": "Riaz Hassan",
+      "role": "Batter",
+      "batting": 73,
+      "attacking": 72,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 73,
+          "attacking": 72,
+          "bowling": 5
+        }
+      }
+    },
+    "afg-darwish-rasooli": {
+      "name": "Darwish Rasooli",
+      "role": "Batter",
+      "batting": 73,
+      "attacking": 78,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 73,
+          "attacking": 78,
+          "bowling": 5
+        }
+      }
+    },
+    "afg-farid-ahmad": {
+      "name": "Farid Ahmad Malik",
+      "role": "Bowler",
+      "batting": 20,
+      "attacking": 20,
+      "bowling": 77,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 20,
+          "attacking": 20,
+          "bowling": 77
+        }
+      }
+    },
+    "afg-mohammad-saleem": {
+      "name": "Mohammad Saleem Safi",
+      "role": "Bowler",
+      "batting": 20,
+      "attacking": 18,
+      "bowling": 76,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 20,
+          "attacking": 18,
+          "bowling": 76
+        }
+      }
+    },
+    "bd-litton-das": {
+      "name": "Litton Das",
+      "role": "Wicketkeeper",
+      "batting": 80,
+      "attacking": 85,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 80,
+          "attacking": 85,
+          "bowling": 5
+        }
+      }
+    },
+    "bd-tawhid-hridoy": {
+      "name": "Tawhid Hridoy",
+      "role": "Batter",
+      "batting": 81,
+      "attacking": 84,
+      "bowling": 8,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 81,
+          "attacking": 84,
+          "bowling": 8
+        }
+      }
+    },
+    "bd-tanzid-hasan": {
+      "name": "Tanzid Hasan Tamim",
+      "role": "Batter",
+      "batting": 77,
+      "attacking": 85,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 77,
+          "attacking": 85,
+          "bowling": 5
+        }
+      }
+    },
+    "bd-saif-hassan": {
+      "name": "Saif Hassan",
+      "role": "Batter",
+      "batting": 75,
+      "attacking": 76,
+      "bowling": 35,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 75,
+          "attacking": 76,
+          "bowling": 35
+        }
+      }
+    },
+    "bd-soumya-sarkar": {
+      "name": "Soumya Sarkar",
+      "role": "All-rounder",
+      "batting": 76,
+      "attacking": 84,
+      "bowling": 57,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 76,
+          "attacking": 84,
+          "bowling": 57
+        }
+      }
+    },
+    "bd-najmul-hossain-shanto": {
+      "name": "Najmul Hossain Shanto",
+      "role": "Batter",
+      "batting": 82,
+      "attacking": 77,
+      "bowling": 15,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 82,
+          "attacking": 77,
+          "bowling": 15
+        }
+      }
+    },
+    "bd-musaddek-hossain": {
+      "name": "Musaddek Hossain",
+      "role": "All-rounder",
+      "batting": 71,
+      "attacking": 76,
+      "bowling": 66,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 71,
+          "attacking": 76,
+          "bowling": 66
+        }
+      }
+    },
+    "bd-mehidy-hasan-miraz": {
+      "name": "Mehidy Hasan Miraz",
+      "role": "All-rounder",
+      "batting": 73,
+      "attacking": 74,
+      "bowling": 86,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 73,
+          "attacking": 74,
+          "bowling": 86
+        }
+      }
+    },
+    "bd-nurul-hasan": {
+      "name": "Nurul Hasan Sohan",
+      "role": "Wicketkeeper",
+      "batting": 70,
+      "attacking": 76,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 70,
+          "attacking": 76,
+          "bowling": 5
+        }
+      }
+    },
+    "bd-rishad-hossain": {
+      "name": "Rishad Hossain",
+      "role": "All-rounder",
+      "batting": 51,
+      "attacking": 81,
+      "bowling": 82,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 51,
+          "attacking": 81,
+          "bowling": 82
+        }
+      }
+    },
+    "bd-tanvir-islam": {
+      "name": "Tanvir Islam",
+      "role": "Bowler",
+      "batting": 24,
+      "attacking": 22,
+      "bowling": 77,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 24,
+          "attacking": 22,
+          "bowling": 77
+        }
+      }
+    },
+    "bd-taskin-ahmed": {
+      "name": "Taskin Ahmed",
+      "role": "Bowler",
+      "batting": 25,
+      "attacking": 25,
+      "bowling": 86,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 25,
+          "attacking": 25,
+          "bowling": 86
+        }
+      }
+    },
+    "bd-mustafizur-rahman": {
+      "name": "Mustafizur Rahman",
+      "role": "Bowler",
+      "batting": 20,
+      "attacking": 18,
+      "bowling": 87,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 20,
+          "attacking": 18,
+          "bowling": 87
+        }
+      }
+    },
+    "bd-hasan-mahmud": {
+      "name": "Hasan Mahmud",
+      "role": "Bowler",
+      "batting": 20,
+      "attacking": 18,
+      "bowling": 83,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 20,
+          "attacking": 18,
+          "bowling": 83
+        }
+      }
+    },
+    "bd-shoriful-islam": {
+      "name": "Shoriful Islam",
+      "role": "Bowler",
+      "batting": 22,
+      "attacking": 22,
+      "bowling": 81,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 22,
+          "attacking": 22,
+          "bowling": 81
+        }
+      }
+    },
+    "bd-aliss-al-islam": {
+      "name": "Aliss Al Islam",
+      "role": "Bowler",
+      "batting": 22,
+      "attacking": 20,
+      "bowling": 75,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 22,
+          "attacking": 20,
+          "bowling": 75
+        }
+      }
+    },
+    "bd-nahid-rana": {
+      "name": "Nahid Rana",
+      "role": "Bowler",
+      "batting": 18,
+      "attacking": 18,
+      "bowling": 83,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 18,
+          "attacking": 18,
+          "bowling": 83
+        }
+      }
+    },
+    "bd-afif-hossain": {
+      "name": "Afif Hossain",
+      "role": "All-rounder",
+      "batting": 72,
+      "attacking": 81,
+      "bowling": 48,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 72,
+          "attacking": 81,
+          "bowling": 48
+        }
+      }
+    },
+    "bd-mahmudul-hasan-joy": {
+      "name": "Mahmudul Hasan Joy",
+      "role": "Batter",
+      "batting": 74,
+      "attacking": 69,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 74,
+          "attacking": 69,
+          "bowling": 5
+        }
+      }
+    },
+    "bd-zakir-hasan": {
+      "name": "Zakir Hasan",
+      "role": "Wicketkeeper",
+      "batting": 73,
+      "attacking": 73,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 73,
+          "attacking": 73,
+          "bowling": 5
+        }
+      }
+    },
+    "bd-nasum-ahmed": {
+      "name": "Nasum Ahmed",
+      "role": "Bowler",
+      "batting": 28,
+      "attacking": 25,
+      "bowling": 79,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 28,
+          "attacking": 25,
+          "bowling": 79
+        }
+      }
+    },
+    "bd-tanzim-hasan-sakib": {
+      "name": "Tanzim Hasan Sakib",
+      "role": "Bowler",
+      "batting": 31,
+      "attacking": 35,
+      "bowling": 80,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 31,
+          "attacking": 35,
+          "bowling": 80
+        }
+      }
+    },
+    "bd-shahadat-hossain": {
+      "name": "Shahadat Hossain Dipu",
+      "role": "Batter",
+      "batting": 70,
+      "attacking": 71,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 70,
+          "attacking": 71,
+          "bowling": 5
+        }
+      }
+    },
+    "bd-rakibul-hasan": {
+      "name": "Rakibul Hasan",
+      "role": "Bowler",
+      "batting": 24,
+      "attacking": 22,
+      "bowling": 75,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 24,
+          "attacking": 22,
+          "bowling": 75
+        }
+      }
+    },
+    "bd-mohammad-saifuddin": {
+      "name": "Mohammad Saifuddin",
+      "role": "All-rounder",
+      "batting": 56,
+      "attacking": 67,
+      "bowling": 77,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 56,
+          "attacking": 67,
+          "bowling": 77
+        }
+      }
+    },
+    "bd-ebadot-hossain": {
+      "name": "Ebadot Hossain",
+      "role": "Bowler",
+      "batting": 15,
+      "attacking": 15,
+      "bowling": 80,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 15,
+          "attacking": 15,
+          "bowling": 80
+        }
+      }
+    },
+    "bd-khaled-ahmed": {
+      "name": "Khaled Ahmed",
+      "role": "Bowler",
+      "batting": 18,
+      "attacking": 18,
+      "bowling": 75,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Bowler",
+          "batting": 18,
+          "attacking": 18,
+          "bowling": 75
+        }
+      }
+    },
+    "bd-parvez-hossain-emon": {
+      "name": "Parvez Hossain Emon",
+      "role": "Batter",
+      "batting": 72,
+      "attacking": 86,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Batter",
+          "batting": 72,
+          "attacking": 86,
+          "bowling": 5
+        }
+      }
+    },
+    "bd-shamim-hossain": {
+      "name": "Shamim Hossain Patwary",
+      "role": "All-rounder",
+      "batting": 69,
+      "attacking": 84,
+      "bowling": 40,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "All-rounder",
+          "batting": 69,
+          "attacking": 84,
+          "bowling": 40
+        }
+      }
+    },
+    "bd-anamul-haque": {
+      "name": "Anamul Haque",
+      "role": "Wicketkeeper",
+      "batting": 75,
+      "attacking": 76,
+      "bowling": 5,
+      "ratingsByFormat": {
+        "ODI_40": {
+          "role": "Wicketkeeper",
+          "batting": 75,
+          "attacking": 76,
+          "bowling": 5
+        }
+      }
     }
   },
   "formats": {
@@ -1685,6 +5276,400 @@
           "afg-mujeeb",
           "afg-noor"
         ]
+      }
+    },
+    "ODI_40": {
+      "India": {
+        "defaultXI": [
+          "ind-gill",
+          "ind-jaiswal",
+          "ind-ruturaj-gaikwad",
+          "ind-iyer",
+          "ind-rahul",
+          "ind-nitish-kumar-reddy",
+          "ind-jadeja",
+          "ind-varun-chakaravarthy",
+          "ind-siraj",
+          "ind-bhuvneshwar-kumar",
+          "ind-harshit-rana"
+        ],
+        "reserves": [
+          "ind-rohit",
+          "ind-kohli",
+          "ind-kuldeep",
+          "ind-gurnoor-brar",
+          "ind-anshul-kamboj",
+          "ind-dhruv-jurel",
+          "ind-naman-dhir",
+          "ind-auqib-nabi",
+          "ind-hardik",
+          "ind-bumrah",
+          "ind-arshdeep",
+          "ind-prasidh-krishna",
+          "ind-shami",
+          "ind-sundar",
+          "ind-axar",
+          "ind-sanju-samson",
+          "ind-ishan-kishan",
+          "ind-pant",
+          "ind-sai-sudharsan",
+          "ind-tilak-varma",
+          "ind-abhishek-sharma",
+          "ind-vaibhav-sooryavanshi",
+          "ind-rinku-singh",
+          "ind-devdutt-padikkal",
+          "ind-shivam-dube",
+          "ind-riyan-parag",
+          "ind-shardul-thakur",
+          "ind-yuzvendra-chahal",
+          "ind-ravi-bishnoi",
+          "ind-mukesh-kumar",
+          "ind-akash-deep",
+          "ind-mayank-yadav",
+          "ind-khaleel-ahmed",
+          "ind-prince-yadav"
+        ],
+        "squadSize": 45
+      },
+      "Pakistan": {
+        "defaultXI": [
+          "pak-saim",
+          "pak-fakhar",
+          "pak-babar",
+          "pak-ghazi-ghori",
+          "pak-salman",
+          "pak-shadab-khan",
+          "pak-faheem",
+          "pak-shaheen",
+          "pak-naseem",
+          "pak-rauf",
+          "pak-abrar"
+        ],
+        "reserves": [
+          "pak-arafat-minhas",
+          "pak-hasan-nawaz",
+          "pak-razaullah",
+          "pak-saad-baig",
+          "pak-sufiyan-moqim",
+          "pak-rizwan",
+          "pak-shafique",
+          "pak-imam",
+          "pak-nawaz",
+          "pak-wasim",
+          "pak-iftikhar",
+          "pak-sahibzada-farhan",
+          "pak-khawaja-nafay",
+          "pak-mohammad-salman-mirza",
+          "pak-hasan-ali",
+          "pak-mohammad-haris",
+          "pak-saud-shakeel",
+          "pak-hussain-talat",
+          "pak-mohammad-hasnain",
+          "pak-khushdil-shah",
+          "pak-tayyab-tahir",
+          "pak-shamyl-hussain",
+          "pak-haseebullah",
+          "pak-abbas-afridi",
+          "pak-akif-javed",
+          "pak-maaz-sadaqat"
+        ],
+        "squadSize": 37
+      },
+      "Australia": {
+        "defaultXI": [
+          "aus-head",
+          "aus-marsh",
+          "aus-green",
+          "aus-oliver-peake",
+          "aus-inglis",
+          "aus-carey",
+          "aus-connolly",
+          "aus-pat-cummins",
+          "aus-starc",
+          "aus-zampa",
+          "aus-hazlewood"
+        ],
+        "reserves": [
+          "aus-bartlett",
+          "aus-joel-davies",
+          "aus-ellis",
+          "aus-matthew-renshaw",
+          "aus-spencer-johnson",
+          "aus-billy-stanlake",
+          "aus-short",
+          "aus-labuschagne",
+          "aus-aaron-hardie",
+          "aus-sean-abbott",
+          "aus-josh-philippe",
+          "aus-ben-dwarshuis",
+          "aus-tanveer-sangha",
+          "aus-beau-webster",
+          "aus-jake-fraser-mcgurk",
+          "aus-will-sutherland",
+          "aus-todd-murphy",
+          "aus-matthew-kuhnemann",
+          "aus-tim-david"
+        ],
+        "squadSize": 30
+      },
+      "England": {
+        "defaultXI": [
+          "eng-duckett",
+          "eng-tom-banton",
+          "eng-root",
+          "eng-brook",
+          "eng-jacks",
+          "eng-james-coles",
+          "eng-curran",
+          "eng-liam-dawson",
+          "eng-overton",
+          "eng-rashid",
+          "eng-archer"
+        ],
+        "reserves": [
+          "eng-atkinson",
+          "eng-sonny-baker",
+          "eng-jordan-cox",
+          "eng-mason-crane",
+          "eng-henry-crocombe",
+          "eng-josh-tongue",
+          "eng-buttler",
+          "eng-bethell",
+          "eng-carse",
+          "eng-rehan",
+          "eng-phil-salt",
+          "eng-liam-livingstone",
+          "eng-crawley",
+          "eng-jamie-smith",
+          "eng-saqib-mahmood",
+          "eng-reece-topley",
+          "eng-matthew-potts",
+          "eng-luke-wood",
+          "eng-dan-mousley"
+        ],
+        "squadSize": 30
+      },
+      "SouthAfrica": {
+        "defaultXI": [
+          "sa-dekock",
+          "sa-rickelton",
+          "sa-bavuma",
+          "sa-markram",
+          "sa-breetzke",
+          "sa-miller",
+          "sa-jansen",
+          "sa-corbin-bosch",
+          "sa-maharaj",
+          "sa-ngidi",
+          "sa-rabada"
+        ],
+        "reserves": [
+          "sa-gerald-coetzee",
+          "sa-baartman",
+          "sa-dezorzi",
+          "sa-bjorn-fortuin",
+          "sa-kwena-maphaka",
+          "sa-tristan-stubbs",
+          "sa-burger",
+          "sa-rubin-hermann",
+          "sa-dewald-brevis",
+          "sa-donovan-ferreira",
+          "sa-anrich-nortje",
+          "sa-wiaan-mulder",
+          "sa-senuran-muthusamy",
+          "sa-lizaad-williams",
+          "sa-andile-phehlukwayo",
+          "sa-lutho-sipamla",
+          "sa-jordan-hermann"
+        ],
+        "squadSize": 28
+      },
+      "NewZealand": {
+        "defaultXI": [
+          "nz-conway",
+          "nz-young",
+          "nz-rachin-ravindra",
+          "nz-mitchell",
+          "nz-tom-latham",
+          "nz-phillips",
+          "nz-bracewell",
+          "nz-santner",
+          "nz-jamieson",
+          "nz-henry",
+          "nz-jacob-duffy"
+        ],
+        "reserves": [
+          "nz-mark-chapman",
+          "nz-nathan-smith",
+          "nz-blair-tickner",
+          "nz-finn-allen",
+          "nz-kristian-clarke",
+          "nz-matt-fisher",
+          "nz-ferguson",
+          "nz-hay",
+          "nz-nick-kelly",
+          "nz-tim-seifert",
+          "nz-williamson",
+          "nz-nicholls",
+          "nz-josh-clarkson",
+          "nz-foulkes",
+          "nz-jayden-lennox",
+          "nz-ashok",
+          "nz-neesham",
+          "nz-adam-milne",
+          "nz-ish-sodhi",
+          "nz-will-orourke",
+          "nz-ben-sears"
+        ],
+        "squadSize": 32
+      },
+      "WestIndies": {
+        "defaultXI": [
+          "wi-john-campbell",
+          "wi-carty",
+          "wi-hope",
+          "wi-rutherford",
+          "wi-chase",
+          "wi-greaves",
+          "wi-keemo-paul",
+          "wi-gudakesh-motie",
+          "wi-alzarri-joseph",
+          "wi-shamar-joseph",
+          "wi-seales"
+        ],
+        "reserves": [
+          "wi-jewel-andrew",
+          "wi-amir-jangoo",
+          "wi-forde",
+          "wi-vitel-lawes",
+          "wi-athanaze",
+          "wi-brandon-king",
+          "wi-shimron-hetmyer",
+          "wi-powell",
+          "wi-shepherd",
+          "wi-springer",
+          "wi-hosein",
+          "wi-pierre",
+          "wi-johann-layne",
+          "wi-jason-holder",
+          "wi-kavem-hodge",
+          "wi-jeremiah-louis",
+          "wi-anderson-phillip",
+          "wi-joshua-da-silva"
+        ],
+        "squadSize": 29
+      },
+      "SriLanka": {
+        "defaultXI": [
+          "sl-nissanka",
+          "sl-avishka",
+          "sl-mendis",
+          "sl-pavan-rathnayake",
+          "sl-kamindu",
+          "sl-liyanage",
+          "sl-dunith-wellalage",
+          "sl-theekshana",
+          "sl-chameera",
+          "sl-fernando",
+          "sl-dilshan-madushanka"
+        ],
+        "reserves": [
+          "sl-kamil-mishara",
+          "sl-sahan-arachchige",
+          "sl-dasun-shanaka",
+          "sl-sachindu-colombage",
+          "sl-eshan-malinga",
+          "sl-asalanka",
+          "sl-sadeera",
+          "sl-hasaranga",
+          "sl-vandersay",
+          "sl-madushan",
+          "sl-de-silva",
+          "sl-pathirana",
+          "sl-milan-rathnayake",
+          "sl-lasith-croospulle",
+          "sl-kusal-perera",
+          "sl-lahiru-kumara",
+          "sl-binura-fernando",
+          "sl-vijayakanth-viyaskanth",
+          "sl-nuwan-thushara",
+          "sl-nishan-madushka"
+        ],
+        "squadSize": 31
+      },
+      "Afghanistan": {
+        "defaultXI": [
+          "afg-gurbaz",
+          "afg-zadran",
+          "afg-rahmat",
+          "afg-shahidi",
+          "afg-omarzai",
+          "afg-nabi",
+          "afg-rashid",
+          "afg-kharoti",
+          "afg-ghazanfar",
+          "afg-farooqi",
+          "afg-bilal-sami"
+        ],
+        "reserves": [
+          "afg-ikram-alikhil",
+          "afg-sediqullah-atal",
+          "afg-zia-ur-rahman-sharifi",
+          "afg-yamin-ahmadzai",
+          "afg-qais-ahmad",
+          "afg-naib",
+          "afg-naveed",
+          "afg-zazai",
+          "afg-mujeeb",
+          "afg-noor",
+          "afg-naveen-ul-haq",
+          "afg-abdullah-ahmadzai",
+          "afg-mohammad-ishaq",
+          "afg-shahidullah-kamal",
+          "afg-abdul-malik",
+          "afg-riaz-hassan",
+          "afg-darwish-rasooli",
+          "afg-farid-ahmad",
+          "afg-mohammad-saleem"
+        ],
+        "squadSize": 30
+      },
+      "Bangladesh": {
+        "defaultXI": [
+          "bd-tanzid-hasan",
+          "bd-saif-hassan",
+          "bd-najmul-hossain-shanto",
+          "bd-tawhid-hridoy",
+          "bd-litton-das",
+          "bd-musaddek-hossain",
+          "bd-mehidy-hasan-miraz",
+          "bd-rishad-hossain",
+          "bd-taskin-ahmed",
+          "bd-mustafizur-rahman",
+          "bd-hasan-mahmud"
+        ],
+        "reserves": [
+          "bd-soumya-sarkar",
+          "bd-nurul-hasan",
+          "bd-tanvir-islam",
+          "bd-shoriful-islam",
+          "bd-aliss-al-islam",
+          "bd-nahid-rana",
+          "bd-afif-hossain",
+          "bd-mahmudul-hasan-joy",
+          "bd-zakir-hasan",
+          "bd-nasum-ahmed",
+          "bd-tanzim-hasan-sakib",
+          "bd-shahadat-hossain",
+          "bd-rakibul-hasan",
+          "bd-mohammad-saifuddin",
+          "bd-ebadot-hossain",
+          "bd-khaled-ahmed",
+          "bd-parvez-hossain-emon",
+          "bd-shamim-hossain",
+          "bd-anamul-haque"
+        ],
+        "squadSize": 30
       }
     }
   }

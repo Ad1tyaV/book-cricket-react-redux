@@ -1,3 +1,4 @@
+import bundledSquadCatalog from "../../data/cric-vfinal.json";
 import { isSquadCatalog } from "../../helpers/teamHelpers";
 
 export const SQUAD_CATALOG_URL =
@@ -12,7 +13,33 @@ const loadSquadCatalog = () => async (dispatch) => {
 
     const catalog = await response.json();
     if (isSquadCatalog(catalog)) {
-      dispatch({ type: "SET_TEAM_CATALOG", payload: catalog });
+      // Keep the bundled 40-over pool when the live catalog predates it.
+      let nextCatalog = catalog;
+      if (!catalog.formats.ODI_40) {
+        const players = { ...catalog.players };
+        Object.entries(bundledSquadCatalog.players).forEach(([id, player]) => {
+          if (!players[id]) {
+            players[id] = player;
+          } else if (player.ratingsByFormat?.ODI_40) {
+            players[id] = {
+              ...players[id],
+              ratingsByFormat: {
+                ...players[id].ratingsByFormat,
+                ODI_40: player.ratingsByFormat.ODI_40,
+              },
+            };
+          }
+        });
+        nextCatalog = {
+          ...catalog,
+          players,
+          formats: {
+            ...catalog.formats,
+            ODI_40: bundledSquadCatalog.formats.ODI_40,
+          },
+        };
+      }
+      dispatch({ type: "SET_TEAM_CATALOG", payload: nextCatalog });
     }
   } catch (error) {
     // The bundled catalog remains available when offline or before the

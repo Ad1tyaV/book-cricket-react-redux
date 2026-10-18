@@ -23,11 +23,13 @@ test("T20 matches select the T20 player profiles", () => {
   );
 });
 
-test("40- and 50-over matches share the ODI player profiles", () => {
+test("40-over matches use their own starters and reviewed player profiles", () => {
   const odi40 = selectTeams("ODI_40", 40);
   const odi50 = selectTeams("ODI_50", 50);
 
-  expect(odi40.team1PlayingXI).toEqual(odi50.team1PlayingXI);
+  expect(odi40.team1PlayingXI).not.toEqual(odi50.team1PlayingXI);
+  expect(odi40.team1PlayingXI[3].name).toBe("Shreyas Iyer");
+  expect(odi40.team1PlayingXI).toHaveLength(11);
   expect(odi50.team1PlayingXI[0].name).toBe("Shubman Gill");
   expect(odi50.team2PlayingXI[2].name).toBe("Joe Root");
 });

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { getAvailableTeams } from "../helpers/teamHelpers";
+import React, { useState, useEffect, useMemo } from "react";
 import {
   Button,
   Select,
@@ -8,11 +9,15 @@ import {
   FormControlLabel,
 } from "@material-ui/core";
 
-function TournamentSetup({ teams, onStartTournament, onBack }) {
+function TournamentSetup({
+  teams: fallbackTeams,
+  teamData,
+  onStartTournament,
+  onBack,
+}) {
   const [selectedTeams, setSelectedTeams] = useState([]);
   const [selectedOvers, setSelectedOvers] = useState(50);
   const [structure, setStructure] = useState("round_robin");
-  const allTeamsSelected = selectedTeams.length === teams.length;
 
   const oversOptions = [
     { value: 20, label: "T20 (20 Overs)", format: "T20" },
@@ -20,6 +25,20 @@ function TournamentSetup({ teams, onStartTournament, onBack }) {
     { value: 50, label: "ODI (50 Overs)", format: "ODI_50" },
   ];
 
+  const selectedFormat =
+    oversOptions.find((opt) => opt.value === selectedOvers)?.format || "ODI_50";
+  const teams = useMemo(
+    () =>
+      teamData ? getAvailableTeams(teamData, selectedFormat) : fallbackTeams,
+    [teamData, selectedFormat, fallbackTeams]
+  );
+  const allTeamsSelected = selectedTeams.length === teams.length;
+  useEffect(() => {
+    setSelectedTeams((selected) => {
+      const valid = selected.filter((team) => teams.includes(team));
+      return valid.length === selected.length ? selected : valid;
+    });
+  }, [teams]);
   const handleTeamToggle = (team) => {
     if (selectedTeams.includes(team)) {
       setSelectedTeams(selectedTeams.filter((t) => t !== team));

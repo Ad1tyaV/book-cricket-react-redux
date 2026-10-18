@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import { getAvailableTeams } from "../helpers/teamHelpers";
+import React, { useState, useEffect, useMemo } from "react";
 import { Button, Select, MenuItem, InputLabel } from "@material-ui/core";
 
-function BilateralSetup({ teams, onStartSeries, onBack }) {
+function BilateralSetup({
+  teams: fallbackTeams,
+  teamData,
+  onStartSeries,
+  onBack,
+}) {
   const [team1, setTeam1] = useState("India");
   const [team2, setTeam2] = useState("NewZealand");
   const [numMatches, setNumMatches] = useState(3);
@@ -15,6 +21,19 @@ function BilateralSetup({ teams, onStartSeries, onBack }) {
     { value: 50, label: "ODI (50 Overs)", format: "ODI_50" },
   ];
 
+  const selectedFormat =
+    oversOptions.find((opt) => opt.value === selectedOvers)?.format || "ODI_50";
+  const teams = useMemo(
+    () =>
+      teamData ? getAvailableTeams(teamData, selectedFormat) : fallbackTeams,
+    [teamData, selectedFormat, fallbackTeams]
+  );
+  useEffect(() => {
+    if (!teams.includes(team1))
+      setTeam1(teams.find((team) => team !== team2) || "India");
+    if (!teams.includes(team2))
+      setTeam2(teams.find((team) => team !== team1) || "NewZealand");
+  }, [teams, team1, team2]);
   const handleStart = () => {
     const selectedFormat =
       oversOptions.find((opt) => opt.value === selectedOvers)?.format ||
@@ -37,7 +56,7 @@ function BilateralSetup({ teams, onStartSeries, onBack }) {
         First Team
       </InputLabel>
       <Select
-        value={team1}
+        value={teams.includes(team1) ? team1 : ""}
         onChange={(e) => setTeam1(e.target.value)}
         style={{ color: "whitesmoke", marginBottom: 20, width: "100%" }}
       >
@@ -56,7 +75,7 @@ function BilateralSetup({ teams, onStartSeries, onBack }) {
         Second Team
       </InputLabel>
       <Select
-        value={team2}
+        value={teams.includes(team2) ? team2 : ""}
         onChange={(e) => setTeam2(e.target.value)}
         style={{ color: "whitesmoke", marginBottom: 20, width: "100%" }}
       >
